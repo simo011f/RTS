@@ -6,7 +6,8 @@ class Game {
   int loc = 0;  
   int lvlcode = 0;
 
-  //these are all the classes:
+  //these are all the classes: 
+  Enemy E = new Enemy();
   Timer T = new Timer();
   Menu M = new Menu();
   LoadGame Lg =  new LoadGame();
@@ -122,11 +123,12 @@ class Game {
     case -1: 
       //exits the game
       exit();
-        
+
       break;
 
     case 0:
       //this is the menu
+      E.run();
       M.run();
       break;
 

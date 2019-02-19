@@ -4,7 +4,7 @@ Game G;
 
 
 void setup() {
-  size(1400, 800);
+  size(1500, 800);
   G = new Game();
 }
 
