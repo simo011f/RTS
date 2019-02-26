@@ -1,11 +1,11 @@
-class escMenu {
+class EscMenu {
 
   PFont f;
   boolean es;
   boolean[] Opt = new boolean[4];
   int[] chol = new int[4];
 
-  escMenu() {
+  EscMenu() {
   }
 
   void choices() {  

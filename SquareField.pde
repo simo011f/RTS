@@ -18,7 +18,7 @@ class Squares {
   }
 }
 
-class SquareFeld {  
+class SquareField {  
   ArrayList<Squares> parts = new ArrayList<Squares>();
 
   PVector squareNR  = new PVector(0, 0);

@@ -12,17 +12,14 @@ class Game {
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
-  GameBoard Gb = new GameBoard();
-  escMenu Ec = new escMenu();
-  SquareFeld sq = new SquareFeld();
-
-
-
-
+  GameBoard gameBoard = new GameBoard();
+  EscMenu escMenu = new EscMenu();
+  SquareField squareFeld = new SquareField();
 
   Game() {
   }
-  void skift() {
+  
+  void changeState() {
 
     if (mousePressed && keyMenu.leave) { 
       //if the exit button is pressed in the keys menu
@@ -32,7 +29,7 @@ class Game {
       //if the exit button is pressed in the load game menu
       loc = 0;
     }
-    if (mousePressed && Ec.Opt[2]) { 
+    if (mousePressed && escMenu.Opt[2]) { 
       //if the main menu button is pressed in the ESC menu.
       loc = 0;
     }
@@ -106,7 +103,7 @@ class Game {
       //exits the game if the exit button is pressed in the start menu
       loc = -1;
     }  
-    if (mousePressed && Ec.Opt[3]) {
+    if (mousePressed && escMenu.Opt[3]) {
       //exits the game if the exit button is chosen in the ESC menu
       loc = -1;
     }
@@ -118,54 +115,45 @@ class Game {
     //println(Lg.chol);
     //  println(continu);
 
-    skift();
+    changeState();
     switch (loc) {
 
     case -1: 
       //exits the game
       exit();
-
       break;
 
     case 0:
       //this is the menu
-
       menu.run();
       break;
 
     case 1:
       //this is the load game menu
       loadGame.run(); 
-      Ec.run();
+      escMenu.run();
       break;
 
     case 2:
       //this is the key menu
       keyMenu.run(); 
-      Ec.run();
+      escMenu.run();
       break;
 
     case 3:
-
       loc = 4;
       break;
 
     case 4:
       //this is the main game
       timer.run();
-
-      Gb.run();  
-      sq.run();
-
-
-      Ec.run();
+      gameBoard.run();  
+      squareFeld.run();
+      escMenu.run();
       break;
 
     case 5:
       //this is the end screen
-
-
-
       break;
     }
   }
