@@ -1,40 +1,39 @@
-class sqr {
+class squares {
   PVector loc;
   int scale=10;
+  
   sqr(PVector l) {
     loc = l.get();
-  }  
+  }
+  
   void display() {
     fill(0, 0, 255);
     stroke(0);
     strokeWeight(1.5);
     rect(loc.x, loc.y, scale, scale);
   }
+  
   void run() {
     display();
   }
 }
 
-class sqrFeld {  
+class squareFeld {  
   ArrayList<sqr> parts = new ArrayList<sqr>();
 
   PVector nr  = new PVector(0, 0);
-  ;
   int hej=0; 
   int t;
   int scale = 10;  
-  int k=0;
+  int gridSquares = 0;
   int c;
 
   int cols = width/scale;
   int rows = height/scale;
 
   PVector[] grid = new PVector[13501];
-  void gred() {
-
-
-
-
+  void grid() {
+    
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {  
 
@@ -42,12 +41,7 @@ class sqrFeld {
         int y = j*scale;
         // Begin loop for rows
 
-
-
-
         grid[k]=new PVector(x, y);
-
-
         if (k<=13500) {
           k++;
         }
