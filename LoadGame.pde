@@ -1,7 +1,7 @@
 
 class LoadGame {
   PFont f; 
-  boolean[] LVL = new boolean[13];
+  boolean[] levelNR = new boolean[13];
   int[] levelColors = new int[13];
   int levelCode;
   int colorLeave;
@@ -12,7 +12,7 @@ class LoadGame {
     f = createFont("arial", 16, true);
   }
 
-  void bord() {
+  void levelBord() {
 
     //this draws all the necessary numbers at the right locations
 
@@ -36,7 +36,7 @@ class LoadGame {
 
 
     fill(levelColors[1], 255, levelColors[1] );
-    if (G.nr <= 1) {  
+    if (game.nr <= 1) {  
       fill(0);
     }
     stroke(0);
@@ -50,7 +50,7 @@ class LoadGame {
 
 
     fill(levelColors[2], 255, levelColors[2] );
-    if (G.nr <= 2) {  
+    if (game.nr <= 2) {  
       fill(0);
     }
     stroke(0);
@@ -64,7 +64,7 @@ class LoadGame {
 
 
     fill(levelColors[3], 255, levelColors[3] );
-    if (G.nr <= 3) {
+    if (game.nr <= 3) {
       fill(0);
     }
     stroke(0);
@@ -77,7 +77,7 @@ class LoadGame {
     textAlign(LEFT);
 
     fill(levelColors[4], 255, levelColors[4] );
-    if (G.nr <= 4) {
+    if (game.nr <= 4) {
       fill(0);
     }
     stroke(0);
@@ -91,7 +91,7 @@ class LoadGame {
 
 
     fill(levelColors[5], 255, levelColors[5] );
-    if (G.nr <= 5) {  
+    if (game.nr <= 5) {  
       fill(0);
     }
     stroke(0);
@@ -104,7 +104,7 @@ class LoadGame {
     textAlign(LEFT);
 
     fill(levelColors[6], 255, levelColors[6] );
-    if (G.nr <= 6) {  
+    if (game.nr <= 6) {  
       fill(0);
     }
     stroke(0);
@@ -117,7 +117,7 @@ class LoadGame {
     textAlign(LEFT); 
 
     fill(levelColors[7], 255, levelColors[7] );
-    if (G.nr <= 7) {  
+    if (game.nr <= 7) {  
       fill(0);
     }
     stroke(0);
@@ -130,7 +130,7 @@ class LoadGame {
     textAlign(LEFT);
 
     fill(levelColors[8], 255, levelColors[8] );
-    if (G.nr <= 8) {  
+    if (game.nr <= 8) {  
       fill(0);
     }
     stroke(0);
@@ -144,7 +144,7 @@ class LoadGame {
 
 
     fill(levelColors[9], 255, levelColors[9]);
-    if (G.nr <= 9) {  
+    if (game.nr <= 9) {  
       fill(0);
     }
     stroke(0);
@@ -157,7 +157,7 @@ class LoadGame {
     textAlign(LEFT);
 
     fill(levelColors[10], 255, levelColors[10] );
-    if (G.nr <= 10) {  
+    if (game.nr <= 10) {  
       fill(0);
     }
     stroke(0);
@@ -170,7 +170,7 @@ class LoadGame {
     textAlign(LEFT); 
 
     fill(levelColors[11], 255, levelColors[11] );
-    if (G.nr <= 11) {  
+    if (game.nr <= 11) {  
       fill(0);
     }
     stroke(0);
@@ -184,7 +184,7 @@ class LoadGame {
   }
 
 
-  void bordLogic() {    
+  void levelBordLogic() {    
     if (timer<30) {
       timer++;
     }
@@ -192,109 +192,109 @@ class LoadGame {
 
     if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
       levelColors[0] = 0;
-      LVL[0] = true;
+      levelNR[0] = true;
     } else {
       levelColors[0] = 255;
-      LVL[0] = false;
+      levelNR[0] = false;
     }
-    if (G.nr >= 1) { 
+    if (game.nr >= 1) { 
       if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
         levelColors[1] = 0;
-        LVL[1] = true;
+        levelNR[1] = true;
       } else {
         levelColors[1] = 255;
-        LVL[1] = false;
+        levelNR[1] = false;
       }
     } 
-    if (G.nr >= 2) { 
+    if (game.nr >= 2) { 
       if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
         levelColors[2] = 0;
-        LVL[2] = true;
+        levelNR[2] = true;
       } else {
         levelColors[2] = 255;
-        LVL[2] = false;
+        levelNR[2] = false;
       }
     } 
-    if (G.nr >= 3) { 
+    if (game.nr >= 3) { 
       if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
         levelColors[3] = 0;
-        LVL[3] = true;
+        levelNR[3] = true;
       } else {
         levelColors[3] = 255;
-        LVL[3] = false;
+        levelNR[3] = false;
       }
     }     
-    if (G.nr >= 4) { 
+    if (game.nr >= 4) { 
       if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
         levelColors[4] = 0;
-        LVL[4] = true;
+        levelNR[4] = true;
       } else {
         levelColors[4] = 255;
-        LVL[4] = false;
+        levelNR[4] = false;
       }
     }
-    if (G.nr >= 5) { 
+    if (game.nr >= 5) { 
       if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
         levelColors[5] = 0;
-        LVL[5] = true;
+        levelNR[5] = true;
       } else {
         levelColors[5] = 255;
-        LVL[5] = false;
+        levelNR[5] = false;
       }
     } 
-    if (G.nr >= 6) { 
+    if (game.nr >= 6) { 
       if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
         levelColors[6] = 0;
-        LVL[6] = true;
+        levelNR[6] = true;
       } else {
         levelColors[6] = 255;
-        LVL[6] = false;
+        levelNR[6] = false;
       }
     }  
-    if (G.nr >= 7) { 
+    if (game.nr >= 7) { 
       if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >=height*3/8 && mouseY <= height*5/8) {
         levelColors[7] = 0;
-        LVL[7] = true;
+        levelNR[7] = true;
       } else {
         levelColors[7] = 255;
-        LVL[7] = false;
+        levelNR[7] = false;
       }
     }     
-    if (G.nr >= 8) { 
+    if (game.nr >= 8) { 
       if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
         levelColors[8] = 0;
-        LVL[8] = true;
+        levelNR[8] = true;
       } else {
         levelColors[8] = 255;
-        LVL[8] = false;
+        levelNR[8] = false;
       }
     }
-    if (G.nr >= 9) { 
+    if (game.nr >= 9) { 
       if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
         levelColors[9] = 0;
-        LVL[9] = true;
+        levelNR[9] = true;
       } else {
         levelColors[9] = 255;
-        LVL[9] = false;
+        levelNR[9] = false;
       }
     }  
-    if (G.nr >= 10) { 
+    if (game.nr >= 10) { 
       if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
         levelColors[10] = 0;
-        LVL[10] = true;
+        levelNR[10] = true;
       } else {
         levelColors[10] = 255;
-        LVL[10] = false;
+        levelNR[10] = false;
       }
     }  
-    if (G.nr >= 11) { 
+    if (game.nr >= 11) { 
       if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*5/8 && mouseY <= height*7/8 && timer >= 30) {
         levelColors[11] = 0;
-        LVL[11] = true;  
+        levelNR[11] = true;  
    
       } else {
         levelColors[11] = 255;
-        LVL[11] = false;
+        levelNR[11] = false;
       }
     }
   }
@@ -314,8 +314,8 @@ class LoadGame {
     if (mouseX>=0 && mouseX<=80 && mouseY>=0 && mouseY<=80 ) {
 
       colorLeave = 0;
-      G.menu.screen[2]=false;
-      G.menu.screen[1]=false;
+      game.menu.screen[2]=false;
+      game.menu.screen[1]=false;
 
       leave = true;
     } else {
@@ -328,7 +328,7 @@ class LoadGame {
   void run() { 
   
     leave();
-    bord();
-    bordLogic();
+    levelBord();
+    levelBordLogic();
   }
 }
