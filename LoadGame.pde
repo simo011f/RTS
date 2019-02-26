@@ -313,7 +313,7 @@ class LoadGame {
 
     if (mouseX>=0 && mouseX<=80 && mouseY>=0 && mouseY<=80 ) {
 
-      G.M.t = 0;
+      G.menu.t = 0;
       lea = 0;
       G.menu.screen[2]=false;
       G.menu.screen[1]=false;

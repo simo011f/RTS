@@ -14,11 +14,11 @@ class Game {
   KeyMenu keyMenu = new KeyMenu();
   GameBoard gameBoard = new GameBoard();
   EscMenu escMenu = new EscMenu();
-  SquareField squareFeld = new SquareField();
+  EnemyField enemyFeld = new EnemyField();
 
   Game() {
   }
-  
+
   void changeState() {
 
     if (mousePressed && keyMenu.leave) { 
@@ -33,21 +33,21 @@ class Game {
       //if the main menu button is pressed in the ESC menu.
       loc = 0;
     }
-<<<<<<< HEAD:spillet.pde
-    if (mousePressed && M.screen[1]) {  
-     
+
+    if (mousePressed && menu.screen[1]) {  
+
       //load game is pressed
       loc = 1;
     }
-    if (mousePressed && M.screen[2]) {   
 
-=======
+
+
     if (mousePressed && menu.screen[2]) {   
->>>>>>> Navne:Game.pde
+
+
       //if new game is pressed on the start menu
       nr = 0;
       loc = 1;
-  
     }
 
     if (mousePressed && menu.screen[3]) {
@@ -123,7 +123,7 @@ class Game {
 
   void run() {
 
-   
+
 
     changeState();
     switch (loc) {
@@ -150,15 +150,12 @@ class Game {
       escMenu.run();
       break;
 
+    
     case 3:
-      loc = 4;
-      break;
-
-    case 4:
       //this is the main game
       timer.run();
       gameBoard.run();  
-      squareFeld.run();
+      enemyFeld.run();
       escMenu.run();
       break;
 

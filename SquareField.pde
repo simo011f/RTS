@@ -1,25 +1,25 @@
-class Squares {
+class Square {
   PVector loc;
   int scale=10;
-  
-  Squares(PVector l) {
+
+  Square(PVector l) {
     loc = l.get();
   }
-  
+
   void display() {
     fill(0, 0, 255);
     stroke(0);
     strokeWeight(1.5);
     rect(loc.x, loc.y, scale, scale);
   }
-  
+
   void run() {
     display();
   }
 }
 
-class SquareField {  
-  ArrayList<Squares> parts = new ArrayList<Squares>();
+class EnemyField {  
+  ArrayList<Square> parts = new ArrayList<Square>();
 
   PVector squareNR  = new PVector(0, 0);
   int hej=0; 
@@ -31,55 +31,82 @@ class SquareField {
   int cols = width/scale;
   int rows = height/scale;
 
-  PVector[] grid = new PVector[13501];
-  void grid() {
-    
+  PVector[][] grid = new PVector[cols][rows];
+
+  EnemyField() {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {  
 
-        int x = i*scale;
-        int y = j*scale;
-        // Begin loop for rows
-
-        grid[gridSquares]=new PVector(x, y);
-        if (gridSquares<=13500) {
-          gridSquares++;
-        }
-        if (gridSquares>13500) {
-          gridSquares=13500;
-        }
+        grid[i][j] = new PVector(i*scale, j*scale);
       }
     }
   }
 
   void highLight() {
-    if (mouseX>grid[0].x && mouseX<grid[0].x+scale && mouseY>grid[0].y && mouseY<grid[0].y+scale) {
-      println("hej");
+    if (mousePressed) {
       fill(0, 0, 255);
       stroke(0);
       strokeWeight(1.5);
-      rect(grid[0].x, grid[0].y, scale, scale);
+      rect(grid[(mouseX/10)][(mouseY/10)].x, grid[(mouseX/10)][(mouseY/10)].y, scale, scale);
     }
+  }
+
+  void addParikle() {  
+
+
+    //c = int(random(3)); 
+    //hej = int(random(5));
+
+    //if (hej <= 0) {
+    //  squareNR.x = squareNR.x + 90;
+    //}  
+    //if (hej == 1) {
+    //  squareNR.x=squareNR.x-90;
+    //}  
+    //if (hej == 2) {
+    //  squareNR.y=squareNR.y+1;
+    //} 
+    //if (hej == 3) {
+    //  squareNR.y=squareNR.y-1;
+    //} 
+
+    //if (squareNR.x<0) {
+    //  squareNR.x=0;
+    //} 
+    //if (squareNR.y<0) {
+    //  squareNR.y=0;
+    //}
+    //if (squareNR.x>13500) {
+    //  squareNR.x=13500;
+    //}
+    //if (squareNR.y>13500) {
+    //  squareNR.y=13500;
+    //}
+    //if (c==0) {
+    //  parts.add(new Square(grid[int(squareNR.x)]));
+    //}
+    //if (c==1) {
+    //  parts.add(new Square(grid[int(squareNR.y)]));
+    //}
+    //if (c==2) {
+    //  parts.add(new Square(grid[int(squareNR.x+squareNR.y)]));
+    //}
   }
 
 
 
- 
-
   void run() {     
     for (int i = parts.size()-1; i >=0; i--) {
-      Squares p =parts.get(i);
+      Square p =parts.get(i);
       p.run();
     }
 
-    grid(); 
+
     highLight();
+    addParikle();
 
 
-    //if (mousePressed) {
-    //  nr=(mouseX/10)*(mouseY/10);
 
-    println(grid[int(squareNR.x)], grid[int(squareNR.y)], squareNR, squareNR.x+squareNR.y);
-    //}
+    //println(grid[int(squareNR.x)], grid[int(squareNR.y)], squareNR, squareNR.x+squareNR.y);
   }
 }

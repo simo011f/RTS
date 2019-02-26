@@ -18,7 +18,7 @@
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
       for (int j = 0; j < rows; j++) {
-        t=i*j;
+   
 
         int x = i*scale;
         int y = j*scale;
