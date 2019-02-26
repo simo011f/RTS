@@ -1,29 +1,35 @@
 class GameBoard {
 
   PFont f;
-  boolean GO = false;
-  int t = 2;
- 
+  boolean GO;
+  int t;  
+  int scale = 10;  
+
+  int cols = width/scale;
+  int rows = height/scale;
+
+
+
 
   void PlayerField() {   
     //this draws the stuff
     //Maybe an array of variables would have been better
+    // Begin loop for columns
+    for (int i = 0; i < cols; i++) {
+      // Begin loop for rows
+      for (int j = 0; j < rows; j++) {
+        t=i*j;
 
-    for (int i = 1; i < 900; i = i+10) {
-      for (int j = 1; j < width+5; j = j+10) {
+        int x = i*scale;
+        int y = j*scale;
+        fill(255);
         stroke(0);
         strokeWeight(1.5);
-        line(0, i, j, i);
-      }
-    }
-    for (int i = 1; i < width+5; i = i+10) {
-      for (int j = 1; j < 900; j = j+10) {
-        stroke(0);
-        strokeWeight(1.5);
-        line(i, 0, i, j);
+        rect(x, y, scale, scale);
       }
     }
   } 
+
 
   void time() {
     //this function displays the time in the upper right corner of the game board.
@@ -46,17 +52,11 @@ class GameBoard {
   void display() {
 
     PlayerField();
-    time();
+    // time();
   }
-  void run() {
+  void run() { 
     display();
 
-    if (t >= 2 && t < 3 && GO == false) {
-      t++;
-      if (t >= 3) {
-        GO= true;
-        t = 0;
-      }
-    }
+
   }
 }

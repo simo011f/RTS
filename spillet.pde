@@ -7,14 +7,14 @@ class Game {
   int lvlcode = 0;
 
   //these are all the classes: 
-  Enemy E = new Enemy();
+
   Timer T = new Timer();
   Menu M = new Menu();
   LoadGame Lg =  new LoadGame();
   Keymenu Km = new Keymenu();
   GameBoard Gb = new GameBoard();
   escMenu Ec = new escMenu();
-
+  sqrFeld sq = new sqrFeld();
 
 
 
@@ -49,6 +49,7 @@ class Game {
     }
     if (mousePressed && M.screen[0]) { 
       //if continue is pressed on the start menu
+      M.screen[0]=false;
       loc = 3;
       lvlcode=continu;
     }
@@ -128,7 +129,7 @@ class Game {
 
     case 0:
       //this is the menu
-      E.run();
+
       M.run();
       break;
 
@@ -145,13 +146,16 @@ class Game {
       break;
 
     case 3:
+
+      loc = 4;
+      break;
+
+    case 4:
       //this is the main game
       T.run();
 
       Gb.run();  
-
-
-
+      sq.run();
 
 
       Ec.run();

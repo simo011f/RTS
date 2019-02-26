@@ -41,7 +41,7 @@ class Menu {
     fill(0, 0, 0);
     textFont(f, 46);
     textAlign(CENTER);
-    text("New Game", width*1/2, 400);
+    text("New Game", width*1/2, 450);
     //new game box
 
     //load game box
@@ -53,14 +53,14 @@ class Menu {
     fill(0, 0, 0);
     textFont(f, 46);
     textAlign(CENTER);
-    text("Load Game", width*1/2, 680);
+    text("Load Game", width*1/2, 760);
     //load game box
 
     textAlign(LEFT);
   }
   void lvlChoiceLogic() {
 
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=20 && mouseY<=200) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=20 && mouseY<=height/4) {
       //continue box
       cc = 0;
       screen[0] = true;
@@ -68,7 +68,7 @@ class Menu {
       cc = 255;
       screen[0] = false;
     }
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=300 && mouseY<=480) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/8 && mouseY<=height*3/8+height/4-20) {
       //new game box
       cn = 0;
       screen[2] = true;
@@ -76,7 +76,7 @@ class Menu {
       cn = 255;
       screen[2] = false;
     }
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=580 && mouseY<=765) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/4-20 && mouseY<=height*3/4-20+height/4-20) {
       //load game box
       //G.Lg.t=0;
       cl = 0;
@@ -134,7 +134,7 @@ class Menu {
   }
 
   void run() {
-
+    
     terminate();
     keymenu();
     lvlChoiceBox();

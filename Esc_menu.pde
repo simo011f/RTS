@@ -80,7 +80,7 @@ class escMenu {
     textAlign(CENTER);
     fill(255, 0, 255);
     textFont(f, 46);
-    text("Continue", 700, 120);
+    text("Continue", width*4/8, height*1/7);
     //continue button
 
     //restart button
@@ -91,7 +91,7 @@ class escMenu {
     textAlign(CENTER);
     fill(255, 0, 255);
     textFont(f, 46);
-    text("Restart", 700, 310);
+    text("Restart", width*4/8, height*7/18);
     //restart button
 
     //Main menu button
@@ -102,7 +102,7 @@ class escMenu {
     textAlign(CENTER);
     fill(255, 0, 255);
     textFont(f, 46);
-    text("Main Menu", 700, 515);
+    text("Main Menu", width*4/8, height*12/19);
     //Main menu button
 
     //Close Game button
@@ -113,7 +113,7 @@ class escMenu {
     textAlign(CENTER);
     fill(255, 0, 255);
     textFont(f, 46);
-    text("Close Game", 700, 715);
+    text("Close Game", width*4/8, 800);
     //Close Game button
 
     textAlign(LEFT);

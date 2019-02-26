@@ -4,13 +4,15 @@ Game G;
 
 
 void setup() {
-  size(1500, 800);
+  size(1501, 901);
   G = new Game();
+  //frameRate(2);
 }
 
 void draw() {
   background(255);
-  G.run();
+  G.run(); 
+  //println(mouseX, mouseY);
 }
 
 boolean[] keys = new boolean[11];
