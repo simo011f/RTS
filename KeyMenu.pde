@@ -133,7 +133,7 @@ class KeyMenu {
 
 
     if (mouseX>=0 && mouseX<=80 && mouseY>=0 && mouseY<=80 ) {
-      game.menu.t=0;
+      game.menu.timer=0;
       leaveColor = 0;
       game.menu.screen[3]=false;
       leave = true;

@@ -1,17 +1,17 @@
 class Menu {
   Game game;
-  
+
   PFont font;
-  
+
   int timer;
   int colorContinue;
   int colorNewGame;
   int colorLoadGame;
   int colorKeyMenu;
   int colorEscMenu;
-  
+
   PVector mouseLocation = new PVector(mouseX, mouseY);
-  
+
   boolean[] screen = new boolean[6];
 
   Menu() {
@@ -78,12 +78,12 @@ class Menu {
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/4-20 && mouseY<=height*3/4-20+height/4-20) {
       //load game box
       //G.Lg.t=0;
-<<<<<<< HEAD
-      
-      cl = 0;
-=======
+
+
       colorLoadGame = 0;
->>>>>>> Navne
+
+      colorLoadGame = 0;
+
       screen[1] = true;
     } else {
       colorLoadGame = 255;

@@ -290,8 +290,7 @@ class LoadGame {
     if (game.nr >= 11) { 
       if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*5/8 && mouseY <= height*7/8 && timer >= 30) {
         levelColors[11] = 0;
-        levelNR[11] = true;  
-   
+        levelNR[11] = true;
       } else {
         levelColors[11] = 255;
         levelNR[11] = false;
@@ -313,16 +312,16 @@ class LoadGame {
 
     if (mouseX>=0 && mouseX<=80 && mouseY>=0 && mouseY<=80 ) {
 
-<<<<<<< HEAD
-      G.M.t = 0;
-      lea = 0;
-      G.menu.screen[2]=false;
-      G.menu.screen[1]=false;
-=======
+
+      game.menu.timer = 0;
       colorLeave = 0;
       game.menu.screen[2]=false;
       game.menu.screen[1]=false;
->>>>>>> Navne
+
+      colorLeave = 0;
+      game.menu.screen[2]=false;
+      game.menu.screen[1]=false;
+
 
       leave = true;
     } else {
@@ -333,7 +332,7 @@ class LoadGame {
   }
 
   void run() { 
-  
+
     leave();
     levelBord();
     levelBordLogic();
