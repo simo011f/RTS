@@ -10,7 +10,7 @@
 
 
 
-  void PlayerField() {   
+  void fieldDraw() {   
     //this draws the stuff
     //Maybe an array of variables would have been better
     // Begin loop for columns
@@ -49,7 +49,7 @@
 
   void display() {
 
-    PlayerField();
+    fieldDraw();
     // time();
   }
   void run() { 

@@ -20,7 +20,7 @@ class Square {
   }
 }
 
-class EnemyField {  
+class SquareField {  
   ArrayList<Square> parts = new ArrayList<Square>();
 
   PVector squareNR  = new PVector(0, 0);
@@ -35,10 +35,9 @@ class EnemyField {
 
   PVector[][] grid = new PVector[cols][rows];
 
-  EnemyField() {
+  SquareField() {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {  
-
         grid[i][j] = new PVector(i*scale, j*scale);
       }
     }
@@ -94,6 +93,8 @@ class EnemyField {
     //  parts.add(new Square(grid[int(squareNR.x+squareNR.y)]));
     //}
   }
+
+
 
 
 
