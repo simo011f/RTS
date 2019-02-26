@@ -1,11 +1,11 @@
-class escMenu {
+class EscMenu {
 
   PFont f;
   boolean es;
   boolean[] Opt = new boolean[4];
   int[] chol = new int[4];
 
-  escMenu() {
+  EscMenu() {
   }
 
   void choices() {  
@@ -32,24 +32,24 @@ class escMenu {
       chol[2] = 0;
       Opt[2] = true;
 
-      G.M.screen[0]=false;
-      G.M.screen[1]=false;
-      G.M.screen[2]=false;
-      G.M.screen[3]=false; 
-      G.M.screen[4]=false;
+      G.menu.screen[0]=false;
+      G.menu.screen[1]=false;
+      G.menu.screen[2]=false;
+      G.menu.screen[3]=false; 
+      G.menu.screen[4]=false;
 
-      G.Lg.LVL[1]=false; 
-      G.Lg.LVL[0]=false; 
-      G.Lg.LVL[2]=false; 
-      G.Lg.LVL[3]=false; 
-      G.Lg.LVL[4]=false; 
-      G.Lg.LVL[5]=false; 
-      G.Lg.LVL[6]=false; 
-      G.Lg.LVL[7]=false; 
-      G.Lg.LVL[8]=false; 
-      G.Lg.LVL[9]=false; 
-      G.Lg.LVL[10]=false; 
-      G.Lg.LVL[11]=false;
+      G.loadGame.LVL[1]=false; 
+      G.loadGame.LVL[0]=false; 
+      G.loadGame.LVL[2]=false; 
+      G.loadGame.LVL[3]=false; 
+      G.loadGame.LVL[4]=false; 
+      G.loadGame.LVL[5]=false; 
+      G.loadGame.LVL[6]=false; 
+      G.loadGame.LVL[7]=false; 
+      G.loadGame.LVL[8]=false; 
+      G.loadGame.LVL[9]=false; 
+      G.loadGame.LVL[10]=false; 
+      G.loadGame.LVL[11]=false;
     } else {
       chol[2] = 255;
       Opt[2] = false;
@@ -131,8 +131,8 @@ class escMenu {
       es = false;
     }
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
-    if (keys[9] && G.T.es==0) {
-      G.T.es=1;
+    if (keys[9] && G.timer.es==0) {
+      G.timer.es=1;
       es = !es;
       Opt[0] = false;
       Opt[1] = false;

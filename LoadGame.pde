@@ -315,8 +315,8 @@ class LoadGame {
 
       G.M.t = 0;
       lea = 0;
-      G.M.screen[2]=false;
-      G.M.screen[1]=false;
+      G.menu.screen[2]=false;
+      G.menu.screen[1]=false;
 
       leave = true;
     } else {

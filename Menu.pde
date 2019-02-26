@@ -1,18 +1,17 @@
 class Menu {
-  Game G;
+  Game game;
+  
   PFont f;
+  
   int t;
-  PVector MLoc = new PVector(mouseX, mouseY);
   int cc;
   int cn;
   int cl;
   int km;
   int ek;
-  boolean cont = false;
-  boolean Load = false;
-  boolean NewG = false;
-  boolean KeyM = false;
-  boolean eks = false;
+  
+  PVector mouseLocation = new PVector(mouseX, mouseY);
+  
   boolean[] screen = new boolean[6];
 
   Menu() {
@@ -42,7 +41,7 @@ class Menu {
     textFont(f, 46);
     textAlign(CENTER);
     text("New Game", width*1/2, 450);
-    //new game box
+    //new game box 
 
     //load game box
     fill(255, cl, cl);
