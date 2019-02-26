@@ -75,42 +75,7 @@ class sqrFeld {
   void addParikle() {  
     c = int(random(3)); 
     hej = int(random(5));
-    //if (hej ==0) {
-    //  if (t<45) {
-    //    t++;
-    //  } else {
-    //    nr++;
-    //    t=0;
-    //  }
-    //  hej=20000;
-    //}
-
-    //if (hej ==1) {
-    //  if (t<45) {
-    //    t++;
-    //  } else {
-    //    nr=nr+90;
-    //    t=0;
-    //  }
-    //  hej=20001;
-    //}
-
-    //if (hej==20000) {
-    //  hej = int(random(3, 5));
-    //}
-    //if (hej==20001) {
-    //  hej = int(random(5, 7));
-    //}
-
-    //if (hej==3) {
-    //  nr = int((nr+90));
-    //  hej = int(random(2));
-    //}
-
-    //if (hej==5) {
-    //  nr = int((nr-random(89,91)));
-    //  hej = int(random(2));
-    //}
+   
     if (hej <= 0) {
       nr.x = nr.x + 90;
       

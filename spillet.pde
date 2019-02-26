@@ -36,10 +36,17 @@ class Game {
       //if the main menu button is pressed in the ESC menu.
       loc = 0;
     }
+    if (mousePressed && M.screen[1]) {  
+     
+      //load game is pressed
+      loc = 1;
+    }
     if (mousePressed && M.screen[2]) {   
+
       //if new game is pressed on the start menu
       nr = 0;
       loc = 1;
+  
     }
 
     if (mousePressed && M.screen[3]) {
@@ -115,8 +122,7 @@ class Game {
 
   void run() {
 
-    //println(Lg.chol);
-    //  println(continu);
+   
 
     skift();
     switch (loc) {

@@ -1,4 +1,4 @@
-class GameBoard {
+  class GameBoard {
 
   PFont f;
   boolean GO;
@@ -24,7 +24,7 @@ class GameBoard {
         int y = j*scale;
         fill(255);
         stroke(0);
-        strokeWeight(1.5);
+        strokeWeight(1);
         rect(x, y, scale, scale);
       }
     }

@@ -79,6 +79,7 @@ class Menu {
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/4-20 && mouseY<=height*3/4-20+height/4-20) {
       //load game box
       //G.Lg.t=0;
+      
       cl = 0;
       screen[1] = true;
     } else {
@@ -134,7 +135,7 @@ class Menu {
   }
 
   void run() {
-    
+
     terminate();
     keymenu();
     lvlChoiceBox();
