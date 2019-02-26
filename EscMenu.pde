@@ -1,7 +1,7 @@
 class EscMenu {
 
-  PFont f;
-  boolean es;
+  PFont font;
+  boolean escPressed;
   boolean[] Opt = new boolean[4];
   int[] chol = new int[4];
 
@@ -32,24 +32,24 @@ class EscMenu {
       chol[2] = 0;
       Opt[2] = true;
 
-      G.menu.screen[0]=false;
-      G.menu.screen[1]=false;
-      G.menu.screen[2]=false;
-      G.menu.screen[3]=false; 
-      G.menu.screen[4]=false;
+      game.menu.screen[0]=false;
+      game.menu.screen[1]=false;
+      game.menu.screen[2]=false;
+      game.menu.screen[3]=false; 
+      game.menu.screen[4]=false;
 
-      G.loadGame.LVL[1]=false; 
-      G.loadGame.LVL[0]=false; 
-      G.loadGame.LVL[2]=false; 
-      G.loadGame.LVL[3]=false; 
-      G.loadGame.LVL[4]=false; 
-      G.loadGame.LVL[5]=false; 
-      G.loadGame.LVL[6]=false; 
-      G.loadGame.LVL[7]=false; 
-      G.loadGame.LVL[8]=false; 
-      G.loadGame.LVL[9]=false; 
-      G.loadGame.LVL[10]=false; 
-      G.loadGame.LVL[11]=false;
+      game.loadGame.levelNR[1]=false; 
+      game.loadGame.levelNR[0]=false; 
+      game.loadGame.levelNR[2]=false; 
+      game.loadGame.levelNR[3]=false; 
+      game.loadGame.levelNR[4]=false; 
+      game.loadGame.levelNR[5]=false; 
+      game.loadGame.levelNR[6]=false; 
+      game.loadGame.levelNR[7]=false; 
+      game.loadGame.levelNR[8]=false; 
+      game.loadGame.levelNR[9]=false; 
+      game.loadGame.levelNR[10]=false; 
+      game.loadGame.levelNR[11]=false;
     } else {
       chol[2] = 255;
       Opt[2] = false;
@@ -65,7 +65,7 @@ class EscMenu {
   }
 
   void display() {
-    f = createFont("arial", 16, true);
+    font = createFont("arial", 16, true);
 
     fill(255, 255, 0);
     stroke(0);
@@ -79,7 +79,7 @@ class EscMenu {
     rect(width*3/8, 0, width*2/8, height*1/4);
     textAlign(CENTER);
     fill(255, 0, 255);
-    textFont(f, 46);
+    textFont(font, 46);
     text("Continue", width*4/8, height*1/7);
     //continue button
 
@@ -90,7 +90,7 @@ class EscMenu {
     rect(width*3/8, height*1/4, width*2/8, height*1/4);
     textAlign(CENTER);
     fill(255, 0, 255);
-    textFont(f, 46);
+    textFont(font, 46);
     text("Restart", width*4/8, height*7/18);
     //restart button
 
@@ -101,7 +101,7 @@ class EscMenu {
     rect(width*3/8, height*2/4, width*2/8, height*1/4);
     textAlign(CENTER);
     fill(255, 0, 255);
-    textFont(f, 46);
+    textFont(font, 46);
     text("Main Menu", width*4/8, height*12/19);
     //Main menu button
 
@@ -112,28 +112,22 @@ class EscMenu {
     rect(width*3/8, height*3/4, width*2/8, height*1/4);
     textAlign(CENTER);
     fill(255, 0, 255);
-    textFont(f, 46);
+    textFont(font, 46);
     text("Close Game", width*4/8, 800);
     //Close Game button
 
     textAlign(LEFT);
   }
 
-
-
   void run() {
     if (mousePressed && Opt[1]) {
-
-
-
-
-
-      es = false;
+      escPressed = false;
     }
+    
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
-    if (keys[9] && G.timer.es==0) {
-      G.timer.es=1;
-      es = !es;
+    if (keys[9] && game.timer.es==0) {
+      game.timer.es=1;
+      escPressed = !escPressed;
       Opt[0] = false;
       Opt[1] = false;
       Opt[2] = false;
@@ -141,15 +135,14 @@ class EscMenu {
     } 
     //hvis continue bliver valgt
     if (mousePressed && Opt[0]) {
-      es = false;
+      escPressed = false;
     }
     //hvis menu bliver valgt
     if (mousePressed && Opt[2]) {
-      es = false;
+      escPressed = false;
     }
 
-    if (es) {
-
+    if (escPressed) {
       display();  
       choices();
     }

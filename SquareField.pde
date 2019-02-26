@@ -1,16 +1,18 @@
 class Square {
   PVector loc;
-  int scale=10;
+
+  int gridSquareSize = 10;
 
   Square(PVector l) {
+
     loc = l.get();
-  }
+  } 
 
   void display() {
     fill(0, 0, 255);
     stroke(0);
     strokeWeight(1.5);
-    rect(loc.x, loc.y, scale, scale);
+    rect(loc.x, loc.y, gridSquareSize, gridSquareSize);
   }
 
   void run() {

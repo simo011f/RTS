@@ -1,7 +1,7 @@
 class KeyMenu {
 
   boolean leave;
-  int lea;
+  int leaveColor;
   int t;
   PFont f;
 
@@ -122,7 +122,7 @@ class KeyMenu {
   }
 
   void leave() {
-    fill(255, lea, 255);
+    fill(255, leaveColor, 255);
     stroke(0);
     strokeWeight(2);
     rect(0, 0, 80, 80);
@@ -133,12 +133,12 @@ class KeyMenu {
 
 
     if (mouseX>=0 && mouseX<=80 && mouseY>=0 && mouseY<=80 ) {
-      G.menu.t=0;
-      lea = 0;
-      G.menu.screen[3]=false;
+      game.menu.timer=0;
+      leaveColor = 0;
+      game.menu.screen[3]=false;
       leave = true;
     } else {
-      lea = 255;
+      leaveColor = 255;
       leave = false;
     }
     textAlign(LEFT);
