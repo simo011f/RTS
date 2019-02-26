@@ -2,12 +2,13 @@ Game game;
 
 
 void setup() {
-  size(1501, 901);
+  size(1600, 900);
   game = new Game();
   //frameRate(2);
 }
 
 void draw() {
+
   background(255);
   game.run(); 
   //println(mouseX, mouseY);
@@ -34,7 +35,7 @@ void keyPressed() {
     keys[4] = true;
     break;
   }
-  
+
   switch (keyCode) {
   case RIGHT:
     keys[5] = true;

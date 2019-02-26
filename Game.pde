@@ -14,7 +14,8 @@ class Game {
   KeyMenu keyMenu = new KeyMenu();
   GameBoard gameBoard = new GameBoard();
   EscMenu escMenu = new EscMenu();
-  EnemyField enemyFeld = new EnemyField();
+  SquareField squareFeld = new SquareField();
+  Player player = new Player();
 
   Game() {
   }
@@ -151,11 +152,12 @@ class Game {
       break;
 
 
-    case 3:
+    case 3: 
+      squareFeld.run();
       //this is the main game
       timer.run();
       gameBoard.run();  
-      enemyFeld.run();
+      player.run();
       escMenu.run();
       break;
 

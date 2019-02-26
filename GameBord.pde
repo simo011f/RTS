@@ -22,7 +22,7 @@
         int y = j*scale;
         fill(255);
         stroke(0);
-        strokeWeight(1);
+        strokeWeight(0.5);
         rect(x, y, scale, scale);
       }
     }
