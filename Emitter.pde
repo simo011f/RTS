@@ -23,6 +23,7 @@ class Emitter
     {
       for (int j = -1; j <= 1; i++)
       {
+        fill(0, 255, 0);
         rect(pGrid[(int)location.x][(int)location.y].x, pGrid[(int)location.x][(int)location.y].y, 10, 10);
       }
     }

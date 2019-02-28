@@ -33,19 +33,21 @@ class SquareField {
   int cols = width/scale;
   int rows = height/scale;
 
+  int[][] ocupied = new int[cols][rows];
   PVector[][] grid = new PVector[cols][rows];
 
   SquareField() {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {  
         grid[i][j] = new PVector(i*scale, j*scale);
+        ocupied[i][j] = 0;
       }
     }
   }
 
   void highLight() {
     if (mousePressed) {
-      fill(0, 0, 255);
+      fill(255, 0, 0);
       stroke(0);
       strokeWeight(1.5);
       rect(grid[(mouseX/10)][(mouseY/10)].x, grid[(mouseX/10)][(mouseY/10)].y, scale, scale);
@@ -103,13 +105,7 @@ class SquareField {
       Square p =parts.get(i);
       p.run();
     }
-
-
     highLight();
     addParikle();
-
-
-
-    //println(grid[int(squareNR.x)], grid[int(squareNR.y)], squareNR, squareNR.x+squareNR.y);
   }
 }

@@ -3,6 +3,7 @@ Game game;
 
 void setup() {
   size(1600, 900);
+  game = new Game(1);
   game = new Game();
   //frameRate(2);
 }
@@ -10,7 +11,7 @@ void setup() {
 void draw() {
   background(255);
   game.run(); 
-  //println(mouseX, mouseY);
+  println(frameRate);
 }
 
 boolean[] keys = new boolean[11];
