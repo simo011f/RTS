@@ -28,10 +28,10 @@ class SquareField {
   int t;
   int scale = 10;  
   int gridSquares = 0;
-  int c;
+  int c; 
 
   int cols = width/scale;
-  int rows = height/scale;
+  int rows = height/scale-6;
 
   PVector[][] grid = new PVector[cols][rows];
 
@@ -43,11 +43,10 @@ class SquareField {
       }
     }
   }
-
-  void run() {     
+  void run() {
     for (int i = parts.size()-1; i >=0; i--) {
-      Square p =parts.get(i);
-      p.run();
+      Square s =parts.get(i);
+      s.run();
     }
   }
 }

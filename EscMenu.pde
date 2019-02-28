@@ -27,7 +27,8 @@ class EscMenu {
       chol[1] = 255;
       Opt[1] = false;
     }
-    if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) {
+    if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) { 
+      game.menu.timer=1;
       //this is the main menu option
       chol[2] = 0;
       Opt[2] = true;
@@ -113,7 +114,7 @@ class EscMenu {
     textAlign(CENTER);
     fill(255, 0, 255);
     textFont(font, 46);
-    text("Close Game", width*4/8, 800);
+    text("Close Game", width*4/8, height*8/9);
     //Close Game button
 
     textAlign(LEFT);
@@ -123,7 +124,7 @@ class EscMenu {
     if (mousePressed && Opt[1]) {
       escPressed = false;
     }
-    
+
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
     if (keys[9] && game.timer.es==0) {
       game.timer.es=1;

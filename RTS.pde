@@ -3,6 +3,7 @@ Game game;
 
 void setup() {
   size(1600, 900);
+  //fullScreen();
   game = new Game();
   //frameRate(2);
 }

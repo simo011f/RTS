@@ -28,38 +28,38 @@ class Menu {
     fill(0, 0, 0);
     textFont(font, 46);
     textAlign(CENTER);
-    text("Continue", width*1/2, 120);
+    text("Continue", width*1/2, height*11/72);
     //continue box
 
     //new game box
     fill(colorNewGame, 255, colorNewGame);
     stroke(0);
     strokeWeight(2);
-    rect(width*1/3, height*3/8, width*1/3, height/4-20);
+    rect(width*1/3, height*7/18-10, width*1/3, height/4-20);
 
     fill(0, 0, 0);
     textFont(font, 46);
     textAlign(CENTER);
-    text("New Game", width*1/2, 450);
+    text("New Game", width*1/2, height*1/2);
     //new game box 
 
     //load game box
     fill(255, colorLoadGame, colorLoadGame);
     stroke(0);
     strokeWeight(2);
-    rect(width*1/3, height*3/4-20, width*1/3, height/4-20);
+    rect(width*1/3, height*55/72-15, width*1/3, height/4-20);
 
     fill(0, 0, 0);
     textFont(font, 46);
     textAlign(CENTER);
-    text("Load Game", width*1/2, 760);
+    text("Load Game", width*1/2, height*127/144);
     //load game box
 
     textAlign(LEFT);
   }
   void lvlChoiceLogic() {
 
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=20 && mouseY<=height/4) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=20 && mouseY<=height/4 && timer >= 10) {
       //continue box
       colorContinue = 0;
       screen[0] = true;
@@ -67,7 +67,7 @@ class Menu {
       colorContinue = 255;
       screen[0] = false;
     }
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/8 && mouseY<=height*3/8+height/4-20) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/8 && mouseY<=height*3/8+height/4-20 && timer >= 10) {
       //new game box
       colorNewGame = 0;
       screen[2] = true;
@@ -75,12 +75,11 @@ class Menu {
       colorNewGame = 255;
       screen[2] = false;
     }
-    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*3/4-20 && mouseY<=height*3/4-20+height/4-20) {
+    if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
       //load game box
       //G.Lg.t=0;
 
 
-      colorLoadGame = 0;
 
       colorLoadGame = 0;
 
@@ -106,7 +105,7 @@ class Menu {
     textAlign(CENTER);
     text("Keys", width-40, 45);
 
-    if (mouseX>=width-80 && mouseX<=width && mouseY>=0 && mouseY<=80) {
+    if (mouseX>=width-80 && mouseX<=width && mouseY>=0 && mouseY<=80 && timer >= 10) {
       colorKeyMenu = 0;
       screen[3] = true;
     } else {
@@ -138,7 +137,9 @@ class Menu {
   }
 
   void run() {
-
+    if (timer >= 10) {
+      timer = 10;
+    }
     terminate();
     keymenu();
     lvlChoiceBox();

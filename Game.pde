@@ -123,7 +123,7 @@ class Game {
   }
 
   void run() {
-
+    
 
 
     changeState();
@@ -157,6 +157,7 @@ class Game {
       //this is the main game
       timer.run();
       gameBoard.run();  
+      
       player.run();
       escMenu.run();
       break;
