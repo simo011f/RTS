@@ -14,8 +14,8 @@ class BaseLevel //<>// //<>//
   {
     enemys.add(new Enemy(new PVector((cols/2), (rows/2))));
     enemys.add(new Enemy(new PVector(0, 0)));
-    enemys.get(0).addLayer(10000);
-    enemys.get(1).addLayer(1000);
+    enemys.get(0).addLayer(100000);
+    enemys.get(1).addLayer(10000);
     //println("enemy "+0+" strength "+enemys.get(0).strength +" " + enemys.get(0).location);
   }
 
@@ -50,12 +50,17 @@ class BaseLevel //<>// //<>//
 
   void Update()
   {
+    int hej = 0;
+    int enemysThisUpdate = enemys.size();
+    
     for (int i = 0; i < enemys.size(); i++)
     {
       Enemy e = enemys.get(i);
-      e.spread(enemys);
+      e.spread(enemys, enemysThisUpdate);
       e.Update();
+      hej += e.strength;
     }
+    println(hej);
   }
 
   void Run()

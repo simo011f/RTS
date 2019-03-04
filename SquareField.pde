@@ -56,49 +56,7 @@ class SquareField {
 
   void addParikle() {  
 
-
-    //c = int(random(3)); 
-    //hej = int(random(5));
-
-    //if (hej <= 0) {
-    //  squareNR.x = squareNR.x + 90;
-    //}  
-    //if (hej == 1) {
-    //  squareNR.x=squareNR.x-90;
-    //}  
-    //if (hej == 2) {
-    //  squareNR.y=squareNR.y+1;
-    //} 
-    //if (hej == 3) {
-    //  squareNR.y=squareNR.y-1;
-    //} 
-
-    //if (squareNR.x<0) {
-    //  squareNR.x=0;
-    //} 
-    //if (squareNR.y<0) {
-    //  squareNR.y=0;
-    //}
-    //if (squareNR.x>13500) {
-    //  squareNR.x=13500;
-    //}
-    //if (squareNR.y>13500) {
-    //  squareNR.y=13500;
-    //}
-    //if (c==0) {
-    //  parts.add(new Square(grid[int(squareNR.x)]));
-    //}
-    //if (c==1) {
-    //  parts.add(new Square(grid[int(squareNR.y)]));
-    //}
-    //if (c==2) {
-    //  parts.add(new Square(grid[int(squareNR.x+squareNR.y)]));
-    //}
   }
-
-
-
-
 
   void run() {     
     for (int i = parts.size()-1; i >=0; i--) {
