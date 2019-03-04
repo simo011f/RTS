@@ -104,14 +104,14 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=5;
       placeble[4]=true;
-      energyTower.get(towernr[4]-1).vis = 2;
+      energyTower.get(towernr[4]-1).vis = 0;
       towerpickedOnBar[4]=false;
     }
   }
 
   void gat() {
 
-    if ( mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
+    if (mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
       towerpicked[0]=false; 
       towerpicked[1]=false; 
       towerpicked[2]=false;  
@@ -149,7 +149,7 @@ class Player { //<>// //<>// //<>// //<>//
         towerpicked[4]=true;
       }
     }
-    
+
 
     if (towerpicked[0] && mousePressed && timer>=10) {
 
@@ -184,7 +184,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       placeble2[4]=true; 
       timer=0;
-   
+
       towerpicked[4]=false;
     }
     if (placeble2[0]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
@@ -299,9 +299,14 @@ class Player { //<>// //<>// //<>// //<>//
 
     if (placeble2[4]  && keys[3] && timer>=10) {
       energyTower.remove(nr[4]);
+      towernr[4]=towernr[4]-1;
       timer=0;      
       picked = 0;
       placeble2[4] = false;
+    }
+    if (mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
+      placeble2[4] = false; 
+      timer=0;
     }
   }
 
@@ -406,8 +411,8 @@ class Player { //<>// //<>// //<>// //<>//
       if (mouseX<30) {
         mouseX = 30;
       } 
-      if (mouseY<10) {
-        mouseY = 10;
+      if (mouseY<30) {
+        mouseY = 30;
       } 
       if (mouseY>height-100) {
         mouseY = height-100;
@@ -539,19 +544,18 @@ class Player { //<>// //<>// //<>// //<>//
 
     if (placeble[4]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
 
-      if (mouseX>width-20) {
-        mouseX = width-20;
+      if (mouseX>width-40) {
+        mouseX = width-40;
       } 
-      if (mouseX<10) {
-        mouseX = 10;
+      if (mouseX<30) {
+        mouseX = 30;
       } 
-      if (mouseY<10) {
-        mouseY = 10;
+      if (mouseY<30) {
+        mouseY = 30;
       } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
+      if (mouseY>height-100) {
+        mouseY = height-100;
       }
-
 
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
@@ -571,8 +575,11 @@ class Player { //<>// //<>// //<>// //<>//
 
     PickTowerOnBar();   
     highLight();   
-    place();  
-    gat();
+    place();
+
+    if (keys[0]) {
+      gat();
+    }
 
     for (int i = 0; i < shotTower.size(); i++) {
       TowerAttackTerrtoriumShot s = shotTower.get(i);
@@ -600,7 +607,7 @@ class Player { //<>// //<>// //<>// //<>//
     }
 
 
-    println(nr, towerpicked[4]);
+
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
 
     if (timer >= 20) {
