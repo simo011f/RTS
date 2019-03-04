@@ -3,9 +3,9 @@ class Square {
 
   int gridSquareSize = 10;
 
-  Square(PVector l) {
+  Square() {
 
-    loc = l.get();
+   
   } 
 
   void display() {

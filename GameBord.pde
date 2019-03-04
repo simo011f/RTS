@@ -33,24 +33,35 @@ class GameBoard {
     stroke(0);
     strokeWeight(1.5);
     rect(width/2-500, height-60, 1000, 60);
-    fill(0, 0, 255);
+
 
     PVector location=new PVector(width/2, height-45);
+    fill(0, 0, 255);
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
+        rect(location.x+i*10, location.y+j*10+10, 10, 10);
       }
-    }  fill(255, 0, 0);
+    }  
+    fill(255, 0, 0);
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        rect((location.x+i*10)+scale*3+5, (location.y+j*10), 10, 10);
+        rect((location.x+i*10)+scale*3+5, (location.y+j*10)+10, 10, 10);
       }
-    } fill(0, 255, 0);
+    } 
+    fill(255, 255, 0);
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        rect((location.x+i*10)+scale*6+10, (location.y+j*10), 10, 10);
+        rect((location.x+i*10)+scale*6+10, (location.y+j*10)+10, 10, 10);
       }
     }
+    fill(0, 255, 255);
+    for (int i = -2; i <= 2; i++) {
+      for (int j = -2; j <= 2; j++) {
+        rect((location.x+i*10)+scale*6+100, (location.y+j*10)+10, 10, 10);
+      }
+    }
+    fill(0, 255, 0);   
+    rect((location.x+10)+scale*6+145, (location.y+10), 10, 10); 
   }
 
 

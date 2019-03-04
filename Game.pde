@@ -16,6 +16,7 @@ class Game {
   EscMenu escMenu = new EscMenu();
   SquareField squareFeld = new SquareField();
   Player player = new Player();
+  Energy energy = new Energy();
 
   Game() {
   }
@@ -123,7 +124,7 @@ class Game {
   }
 
   void run() {
-    
+
 
 
     changeState();
@@ -157,8 +158,9 @@ class Game {
       //this is the main game
       timer.run();
       gameBoard.run();  
-      
+
       player.run();
+      energy.run();
       escMenu.run();
       break;
 

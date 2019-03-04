@@ -1,16 +1,21 @@
-class Player { //<>// //<>// //<>//
+class Player { //<>// //<>// //<>// //<>//
 
   int timer;
-  int [] towernr = new int[3]; 
-  int [] towernrremeber = new int[3];
+  int [] towernr = new int[5]; 
+  int [] towernrremeber = new int[5];
   ArrayList<TowerAttackTerrtoriumShot> shotTower = new ArrayList<TowerAttackTerrtoriumShot>();
   ArrayList<TowerAttackTerrtoriumBomb> bombTower = new ArrayList<TowerAttackTerrtoriumBomb>();
-  ArrayList<TowerAttackETowers> enemyAttackTower = new ArrayList<TowerAttackETowers>();
-  boolean[] towerpickedOnBar = new boolean[4];  
+  ArrayList<TowerAttackETowers> enemyAttackTower = new ArrayList<TowerAttackETowers>(); 
+  ArrayList<TowerBase> base = new ArrayList<TowerBase>();
+  ArrayList<TowerEnergy> energyTower = new ArrayList<TowerEnergy>();
+  boolean[] towerpickedOnBar = new boolean[5];    
+  boolean[] towerpicked = new boolean[5]; 
   int picked;
-  boolean[] placeble = new boolean[4];
+  boolean[] placeble = new boolean[5];
+  boolean[] placeble2 = new boolean[5];
 
   boolean GO = false;
+  int [] nr = new int[5];
 
   Player() {
   }
@@ -22,10 +27,10 @@ class Player { //<>// //<>// //<>//
     timer++;
 
     //blå
-    if (mouseX>= width/2-15 && mouseX<=width/2+15 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
+    if (mouseX>= width/2-10 && mouseX<=width/2+20 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
       towerpickedOnBar[0]=true;
     } else {
-      towerpickedOnBar[0]=false; //<>//
+      towerpickedOnBar[0]=false;
     }
     if (towerpickedOnBar[0] && mousePressed) {   
       towernr[0]=towernr[0]+1;
@@ -39,7 +44,7 @@ class Player { //<>// //<>// //<>//
 
 
     //rød
-    if (mouseX>= width/2-35 && mouseX<=width/2+65 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
+    if (mouseX>= width/2+25 && mouseX<=width/2+55 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
       towerpickedOnBar[1]=true;
     } else {
       towerpickedOnBar[1]=false;
@@ -54,8 +59,8 @@ class Player { //<>// //<>// //<>//
       towerpickedOnBar[1]=false;
     }
 
-    //grøn
-    if (mouseX>= width/2+70 && mouseX<=width/2+105 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
+    //gul
+    if (mouseX>= width/2+60 && mouseX<=width/2+90 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
       towerpickedOnBar[2]=true;
     } else {
       towerpickedOnBar[2]=false;
@@ -69,10 +74,241 @@ class Player { //<>// //<>// //<>//
       placeble[2]=true;
       towerpickedOnBar[2]=false;
     }
+
+    //tukis
+    if (mouseX>= width/2+140 && mouseX<=width/2+190 && mouseY>=height-65 && mouseY<=height-15 && timer>=10) { 
+      towerpickedOnBar[3]=true;
+    } else {
+      towerpickedOnBar[3]=false;
+    }
+    if (towerpickedOnBar[3] && mousePressed) {   
+      towernr[3]=towernr[3]+1;
+
+      base.add(new TowerBase());
+      timer=0; 
+      picked=4;
+      placeble[3]=true;
+      towerpickedOnBar[3]=false;
+    }
+
+    //grøn
+    if (mouseX >= width/2+215 && mouseX<=width/2+225 && mouseY>=height-55 && mouseY<=height-25 && timer>=10) { 
+      towerpickedOnBar[4]=true;
+    } else {
+      towerpickedOnBar[4]=false;
+    }
+    if (towerpickedOnBar[4] && mousePressed) {   
+      towernr[4]=towernr[4]+1;
+
+      energyTower.add(new TowerEnergy());
+      timer=0; 
+      picked=5;
+      placeble[4]=true;
+      energyTower.get(towernr[4]-1).vis = 2;
+      towerpickedOnBar[4]=false;
+    }
+  }
+
+  void gat() {
+
+    if ( mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
+      towerpicked[0]=false; 
+      towerpicked[1]=false; 
+      towerpicked[2]=false;  
+      towerpicked[3]=false; 
+      towerpicked[4]=false;
+    }
+
+    for (int i = 0; i < shotTower.size(); i++) {
+      if (mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
+        nr[0]=i;
+        towerpicked[0]=true;
+      }
+    }
+    for (int i = 0; i <  bombTower.size(); i++) {
+      if (mouseX >=  bombTower.get(i).location.x && mouseX <=  bombTower.get(i).location.x+10 && mouseY >=  bombTower.get(i).location.y && mouseY <=  bombTower.get(i).location.y+10) {
+        nr[1]=i;
+        towerpicked[1]=true;
+      }
+    }
+    for (int i = 0; i < enemyAttackTower.size(); i++) {
+      if (mouseX >= enemyAttackTower.get(i).location.x && mouseX <= enemyAttackTower.get(i).location.x+10 && mouseY >= enemyAttackTower.get(i).location.y && mouseY <= enemyAttackTower.get(i).location.y+10) {
+        nr[2]=i;
+        towerpicked[2]=true;
+      }
+    }
+    for (int i = 0; i < base.size(); i++) {
+      if (mouseX >= base.get(i).location.x && mouseX <= base.get(i).location.x+10 && mouseY >= base.get(i).location.y && mouseY <= base.get(i).location.y+10) {
+        nr[3]=i;
+        towerpicked[3]=true;
+      }
+    }
+    for (int i = 0; i < energyTower.size(); i++) {
+      if (mouseX >= energyTower.get(i).location.x && mouseX <= energyTower.get(i).location.x+10 && mouseY >= energyTower.get(i).location.y && mouseY <= energyTower.get(i).location.y+10) {
+        nr[4]=i;
+        towerpicked[4]=true;
+      }
+    }
+    
+
+    if (towerpicked[0] && mousePressed && timer>=10) {
+
+      placeble2[0]=true; 
+      timer=0;
+      picked=1; 
+      towerpicked[0]=false;
+    }
+    if (towerpicked[1] && mousePressed && timer>=10) {
+
+      placeble2[1]=true; 
+      timer=0;
+      picked=2; 
+      towerpicked[1]=false;
+    }
+    if (towerpicked[2] && mousePressed && timer>=10) {
+
+      placeble2[2]=true; 
+      timer=0;
+      picked=3; 
+      towerpicked[2]=false;
+    }
+    if (towerpicked[3] && mousePressed && timer>=10) {
+
+      placeble2[3]=true; 
+      timer=0;
+      picked=4; 
+      towerpicked[3]=false;
+    }
+
+    if (towerpicked[4] && mousePressed && timer>=10) {
+
+      placeble2[4]=true; 
+      timer=0;
+   
+      towerpicked[4]=false;
+    }
+    if (placeble2[0]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      shotTower.get(nr[0]).location.set(loc);  
+
+
+      timer=0;      
+      picked = 0;
+      placeble2[0] = false;
+    }  
+    if (placeble2[1]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      bombTower.get(nr[1]).location.set(loc);  
+
+
+      timer=0;      
+      picked = 0;
+      placeble2[1] = false;
+    }  
+    if (placeble2[2]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      enemyAttackTower.get(nr[2]).location.set(loc);  
+
+
+      timer=0;      
+      picked = 0;
+      placeble2[2] = false;
+    }
+
+    if (placeble2[3]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      base.get(nr[3]).location.set(loc);  
+
+
+      timer=0;      
+      picked = 0;
+      placeble2[3] = false;
+    }
+
+    if (placeble2[4]  && keys[3] && timer>=10) {
+      energyTower.remove(nr[4]);
+      timer=0;      
+      picked = 0;
+      placeble2[4] = false;
+    }
   }
 
 
-  void highLight() {   
+
+  void highLight() { 
+
     PVector location;
 
     if (picked==1) {
@@ -135,18 +371,61 @@ class Player { //<>// //<>// //<>//
         mouseY = height-80;
       }
       location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
-      fill(0, 255, 0);
+      fill(255, 255, 0);
       for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
       }
     }
+    if (picked==4) {
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      fill(0, 255, 255);
+      for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) {
+          rect(location.x+i*10, location.y+j*10, 10, 10);
+        }
+      }
+    }    
+    if (picked==5) {
+      if (mouseX>width-40) {
+        mouseX = width-40;
+      } 
+      if (mouseX<30) {
+        mouseX = 30;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-100) {
+        mouseY = height-100;
+      }
+      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+
+      fill(0, 155, 0);
+      for (int i = -3; i <= 3; i++) {
+        for (int j = -3; j <= 3; j++) {
+          rect(location.x+i*10, location.y+j*10, 10, 10);
+        }
+      } 
+      fill(0, 255, 0);
+      rect(location.x, location.y, 10, 10);
+    }
   }
 
   void place() {     
-
-
 
     if (placeble[0]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
 
@@ -170,7 +449,7 @@ class Player { //<>// //<>// //<>//
 
       shotTower.get(towernr[0]-1).location.set(loc);  
 
-      println(shotTower.get(towernr[0]-1));   
+
       timer=0;      
       picked = 0;
       placeble[0] = false;
@@ -229,121 +508,103 @@ class Player { //<>// //<>// //<>//
       picked = 0;
       placeble[2] = false;
     }
+
+    if (placeble[3]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      base.get(towernr[3]-1).location.set(loc);  
+
+
+      timer=0;      
+      picked = 0;
+      placeble[3] = false;
+    }
+
+    if (placeble[4]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+
+
+      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
+      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      PVector loc = new PVector(x, y);
+
+      energyTower.get(towernr[4]-1).location.set(loc);  
+
+      energyTower.get(towernr[4]-1).vis = 255;
+
+      timer=0;      
+      picked = 0;
+      placeble[4] = false;
+    }
   }
 
   void run() {
+
     PickTowerOnBar();   
     highLight();   
-    place(); 
+    place();  
+    gat();
 
     for (int i = 0; i < shotTower.size(); i++) {
       TowerAttackTerrtoriumShot s = shotTower.get(i);
       s.run();
     }    
+
     for (int i = 0; i < bombTower.size(); i++) {
-      TowerAttackTerrtoriumBomb b =bombTower.get(i);
+      TowerAttackTerrtoriumBomb b = bombTower.get(i);
       b.run();
     }  
+
     for (int i = 0; i < enemyAttackTower.size(); i++) {
-      TowerAttackETowers e =enemyAttackTower.get(i);
+      TowerAttackETowers e = enemyAttackTower.get(i);
+      e.run();
+    }
+
+    for (int i = 0; i < base.size(); i++) {
+      TowerBase  b = base.get(i);
+      b.run();
+    }
+
+    for (int i = 0; i < energyTower.size(); i++) {
+      TowerEnergy e = energyTower.get(i);
       e.run();
     }
 
 
-
-
-    println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1]);
+    println(nr, towerpicked[4]);
+    //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
 
     if (timer >= 20) {
       timer = 20;
     }
-  }
-}
-
-
-
-
-class TowerAttackTerrtoriumShot {  
-  PVector location=new PVector(width/2, height-45);
-
-  void weapon() {
-  }
-
-  void detection() {
-  }
-
-  void highLight() {   
-
-    fill(0, 0, 255);
-    stroke(0);
-    strokeWeight(1.5);
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
-      }
-    }
-  }
-  void run() { 
-
-    highLight();
-    weapon();
-    detection();
-  }
-}
-
-class TowerAttackTerrtoriumBomb {  
-  PVector location=new PVector(width/2+35, height-45);
-
-  void weapon() {
-  }
-
-  void detection() {
-  }
-
-  void highLight() {   
-
-    fill(255, 0, 0);
-    stroke(0);
-    strokeWeight(1.5);
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
-      }
-    }
-  }
-  void run() { 
-    highLight();
-    weapon();
-    detection();
-  }
-}
-
-class TowerAttackETowers {
-  PVector location=new PVector(width/2+70, height-45);
-
-  void weapon() {
-  }
-
-  void detection() {
-  }
-
-  void highLight() {   
-
-    fill(0, 255, 0);
-    stroke(0);
-    strokeWeight(1.5);
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
-      }
-    }
-  }
-  void run() { 
-    highLight();
-    weapon();
-    detection();
   }
 }

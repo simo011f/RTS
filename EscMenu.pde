@@ -122,6 +122,15 @@ class EscMenu {
 
   void run() {
     if (mousePressed && Opt[1]) {
+
+      //game.player.energyTower.clear();
+      //game.player.shotTower.clear();
+      //game.player.bombTower.clear();
+      //game.player.enemyAttackTower.clear();
+      //game.player.base.clear();
+      //for (int i = 0; i <= 4; i++) {
+      //  game.player.towernr[i]=1;
+      //}
       escPressed = false;
     }
 
