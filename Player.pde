@@ -41,7 +41,6 @@ class Player { //<>// //<>// //<>// //<>//
       picked=1;
       placeble[0]=true;
       towerpickedOnBar[0]=false; 
-      game.energy.energy.y = game.energy.energy.y-3;
       GO = true;
     }
 
@@ -60,7 +59,6 @@ class Player { //<>// //<>// //<>// //<>//
       picked=2;
       placeble[1]=true;
       towerpickedOnBar[1]=false;   
-      game.energy.energy.y = game.energy.energy.y-9;
       GO = true;
     }
 
@@ -78,7 +76,7 @@ class Player { //<>// //<>// //<>// //<>//
       picked=3;
       placeble[2]=true;
       towerpickedOnBar[2]=false;   
-      game.energy.energy.y = game.energy.energy.y-21;
+     
       GO = true;
     }
 
@@ -221,7 +219,7 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       shotTower.get(nr[0]).location.set(loc);  
-      shotTower.get(nr[0]).t=0;
+      shotTower.get(nr[0]).t=-3;
       shotTower.get(nr[0]).build=0;
 
 
@@ -250,7 +248,7 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       bombTower.get(nr[1]).location.set(loc);  
-      bombTower.get(nr[1]).t=0;
+      bombTower.get(nr[1]).t=-3;
       bombTower.get(nr[1]).build=0;
 
       timer=0;      
@@ -278,7 +276,7 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       enemyAttackTower.get(nr[2]).location.set(loc);  
-      enemyAttackTower.get(nr[2]).t=0;
+      enemyAttackTower.get(nr[2]).t=-3;
       enemyAttackTower.get(nr[2]).build=0;
 
       timer=0;      
@@ -557,8 +555,8 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       shotTower.get(towernr[0]-1).location.set(loc);  
-      shotTower.get(towernr[0]-1).t=0;
-
+      shotTower.get(towernr[0]-1).t=-3;
+ game.energy.energy.y = game.energy.energy.y-3;
       timer=0;      
       picked = 0;
       placeble[0] = false;
@@ -584,8 +582,8 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       bombTower.get(towernr[1]-1).location.set(loc);  
-      bombTower.get(towernr[1]-1).t=0;
-
+      bombTower.get(towernr[1]-1).t=-3;
+ game.energy.energy.y = game.energy.energy.y-9;
       timer=0;      
       picked = 0;
       placeble[1] = false;
@@ -611,8 +609,8 @@ class Player { //<>// //<>// //<>// //<>//
       PVector loc = new PVector(x, y);
 
       enemyAttackTower.get(towernr[2]-1).location.set(loc);  
-      enemyAttackTower.get(towernr[2]-1).t=0;
-
+      enemyAttackTower.get(towernr[2]-1).t=-3 ;
+ game.energy.energy.y = game.energy.energy.y-21;
       timer=0;      
       picked = 0;
       placeble[2] = false;
