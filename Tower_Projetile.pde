@@ -1,7 +1,9 @@
 class TowerAttackTerrtoriumShot {  
-  PVector location=new PVector(width/2, height-35);
-  
-  
+  PVector location=new PVector(-100, -100);
+
+  int t=-1;
+
+  int build;
 
   void weapon() {
   }
@@ -10,10 +12,24 @@ class TowerAttackTerrtoriumShot {
   }
 
   void build() {   
-    
-    
 
-    fill(0, 0, 255);
+    t++;
+    if (t<=12&&t>=0) {
+      t++;
+    }
+
+
+    if (t>=12) {
+      build++;
+      t=0;
+    }
+    if (build>=12) {
+      build=12;
+      t=13;
+    }
+
+
+    fill(0, 0, 15+(20*build));
     stroke(0);
     strokeWeight(1.5);
 
@@ -26,7 +42,10 @@ class TowerAttackTerrtoriumShot {
   void run() { 
 
     build();
-    weapon();
-    detection();
+
+    if (t==13) { 
+      weapon();
+      detection();
+    }
   }
 }
