@@ -40,6 +40,7 @@ class Player { //<>// //<>// //<>// //<>//
       picked=1;
       placeble[0]=true;
       towerpickedOnBar[0]=false; 
+      game.energy.energy.y = game.energy.energy.y-3;
       GO = true;
     }
 
@@ -57,7 +58,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=2;
       placeble[1]=true;
-      towerpickedOnBar[1]=false; 
+      towerpickedOnBar[1]=false;   
+      game.energy.energy.y = game.energy.energy.y-9;
       GO = true;
     }
 
@@ -74,7 +76,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=3;
       placeble[2]=true;
-      towerpickedOnBar[2]=false; 
+      towerpickedOnBar[2]=false;   
+      game.energy.energy.y = game.energy.energy.y-21;
       GO = true;
     }
 

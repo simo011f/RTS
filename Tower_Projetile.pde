@@ -1,5 +1,7 @@
 class TowerAttackTerrtoriumShot {  
   PVector location=new PVector(width/2, height-35);
+  
+  
 
   void weapon() {
   }
@@ -7,7 +9,9 @@ class TowerAttackTerrtoriumShot {
   void detection() {
   }
 
-  void highLight() {   
+  void build() {   
+    
+    
 
     fill(0, 0, 255);
     stroke(0);
@@ -21,7 +25,7 @@ class TowerAttackTerrtoriumShot {
   }
   void run() { 
 
-    highLight();
+    build();
     weapon();
     detection();
   }

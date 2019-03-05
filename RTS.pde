@@ -1,6 +1,7 @@
 Game game;
 
 
+
 void setup() {
   size(1600, 900);
   //fullScreen();
@@ -12,6 +13,7 @@ void draw() {
 
   background(255);
   game.run(); 
+  println(frameRate);
   //println(mouseX, mouseY);
 }
 
