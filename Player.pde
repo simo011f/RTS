@@ -39,7 +39,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=1;
       placeble[0]=true;
-      towerpickedOnBar[0]=false;
+      towerpickedOnBar[0]=false; 
+      GO = true;
     }
 
 
@@ -56,7 +57,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=2;
       placeble[1]=true;
-      towerpickedOnBar[1]=false;
+      towerpickedOnBar[1]=false; 
+      GO = true;
     }
 
     //gul
@@ -72,7 +74,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=3;
       placeble[2]=true;
-      towerpickedOnBar[2]=false;
+      towerpickedOnBar[2]=false; 
+      GO = true;
     }
 
     //tukis
@@ -88,7 +91,8 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0; 
       picked=4;
       placeble[3]=true;
-      towerpickedOnBar[3]=false;
+      towerpickedOnBar[3]=false; 
+      GO = true;
     }
 
     //grøn
@@ -105,7 +109,8 @@ class Player { //<>// //<>// //<>// //<>//
       picked=5;
       placeble[4]=true;
       energyTower.get(towernr[4]-1).vis = 0;
-      towerpickedOnBar[4]=false;
+      towerpickedOnBar[4]=false; 
+      GO = true;
     }
   }
 
@@ -156,28 +161,32 @@ class Player { //<>// //<>// //<>// //<>//
       placeble2[0]=true; 
       timer=0;
       picked=1; 
-      towerpicked[0]=false;
+      towerpicked[0]=false; 
+      GO = true;
     }
     if (towerpicked[1] && mousePressed && timer>=10) {
 
       placeble2[1]=true; 
       timer=0;
       picked=2; 
-      towerpicked[1]=false;
+      towerpicked[1]=false; 
+      GO = true;
     }
     if (towerpicked[2] && mousePressed && timer>=10) {
 
       placeble2[2]=true; 
       timer=0;
       picked=3; 
-      towerpicked[2]=false;
+      towerpicked[2]=false; 
+      GO = true;
     }
     if (towerpicked[3] && mousePressed && timer>=10) {
 
       placeble2[3]=true; 
       timer=0;
       picked=4; 
-      towerpicked[3]=false;
+      towerpicked[3]=false; 
+      GO = true;
     }
 
     if (towerpicked[4] && mousePressed && timer>=10) {
@@ -303,7 +312,35 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0;      
       picked = 0;
       placeble2[4] = false;
-    }
+    }  
+    //if (placeble2[3]  && keys[3] && timer>=10) {
+    //  energyTower.remove(nr[3]);
+    //  towernr[3]=towernr[3]-1;
+    //  timer=0;      
+    //  picked = 0;
+    //  placeble2[3] = false;
+    //}
+    //if (placeble2[2]  && keys[3] && timer>=10) {
+    //  energyTower.remove(nr[2]);
+    //  towernr[2]=towernr[2]-1;
+    //  timer=0;      
+    //  picked = 0;
+    //  placeble2[2] = false;
+    //}
+    //if (placeble2[1]  && keys[3] && timer>=10) {
+    //  energyTower.remove(nr[1]);
+    //  towernr[1]=towernr[1]-1;
+    //  timer=0;      
+    //  picked = 0;
+    //  placeble2[1] = false;
+    //}
+    //if (placeble2[0]  && keys[3] && timer>=10) {
+    //  energyTower.remove(nr[0]);
+    //  towernr[0]=towernr[0]-1;
+    //  timer=0;      
+    //  picked = 0;
+    //  placeble2[0] = false;
+    //}
     if (mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
       placeble2[4] = false; 
       timer=0;
@@ -418,13 +455,21 @@ class Player { //<>// //<>// //<>// //<>//
         mouseY = height-100;
       }
       location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
-
+      stroke(155, 0, 0);
+      noFill();
+      for (int i = -14; i <= 14; i++) {
+        for (int j = -14; j <= 14; j++) {
+          rect(location.x+i*10, location.y+j*10, 10, 10);
+        }
+      } 
       fill(0, 155, 0);
+      stroke(0);
       for (int i = -3; i <= 3; i++) {
         for (int j = -3; j <= 3; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
-      } 
+      }  
+
       fill(0, 255, 0);
       rect(location.x, location.y, 10, 10);
     }

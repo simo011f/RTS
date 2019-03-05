@@ -18,6 +18,7 @@ class Game {
   Player player = new Player();
   Energy energy = new Energy();
 
+
   Game() {
   }
 
@@ -162,6 +163,7 @@ class Game {
       player.run();
       energy.run();
       escMenu.run();
+
       break;
 
     case 5:

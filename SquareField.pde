@@ -4,8 +4,6 @@ class Square {
   int gridSquareSize = 10;
 
   Square() {
-
-   
   } 
 
   void display() {
@@ -38,7 +36,7 @@ class SquareField {
   SquareField() {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {  
-
+print("asdfeafd<faewdf");
         grid[i][j] = new PVector(i*scale, j*scale);
       }
     }
