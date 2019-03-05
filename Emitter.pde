@@ -14,14 +14,14 @@ class Emitter //<>// //<>//
     location = spawn;
     delay = sDelay;
     pGrid = game.squareFeld.grid;
-    power = 10;
+    power = 1;
   }
 
 
 
   void Draw()
   {
-    //fill(0, 255, 0, 100);
+    fill(0, 255, 0, 100);
     //for (int i = 0; i <= 2; i++)
     //{
     //  for (int j = 0; j <= 2; i++)
