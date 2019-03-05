@@ -1,22 +1,41 @@
-class BaseLevel //<>// //<>//
+class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
-  ArrayList<Enemy> enemys = new ArrayList<Enemy>();
+
+  EnemyGrid enemys;
+
+  Emitter emitter;
 
   int scale = 10;  
 
   int cols = width/scale;
   int rows = height/scale;
 
+  boolean isNorth = false;
+  boolean isSouth = false;
+  boolean isEast = false;
+  boolean isWest = false;
+
   //kan fjernes
   int hej = 0;
 
   BaseLevel()
   {
-    enemys.add(new Enemy(new PVector((cols/2), (rows/2))));
-    enemys.add(new Enemy(new PVector(0, 0)));
-    enemys.get(0).addLayer(100000);
-    enemys.get(1).addLayer(10000);
-    //println("enemy "+0+" strength "+enemys.get(0).strength +" " + enemys.get(0).location);
+
+    enemys = new EnemyGrid();
+    emitter = new Emitter(new PVector(cols/2, rows/2), 60);
+
+
+    //for (int i = 0; i < cols; i++) {
+    //  for (int j = 0; j < rows; j++) { 
+    //    enemys.enemys[i][j].strength = 10;
+    //  }
+    //}
+
+    //enemys.enemys[cols/2][rows/2].strength = 10000;
+    //enemys.enemys[cols-1][rows-1].strength = 10000;
+    //enemys.enemys[cols-1][0].strength = 10000;
+    //enemys.enemys[0][rows-1].strength = 10000;
+    //enemys.enemys[0][0].strength = 10000;
   }
 
 
@@ -27,7 +46,6 @@ class BaseLevel //<>// //<>//
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
       for (int j = 0; j < rows; j++) {
-
         int x = i*scale;
         int y = j*scale;
         fill(255);
@@ -38,36 +56,94 @@ class BaseLevel //<>// //<>//
     }
   }
 
-  void Draw()
-  {
-    fieldDraw();
-    for (int i = 0; i < enemys.size(); i++)
+  boolean thereIs(int i, int j) {
+
+
+    if (j - 1 > 0) {
+      if (enemys.enemys[i][j - 1].strength >= 1 && enemys.enemys[i][j].strength > enemys.enemys[i][j - 1].strength) {
+        isNorth = true;
+      }
+    } else if (j - 1 <= 0)
     {
-      Enemy e = enemys.get(i);
-      e.Draw();
+      isNorth = true;
+    }
+    if (j + 1 < rows) {
+      if ( enemys.enemys[i][j + 1].strength >= 1 && enemys.enemys[i][j].strength > enemys.enemys[i][j + 1].strength) {
+        isSouth = true;
+      }
+    } else if (j + 1 >= rows)
+    {
+      isSouth = true;
+    }
+    if (i + 1 < cols) {
+      if (enemys.enemys[i + 1][j].strength >= 1 && enemys.enemys[i][j].strength > enemys.enemys[i + 1][j].strength) {
+        isEast = true;
+      }
+    } else if (i + 1 >= cols)
+    {
+      isEast = true;
+    }
+    if (i - 1 > 0) {
+      if (enemys.enemys[i - 1][j].strength >= 1 && enemys.enemys[i][j].strength > enemys.enemys[i - 1][j].strength) {
+        isWest = true;
+      }
+    } else if (i - 1 <= 0)
+    {
+      isWest = true;
+    }
+
+    if (isNorth && isSouth && isEast && isWest)
+    {
+      return true;
+    } else {
+      return false;
     }
   }
 
-  void Update()
+  void Draw()
+  {
+    fieldDraw();
+  }
+
+
+
+  void Update() //<>//
   {
     int hej = 0;
-    int enemysThisUpdate = enemys.size();
-    
-    for (int i = 0; i < enemys.size(); i++)
-    {
-      Enemy e = enemys.get(i);
-      e.spread(enemys, enemysThisUpdate);
-      e.Update();
-      hej += e.strength;
+
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        if (enemys.enemys[i][j].strength >= 5) {	
+          isNorth = false;
+          isSouth = false;
+          isEast = false;
+          isWest = false;
+          if (thereIs(i, j)) {
+            enemys.addToAjesent(i, j);
+            hej += enemys.enemys[i][j].strength;
+          } else {
+            enemys.spawnAjesent(i, j);
+          }
+        }
+      }
     }
     println(hej);
   }
 
   void Run()
   {
+
     Update();
     Draw();
+    emitter.Update(enemys);
+
     hej++;
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        enemys.Run(i, j);
+      }
+    }
+    emitter.Draw();
     //if (hej >= 20) {exit();}
   }
 }
