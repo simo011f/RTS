@@ -7,8 +7,8 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
 
   int scale = 10;  
 
-  int cols = width/scale;
-  int rows = height/scale;
+  int cols = width / scale;
+  int rows = (height / scale) - 6;
 
   boolean isNorth = false;
   boolean isSouth = false;
@@ -54,8 +54,6 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
   }
 
   boolean thereIs(int i, int j) {
-
-
     if (j - 1 > 0) { //<>//
       if (enemys.enemys[i][j - 1].strength >= 1) {
         isNorth = true;
@@ -126,13 +124,10 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     }
     println(hej);
   }
-
-  void Run()
-  {
-
-    Update();
-    Draw();
-    emitter.Update(enemys);
+  
+  void enemyRun()
+{
+      emitter.Update(enemys);
 
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
@@ -140,6 +135,14 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
       }
     }
     emitter.Draw();
+}
+
+  void Run()
+  {
+
+    Update();
+    Draw();
+
 
   }
 }

@@ -2,8 +2,8 @@ class EnemyGrid { //<>//
 
   int scale = 10;  
 
-  int cols = width/scale;
-  int rows = height/scale;
+  int cols = width / scale;
+  int rows = (height / scale) - 6;
 
   Enemy[][] enemys = new Enemy[cols][rows];
 
@@ -76,7 +76,7 @@ class EnemyGrid { //<>//
 
     if (enemys[i][j].strength >= 1)
     {
-      fill(0, 0, 255);
+      fill(0, 0, 255, 100);
       rect(i*10, j*10, 10, 10);
       fill(0);
       textAlign(CENTER);  
