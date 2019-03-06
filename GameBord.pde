@@ -10,7 +10,7 @@ class GameBoard {
 
 
 
-  void fieldDraw() {   
+  void     PlayerField() {   
     //this draws the stuff
     //Maybe an array of variables would have been better
     // Begin loop for columns
@@ -85,14 +85,9 @@ class GameBoard {
 
   void display() {
 
-<<<<<<< HEAD
+
     PlayerField(); 
     hotbar();
-
-=======
-    fieldDraw();
->>>>>>> E-lyer-+1-og-emmiter
-    // time();
   }
   void run() { 
     display();

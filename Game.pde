@@ -13,14 +13,13 @@ class Game {
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
+  GameBoard gameBoard;
   BaseLevel baseLevel;
   EscMenu escMenu = new EscMenu();
-<<<<<<< HEAD
-  SquareField squareFeld = new SquareField();
   Player player = new Player();
   Energy energy = new Energy();
 
-=======
+
 
   Game(int i) 
   {
@@ -29,7 +28,7 @@ class Game {
       squareFeld = new SquareField();
     }
   }
->>>>>>> E-lyer-+1-og-emmiter
+
 
   Game() {
     gameBoard = new GameBoard();
@@ -172,16 +171,19 @@ class Game {
       squareFeld.run();
       //this is the main game
       timer.run();
-<<<<<<< HEAD
+
       gameBoard.run();  
 
-      player.run();
-      energy.run();
-=======
+
+
       //gameBoard.run();
       baseLevel.Run();
       squareFeld.run();
->>>>>>> E-lyer-+1-og-emmiter
+
+      //player stas
+      player.run();
+      energy.run();
+      baseLevel.enemyRun();
       escMenu.run();
 
       break;

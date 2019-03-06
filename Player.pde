@@ -293,13 +293,11 @@ class Player { //<>// //<>// //<>// //<>//
         mouseY = height-80;
       }
 
-
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
 
       base.get(nr[3]).location.set(loc);  
-
 
       timer=0;      
       picked = 0;
@@ -346,8 +344,6 @@ class Player { //<>// //<>// //<>// //<>//
       timer=0;
     }
   }
-
-
 
   void highLight() { 
 
@@ -468,17 +464,14 @@ class Player { //<>// //<>// //<>// //<>//
         for (int j = -3; j <= 3; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
-      }  
-
+      }
       fill(0, 255, 0);
       rect(location.x, location.y, 10, 10);
     }
   }
 
   void place() {     
-
     if (placeble[0]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
       if (mouseX>width-20) {
         mouseX = width-20;
       } 
@@ -492,13 +485,11 @@ class Player { //<>// //<>// //<>// //<>//
         mouseY = height-80;
       }
 
-
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
 
       shotTower.get(towernr[0]-1).location.set(loc);  
-
 
       timer=0;      
       picked = 0;
@@ -519,40 +510,38 @@ class Player { //<>// //<>// //<>// //<>//
         mouseY = height-80;
       }
 
-
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
 
       bombTower.get(towernr[1]-1).location.set(loc);  
 
-
       timer=0;      
       picked = 0;
       placeble[1] = false;
     }  
     if (placeble[2]  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
       if (mouseX>width-20) {
         mouseX = width-20;
       } 
+      
       if (mouseX<10) {
         mouseX = 10;
       } 
+      
       if (mouseY<10) {
         mouseY = 10;
       } 
+      
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-
 
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
 
       enemyAttackTower.get(towernr[2]-1).location.set(loc);  
-
 
       timer=0;      
       picked = 0;
