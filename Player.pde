@@ -556,7 +556,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       shotTower.get(towernr[0]-1).location.set(loc);  
       shotTower.get(towernr[0]-1).t=-3;
- game.energy.energy.y = game.energy.energy.y-3;
+ 
       timer=0;      
       picked = 0;
       placeble[0] = false;
@@ -583,7 +583,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       bombTower.get(towernr[1]-1).location.set(loc);  
       bombTower.get(towernr[1]-1).t=-3;
- game.energy.energy.y = game.energy.energy.y-9;
+
       timer=0;      
       picked = 0;
       placeble[1] = false;
@@ -610,7 +610,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       enemyAttackTower.get(towernr[2]-1).location.set(loc);  
       enemyAttackTower.get(towernr[2]-1).t=-3 ;
- game.energy.energy.y = game.energy.energy.y-21;
+
       timer=0;      
       picked = 0;
       placeble[2] = false;

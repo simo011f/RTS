@@ -5,6 +5,8 @@ class TowerAttackETowers {
   int t=-2;
 
   int build;
+  int energybuild = 50;
+  int energyConsomstion = 9;
 
   void weapon() {
   }
@@ -14,9 +16,8 @@ class TowerAttackETowers {
 
   void build() {   
 
-   
-        if (t==-3) {
-      game.energy.energy.y = game.energy.energy.y-40;
+    if (t==-3) {
+      game.energy.energy.y = game.energy.energy.y-energybuild;
       t=11;
     }
 
@@ -34,8 +35,8 @@ class TowerAttackETowers {
       t=13;
     }
     if (t==13) { 
-      game.energy.energy.y = game.energy.energy.y+40; 
-     
+      game.energy.energy.y = game.energy.energy.y+energybuild-energyConsomstion; 
+
       t=14;
     }
 
