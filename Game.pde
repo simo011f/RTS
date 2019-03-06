@@ -8,18 +8,32 @@ class Game {
 
   //these are all the classes: 
 
+  SquareField squareFeld = new SquareField();
   Timer timer = new Timer();
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
-  GameBoard gameBoard = new GameBoard();
+  BaseLevel baseLevel;
   EscMenu escMenu = new EscMenu();
+<<<<<<< HEAD
   SquareField squareFeld = new SquareField();
   Player player = new Player();
   Energy energy = new Energy();
 
+=======
+
+  Game(int i) 
+  {
+    if (i == 1)
+    {
+      squareFeld = new SquareField();
+    }
+  }
+>>>>>>> E-lyer-+1-og-emmiter
 
   Game() {
+    gameBoard = new GameBoard();
+    baseLevel = new BaseLevel();
   }
 
   void changeState() {
@@ -158,10 +172,16 @@ class Game {
       squareFeld.run();
       //this is the main game
       timer.run();
+<<<<<<< HEAD
       gameBoard.run();  
 
       player.run();
       energy.run();
+=======
+      //gameBoard.run();
+      baseLevel.Run();
+      squareFeld.run();
+>>>>>>> E-lyer-+1-og-emmiter
       escMenu.run();
 
       break;
