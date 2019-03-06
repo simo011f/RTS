@@ -1,4 +1,5 @@
-class Square {
+class Square
+{
   PVector loc;
 
   int gridSquareSize = 10;
@@ -47,10 +48,5 @@ class SquareField {
   }
 
   void run() {     
-    for (int i = parts.size()-1; i >=0; i--) {
-      Square s =parts.get(i);
-      s.run();
-    }
-    addParikle();
   }
 }

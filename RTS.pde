@@ -4,11 +4,9 @@ Game game;
 
 void setup() {
   size(1600, 900);
-<<<<<<< HEAD
+
   //fullScreen();
-=======
-  game = new Game(1);
->>>>>>> E-lyer-+1-og-emmiter
+game= new Game(1);
   game = new Game();
   //frameRate(2);
 }

@@ -1,4 +1,4 @@
-class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel  //<>//
 {
 
   EnemyGrid enemys;
@@ -36,25 +36,9 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
   }
 
 
-  void fieldDraw() {   
-    //this draws the stuff
-    //Maybe an array of variables would have been better
-    // Begin loop for columns
-    for (int i = 0; i < cols; i++) {
-      // Begin loop for rows
-      for (int j = 0; j < rows; j++) {
-        int x = i*scale;
-        int y = j*scale;
-        fill(255);
-        stroke(0);
-        strokeWeight(1);
-        rect(x, y, scale, scale);
-      }
-    }
-  }
 
   boolean thereIs(int i, int j) {
-    if (j - 1 > 0) { //<>//
+    if (j - 1 > 0) {
       if (enemys.enemys[i][j - 1].strength >= 1) {
         isNorth = true;
       }
@@ -95,14 +79,39 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     }
   }
 
+  void fieldDraw() {   
+    //this draws the stuff
+    //Maybe an array of variables would have been better
+    layerOneDraw();
+  } 
+  
+  void layerOneDraw()
+  {
+    // Begin loop for columns
+    for (int i = 0; i < cols; i++) {
+      // Begin loop for rows
+      for (int j = 0; j < rows; j++) {
+
+        int x = i*scale;
+        int y = j*scale;
+        fill(255, 0);
+        stroke(0);
+        strokeWeight(0.5);
+        rect(x, y, scale, scale);
+      }
+    }
+  }
+
+
   void Draw()
   {
+    background(100);
     fieldDraw();
   }
 
 
 
-  void Update() //<>//
+  void Update()
   {
     int hej = 0;
 
@@ -113,7 +122,7 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
           isSouth = false;
           isEast = false;
           isWest = false;
-          if (thereIs(i, j)) { //<>//
+          if (thereIs(i, j)) {
             enemys.addToAjesent(i, j);
             hej += enemys.enemys[i][j].strength;
           } else {
@@ -124,10 +133,10 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     }
     println(hej);
   }
-  
+
   void enemyRun()
-{
-      emitter.Update(enemys);
+  {
+    emitter.Update(enemys);
 
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
@@ -135,14 +144,11 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
       }
     }
     emitter.Draw();
-}
+  }
 
   void Run()
   {
-
     Update();
     Draw();
-
-
   }
 }

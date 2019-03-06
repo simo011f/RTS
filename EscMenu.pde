@@ -1,4 +1,5 @@
-class EscMenu {
+class EscMenu 
+{
 
   PFont font;
   boolean escPressed;

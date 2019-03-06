@@ -1,4 +1,5 @@
-class Game {
+class Game 
+{
 
   int gameContinue = 0;
   boolean win = false;
@@ -13,15 +14,16 @@ class Game {
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
-  GameBoard gameBoard;
-  BaseLevel baseLevel;
+
+
   EscMenu escMenu = new EscMenu();
   Player player = new Player();
   Energy energy = new Energy();
 
+  GameBord gameBord; 
+  BaseLevel baseLevel;
 
-
-  Game(int i) 
+  Game(int i)
   {
     if (i == 1)
     {
@@ -29,9 +31,8 @@ class Game {
     }
   }
 
-
   Game() {
-    gameBoard = new GameBoard();
+    gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
   }
 
@@ -168,20 +169,17 @@ class Game {
 
 
     case 3: 
-      squareFeld.run();
+
       //this is the main game
       timer.run();
-
-      gameBoard.run();  
 
 
 
       //gameBoard.run();
       baseLevel.Run();
-      squareFeld.run();
-
+      gameBord.hotbar();
       //player stas
-      player.run();
+      player.Run();
       energy.run();
       baseLevel.enemyRun();
       escMenu.run();

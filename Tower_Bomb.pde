@@ -1,4 +1,5 @@
-class TowerAttackTerrtoriumBomb {  
+class TowerAttackTerrtoriumBomb 
+{  
   PVector location=new PVector(-100, -100);
 
   int t=-1;

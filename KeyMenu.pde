@@ -1,4 +1,5 @@
-class KeyMenu {
+class KeyMenu 
+{
 
   boolean leave;
   int leaveColor;

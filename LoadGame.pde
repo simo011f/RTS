@@ -1,4 +1,3 @@
-
 class LoadGame {
   PFont f; 
   boolean[] levelNR = new boolean[13];

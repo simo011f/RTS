@@ -1,4 +1,5 @@
-class Player { //<>// //<>// //<>// //<>//
+class Player  //<>//
+{
 
   int timer;
   int [] towernr = new int[5]; 
@@ -76,7 +77,7 @@ class Player { //<>// //<>// //<>// //<>//
       picked=3;
       placeble[2]=true;
       towerpickedOnBar[2]=false;   
-     
+
       GO = true;
     }
 
@@ -213,7 +214,6 @@ class Player { //<>// //<>// //<>// //<>//
         mouseY = height-80;
       }
 
-
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
@@ -221,8 +221,6 @@ class Player { //<>// //<>// //<>// //<>//
       shotTower.get(nr[0]).location.set(loc);  
       shotTower.get(nr[0]).t=-3;
       shotTower.get(nr[0]).build=0;
-
-
       timer=0;      
       picked = 0;
       placeble2[0] = false;
@@ -241,7 +239,6 @@ class Player { //<>// //<>// //<>// //<>//
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-
 
       int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
@@ -556,7 +553,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       shotTower.get(towernr[0]-1).location.set(loc);  
       shotTower.get(towernr[0]-1).t=-3;
- 
+
       timer=0;      
       picked = 0;
       placeble[0] = false;
@@ -672,15 +669,8 @@ class Player { //<>// //<>// //<>// //<>//
     }
   }
 
-
-  void run() {
-
-    PickTowerOnBar();   
-    highLight();   
-
-    place();   
-
-
+  void towerRun()
+  {
     if (keys[0]) {
       gat();
     }
@@ -707,10 +697,16 @@ class Player { //<>// //<>// //<>// //<>//
       TowerBase  b = base.get(i);
       b.run();
     }
+  }
 
 
+  void Run() {
 
+    PickTowerOnBar();   
+    highLight();   
 
+    place();  
+    towerRun();
 
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
 

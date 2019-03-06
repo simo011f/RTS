@@ -1,4 +1,5 @@
-class TowerBase {
+class TowerBase 
+{
   PVector location=new PVector(-100, -100);
 
   void weapon() {

@@ -1,4 +1,5 @@
-class EnemyGrid { //<>//
+class EnemyGrid 
+{
 
   int scale = 10;  
 

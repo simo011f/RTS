@@ -1,4 +1,5 @@
-class Energy { //<>//
+class Energy 
+{
 
   PVector energy = new PVector(0, 0);
 
