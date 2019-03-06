@@ -1,5 +1,12 @@
 class TowerAttackETowers {
-  PVector location=new PVector(width/2+70, height-35);
+  PVector location=new PVector(-100, -100);
+
+
+  int t=-2;
+
+  int build;
+  int energybuild = 50;
+  int energyConsomstion = 9;
 
   void weapon() {
   }
@@ -7,9 +14,33 @@ class TowerAttackETowers {
   void detection() {
   }
 
-  void highLight() {   
+  void build() {   
 
-    fill(255, 255, 0);
+    if (t==-3) {
+      game.energy.energy.y = game.energy.energy.y-energybuild;
+      t=11;
+    }
+
+    if (t<=11&&t>=-1) { 
+      t--;
+    }
+
+
+    if (t<=-1) {
+      build++;
+      t=11;
+    }
+    if (build==11) {
+      build=12;
+      t=13;
+    }
+    if (t==13) { 
+      game.energy.energy.y = game.energy.energy.y+energybuild-energyConsomstion; 
+
+      t=14;
+    }
+
+    fill(15+(20*build), 15+(20*build), 0);
     stroke(0);
     strokeWeight(1.5);
 
@@ -20,8 +51,12 @@ class TowerAttackETowers {
     }
   }
   void run() { 
-    highLight();
-    weapon();
-    detection();
+
+    build();
+
+    if (t==14) { 
+      weapon();
+      detection();
+    }
   }
 }

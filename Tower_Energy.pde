@@ -1,5 +1,5 @@
 class TowerEnergy {
-  PVector location=new PVector(width/2+215, height-35);
+  PVector location=new PVector(-100, -100);
 
   int vis;
 

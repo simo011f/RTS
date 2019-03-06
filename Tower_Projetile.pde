@@ -1,5 +1,11 @@
 class TowerAttackTerrtoriumShot {  
-  PVector location=new PVector(width/2, height-35);
+  PVector location=new PVector(-100, -100);
+
+  int t=-2;
+
+  int build;
+  int energybuild = 40;
+  int energyConsomstion = 3;
 
   void weapon() {
   }
@@ -7,9 +13,33 @@ class TowerAttackTerrtoriumShot {
   void detection() {
   }
 
-  void highLight() {   
+  void build() {   
 
-    fill(0, 0, 255);
+    if (t==-3) {
+      game.energy.energy.y = game.energy.energy.y-energybuild;
+      t=11;
+    }
+
+    if (t<=11&&t>=-1) { 
+      t--;
+    }
+
+
+    if (t<=-1) {
+      build++;
+      t=11;
+    }
+    if (build==11) {
+      build=12;
+      t=13;
+    }
+    if (t==13) { 
+      game.energy.energy.y = game.energy.energy.y+energybuild-energyConsomstion; 
+
+      t=14;
+    }
+
+    fill(0, 0, 15+(20*build));
     stroke(0);
     strokeWeight(1.5);
 
@@ -21,8 +51,11 @@ class TowerAttackTerrtoriumShot {
   }
   void run() { 
 
-    highLight();
-    weapon();
-    detection();
+    build();
+
+    if (t==14) { 
+      weapon();
+      detection();
+    }
   }
 }
