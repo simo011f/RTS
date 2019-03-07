@@ -17,26 +17,22 @@ class BaseLevel  //<>//
   {
 
     enemys = new EnemyGrid(grid);
-    emitter = new Emitter(new PVector(2, 2), 1, 5, enemys);
+    emitter = new Emitter(new PVector(cols/2, rows/2), 1, 10, enemys);
 
 
-    //for (int i = 0; i < cols; i++) {
-    //  for (int j = 0; j < rows; j++) { 
-    //    enemys.enemys[i][j].strength = 10;
-    //  }
-    //}
+
 
     enemys.enemys[cols/2][rows/2].strength = 10000;
-    enemys.enemys[cols-1][rows-1].strength = 10000;
-    enemys.enemys[cols-1][0].strength = 10000;
-    enemys.enemys[0][rows-1].strength = 10000;
-    enemys.enemys[1][1].strength = 10000;
+    //enemys.enemys[cols-1][rows-1].strength = 10000;
+    //enemys.enemys[cols-1][0].strength = 10000;
+    //enemys.enemys[0][rows-1].strength = 10000;
+    //enemys.enemys[1][1].strength = 10000;
   }
 
 
-  void terrain(int x1, int y1, int x2, int y2, PVector[][] grid, int terrainHeight)
+  void terrain(int x1, int x2, int y1, int y2, PVector[][] grid, int terrainHeight)
   {
-      for (int i = x1; i <= x2; i++) 
+    for (int i = x1; i <= x2; i++) 
     {
       for (int j = y1; j <= y2; j++) 
       {
@@ -50,8 +46,7 @@ class BaseLevel  //<>//
 
 
   void fieldDraw(PVector[][] grid) {   
-    //this draws the stuff
-    //Maybe an array of variables would have been better
+    // Begin loop for cols
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
       for (int j = 0; j < rows; j++) {
@@ -69,7 +64,7 @@ class BaseLevel  //<>//
   {
     int x = i*scale;
     int y = j*scale;
-    fill(200);
+    fill(120, 58, 8);
     stroke(0);
     strokeWeight(0.5);
     rect(x, y, scale, scale);
@@ -81,7 +76,7 @@ class BaseLevel  //<>//
     {
       int x = i*scale;
       int y = j*scale;
-      fill(150);
+      fill(160, 75, 30);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
@@ -129,7 +124,7 @@ class BaseLevel  //<>//
     {
       int x = i*scale;
       int y = j*scale;
-      fill(50);
+      fill(10);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);

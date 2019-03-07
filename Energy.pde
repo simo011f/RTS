@@ -71,6 +71,5 @@ class Energy
   void run() {
     energyLogic();
     energyGrid();
-    println(energy);
   }
 }

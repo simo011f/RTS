@@ -34,9 +34,22 @@ class Game
   Game() {
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
-    baseLevel.terrain(50, 10, 100, 50, squareFeld.grid, 1);
-    baseLevel.terrain(5, 0, 10, 5, squareFeld.grid, 2);
+    baseLevelTerrainSetup();
     baseLevel = new BaseLevel(squareFeld.grid);
+  }
+
+  void baseLevelTerrainSetup()
+  {
+    baseLevel.terrain(52, 108, 14, 70, squareFeld.grid, 1);
+    baseLevel.terrain(54, 106, 16, 68, squareFeld.grid, 0);
+    baseLevel.terrain(56, 104, 18, 66, squareFeld.grid, 2);
+    baseLevel.terrain(58, 102, 20, 64, squareFeld.grid, 0);
+    baseLevel.terrain(60, 100, 22, 62, squareFeld.grid, 3);
+    baseLevel.terrain(62, 98, 24, 60, squareFeld.grid, 0);
+    baseLevel.terrain(64, 96, 26, 58, squareFeld.grid, 4);
+    baseLevel.terrain(66, 94, 28, 56, squareFeld.grid, 0);
+    baseLevel.terrain(68, 92, 30, 54, squareFeld.grid, 5);
+    baseLevel.terrain(70, 90, 32, 52, squareFeld.grid, 0);
   }
 
   void changeState() {
