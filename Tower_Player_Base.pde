@@ -1,5 +1,9 @@
 class TowerBase {
   PVector location=new PVector(-100, -100);
+  
+  int life;
+  
+   boolean conected=false;
 
   void weapon() {
   }

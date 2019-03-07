@@ -1,9 +1,17 @@
 class TowerEnergy {
   PVector location=new PVector(-100, -100);
 
+  int life;
+
   int vis;
 
+  boolean conected=false;
+
   void weapon() {
+    for (int i = 0; i < game.player.base.size(); i++) {
+      if (conected && game.player.base.get(i).conected) {
+      }
+    }
   }
 
   void detection() {

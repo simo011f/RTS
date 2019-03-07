@@ -76,7 +76,7 @@ class Player { //<>// //<>// //<>// //<>//
       picked=3;
       placeble[2]=true;
       towerpickedOnBar[2]=false;   
-     
+
       GO = true;
     }
 
@@ -112,7 +112,7 @@ class Player { //<>// //<>// //<>// //<>//
       placeble[4]=true;
       energyTower.get(towernr[4]-1).vis = 0;
       towerpickedOnBar[4]=false; 
-      GO = true;
+      //GO = true;
     }
   }
 
@@ -313,6 +313,27 @@ class Player { //<>// //<>// //<>// //<>//
     }
 
     if (placeble2[4]  && keys[3] && timer>=10) {
+      if (nr[4]==0) { 
+        energyTower.get(nr[4]).conected=false;
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      } 
+      if (nr[4]==1) {   
+        energyTower.get(nr[4]-1).conected=false;  
+        energyTower.get(nr[4]).conected=false;
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      } 
+      if (nr[4]>1) {
+        energyTower.get(nr[4]-1).conected=false;
+        energyTower.get(nr[4]+1).conected=false; 
+        energyTower.get(nr[4]).conected=false; 
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      }
       energyTower.remove(nr[4]);
       towernr[4]=towernr[4]-1;
       timer=0;      
@@ -556,7 +577,7 @@ class Player { //<>// //<>// //<>// //<>//
 
       shotTower.get(towernr[0]-1).location.set(loc);  
       shotTower.get(towernr[0]-1).t=-3;
- 
+
       timer=0;      
       picked = 0;
       placeble[0] = false;
@@ -709,7 +730,7 @@ class Player { //<>// //<>// //<>// //<>//
     }
 
 
-
+    println(nr[4]+"nr");
 
 
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);

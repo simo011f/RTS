@@ -1,7 +1,7 @@
-class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
-  EnemyGrid enemys;
+  //EnemyGrid enemys;
 
   Emitter emitter;
 
@@ -18,7 +18,7 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
   BaseLevel()
   {
 
-    enemys = new EnemyGrid();
+    //enemys = new EnemyGrid();
     emitter = new Emitter(new PVector(cols/2, rows/2), 1);
 
 
@@ -28,7 +28,7 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     //  }
     //}
 
-    enemys.enemys[cols/2][rows/2].strength = 10000;
+    //enemys.enemys[cols/2][rows/2].strength = 10000;
     //enemys.enemys[cols-1][rows-1].strength = 10000;
     //enemys.enemys[cols-1][0].strength = 10000;
     //enemys.enemys[0][rows-1].strength = 10000;
@@ -54,35 +54,35 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
   }
 
   boolean thereIs(int i, int j) {
-    if (j - 1 > 0) { //<>//
-      if (enemys.enemys[i][j - 1].strength >= 1) {
-        isNorth = true;
-      }
-    } else if (j - 1 <= 0)
+    if (j - 1 > 0) {
+      //if (enemys.enemys[i][j - 1].strength >= 1) {
+      isNorth = true;
+    }
+    //} else if (j - 1 <= 0)
     {
       isNorth = true;
     }
     if (j + 1 < rows) {
-      if ( enemys.enemys[i][j + 1].strength >= 1) {
-        isSouth = true;
-      }
-    } else if (j + 1 >= rows)
+      //if ( enemys.enemys[i][j + 1].strength >= 1) {
+      isSouth = true;
+    }
+    //} else if (j + 1 >= rows)
     {
       isSouth = true;
     }
     if (i + 1 < cols) {
-      if (enemys.enemys[i + 1][j].strength >= 1) {
-        isEast = true;
-      }
-    } else if (i + 1 >= cols)
+      //if (enemys.enemys[i + 1][j].strength >= 1) {
+      isEast = true;
+    }
+    //} else if (i + 1 >= cols)
     {
       isEast = true;
     }
     if (i - 1 > 0) {
-      if (enemys.enemys[i - 1][j].strength >= 1) {
-        isWest = true;
-      }
-    } else if (i - 1 <= 0)
+      //if (enemys.enemys[i - 1][j].strength >= 1) {
+      isWest = true;
+    }
+    //} else if (i - 1 <= 0)
     {
       isWest = true;
     }
@@ -102,47 +102,45 @@ class BaseLevel //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
 
 
 
-  void Update() //<>//
+  void Update()
   {
     int hej = 0;
 
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        if (enemys.enemys[i][j].strength >= 5) {	
-          isNorth = false;
-          isSouth = false;
-          isEast = false;
-          isWest = false;
-          if (thereIs(i, j)) { //<>//
-            enemys.addToAjesent(i, j);
-            hej += enemys.enemys[i][j].strength;
-          } else {
-            enemys.spawnAjesent(i, j);
-          }
+        //if (enemys.enemys[i][j].strength >= 5) {	
+        isNorth = false;
+        isSouth = false;
+        isEast = false;
+        isWest = false;
+        if (thereIs(i, j)) {
+          //enemys.addToAjesent(i, j);
+          //hej += enemys.enemys[i][j].strength;
+          //} else {
+          //  enemys.spawnAjesent(i, j);
+          //}
         }
       }
     }
-    println(hej);
+   
   }
-  
-  void enemyRun()
-{
-      emitter.Update(enemys);
+
+  //void enemyRun()
+  {
+    //emitter.Update(enemys);
 
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        enemys.Run(i, j);
+        //enemys.Run(i, j);
       }
     }
-    emitter.Draw();
-}
+    //emitter.Draw();
+  }
 
   void Run()
   {
 
     Update();
     Draw();
-
-
   }
 }

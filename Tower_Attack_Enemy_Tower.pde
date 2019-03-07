@@ -1,12 +1,15 @@
 class TowerAttackETowers {
   PVector location=new PVector(-100, -100);
 
+  int life;
 
   int t=-2;
 
   int build;
   int energybuild = 50;
   int energyConsomstion = 9;
+
+  boolean conected=false;
 
   void weapon() {
   }
@@ -16,28 +19,30 @@ class TowerAttackETowers {
 
   void build() {   
 
-    if (t==-3) {
-      game.energy.energy.y = game.energy.energy.y-energybuild;
-      t=11;
-    }
+    if (conected && game.energy.energyTotal > 0) {
+      if (t==-3) {
+        game.energy.energyUsed = game.energy.energyUsed-energybuild;
+        t=11;
+      }
 
-    if (t<=11&&t>=-1) { 
-      t--;
-    }
+      if (t<=11&&t>=-1) { 
+        t--;
+      }
 
 
-    if (t<=-1) {
-      build++;
-      t=11;
-    }
-    if (build==11) {
-      build=12;
-      t=13;
-    }
-    if (t==13) { 
-      game.energy.energy.y = game.energy.energy.y+energybuild-energyConsomstion; 
+      if (t<=-1) {
+        build++;
+        t=11;
+      }
+      if (build==11) {
+        build=12;
+        t=13;
+      }
+      if (t==13) { 
+        game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
 
-      t=14;
+        t=14;
+      }
     }
 
     fill(15+(20*build), 15+(20*build), 0);

@@ -4,11 +4,11 @@ Game game;
 
 void setup() {
   size(1600, 900);
-<<<<<<< HEAD
+
   //fullScreen();
-=======
+
   game = new Game(1);
->>>>>>> E-lyer-+1-og-emmiter
+
   game = new Game();
   //frameRate(2);
 }
@@ -17,7 +17,7 @@ void draw() {
 
   background(255);
   game.run(); 
-  println(frameRate);
+ 
   //println(mouseX, mouseY);
   println(frameRate);
 }

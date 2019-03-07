@@ -183,7 +183,7 @@ class Game {
       //player stas
       player.run();
       energy.run();
-      baseLevel.enemyRun();
+      //baseLevel.enemyRun();
       escMenu.run();
 
       break;
