@@ -6,17 +6,14 @@ void setup() {
   size(1600, 900);
 
   //fullScreen();
-game= new Game(1);
+  game= new Game(1);
   game = new Game();
-  //frameRate(2);
+  frameRate(30);
+    background(255);
 }
 
 void draw() {
-
-  background(255);
   game.run(); 
-  println(frameRate);
-  //println(mouseX, mouseY);
   println(frameRate);
 }
 

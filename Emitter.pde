@@ -9,12 +9,13 @@ class Emitter  //<>//
 
   boolean isDead = false;
 
-  Emitter(PVector spawn, int sDelay) 
+  Emitter(PVector spawn, int sDelay, int sPower, EnemyGrid enemys) 
   {
     location = spawn;
     delay = sDelay;
     pGrid = game.squareFeld.grid;
-    power = 1;
+    power = sPower;
+    enemys.enemys[(int)spawn.x][(int)spawn.y].strength = 1;
   }
 
 

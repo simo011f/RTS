@@ -10,16 +10,14 @@ class BaseLevel  //<>//
   int cols = width / scale;
   int rows = (height / scale) - 6;
 
-  boolean isNorth = false;
-  boolean isSouth = false;
-  boolean isEast = false;
-  boolean isWest = false;
+  BaseLevel() {
+  }
 
-  BaseLevel()
+  BaseLevel(PVector[][] grid)
   {
 
-    enemys = new EnemyGrid();
-    emitter = new Emitter(new PVector(cols/2, rows/2), 1);
+    enemys = new EnemyGrid(grid);
+    emitter = new Emitter(new PVector(2, 2), 1, 5, enemys);
 
 
     //for (int i = 0; i < cols; i++) {
@@ -29,109 +27,128 @@ class BaseLevel  //<>//
     //}
 
     enemys.enemys[cols/2][rows/2].strength = 10000;
-    //enemys.enemys[cols-1][rows-1].strength = 10000;
-    //enemys.enemys[cols-1][0].strength = 10000;
-    //enemys.enemys[0][rows-1].strength = 10000;
-    //enemys.enemys[0][0].strength = 10000;
+    enemys.enemys[cols-1][rows-1].strength = 10000;
+    enemys.enemys[cols-1][0].strength = 10000;
+    enemys.enemys[0][rows-1].strength = 10000;
+    enemys.enemys[1][1].strength = 10000;
+  }
+
+
+  void terrain(int x1, int y1, int x2, int y2, PVector[][] grid, int terrainHeight)
+  {
+      for (int i = x1; i <= x2; i++) 
+    {
+      for (int j = y1; j <= y2; j++) 
+      {
+        grid[i][j].z = terrainHeight;
+      }
+    }
   }
 
 
 
-  boolean thereIs(int i, int j) {
-    if (j - 1 > 0) {
-      if (enemys.enemys[i][j - 1].strength >= 1) {
-        isNorth = true;
-      }
-    } else if (j - 1 <= 0)
-    {
-      isNorth = true;
-    }
-    if (j + 1 < rows) {
-      if ( enemys.enemys[i][j + 1].strength >= 1) {
-        isSouth = true;
-      }
-    } else if (j + 1 >= rows)
-    {
-      isSouth = true;
-    }
-    if (i + 1 < cols) {
-      if (enemys.enemys[i + 1][j].strength >= 1) {
-        isEast = true;
-      }
-    } else if (i + 1 >= cols)
-    {
-      isEast = true;
-    }
-    if (i - 1 > 0) {
-      if (enemys.enemys[i - 1][j].strength >= 1) {
-        isWest = true;
-      }
-    } else if (i - 1 <= 0)
-    {
-      isWest = true;
-    }
 
-    if (isNorth && isSouth && isEast && isWest)
-    {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
-  void fieldDraw() {   
+  void fieldDraw(PVector[][] grid) {   
     //this draws the stuff
     //Maybe an array of variables would have been better
-    layerOneDraw();
-  } 
-  
-  void layerOneDraw()
-  {
-    // Begin loop for columns
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
       for (int j = 0; j < rows; j++) {
-
-        int x = i*scale;
-        int y = j*scale;
-        fill(255, 0);
-        stroke(0);
-        strokeWeight(0.5);
-        rect(x, y, scale, scale);
+        layerZeroDraw(i, j);
+        layerOneDraw(i, j, grid);
+        layerTowDraw(i, j, grid);
+        layerThreeDraw(i, j, grid);
+        layerFourDraw(i, j, grid);
+        layerFiveDraw(i, j, grid);
       }
     }
   }
 
-
-  void Draw()
+  void layerZeroDraw(int i, int j)
   {
-    background(100);
-    fieldDraw();
+    int x = i*scale;
+    int y = j*scale;
+    fill(200);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
+  }
+
+  void layerOneDraw(int i, int j, PVector[][] grid)
+  {
+    if (grid[i][j].z == 1)
+    {
+      int x = i*scale;
+      int y = j*scale;
+      fill(150);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
+  }
+  void layerTowDraw(int i, int j, PVector[][] grid)
+  {
+    if (grid[i][j].z == 2)
+    {
+      int x = i*scale;
+      int y = j*scale;
+      fill(100);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
+  }
+  void layerThreeDraw(int i, int j, PVector[][] grid)
+  {
+    if (grid[i][j].z == 3)
+    {
+      int x = i*scale;
+      int y = j*scale;
+      fill(50);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
+  }
+  void layerFourDraw(int i, int j, PVector[][] grid)
+  {
+    if (grid[i][j].z == 4)
+    {
+      int x = i*scale;
+      int y = j*scale;
+      fill(50);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
+  }
+  void layerFiveDraw(int i, int j, PVector[][] grid)
+  {
+    if (grid[i][j].z == 5)
+    {
+      int x = i*scale;
+      int y = j*scale;
+      fill(50);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
+  }
+
+
+
+
+  void Draw(PVector[][] grid)
+  {
+    fieldDraw(grid);
   }
 
 
 
   void Update()
   {
-    int hej = 0;
-
-    for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {
-        if (enemys.enemys[i][j].strength >= 5) {	
-          isNorth = false;
-          isSouth = false;
-          isEast = false;
-          isWest = false;
-          if (thereIs(i, j)) {
-            enemys.addToAjesent(i, j);
-            hej += enemys.enemys[i][j].strength;
-          } else {
-            enemys.spawnAjesent(i, j);
-          }
-        }
-      }
-    }
-    println(hej);
+    enemys.Update();
   }
 
   void enemyRun()
@@ -140,7 +157,7 @@ class BaseLevel  //<>//
 
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        enemys.Run(i, j);
+        enemys.Draw(i, j);
       }
     }
     emitter.Draw();
@@ -149,6 +166,5 @@ class BaseLevel  //<>//
   void Run()
   {
     Update();
-    Draw();
   }
 }

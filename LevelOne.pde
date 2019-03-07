@@ -1,0 +1,4 @@
+class LevelOne extends BaseLevel
+{
+	
+}

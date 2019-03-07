@@ -34,6 +34,9 @@ class Game
   Game() {
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
+    baseLevel.terrain(50, 10, 100, 50, squareFeld.grid, 1);
+    baseLevel.terrain(5, 0, 10, 5, squareFeld.grid, 2);
+    baseLevel = new BaseLevel(squareFeld.grid);
   }
 
   void changeState() {
@@ -139,12 +142,8 @@ class Game
   }
 
   void run() {
-
-
-
     changeState();
     switch (loc) {
-
     case -1: 
       //exits the game
       exit();
@@ -167,23 +166,19 @@ class Game
       escMenu.run();
       break;
 
-
     case 3: 
 
       //this is the main game
       timer.run();
-
-
-
       //gameBoard.run();
-      baseLevel.Run();
+      baseLevel.Update();
+      baseLevel.Draw(squareFeld.grid);
       gameBord.hotbar();
       //player stas
       player.Run();
       energy.run();
       baseLevel.enemyRun();
       escMenu.run();
-
       break;
 
     case 5:
