@@ -1,4 +1,4 @@
-class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   int scale = 10;  
@@ -12,6 +12,19 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   boolean isWest = false;
 
   Enemy[][] enemys = new Enemy[cols][rows];
+
+  EnemyGrid()
+  {
+    // Begin loop for columns
+    for (int i = 0; i < cols; i++) 
+    {
+      // Begin loop for rows
+      for (int j = 0; j < rows; j++) 
+      {
+        enemys[i][j] = new Enemy(new PVector(i, j));
+      }
+    }
+  }
 
   EnemyGrid(PVector[][] grid) {
     // Begin loop for columns
@@ -28,7 +41,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToNorth(int i, int j)
   {
-        if (j - 1 >= 0 && enemys[i][j - 1].strength >= 1 && enemys[i][j - 1].strength + 80 < enemys[i][j].strength)
+    if (j - 1 >= 0 && enemys[i][j - 1].strength >= 1 && enemys[i][j - 1].strength + 80 < enemys[i][j].strength)
     {
       enemys[i][j - 1].addLayer(50);
       return 50;
@@ -53,7 +66,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToSouth(int i, int j)
   {
-        if (j + 1 < rows  && enemys[i][j + 1].strength >= 1 && enemys[i][j + 1].strength + 80 < enemys[i][j].strength)
+    if (j + 1 < rows  && enemys[i][j + 1].strength >= 1 && enemys[i][j + 1].strength + 80 < enemys[i][j].strength)
     {
       enemys[i][j + 1].addLayer(50);
       return 50;
@@ -78,7 +91,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToEast(int i, int j)
   {
-        if (i - 1 >= 0 && enemys[i - 1][j].strength >= 1 && enemys[i - 1][j].strength + 80 < enemys[i][j].strength)
+    if (i - 1 >= 0 && enemys[i - 1][j].strength >= 1 && enemys[i - 1][j].strength + 80 < enemys[i][j].strength)
     {
       enemys[i - 1][j].addLayer(50);
       return 50;
@@ -103,7 +116,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToWest(int i, int j)
   {
-        if (i + 1 < cols && enemys[i + 1][j].strength >= 1 && enemys[i + 1][j].strength + 80 < enemys[i][j].strength)
+    if (i + 1 < cols && enemys[i + 1][j].strength >= 1 && enemys[i + 1][j].strength + 80 < enemys[i][j].strength)
     {
       enemys[i + 1][j].addLayer(50);
       return 50;

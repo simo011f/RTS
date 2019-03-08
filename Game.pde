@@ -23,14 +23,14 @@ class Game{
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
-  BaseLevel baseLevel = new BaseLevel();
-  LevelOne levelOne = new LevelOne();
-  TestLevel testLevel = new TestLevel();
+  
+  BaseLevel baseLevel;
+  LevelOne levelOne;
+  TestLevel testLevel;
 
 
 
   Game(int i) {
-
     if (i == 1)
     {
       squareFeld = new SquareField();
@@ -39,9 +39,10 @@ class Game{
   }
   
   Game() {
+          squareFeld = new SquareField();
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
-    levelOne = new LevelOne();
+    levelOne = new LevelOne(mapOne());
     testLevel = new TestLevel(mapTow());
   }
 
@@ -232,19 +233,19 @@ class Game{
       energy.run();
 
       //levelOne
-      //levelOne.Update();
-      //levelOne.Draw(squareFeld.grid);
-      //levelOne.enemyRun();      
+      levelOne.Update();
+      levelOne.Draw(mapOne());
+      levelOne.enemyRun();      
 
       //baseLevel
       //baseLevel.Update();
-      //baseLevel.Draw(mapTow());
+      //baseLevel.Draw(mapOne());
       //baseLevel.enemyRun();
 
       //testLevel
-      testLevel.Update();
-      testLevel.Draw(mapTow());
-      testLevel.enemyRun();
+      //testLevel.Update();
+      //testLevel.Draw(mapTow());
+      //testLevel.enemyRun();
 
       escMenu.run();
       break;

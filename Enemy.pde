@@ -1,10 +1,11 @@
-class Enemy   //<>// //<>// //<>//
+class Enemy   //<>// //<>//
 {
   int strength;
   int terrainHeight;
 
   Enemy() {
     strength = -100;
+    terrainHeight= -1;
   }
 
   Enemy(PVector spawn)
@@ -18,7 +19,7 @@ class Enemy   //<>// //<>// //<>//
   {
     strength++;
   }
-  
+
   void addLayer(int addStrength)
   {
     strength += addStrength;

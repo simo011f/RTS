@@ -9,6 +9,7 @@ class BaseLevel  //<>// //<>// //<>// //<>//
   int rows = (height / scale) - 6;
 
   BaseLevel() {
+    enemys = new EnemyGrid();
   }
 
   BaseLevel(PVector[][] grid)
