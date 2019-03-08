@@ -704,12 +704,8 @@ class Player  //<>//
 
     PickTowerOnBar();   
     highLight();   
-
     place();  
     towerRun();
-
-    //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
-
     if (timer >= 20) {
       timer = 20;
     }

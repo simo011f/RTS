@@ -37,8 +37,8 @@ class SquareField {
 
   SquareField() {
     for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {  
-        grid[i][j] = new PVector(i*scale, j*scale);
+      for (int j = 0; j < rows; j++) { 
+        grid[i][j] = new PVector();
         ocupied[i][j] = 0;
       }
     }
