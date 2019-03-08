@@ -1,4 +1,4 @@
-class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   int scale = 10;  
@@ -28,6 +28,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToNorth(int i, int j)
   {
+        if (j - 1 >= 0 && enemys[i][j - 1].strength >= 1 && enemys[i][j - 1].strength + 80 < enemys[i][j].strength)
+    {
+      enemys[i][j - 1].addLayer(50);
+      return 50;
+    }
     if (j - 1 >= 0 && enemys[i][j - 1].strength >= 1 && enemys[i][j - 1].strength + 40 < enemys[i][j].strength)
     {
       enemys[i][j - 1].addLayer(10);
@@ -48,6 +53,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToSouth(int i, int j)
   {
+        if (j + 1 < rows  && enemys[i][j + 1].strength >= 1 && enemys[i][j + 1].strength + 80 < enemys[i][j].strength)
+    {
+      enemys[i][j + 1].addLayer(50);
+      return 50;
+    }
     if (j + 1 < rows  && enemys[i][j + 1].strength >= 1 && enemys[i][j + 1].strength + 40 < enemys[i][j].strength)
     {
       enemys[i][j + 1].addLayer(10);
@@ -68,6 +78,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToEast(int i, int j)
   {
+        if (i - 1 >= 0 && enemys[i - 1][j].strength >= 1 && enemys[i - 1][j].strength + 80 < enemys[i][j].strength)
+    {
+      enemys[i - 1][j].addLayer(50);
+      return 50;
+    }
     if (i - 1 >= 0 && enemys[i - 1][j].strength >= 1 && enemys[i - 1][j].strength + 40 < enemys[i][j].strength)
     {
       enemys[i - 1][j].addLayer(10);
@@ -88,6 +103,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int addToWest(int i, int j)
   {
+        if (i + 1 < cols && enemys[i + 1][j].strength >= 1 && enemys[i + 1][j].strength + 80 < enemys[i][j].strength)
+    {
+      enemys[i + 1][j].addLayer(50);
+      return 50;
+    }
     if (i + 1 < cols && enemys[i + 1][j].strength >= 1 && enemys[i + 1][j].strength + 40 < enemys[i][j].strength)
     {
       enemys[i + 1][j].addLayer(10);
@@ -162,38 +182,38 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     int strengthAdded = 0;
 
-    //same heigth
-    if (i - 1 >= 0 && enemys[i][j].terrainHeight >= enemys[i - 1][j].terrainHeight && enemys[i - 1][j].strength == -100)
+    //lower heigth
+    if (i - 1 >= 0 && enemys[i - 1][j].terrainHeight != -1 && enemys[i][j].terrainHeight >= enemys[i - 1][j].terrainHeight && enemys[i - 1][j].strength == -100)
     {
       strengthAdded += spawnEast(i, j);
     }
-    if (j + 1 < rows && enemys[i][j].terrainHeight >= enemys[i][j + 1].terrainHeight && enemys[i][j + 1].strength == -100) 
+    if (j + 1 < rows && enemys[i][j + 1].terrainHeight != -1 &&  enemys[i][j].terrainHeight >= enemys[i][j + 1].terrainHeight && enemys[i][j + 1].strength == -100) 
     {
       strengthAdded += spawnSouth(i, j);
     }
-    if (j - 1 >= 0 && enemys[i][j].terrainHeight >= enemys[i][j - 1].terrainHeight && enemys[i][j - 1].strength == -100) 
+    if (j - 1 >= 0 && enemys[i][j - 1].terrainHeight != -1 &&  enemys[i][j].terrainHeight >= enemys[i][j - 1].terrainHeight && enemys[i][j - 1].strength == -100) 
     {
       strengthAdded += spawnNorth(i, j);
     }
-    if (i + 1 < cols && enemys[i][j].terrainHeight >= enemys[i + 1][j].terrainHeight && enemys[i + 1][j].strength == -100) 
+    if (i + 1 < cols && enemys[i + 1][j].terrainHeight != -1 &&  enemys[i][j].terrainHeight >= enemys[i + 1][j].terrainHeight && enemys[i + 1][j].strength == -100) 
     {
       strengthAdded += spawnWest(i, j);
     }
 
     //diffrent height
-    if (i - 1 >= 0 && -enemys[i][j].terrainHeight + enemys[i - 1][j].terrainHeight > 0&& enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i - 1][j].terrainHeight))) 
+    if (i - 1 >= 0 && -enemys[i][j].terrainHeight + enemys[i - 1][j].terrainHeight >= 0 && enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i - 1][j].terrainHeight))) 
     {
       strengthAdded += spawnEast(i, j);
     }
-    if (j + 1 < rows && -enemys[i][j].terrainHeight + enemys[i][j + 1].terrainHeight > 0&& enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i][j + 1].terrainHeight))) 
+    if (j + 1 < rows && -enemys[i][j].terrainHeight + enemys[i][j + 1].terrainHeight >= 0 && enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i][j + 1].terrainHeight))) 
     {
       strengthAdded += spawnSouth(i, j);
     }
-    if (j - 1 >= 0 && -enemys[i][j].terrainHeight + enemys[i][j - 1].terrainHeight > 0 && enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i][j - 1].terrainHeight))) 
+    if (j - 1 >= 0 && -enemys[i][j].terrainHeight + enemys[i][j - 1].terrainHeight >= 0 && enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i][j - 1].terrainHeight))) 
     {
       strengthAdded += spawnNorth(i, j);
     }
-    if (i + 1 < cols && -enemys[i][j].terrainHeight + enemys[i + 1][j].terrainHeight > 0&& enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i + 1][j].terrainHeight))) 
+    if (i + 1 < cols && -enemys[i][j].terrainHeight + enemys[i + 1][j].terrainHeight >= 0 && enemys[i][j].strength >= (10*(-enemys[i][j].terrainHeight + enemys[i + 1][j].terrainHeight))) 
     {
       strengthAdded += spawnWest(i, j);
     }
@@ -247,7 +267,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   boolean thereIs(int i, int j) {
     if (j - 1 >= 0) {
-      if ((enemys[i][j].terrainHeight < enemys[i][j - 1].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i][j - 1].terrainHeight) || enemys[i][j - 1].strength >= 1) {
+      if (enemys[i][j - 1].terrainHeight == -1 || (enemys[i][j].terrainHeight < enemys[i][j - 1].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i][j - 1].terrainHeight) || enemys[i][j - 1].strength >= 1) {
         isNorth = true;
       }
     } else if (j - 1 < 0)
@@ -255,7 +275,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       isNorth = true;
     }
     if (j + 1 < rows) {
-      if ((enemys[i][j].terrainHeight < enemys[i][j + 1].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i][j + 1].terrainHeight) || enemys[i][j + 1].strength >= 1) {
+      if (enemys[i][j + 1].terrainHeight == -1 || (enemys[i][j].terrainHeight < enemys[i][j + 1].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i][j + 1].terrainHeight) || enemys[i][j + 1].strength >= 1) {
         isSouth = true;
       }
     } else if (j + 1 >= rows)
@@ -263,7 +283,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       isSouth = true;
     }
     if (i + 1 < cols) {
-      if ((enemys[i][j].terrainHeight < enemys[i + 1][j].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i + 1][j].terrainHeight) || enemys[i + 1][j].strength >= 1) {
+      if (enemys[i + 1][j].terrainHeight == -1 || (enemys[i][j].terrainHeight < enemys[i + 1][j].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i + 1][j].terrainHeight) || enemys[i + 1][j].strength >= 1) {
         isEast = true;
       }
     } else if (i + 1 >= cols)
@@ -271,7 +291,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       isEast = true;
     }
     if (i - 1 >= 0) {
-      if ((enemys[i][j].terrainHeight < enemys[i - 1][j].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i - 1][j].terrainHeight) || enemys[i - 1][j].strength >= 1) {
+      if (enemys[i - 1][j].terrainHeight == -1 || (enemys[i][j].terrainHeight < enemys[i - 1][j].terrainHeight &&  enemys[i][j].strength < 10 * enemys[i - 1][j].terrainHeight) || enemys[i - 1][j].strength >= 1) {
         isWest = true;
       }
     } else if (i - 1 < 0)
@@ -291,7 +311,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        if(enemys[i][j].strength <= 0)
+        if (enemys[i][j].strength <= 0)
         {
           enemys[i][j].strength = -100;
         }
@@ -315,11 +335,12 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
     if (enemys[i][j].strength >= 1)
     {
-      fill(0, enemys[i][j].strength*10, 255, 100);
+      fill(0, enemys[i][j].strength*5, 255, 100);
       rect(i*10, j*10, 10, 10);
-      
-      
+
+
       //for at se styrke går FPS fra ca. 13 til ca. 5
+      //fill(0);
       //textAlign(CENTER);  
       //textSize(10);
       //text(enemys[i][j].strength, i*10+5, j*10+10);

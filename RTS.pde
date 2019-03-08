@@ -1,4 +1,3 @@
-Game game;
 
 
 
@@ -7,7 +6,10 @@ void setup() {
 
   //fullScreen();
   game= new Game(1);
+  game = new Game(1);
   game = new Game();
+
+  background(255); 
   frameRate(30);
     background(255);
 }

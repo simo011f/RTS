@@ -1,4 +1,3 @@
-class Game 
 {
 
   int gameContinue = 0;
@@ -6,6 +5,10 @@ class Game
   int nr = 0;
   int loc = 0;  
   int lvlcode = 0;
+
+  int scale = 10;
+  int cols = width / scale;
+  int rows = (height / scale) - 6;
 
   //these are all the classes: 
 
@@ -20,64 +23,102 @@ class Game
   Player player = new Player();
   Energy energy = new Energy();
 
-  GameBord gameBord; 
-  BaseLevel baseLevel;
+  GameBord gameBord = new GameBord(); 
+  BaseLevel baseLevel = new BaseLevel();
+  LevelOne levelOne = new LevelOne();
+  TestLevel testLevel = new TestLevel();
 
-  Game(int i)
-  {
+
+
+  Game(int i) {
+
     if (i == 1)
     {
       squareFeld = new SquareField();
+      println("why is this nessesary");
     }
   }
-
   Game() {
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
-    baseLevelTerrainSetup();
-    baseLevel = new BaseLevel(squareFeld.grid);
+    levelOne = new LevelOne();
+    testLevel = new TestLevel(mapTow());
   }
 
-  void baseLevelTerrainSetup()
+  PVector[][] mapOne()
   {
-    baseLevel.terrain(52, 108, 14, 70, squareFeld.grid, 1);
-    baseLevel.terrain(54, 106, 16, 68, squareFeld.grid, 0);
-    baseLevel.terrain(56, 104, 18, 66, squareFeld.grid, 2);
-    baseLevel.terrain(58, 102, 20, 64, squareFeld.grid, 0);
-    baseLevel.terrain(60, 100, 22, 62, squareFeld.grid, 3);
-    baseLevel.terrain(62, 98, 24, 60, squareFeld.grid, 0);
-    baseLevel.terrain(64, 96, 26, 58, squareFeld.grid, 4);
-    baseLevel.terrain(66, 94, 28, 56, squareFeld.grid, 0);
-    baseLevel.terrain(68, 92, 30, 54, squareFeld.grid, 5);
-    baseLevel.terrain(70, 90, 32, 52, squareFeld.grid, 0);
+    PVector[][] thisMap = squareFeld.grid;
+    combineTerrain(thisMap, terrain(52, 108, 14, 70, squareFeld.grid, 1));
+    combineTerrain(thisMap, terrain(54, 106, 16, 68, squareFeld.grid, 0));
+    combineTerrain(thisMap, terrain(56, 104, 18, 66, squareFeld.grid, 2));
+    combineTerrain(thisMap, terrain(58, 102, 20, 64, squareFeld.grid, 0));
+    combineTerrain(thisMap, terrain(60, 100, 22, 62, squareFeld.grid, 3));
+    combineTerrain(thisMap, terrain(62, 98, 24, 60, squareFeld.grid, 0));
+    combineTerrain(thisMap, terrain(64, 96, 26, 58, squareFeld.grid, 4));
+    combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, 0));
+    combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 5));
+    combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
+    return thisMap;
+  }
+
+  PVector[][] mapTow()
+  {
+    PVector[][] thisMap = squareFeld.grid;
+    combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, -1));
+    combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 1));
+    combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
+    combineTerrain(thisMap, terrain(65, 67, 42, 42, squareFeld.grid, 3));
+    return thisMap;
+  } 
+
+  PVector[][] terrain(int x1, int x2, int y1, int y2, PVector[][] grid, int terrainHeight)
+  {
+    PVector[][] thisMap = grid;
+    for (int i = x1; i <= x2; i++) 
+    {
+      for (int j = y1; j <= y2; j++) 
+      {
+        thisMap[i][j].z = terrainHeight;
+      }
+    }
+    return thisMap;
+  }
+
+  PVector[][] combineTerrain(PVector[][] grid1, PVector[][] grid2)
+  {
+
+    for (int i = 0; i < cols; i++) 
+    {
+      for (int j = 0; j < rows; j++) 
+      {
+        grid1[i][j].z = grid2[i][j].z;
+      }
+    }
+    return grid1;
   }
 
   void changeState() {
-
     if (mousePressed && keyMenu.leave) { 
       //if the exit button is pressed in the keys menu
       loc = 0;
     }
+
     if (mousePressed && loadGame.leave) { 
       //if the exit button is pressed in the load game menu
       loc = 0;
     }
+
     if (mousePressed && escMenu.Opt[2]) { 
       //if the main menu button is pressed in the ESC menu.
       loc = 0;
     }
 
     if (mousePressed && menu.screen[1]) {  
-
       //load game is pressed
       loc = 1;
     }
 
-
-
     if (mousePressed && menu.screen[2]) {   
-
-
       //if new game is pressed on the start menu
       nr = 0;
       loc = 1;
@@ -184,13 +225,27 @@ class Game
       //this is the main game
       timer.run();
       //gameBoard.run();
-      baseLevel.Update();
-      baseLevel.Draw(squareFeld.grid);
+
       gameBord.hotbar();
       //player stas
       player.Run();
       energy.run();
-      baseLevel.enemyRun();
+
+      //levelOne
+      //levelOne.Update();
+      //levelOne.Draw(squareFeld.grid);
+      //levelOne.enemyRun();      
+
+      //baseLevel
+      //baseLevel.Update();
+      //baseLevel.Draw(mapTow());
+      //baseLevel.enemyRun();
+
+      //testLevel
+      testLevel.Update();
+      testLevel.Draw(mapTow());
+      testLevel.enemyRun();
+
       escMenu.run();
       break;
 
