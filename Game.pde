@@ -1,5 +1,4 @@
-{
-
+class Game{
   int gameContinue = 0;
   boolean win = false;
   int nr = 0;
@@ -38,6 +37,7 @@
       println("why is this nessesary");
     }
   }
+  
   Game() {
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();

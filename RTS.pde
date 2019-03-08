@@ -1,11 +1,10 @@
 
-
+Game game;
 
 void setup() {
   size(1600, 900);
 
   //fullScreen();
-  game= new Game(1);
   game = new Game(1);
   game = new Game();
 
