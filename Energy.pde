@@ -150,6 +150,7 @@ class Energy { //<>//
   void run() {
     energyLogic();
     energyGrid();
+<<<<<<< HEAD
     println(energy);
     energyMade();
     energyGrid(); 
@@ -158,5 +159,7 @@ class Energy { //<>//
       timer = 10;
     } 
 
+=======
+>>>>>>> abf659d7ed1ae8d483121054de4743604609552f
   }
 }
