@@ -147,6 +147,6 @@ class TestLevel extends BaseLevel
   TestLevel(PVector[][] grid)
   {
     super(grid);
-    enemys.enemys[cols/2][rows/2].strength = 100000;
+    enemys.enemyArray[0][0].strength = 100000;
   }
 }

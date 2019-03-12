@@ -1,5 +1,6 @@
 class TowerAttackTerrtoriumShot {  
   PVector location=new PVector(-100, -100);
+  PVector inRange = new PVector(0, 0);
 
   int life;
 
@@ -11,10 +12,19 @@ class TowerAttackTerrtoriumShot {
 
   boolean conected=false;
 
+  int range = 20;
+
   void weapon() {
   }
 
   void detection() {
+    for (int i = -range; i <= range; i++) {
+      for (int j = -range; j <= range; j++) {
+        if (enemyArray[i][j].strength > 0) {
+          inRange = new PVector(i*10, j*10);
+        }
+      }
+    }
   }
 
   void build() {   

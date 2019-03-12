@@ -15,7 +15,7 @@ class Emitter  //<>//
     delay = sDelay;
     pGrid = game.squareFeld.grid;
     power = sPower;
-    enemys.enemys[(int)spawn.x][(int)spawn.y].strength = 1;
+    enemys.enemyArray[(int)spawn.x][(int)spawn.y].strength = 1;
   }
 
 
@@ -39,7 +39,7 @@ class Emitter  //<>//
       timer++;
     }
     if (delay <= timer) {
-      enemys.enemys[(int)location.x][(int)location.y].addLayer(power);
+      enemys.enemyArray[(int)location.x][(int)location.y].addLayer(power);
       timer = 0;
     }
   }

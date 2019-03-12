@@ -42,7 +42,7 @@ class Game {
     squareFeld = new SquareField();
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
-    levelOne = new LevelOne(mapOne());
+    //levelOne = new LevelOne(mapOne());
     testLevel = new TestLevel(mapTow());
   }
 
@@ -65,10 +65,7 @@ class Game {
   PVector[][] mapTow()
   {
     PVector[][] thisMap = squareFeld.grid;
-    combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, -1));
-    combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 1));
-    combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(65, 67, 42, 42, squareFeld.grid, 3));
+    terrain(0, 0, cols-1, rows-1, thisMap, 0);
     return thisMap;
   } 
 
@@ -234,9 +231,9 @@ class Game {
 
 
       //levelOne
-      levelOne.Update();
-      levelOne.Draw(mapOne());
-      levelOne.enemyRun();      
+      //levelOne.Update();
+      //levelOne.Draw(mapOne());
+      //levelOne.enemyRun();      
 
       //baseLevel
       //baseLevel.Update();
@@ -244,9 +241,9 @@ class Game {
       //baseLevel.enemyRun();
 
       //testLevel
-      //testLevel.Update();
-      //testLevel.Draw(mapTow());
-      //testLevel.enemyRun();
+      testLevel.Update();
+      testLevel.Draw(mapTow());
+      testLevel.enemyRun();
       player.Run();
       energy.run();
       escMenu.run();
