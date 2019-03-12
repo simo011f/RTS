@@ -10,10 +10,10 @@ void setup() {
 
   background(255); 
   frameRate(30);
-    background(255);
 }
 
-void draw() {
+void draw() { 
+  background(255);
   game.run(); 
   println(frameRate);
 }

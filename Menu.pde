@@ -13,7 +13,7 @@ class Menu
 
   PVector mouseLocation = new PVector(mouseX, mouseY);
 
-  boolean[] screen = new boolean[6];
+  boolean[] screen = new boolean[5];
 
   Menu() {
     font = createFont("areal", 16, true);

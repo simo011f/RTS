@@ -1,4 +1,4 @@
-class Game{
+class Game {
   int gameContinue = 0;
   boolean win = false;
   int nr = 0;
@@ -23,7 +23,7 @@ class Game{
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
-  
+
   BaseLevel baseLevel;
   LevelOne levelOne;
   TestLevel testLevel;
@@ -37,9 +37,9 @@ class Game{
       println("why is this nessesary");
     }
   }
-  
+
   Game() {
-          squareFeld = new SquareField();
+    squareFeld = new SquareField();
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel();
     levelOne = new LevelOne(mapOne());
@@ -110,7 +110,9 @@ class Game{
     }
 
     if (mousePressed && escMenu.Opt[2]) { 
-      //if the main menu button is pressed in the ESC menu.
+      //if the main menu button is pressed in the ESC menu. 
+      escMenu.escPressed = false;
+      escMenu.Opt[2]=false;
       loc = 0;
     }
 
@@ -231,11 +233,6 @@ class Game{
       //player stas
       player.Run();
       energy.run();
-<<<<<<< HEAD
-      //baseLevel.enemyRun();
-      escMenu.run();
-=======
->>>>>>> abf659d7ed1ae8d483121054de4743604609552f
 
       //levelOne
       levelOne.Update();

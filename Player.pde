@@ -722,18 +722,12 @@ class Player  //<>//
   }
 
 
-<<<<<<< HEAD
+
   void Run() {
 
     PickTowerOnBar();   
     highLight();   
-<<<<<<< HEAD
-=======
-    println(nr[4]+"nr");
->>>>>>> Energy
 
-=======
->>>>>>> abf659d7ed1ae8d483121054de4743604609552f
     place();  
     towerRun();
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);

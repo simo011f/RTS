@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-class Energy 
-{
-=======
-class Energy { //<>//
+ //<>//
+class Energy {
   int timer;
->>>>>>> Energy
-
   PVector energy = new PVector(0, 0);
   int energyTotal;
   int energyMade;
@@ -35,40 +30,36 @@ class Energy { //<>//
     if (game.player.GO) {
       energy.x = game.player.energyTower.size()*49;
 
-    timer++;
-    energyMade = conectedTowers*49;
+      timer++;
+      energyMade = conectedTowers*49;
 
 
-    energyTotal = energyMade + energyUsed;
+      energyTotal = energyMade + energyUsed;
 
       energy.z = energy.x + energy.y;
-      
-    println(energyTotal, energyMade, energyUsed, timer);
-    if (energyTotal < 0 && timer > 2) {
-      prodotionStop=true;
-    }    
 
-    if (prodotionStop) {
-      timer = energyTotal/4;
-      prodotionStop=false;
-    }
+      println(energyTotal, energyMade, energyUsed, timer);
+      if (energyTotal < 0 && timer > 2) {
+        prodotionStop=true;
+      }    
 
-   
+      if (prodotionStop) {
+        timer = energyTotal/4;
+        prodotionStop=false;
+      }
 
-    if (timer >= 0) {
-      energyTotal = 1;
+
+
+      if (timer >= 0) {
+        energyTotal = 1;
+      }
     }
   }
 
 
   void energyGrid() {  
-
-    for (int i = 0; i < game.player.energyTower.size(); i++) {
     for (int i = 1; i < game.player.energyTower.size(); i++) {
       for (int j = 1; j < game.player.energyTower.size(); j++) {
-        if ((game.player.energyTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.energyTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.energyTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.energyTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          //int playerGetTowerLocationX(int i) ... int playerGetTowerLocationy(int i) 
-          line (game.player.energyTower.get(i).location.x+5, game.player.energyTower.get(i).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
         if (i-1!=j) {
           if ((game.player.energyTower.get(i-1).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 && (game.player.energyTower.get(i-1).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.energyTower.get(i-1).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.energyTower.get(i-1).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
             line (game.player.energyTower.get(i-1).location.x+5, game.player.energyTower.get(i-1).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
@@ -148,18 +139,12 @@ class Energy { //<>//
   }
 
   void run() {
-    energyLogic();
-    energyGrid();
-<<<<<<< HEAD
     println(energy);
     energyMade();
     energyGrid(); 
-   
+
     if (timer > 10) {
       timer = 10;
-    } 
-
-=======
->>>>>>> abf659d7ed1ae8d483121054de4743604609552f
+    }
   }
 }
