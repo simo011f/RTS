@@ -1,4 +1,4 @@
-class Player  //<>//
+class Player  //<>// //<>//
 {
 
   int timer;
@@ -129,19 +129,20 @@ class Player  //<>//
     }
 
     for (int i = 0; i < shotTower.size(); i++) {
-      if (shotTower.get(i).t==13 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
+      if (shotTower.get(i).t==14 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
         nr[0]=i;
         towerpicked[0]=true;
+        println("jek");
       }
     }
     for (int i = 0; i <  bombTower.size(); i++) {
-      if (bombTower.get(i).t==13 && mouseX >=  bombTower.get(i).location.x && mouseX <=  bombTower.get(i).location.x+10 && mouseY >=  bombTower.get(i).location.y && mouseY <=  bombTower.get(i).location.y+10) {
+      if (bombTower.get(i).t==14 && mouseX >=  bombTower.get(i).location.x && mouseX <=  bombTower.get(i).location.x+10 && mouseY >=  bombTower.get(i).location.y && mouseY <=  bombTower.get(i).location.y+10) {
         nr[1]=i;
         towerpicked[1]=true;
       }
     }
     for (int i = 0; i < enemyAttackTower.size(); i++) {
-      if (enemyAttackTower.get(i).t==13 && mouseX >= enemyAttackTower.get(i).location.x && mouseX <= enemyAttackTower.get(i).location.x+10 && mouseY >= enemyAttackTower.get(i).location.y && mouseY <= enemyAttackTower.get(i).location.y+10) {
+      if (enemyAttackTower.get(i).t==14 && mouseX >= enemyAttackTower.get(i).location.x && mouseX <= enemyAttackTower.get(i).location.x+10 && mouseY >= enemyAttackTower.get(i).location.y && mouseY <= enemyAttackTower.get(i).location.y+10) {
         nr[2]=i;
         towerpicked[2]=true;
       }
@@ -161,8 +162,9 @@ class Player  //<>//
 
 
     if (towerpicked[0] && mousePressed && timer>=10) {
-
+      println("jek");
       placeble2[0]=true; 
+      println(towerpicked);
       timer=0;
       picked=1; 
       towerpicked[0]=false; 
@@ -693,9 +695,7 @@ class Player  //<>//
 
   void towerRun()
   {
-    if (keys[0]) {
-      gat();
-    }
+
     for (int i = 0; i < energyTower.size(); i++) {
       TowerEnergy e = energyTower.get(i);
       e.run();
@@ -727,7 +727,10 @@ class Player  //<>//
 
     PickTowerOnBar();   
     highLight();   
-
+    if (keys[0]) {
+      gat(); 
+      println("hejR#`");
+    }
     place();  
     towerRun();
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
