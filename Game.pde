@@ -231,8 +231,7 @@ class Game {
 
       gameBord.hotbar();
       //player stas
-      player.Run();
-      energy.run();
+
 
       //levelOne
       levelOne.Update();
@@ -248,7 +247,8 @@ class Game {
       //testLevel.Update();
       //testLevel.Draw(mapTow());
       //testLevel.enemyRun();
-
+      player.Run();
+      energy.run();
       escMenu.run();
       break;
 

@@ -15,7 +15,7 @@ class Energy {
       for (int j = 0; j < game.player.energyTower.size(); j++) {   
         println(i, j, game.player.base.get(i).conected);   
         if (game.player.energyTower.get(j).conected && game.player.base.get(i).conected) {
-          println("hej");
+
           conectedTowers=game.player.energyTower.size();
         }  
         if (game.player.base.get(i).conected == false) {
@@ -142,6 +142,7 @@ class Energy {
     println(energy);
     energyMade();
     energyGrid(); 
+    energyLogic();
 
     if (timer > 10) {
       timer = 10;
