@@ -114,6 +114,7 @@ class Player  //<>//
       energyTower.get(towernr[4]-1).vis = 0;
       towerpickedOnBar[4]=false; 
       GO = true;
+      //GO = true;
     }
   }
 
@@ -310,6 +311,27 @@ class Player  //<>//
     }
 
     if (placeble2[4]  && keys[3] && timer>=10) {
+      if (nr[4]==0) { 
+        energyTower.get(nr[4]).conected=false;
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      } 
+      if (nr[4]==1) {   
+        energyTower.get(nr[4]-1).conected=false;  
+        energyTower.get(nr[4]).conected=false;
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      } 
+      if (nr[4]>1) {
+        energyTower.get(nr[4]-1).conected=false;
+        energyTower.get(nr[4]+1).conected=false; 
+        energyTower.get(nr[4]).conected=false; 
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
+      }
       energyTower.remove(nr[4]);
       towernr[4]=towernr[4]-1;
       timer=0;      
@@ -700,10 +722,14 @@ class Player  //<>//
   }
 
 
+<<<<<<< HEAD
   void Run() {
 
     PickTowerOnBar();   
     highLight();   
+=======
+    println(nr[4]+"nr");
+>>>>>>> Energy
 
     place();  
     towerRun();

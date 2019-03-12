@@ -181,7 +181,7 @@ class Game
       //player stas
       player.Run();
       energy.run();
-      baseLevel.enemyRun();
+      //baseLevel.enemyRun();
       escMenu.run();
 
       break;
