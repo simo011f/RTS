@@ -10,6 +10,7 @@ class BaseLevel  //<>// //<>// //<>// //<>//
 
   BaseLevel() {
     enemys = new EnemyGrid();
+    thread("feildDraw");
   }
 
   BaseLevel(PVector[][] grid)
@@ -17,7 +18,8 @@ class BaseLevel  //<>// //<>// //<>// //<>//
     enemys = new EnemyGrid(grid);
   }
 
-  void fieldDraw(PVector[][] grid) {   
+  void fieldDraw(PVector[][] grid) 
+  {   
     // Begin loop for cols
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
@@ -32,7 +34,6 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       }
     }
   }
-
 
   void voidLayer(int i, int j, PVector[][] grid)
   {
@@ -69,6 +70,7 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       rect(x, y, scale, scale);
     }
   }
+
   void layerTowDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 2)
@@ -81,30 +83,33 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       rect(x, y, scale, scale);
     }
   }
+
   void layerThreeDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 3)
     {
       int x = i*scale;
       int y = j*scale;
-      fill(50);
+      fill(100, 70, 40);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
     }
   }
+  
   void layerFourDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 4)
     {
       int x = i*scale;
       int y = j*scale;
-      fill(50);
+      fill(90, 60, 30);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
     }
   }
+
   void layerFiveDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 5)

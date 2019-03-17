@@ -23,7 +23,7 @@ class Emitter  //<>//
   void Draw()
   {
     fill(200, 200, 25, 150);
-    stroke(200,100,0);
+    stroke(200, 100, 0);
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
         rect(((int)location.x + i) * 10, ((int)location.y + j) * 10, 10, 10);

@@ -9,7 +9,6 @@ class Energy
 
 
       energy.z = energy.x + energy.y;
-      
     }
   }
 

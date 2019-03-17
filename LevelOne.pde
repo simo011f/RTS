@@ -1,10 +1,10 @@
 class LevelOne extends BaseLevel
 {
   Emitter emitter;
-  
+
   LevelOne() {
   }
-  
+
   LevelOne(PVector[][] grid) 
   {
     super(grid);
@@ -15,7 +15,7 @@ class LevelOne extends BaseLevel
     //enemys.enemys[0][rows-1].strength = 10000;
     //enemys.enemys[1][1].strength = 10000;
   }
-  
+
   void enemyRun()
   {
     emitter.Update(enemys);

@@ -15,6 +15,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   EnemyGrid()
   {
+    thread("Update");
     // Begin loop for columns
     for (int i = 0; i < cols; i++) 
     {

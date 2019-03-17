@@ -47,6 +47,6 @@ class SquareField {
   void addParikle() {
   }
 
-  void run() {     
+  void run() {
   }
 }

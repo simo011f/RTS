@@ -1,4 +1,4 @@
-class Game{
+class Game {
   int gameContinue = 0;
   boolean win = false;
   int nr = 0;
@@ -23,11 +23,12 @@ class Game{
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
-  
+  LevelEditor levelEditor = new LevelEditor();
+
   BaseLevel baseLevel;
   LevelOne levelOne;
   TestLevel testLevel;
-
+PVector[][] map3 = levelEditor.loadMap(1);
 
 
   Game(int i) {
@@ -37,18 +38,25 @@ class Game{
       println("why is this nessesary");
     }
   }
-  
+
   Game() {
-          squareFeld = new SquareField();
+    squareFeld = new SquareField();
     gameBord = new GameBord(); 
-    baseLevel = new BaseLevel();
-    levelOne = new LevelOne(mapOne());
+    baseLevel = new BaseLevel(mapZero());
+    levelOne = new LevelOne(map3);
     testLevel = new TestLevel(mapTow());
   }
+
+  PVector[][] mapZero() {
+    PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
+    return thisMap;
+  }  
 
   PVector[][] mapOne()
   {
     PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
     combineTerrain(thisMap, terrain(52, 108, 14, 70, squareFeld.grid, 1));
     combineTerrain(thisMap, terrain(54, 106, 16, 68, squareFeld.grid, 0));
     combineTerrain(thisMap, terrain(56, 104, 18, 66, squareFeld.grid, 2));
@@ -65,6 +73,7 @@ class Game{
   PVector[][] mapTow()
   {
     PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
     combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, -1));
     combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 1));
     combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
@@ -136,6 +145,12 @@ class Game{
       loc = 3;
       lvlcode=gameContinue;
     }
+    if (mousePressed && menu.screen[5]) { 
+      //if continue is pressed on the start menu
+      menu.screen[0]=false;
+      loc = 4;
+      lvlcode=gameContinue;
+    }
 
     if (mousePressed && loadGame.levelNR[0]) { 
       loc = 3;
@@ -197,6 +212,7 @@ class Game{
   }
 
   void run() {
+    background(255);
     changeState();
     switch (loc) {
     case -1: 
@@ -211,6 +227,7 @@ class Game{
 
     case 1:
       //this is the load game menu
+
       loadGame.run(); 
       escMenu.run();
       break;
@@ -222,7 +239,6 @@ class Game{
       break;
 
     case 3: 
-
       //this is the main game
       timer.run();
       //gameBoard.run();
@@ -234,18 +250,26 @@ class Game{
 
       //levelOne
       levelOne.Update();
-      levelOne.Draw(mapOne());
+      levelOne.Draw(map3);
       levelOne.enemyRun();      
 
       //baseLevel
-      //baseLevel.Update();
-      //baseLevel.Draw(mapOne());
-      //baseLevel.enemyRun();
+      // baseLevel.Update();
+      // baseLevel.Draw(mapZero());
+      // baseLevel.enemyRun();
 
       //testLevel
-      //testLevel.Update();
-      //testLevel.Draw(mapTow());
-      //testLevel.enemyRun();
+      // testLevel.Update();
+      // testLevel.Draw(mapTow());
+      // testLevel.enemyRun();
+
+      escMenu.run();
+      break;
+
+    case 4:
+      //this is the level editor
+      levelEditor.Run();
+
 
       escMenu.run();
       break;

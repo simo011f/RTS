@@ -10,7 +10,7 @@ void setup() {
 
   background(255); 
   frameRate(30);
-    background(255);
+  background(255);
 }
 
 void draw() {

@@ -76,22 +76,24 @@ class Menu
       colorNewGame = 255;
       screen[2] = false;
     }
+
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
-      //load game box
-      //G.Lg.t=0;
-
-
-
-      colorLoadGame = 0;
-
+    colorLoadGame = 0;
       screen[1] = true;
     } else {
       colorLoadGame = 255;
       screen[1] = false;
     }
-    //if (mouseX>=0 && mouseX<=80 && mouseY>=390 && mouseY<=height && t >= 10) {
-    //  G.nr=12;
-    //}
+
+    //dether skal ændres for at lave leveleditoren ferdig
+    if (mouseX >= width*2/3 && mouseX<=width*3/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
+    colorLoadGame = 0;
+      screen[5] = true;
+    } else {
+      colorLoadGame = 255;
+      screen[5] = false;
+    }
+
   }
 
   void keymenu() {

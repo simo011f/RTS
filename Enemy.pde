@@ -10,7 +10,6 @@ class Enemy   //<>// //<>//
 
   Enemy(PVector spawn)
   {
-    game.squareFeld.ocupied[(int)spawn.x][(int)spawn.y] = 1;
     strength = -100;
     terrainHeight = (int)spawn.z;
   }

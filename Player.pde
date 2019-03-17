@@ -128,7 +128,7 @@ class Player  //<>//
     }
 
     for (int i = 0; i < shotTower.size(); i++) {
-      if (shotTower.get(i).t==13 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
+      if (/*kan omskrives til en boolean funktion*/shotTower.get(i).t==13 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
         nr[0]=i;
         towerpicked[0]=true;
       }
