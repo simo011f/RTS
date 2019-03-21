@@ -244,6 +244,8 @@ class Game {
       testLevel.Update();
       testLevel.Draw(mapTow());
       testLevel.enemyRun();
+
+      player.towerDeteckt(testLevel.enemys.enemyArray);
       player.Run();
       energy.run();
       escMenu.run();

@@ -1,4 +1,4 @@
- //<>//
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Energy {
   int timer;
   PVector energy = new PVector(0, 0);
@@ -11,16 +11,15 @@ class Energy {
 
 
   void energyMade() { 
+    if (conectedTowers < 0) {
+      conectedTowers=0;
+    }
+
     for (int i = 0; i < game.player.base.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {   
-        println(i, j, game.player.base.get(i).conected);   
-        if (game.player.energyTower.get(j).conected && game.player.base.get(i).conected) {
-
-          conectedTowers=game.player.energyTower.size();
-        }  
-        if (game.player.base.get(i).conected == false) {
-
-          conectedTowers=0;
+        conectedTowers = game.player.energyTower.get(j).baseConeced+conectedTowers;
+        if (game.player.energyTower.get(j).baseConeced>=1 && game.player.energyTower.get(j).coutedOnBase==false) { 
+          game.player.energyTower.get(j).coutedOnBase=true;
         }
       }
     }
@@ -38,7 +37,7 @@ class Energy {
 
       energy.z = energy.x + energy.y;
 
-      println(energyTotal, energyMade, energyUsed, timer);
+      println(energyTotal, energyMade, energyUsed, timer, conectedTowers);
       if (energyTotal < 0 && timer > 2) {
         prodotionStop=true;
       }    
@@ -72,12 +71,12 @@ class Energy {
     }
     for (int i = 0; i < game.player.shotTower.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {
-        if ((game.player.shotTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.shotTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.shotTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.shotTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          line (game.player.shotTower.get(i).location.x+5, game.player.shotTower.get(i).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
+        if ((game.player.shotTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.shotTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.shotTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.shotTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
+          line (game.player.shotTower.get(i).location.x*10+5, game.player.shotTower.get(i).location.y*10+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
           game.player.energyTower.get(j).conected=true;
           game.player.shotTower.get(i).conected=true;
         }        
-        if ((game.player.shotTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.shotTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.shotTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.shotTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
+        if ((game.player.shotTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.shotTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.shotTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.shotTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
           game.player.shotTower.get(i).conected=false;
           game.player.energyTower.get(j).conected=false;
         }
@@ -85,12 +84,12 @@ class Energy {
     }
     for (int i = 0; i < game.player.bombTower.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {
-        if ((game.player.bombTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.bombTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.bombTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.bombTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          line (game.player.bombTower.get(i).location.x+5, game.player.bombTower.get(i).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
+        if ((game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
+          line (game.player.bombTower.get(i).location.x*10+5, game.player.bombTower.get(i).location.y*10+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
           game.player.energyTower.get(j).conected=true;
           game.player.bombTower.get(i).conected=true;
         } 
-        if ((game.player.bombTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.bombTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.bombTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.bombTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
+        if ((game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
           game.player.bombTower.get(i).conected=false;
           game.player.energyTower.get(j).conected=false;
         }
@@ -139,7 +138,7 @@ class Energy {
   }
 
   void run() {
-    println(energy);
+
     energyMade();
     energyGrid(); 
     energyLogic();

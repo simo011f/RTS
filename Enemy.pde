@@ -16,6 +16,7 @@ class Enemy   //<>// //<>//
 
   void addLayer()
   {
+
     strength++;
   }
 

@@ -132,7 +132,6 @@ class Player  //<>// //<>//
       if (shotTower.get(i).t==14 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
         nr[0]=i;
         towerpicked[0]=true;
-        println("jek");
       }
     }
     for (int i = 0; i <  bombTower.size(); i++) {
@@ -162,9 +161,9 @@ class Player  //<>// //<>//
 
 
     if (towerpicked[0] && mousePressed && timer>=10) {
-      println("jek");
+
       placeble2[0]=true; 
-      println(towerpicked);
+
       timer=0;
       picked=1; 
       towerpicked[0]=false; 
@@ -319,7 +318,7 @@ class Player  //<>// //<>//
           base.get(towernr[3]-1).conected=false;
         }
       } 
-      if (nr[4]==1) {   
+      if (nr[4]==1) {  
         energyTower.get(nr[4]-1).conected=false;  
         energyTower.get(nr[4]).conected=false;
         if (towernr[3]>=1) {
@@ -333,8 +332,16 @@ class Player  //<>// //<>//
         if (towernr[3]>=1) {
           base.get(towernr[3]-1).conected=false;
         }
+      } 
+      if (nr[4]==energyTower.size()) { 
+        energyTower.get(nr[4]-1).conected=false;  
+        energyTower.get(nr[4]).conected=false; 
+        if (towernr[3]>=1) {
+          base.get(towernr[3]-1).conected=false;
+        }
       }
       energyTower.remove(nr[4]);
+      game.energy.conectedTowers--;
       towernr[4]=towernr[4]-1;
       timer=0;      
       picked = 0;
@@ -571,8 +578,8 @@ class Player  //<>// //<>//
       }
 
 
-      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
-      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      int x = mouseX/10;
+      int y = mouseY/10;
       PVector loc = new PVector(x, y);
 
       shotTower.get(towernr[0]-1).location.set(loc);  
@@ -598,8 +605,8 @@ class Player  //<>// //<>//
       }
 
 
-      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
-      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      int x = mouseX/10;
+      int y = mouseY/10;
       PVector loc = new PVector(x, y);
 
       bombTower.get(towernr[1]-1).location.set(loc);  
@@ -693,8 +700,19 @@ class Player  //<>// //<>//
     }
   }
 
-  void towerRun()
-  {
+  void towerDeteckt(Enemy[][] enemyArray) { 
+    for (int i = 0; i < shotTower.size(); i++) {
+      TowerAttackTerrtoriumShot s = shotTower.get(i);
+      s.attack(enemyArray);
+    }
+
+    for (int i = 0; i < bombTower.size(); i++) {
+      TowerAttackTerrtoriumBomb b = bombTower.get(i);
+      b.attack(enemyArray);
+    }
+  }
+
+  void towerRun() {
 
     for (int i = 0; i < energyTower.size(); i++) {
       TowerEnergy e = energyTower.get(i);
@@ -728,8 +746,7 @@ class Player  //<>// //<>//
     PickTowerOnBar();   
     highLight();   
     if (keys[0]) {
-      gat(); 
-      println("hejR#`");
+      gat();
     }
     place();  
     towerRun();

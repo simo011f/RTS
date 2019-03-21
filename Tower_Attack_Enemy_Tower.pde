@@ -20,30 +20,31 @@ class TowerAttackETowers
 
   void build() {   
 
-    if (conected && game.energy.energyTotal > 0) {
-      if (t==-3) {
-        game.energy.energyUsed = game.energy.energyUsed-energybuild;
-        t=11;
-      }
+    if (!conected && game.energy.energyTotal <= 0) {
+      return;
+    }
+    if (t==-3) {
+      game.energy.energyUsed = game.energy.energyUsed-energybuild;
+      t=11;
+    }
 
-      if (t<=11&&t>=-1) { 
-        t--;
-      }
+    if (t<=11&&t>=-1) { 
+      t--;
+    }
 
 
-      if (t<=-1) {
-        build++;
-        t=11;
-      }
-      if (build==11) {
-        build=12;
-        t=13;
-      }
-      if (t==13) { 
-        game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
+    if (t<=-1) {
+      build++;
+      t=11;
+    }
+    if (build==11) {
+      build=12;
+      t=13;
+    }
+    if (t==13) { 
+      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
 
-        t=14;
-      }
+      t=14;
     }
 
     fill(15+(20*build), 15+(20*build), 0);
@@ -56,13 +57,18 @@ class TowerAttackETowers
       }
     }
   }
+  boolean ready() { 
+    if (t==14) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void run() { 
-
     build();
-
-    if (t==14) { 
+    if (ready()) {
       weapon();
-      detection();
     }
   }
 }
