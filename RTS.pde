@@ -2,9 +2,9 @@
 Game game;
 
 void setup() {
-  size(1600, 900);
+  //size(1600, 900);
 
-  //fullScreen();
+  fullScreen();
   game = new Game(1);
   game = new Game();
 
@@ -14,6 +14,7 @@ void setup() {
 }
 
 void draw() {
+  background(255);
   game.run(); 
   println(frameRate);
 }

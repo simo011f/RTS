@@ -23,12 +23,13 @@ class Game {
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
-  LevelEditor levelEditor = new LevelEditor();
+  TerrainEditor terrainEditor = new TerrainEditor();
+  EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
+
+
 
   BaseLevel baseLevel;
-  LevelOne levelOne;
-  TestLevel testLevel;
-PVector[][] map3 = levelEditor.loadMap(1);
+  PVector[][] map3 = terrainEditor.loadMap(1);
 
 
   Game(int i) {
@@ -43,8 +44,6 @@ PVector[][] map3 = levelEditor.loadMap(1);
     squareFeld = new SquareField();
     gameBord = new GameBord(); 
     baseLevel = new BaseLevel(mapZero());
-    levelOne = new LevelOne(map3);
-    testLevel = new TestLevel(mapTow());
   }
 
   PVector[][] mapZero() {
@@ -146,10 +145,15 @@ PVector[][] map3 = levelEditor.loadMap(1);
       lvlcode=gameContinue;
     }
     if (mousePressed && menu.screen[5]) { 
-      //if continue is pressed on the start menu
+      //if tarrain editor is pressed on the start menu
       menu.screen[0]=false;
       loc = 4;
-      lvlcode=gameContinue;
+    }
+
+    if (mousePressed && menu.screen[6]){
+      //if enemyplasment is presst on the start menu
+      menu.screen[0] = false;
+      loc = 6;
     }
 
     if (mousePressed && loadGame.levelNR[0]) { 
@@ -248,27 +252,19 @@ PVector[][] map3 = levelEditor.loadMap(1);
       player.Run();
       energy.run();
 
-      //levelOne
-      levelOne.Update();
-      levelOne.Draw(map3);
-      levelOne.enemyRun();      
 
       //baseLevel
-      // baseLevel.Update();
-      // baseLevel.Draw(mapZero());
-      // baseLevel.enemyRun();
+      baseLevel.Update();
+      baseLevel.Draw();
+      baseLevel.enemyRun();
 
-      //testLevel
-      // testLevel.Update();
-      // testLevel.Draw(mapTow());
-      // testLevel.enemyRun();
 
       escMenu.run();
       break;
 
     case 4:
       //this is the level editor
-      levelEditor.Run();
+      terrainEditor.Run();
 
 
       escMenu.run();
@@ -276,6 +272,11 @@ PVector[][] map3 = levelEditor.loadMap(1);
 
     case 5:
       //this is the end screen
+      break;
+
+    case 6:
+      enemyPlasmentEditor.Run();
+      escMenu.run();
       break;
     }
   }

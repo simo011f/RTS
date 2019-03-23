@@ -9,6 +9,16 @@ class Emitter  //<>//
 
   boolean isDead = false;
 
+  Emitter()
+  {}
+
+  Emitter(PVector spawn, int sDelay, int sPower)
+  {
+    location = spawn;
+    delay = sDelay;
+    power = sPower;
+  }
+
   Emitter(PVector spawn, int sDelay, int sPower, EnemyGrid enemys) 
   {
     location = spawn;
@@ -24,11 +34,7 @@ class Emitter  //<>//
   {
     fill(200, 200, 25, 150);
     stroke(200, 100, 0);
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(((int)location.x + i) * 10, ((int)location.y + j) * 10, 10, 10);
-      }
-    }
+    rect(((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
   }
 
   void Update(EnemyGrid enemys) 

@@ -1,4 +1,4 @@
-class LevelEditor {
+class TerrainEditor {
 
   Table table;
 
@@ -11,7 +11,7 @@ class LevelEditor {
   PVector[][] newMap = new PVector[cols][rows];
 
 
-  LevelEditor () 
+  TerrainEditor () 
   {
     thread("hotbar");
     createTabel();
@@ -22,6 +22,15 @@ class LevelEditor {
         newMap[i][j] = new PVector(i, j, 0);
       }
     }
+  }
+
+  void createTabel()
+  {
+    table = new Table();
+    table.addColumn("x");
+    table.addColumn("y");
+    table.addColumn("z");
+    table.addColumn("LevelNR");
   }
 
   void fieldDraw(PVector[][] grid) 
@@ -127,15 +136,6 @@ class LevelEditor {
     }
   }
 
-  void createTabel()
-  {
-    table = new Table();
-    table.addColumn("x");
-    table.addColumn("y");
-    table.addColumn("z");
-    table.addColumn("LevelNR");
-  }
-
   PVector[][] loadMap(int levelNR)
   {
     PVector[][] thisMap = new PVector[cols][rows];
@@ -144,7 +144,7 @@ class LevelEditor {
         thisMap[i][j] = new PVector(i, j);
       }
     }
-    table = loadTable("Maps.csv", "header");
+    table = loadTable("Tarrains.csv", "header");
 
     if (table != null)
     {
@@ -207,7 +207,7 @@ class LevelEditor {
     //layer zero selekt
     textSize(15);
     fill(0);
-    text("Layer zero", width/2-195, height-45);
+    text("Layer zero", width/2-215, height-45);
 
     if (mouseX >= width / 2 - 200 && mouseX <= width / 2 - 170)
     {
@@ -397,7 +397,7 @@ class LevelEditor {
       if (mouseY >= height - 40 && mousePressed) {
         overrideMap(mapSaveNR);
         addMap(mapSaveNR);
-        saveTable(table, "Maps.csv");
+        saveTable(table, "Tarrains.csv");
       }
     }
 
@@ -477,8 +477,8 @@ class LevelEditor {
     if (heightZero && mousePressed)
     {
       newMap[mouseX/scale][mouseY/scale].z = 0;
-    } //<>// //<>// //<>// //<>// //<>//
-    //<>//
+    } //<>// //<>// //<>// //<>//
+   
     if (heightOne && mousePressed)
     {
       newMap[mouseX/scale][mouseY/scale].z = 1;
@@ -488,19 +488,19 @@ class LevelEditor {
     {
       newMap[mouseX/scale][mouseY/scale].z = 2;
     }
-    //<>// //<>//
+    //<>//
     if (heightThree && mousePressed)
     {
       newMap[mouseX/scale][mouseY/scale].z = 3;
     }
-    //<>//
+   
     if (heightFour && mousePressed)
     {
       newMap[mouseX/scale][mouseY/scale].z = 4;
     } 
 
     if (heightFive && mousePressed)
-    { //<>// //<>//
+    { //<>//
       newMap[mouseX/scale][mouseY/scale].z = 5;
     }
   }
@@ -530,7 +530,7 @@ class LevelEditor {
           newRow = table.addRow();
           newRow.setInt("x", i);
           newRow.setInt("y", j);
-          newRow.setInt("z", (int)newMap[i][j].z); //<>// //<>//
+          newRow.setInt("z", (int)newMap[i][j].z); //<>//
           newRow.setInt("LevelNR", mapNR);
         }
       }
