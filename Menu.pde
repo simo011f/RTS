@@ -13,13 +13,9 @@ class Menu
   int colorTerrainEditor;
   int colorEnemyPlasmentEditor;
 
-<<<<<<< HEAD
   PVector mouseLocation = new PVector(mouseX, mouseY);
 
-  boolean[] screen = new boolean[5];
-=======
   boolean[] screen = new boolean[7];
->>>>>>> Levels-fra-BaseLevel-&-leveleditor
 
   Menu() {
     font = createFont("areal", 16, true);

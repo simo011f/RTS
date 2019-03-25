@@ -17,27 +17,15 @@ class Game {
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
 
-
   EscMenu escMenu = new EscMenu();
   Player player = new Player();
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
-<<<<<<< HEAD
 
   BaseLevel baseLevel;
-  LevelOne levelOne;
-  TestLevel testLevel;
-=======
   TerrainEditor terrainEditor = new TerrainEditor();
   EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
-
-
->>>>>>> Levels-fra-BaseLevel-&-leveleditor
-
-  BaseLevel baseLevel;
-  PVector[][] map3 = terrainEditor.loadMap(1);
-
 
   Game(int i) {
     if (i == 1)
@@ -50,67 +38,7 @@ class Game {
   Game() {
     squareFeld = new SquareField();
     gameBord = new GameBord(); 
-    baseLevel = new BaseLevel(mapZero());
-  }
-
-  PVector[][] mapZero() {
-    PVector[][] thisMap = squareFeld.grid;
-    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
-    return thisMap;
-  }  
-
-  PVector[][] mapOne()
-  {
-    PVector[][] thisMap = squareFeld.grid;
-    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
-    combineTerrain(thisMap, terrain(52, 108, 14, 70, squareFeld.grid, 1));
-    combineTerrain(thisMap, terrain(54, 106, 16, 68, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(56, 104, 18, 66, squareFeld.grid, 2));
-    combineTerrain(thisMap, terrain(58, 102, 20, 64, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(60, 100, 22, 62, squareFeld.grid, 3));
-    combineTerrain(thisMap, terrain(62, 98, 24, 60, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(64, 96, 26, 58, squareFeld.grid, 4));
-    combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 5));
-    combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
-    return thisMap;
-  }
-
-  PVector[][] mapTow()
-  {
-    PVector[][] thisMap = squareFeld.grid;
-    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
-    combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, -1));
-    combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 1));
-    combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
-    combineTerrain(thisMap, terrain(65, 67, 42, 42, squareFeld.grid, 3));
-    return thisMap;
-  } 
-
-  PVector[][] terrain(int x1, int x2, int y1, int y2, PVector[][] grid, int terrainHeight)
-  {
-    PVector[][] thisMap = grid;
-    for (int i = x1; i <= x2; i++) 
-    {
-      for (int j = y1; j <= y2; j++) 
-      {
-        thisMap[i][j].z = terrainHeight;
-      }
-    }
-    return thisMap;
-  }
-
-  PVector[][] combineTerrain(PVector[][] grid1, PVector[][] grid2)
-  {
-
-    for (int i = 0; i < cols; i++) 
-    {
-      for (int j = 0; j < rows; j++) 
-      {
-        grid1[i][j].z = grid2[i][j].z;
-      }
-    }
-    return grid1;
+    baseLevel = new BaseLevel(); 
   }
 
   void changeState() {
@@ -261,15 +189,7 @@ class Game {
       player.Run();
       energy.run();
 
-      //levelOne
-      levelOne.Update();
-      levelOne.Draw(mapOne());
-      levelOne.enemyRun();      
 
-      //baseLevel
-      //baseLevel.Update();
-      //baseLevel.Draw(mapOne());
-      //baseLevel.enemyRun();
       baseLevel.Update();
       baseLevel.Draw();
       baseLevel.enemyRun();
