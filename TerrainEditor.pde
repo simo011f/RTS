@@ -383,6 +383,22 @@ class TerrainEditor {
         rect(x, y, scale, scale);
       }
     }
+  
+    //Reset map
+    textSize(15);
+    fill(0);
+    text("Reset map", width/2-415, height-45);
+    if (mouseX >= width / 2 - 400 && mouseX <= width / 2 - 370)
+    {
+      if (mouseY >= height - 40 && mousePressed) {
+        overrideMap(mapSaveNR);
+        loadMap(mapSaveNR);
+      }
+    }
+    fill(0);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(width / 2 - 400, height - 40, 3 * scale, 3 * scale);
   }
 
   void saveMap()
@@ -465,7 +481,7 @@ class TerrainEditor {
 
   void updateMap()
   {
-    if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
+    if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width) //<>//
     {
       return;
     }
@@ -476,7 +492,7 @@ class TerrainEditor {
 
     if (heightZero && mousePressed)
     {
-      newMap[mouseX/scale][mouseY/scale].z = 0;
+      newMap[mouseX/scale][mouseY/scale].z = 0; //<>//
     } //<>// //<>// //<>// //<>//
    
     if (heightOne && mousePressed)
@@ -488,7 +504,7 @@ class TerrainEditor {
     {
       newMap[mouseX/scale][mouseY/scale].z = 2;
     }
-    //<>//
+    //<>// //<>//
     if (heightThree && mousePressed)
     {
       newMap[mouseX/scale][mouseY/scale].z = 3;
@@ -507,18 +523,19 @@ class TerrainEditor {
 
   void overrideMap(int mapNR)
   {
-    int i = 0;
     int rowMapNr;
-    for (TableRow row : table.rows()) {
+    for (int i = table.getRowCount()-1; i >= 0; i--)
+    {
+      TableRow row = table.getRow(i);
       rowMapNr = row.getInt("LevelNR");
       if (mapNR == rowMapNr)
       {
         table.removeRow(i);
       }
-      i++;
     }
+    saveTable(table, "Tarrains.csv");
   }
-
+ //<>//
   void addMap(int mapNR)
   {
     TableRow newRow;

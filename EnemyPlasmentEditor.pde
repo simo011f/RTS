@@ -135,6 +135,27 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
         rect(x + 10 + i*scale, y + 10 + j*scale, scale, scale);
       }
     }
+
+    // Reset level
+    x = width / 2 - 1 * scale + 200;
+    y = height - 1 * scale - 30;
+    textSize(15);
+    fill(0);
+    text("Reset level", x - 15, y - 5);
+
+    if (mouseX >= x && mouseX <= x + 30)
+    {
+      if (mouseY >= y && mousePressed) {
+        overrideMap(mapSaveNR);
+        loadEnemys(mapSaveNR);
+      }
+    }
+
+    fill(0);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x  , y, 3 * scale, 3 * scale);
+
     println(enemyTypeOne, enemyTypeTow, enemyTypeThree);
   }
 
