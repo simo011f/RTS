@@ -10,10 +10,16 @@ class Menu
   int colorLoadGame;
   int colorKeyMenu;
   int colorEscMenu;
+  int colorTerrainEditor;
+  int colorEnemyPlasmentEditor;
 
+<<<<<<< HEAD
   PVector mouseLocation = new PVector(mouseX, mouseY);
 
   boolean[] screen = new boolean[5];
+=======
+  boolean[] screen = new boolean[7];
+>>>>>>> Levels-fra-BaseLevel-&-leveleditor
 
   Menu() {
     font = createFont("areal", 16, true);
@@ -56,6 +62,30 @@ class Menu
     text("Load Game", width*1/2, height*127/144);
     //load game box
 
+    //terrain edditor box
+    fill(255, colorTerrainEditor * 2, colorTerrainEditor);
+    stroke(0);
+    strokeWeight(2);
+    rect(width*2/3, height*55/72-15, width*1/3, height/4-20);
+
+    fill(0, 0, 0);
+    textFont(font, 46);
+    textAlign(CENTER);
+    text("Terrain editor", width*16/20, height*127/144);
+    //terrain editor box
+
+    //enemy plasement edditor box
+    fill(colorEnemyPlasmentEditor, colorEnemyPlasmentEditor * 2, 255);
+    stroke(0);
+    strokeWeight(2);
+    rect(width*0/3, height*55/72-15, width*1/3, height/4-20);
+
+    fill(0, 0, 0);
+    textFont(font, 46);
+    textAlign(CENTER);
+    text("Enemy plasement", width*3/20, height*127/144);
+    //enemy plasement box
+
     textAlign(LEFT);
   }
   void lvlChoiceLogic() {
@@ -76,22 +106,30 @@ class Menu
       colorNewGame = 255;
       screen[2] = false;
     }
+
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
-      //load game box
-      //G.Lg.t=0;
-
-
-
       colorLoadGame = 0;
-
       screen[1] = true;
     } else {
       colorLoadGame = 255;
       screen[1] = false;
     }
-    //if (mouseX>=0 && mouseX<=80 && mouseY>=390 && mouseY<=height && t >= 10) {
-    //  G.nr=12;
-    //}
+
+    if (mouseX >= width*2/3 && mouseX<=width*3/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
+      colorTerrainEditor = 75;
+      screen[5] = true;
+    } else {
+      colorTerrainEditor = 255;
+      screen[5] = false;
+    }
+
+    if (mouseX >= width*0/3 && mouseX <= width*1/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
+      colorEnemyPlasmentEditor = 75;
+      screen[6] = true;
+    } else {
+      colorEnemyPlasmentEditor = 255;
+      screen[6] = false;
+    }
   }
 
   void keymenu() {

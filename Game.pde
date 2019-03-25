@@ -23,11 +23,20 @@ class Game {
   Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
+<<<<<<< HEAD
 
   BaseLevel baseLevel;
   LevelOne levelOne;
   TestLevel testLevel;
+=======
+  TerrainEditor terrainEditor = new TerrainEditor();
+  EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
+
+>>>>>>> Levels-fra-BaseLevel-&-leveleditor
+
+  BaseLevel baseLevel;
+  PVector[][] map3 = terrainEditor.loadMap(1);
 
 
   Game(int i) {
@@ -41,14 +50,19 @@ class Game {
   Game() {
     squareFeld = new SquareField();
     gameBord = new GameBord(); 
-    baseLevel = new BaseLevel();
-    levelOne = new LevelOne(mapOne());
-    testLevel = new TestLevel(mapTow());
+    baseLevel = new BaseLevel(mapZero());
   }
+
+  PVector[][] mapZero() {
+    PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
+    return thisMap;
+  }  
 
   PVector[][] mapOne()
   {
     PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
     combineTerrain(thisMap, terrain(52, 108, 14, 70, squareFeld.grid, 1));
     combineTerrain(thisMap, terrain(54, 106, 16, 68, squareFeld.grid, 0));
     combineTerrain(thisMap, terrain(56, 104, 18, 66, squareFeld.grid, 2));
@@ -65,6 +79,7 @@ class Game {
   PVector[][] mapTow()
   {
     PVector[][] thisMap = squareFeld.grid;
+    terrain(0, cols - 1, 0, rows - 1, thisMap, 0);
     combineTerrain(thisMap, terrain(66, 94, 28, 56, squareFeld.grid, -1));
     combineTerrain(thisMap, terrain(68, 92, 30, 54, squareFeld.grid, 1));
     combineTerrain(thisMap, terrain(70, 90, 32, 52, squareFeld.grid, 0));
@@ -138,6 +153,17 @@ class Game {
       loc = 3;
       lvlcode=gameContinue;
     }
+    if (mousePressed && menu.screen[5]) { 
+      //if tarrain editor is pressed on the start menu
+      menu.screen[0]=false;
+      loc = 4;
+    }
+
+    if (mousePressed && menu.screen[6]){
+      //if enemyplasment is presst on the start menu
+      menu.screen[0] = false;
+      loc = 6;
+    }
 
     if (mousePressed && loadGame.levelNR[0]) { 
       loc = 3;
@@ -199,6 +225,7 @@ class Game {
   }
 
   void run() {
+    background(255);
     changeState();
     switch (loc) {
     case -1: 
@@ -213,6 +240,7 @@ class Game {
 
     case 1:
       //this is the load game menu
+
       loadGame.run(); 
       escMenu.run();
       break;
@@ -224,7 +252,6 @@ class Game {
       break;
 
     case 3: 
-
       //this is the main game
       timer.run();
       //gameBoard.run();
@@ -243,6 +270,17 @@ class Game {
       //baseLevel.Update();
       //baseLevel.Draw(mapOne());
       //baseLevel.enemyRun();
+      baseLevel.Update();
+      baseLevel.Draw();
+      baseLevel.enemyRun();
+
+
+      escMenu.run();
+      break;
+
+    case 4:
+      //this is the level editor
+      terrainEditor.Run();
 
       //testLevel
       //testLevel.Update();
@@ -254,6 +292,11 @@ class Game {
 
     case 5:
       //this is the end screen
+      break;
+
+    case 6:
+      enemyPlasmentEditor.Run();
+      escMenu.run();
       break;
     }
   }

@@ -10,7 +10,6 @@ class GameBord
 
   GameBord()
   {
-
   }
 
   void hotbar() {

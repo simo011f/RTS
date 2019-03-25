@@ -1,23 +1,50 @@
-class BaseLevel  //<>// //<>// //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
-  EnemyGrid enemys;
-
+  EnemyGrid enemyArray;
+  TerrainEditor terrainEditor = new TerrainEditor();
+  EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
   int scale = 10;  
   int cols = width / scale;
   int rows = (height / scale) - 6;
+  int currentLevel = 0;
+  int emittersRemaning = 0;
+
+  ArrayList<Emitter> emitters = new ArrayList<Emitter>();
+
+  PVector[][] currentTerrain = new PVector[cols][rows];
 
   BaseLevel() {
-    enemys = new EnemyGrid();
+    enemyArray = new EnemyGrid();
+    thread("feildDraw");
+    for (int i = 0; i < cols; ++i) {
+      for (int j = 0; j < rows; ++j) {
+        currentTerrain[i][j]= new PVector(i, j);
+      }
+    }
   }
 
   BaseLevel(PVector[][] grid)
   {
-    enemys = new EnemyGrid(grid);
+    enemyArray = new EnemyGrid(grid);
+    for (int i = 0; i < cols; ++i) {
+      for (int j = 0; j < rows; ++j) {
+        currentTerrain[i][j]= new PVector(i, j);
+      }
+    }
   }
 
-  void fieldDraw(PVector[][] grid) {   
+  void loadLevel(int newLevel)
+  {
+    currentTerrain = terrainEditor.loadMap(newLevel);
+    enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
+    emitters = enemyPlasmentEditor.loadEmitters(newLevel,enemyArray);
+    emittersRemaning = emitters.size();
+  }
+
+  void fieldDraw(PVector[][] grid) 
+  {   
     // Begin loop for cols
     for (int i = 0; i < cols; i++) {
       // Begin loop for rows
@@ -32,7 +59,6 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       }
     }
   }
-
 
   void voidLayer(int i, int j, PVector[][] grid)
   {
@@ -69,6 +95,7 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       rect(x, y, scale, scale);
     }
   }
+
   void layerTowDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 2)
@@ -81,30 +108,33 @@ class BaseLevel  //<>// //<>// //<>// //<>//
       rect(x, y, scale, scale);
     }
   }
+
   void layerThreeDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 3)
     {
       int x = i*scale;
       int y = j*scale;
-      fill(50);
+      fill(100, 70, 40);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
     }
   }
+
   void layerFourDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 4)
     {
       int x = i*scale;
       int y = j*scale;
-      fill(50);
+      fill(90, 60, 30);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
     }
   }
+
   void layerFiveDraw(int i, int j, PVector[][] grid)
   {
     if (grid[i][j].z == 5)
@@ -118,35 +148,35 @@ class BaseLevel  //<>// //<>// //<>// //<>//
     }
   }
 
-  void Draw(PVector[][] grid)
+  void Draw()
   {
-    fieldDraw(grid);
+    fieldDraw(currentTerrain);
   }
 
   void Update()
   {
-    enemys.Update();
+    if (emitters.size() == 0 || currentLevel == 0) {
+      currentLevel++;
+      loadLevel(currentLevel);
+    }
+    enemyArray.Update();
+    for (int i = 0; i < emitters.size(); ++i) {
+      emitters.get(i).Update(enemyArray);
+      if (emitters.get(i).isDead) {
+        emitters.remove(i);
+      }
+    }
   }
 
   void enemyRun()
   {
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        enemys.Draw(i, j);
+        enemyArray.Draw(i, j);
       }
     }
-  }
-}
-
-class TestLevel extends BaseLevel
-{
-
-  TestLevel() {
-  }
-
-  TestLevel(PVector[][] grid)
-  {
-    super(grid);
-    enemys.enemys[cols/2][rows/2].strength = 100000;
+    for (int i = 0; i < emitters.size(); ++i) {
+      emitters.get(i).Draw();
+    }
   }
 }

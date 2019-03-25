@@ -7,6 +7,7 @@ class EscMenu
   int[] chol = new int[4];
 
   EscMenu() {
+        font = createFont("arial", 16, true);
   }
 
   void choices() {  
@@ -67,7 +68,8 @@ class EscMenu
   }
 
   void display() {
-    font = createFont("arial", 16, true);
+    background(255);
+
 
     fill(255, 255, 0);
     stroke(0);
