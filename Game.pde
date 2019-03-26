@@ -31,7 +31,7 @@ class Game {
     if (i == 1)
     {
       squareFeld = new SquareField();
-      println("why is this nessesary");
+      //////println("why is this nessesary");
     }
   }
 

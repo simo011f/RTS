@@ -13,9 +13,9 @@ class Energy {
   void energyMade() { 
     for (int i = 0; i < game.player.base.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {   
-        println(i, j, game.player.base.get(i).conected);   
+        //////println(i, j, game.player.base.get(i).conected);   
         if (game.player.energyTower.get(j).conected && game.player.base.get(i).conected) {
-          println("hej");
+          //////println("hej");
           conectedTowers=game.player.energyTower.size();
         }  
         if (game.player.base.get(i).conected == false) {
@@ -38,7 +38,7 @@ class Energy {
 
       energy.z = energy.x + energy.y;
 
-      println(energyTotal, energyMade, energyUsed, timer);
+      //////println(energyTotal, energyMade, energyUsed, timer);
       if (energyTotal < 0 && timer > 2) {
         prodotionStop=true;
       }    
@@ -139,7 +139,7 @@ class Energy {
   }
 
   void run() {
-    println(energy);
+    //////println(energy);
     energyMade();
     energyGrid(); 
 

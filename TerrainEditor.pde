@@ -6,7 +6,12 @@ class TerrainEditor {
   int cols = width / scale;
   int rows = (height / scale) - 6;
   int mapSaveNR = 0;
-  boolean isMouseNotPressed = true;
+  boolean isMouseNotPressedSave = true;
+  boolean isMouseNotPressedBrush = true;
+
+
+  int terrainHeight = 0;
+  int brushSize = 1;
 
   PVector[][] newMap = new PVector[cols][rows];
 
@@ -161,13 +166,6 @@ class TerrainEditor {
     }
     return thisMap;
   }
-  boolean heightVoid = false;
-  boolean heightZero = false;
-  boolean heightOne = false;
-  boolean heightTow = false;
-  boolean heightThree = false;
-  boolean heightFour = false;
-  boolean heightFive = false;
 
   void hotbar()
   {
@@ -182,13 +180,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 - 290 && mouseX <= width / 2 - 260)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = true;
-        heightZero = false;
-        heightOne = false;
-        heightTow = false;
-        heightThree = false;
-        heightFour = false;
-        heightFive = false;
+        terrainHeight = -1;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -212,13 +204,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 - 200 && mouseX <= width / 2 - 170)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = true;
-        heightOne = false;
-        heightTow = false;
-        heightThree = false;
-        heightFour = false;
-        heightFive = false;
+        terrainHeight = 0;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -242,13 +228,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 - 110 && mouseX <= width / 2 - 80)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = false;
-        heightOne = true;
-        heightTow = false;
-        heightThree = false;
-        heightFour = false;
-        heightFive = false;
+        terrainHeight = 1;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -272,13 +252,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 - 20 && mouseX <= width / 2 + 10)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = false;
-        heightOne = false;
-        heightTow = true;
-        heightThree = false;
-        heightFour = false;
-        heightFive = false;
+        terrainHeight = 2;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -302,13 +276,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 + 70 && mouseX <= width / 2 + 100)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = false;
-        heightOne = false;
-        heightTow = false;
-        heightThree = true;
-        heightFour = false;
-        heightFive = false;
+        terrainHeight = 3;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -332,13 +300,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 + 160 && mouseX <= width / 2 + 210)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = false;
-        heightOne = false;
-        heightTow = false;
-        heightThree = false;
-        heightFour = true;
-        heightFive = false;
+        terrainHeight = 4;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -362,13 +324,7 @@ class TerrainEditor {
     if (mouseX >= width / 2 + 250 && mouseX <= width / 2 + 280)
     {
       if (mouseY >= height - 40 && mousePressed) {
-        heightVoid = false;
-        heightZero = false;
-        heightOne = false;
-        heightTow = false;
-        heightThree = false;
-        heightFour = false;
-        heightFive = true;
+        terrainHeight = 5;
       }
     }
     for (int i = -1; i <= 1; i++)
@@ -383,7 +339,7 @@ class TerrainEditor {
         rect(x, y, scale, scale);
       }
     }
-  
+
     //Reset map
     textSize(15);
     fill(0);
@@ -399,16 +355,90 @@ class TerrainEditor {
     stroke(0);
     strokeWeight(0.5);
     rect(width / 2 - 400, height - 40, 3 * scale, 3 * scale);
+
+    choseBrushSize();
+  }
+
+  void choseBrushSize()
+  {
+    //brush size
+    int x = width / 2 + 315;
+    int y = height - 40;
+    textSize(15);
+    fill(0);
+    text("Brush size", x - 5, y - 5);
+
+    // Display corrent mapNR
+    fill(255);
+    stroke(150);
+    strokeWeight(0.5);
+
+    rect(x, y, scale * 3, scale * 3);
+    fill(0);
+    text(brushSize, x +scale, y+scale*2);
+
+    // Display + or - mapNR
+    fill(250);
+    stroke(150);
+    strokeWeight(0.5);
+    rect(x + scale * 3, y, scale * 3, scale * 3 / 2);
+    rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
+    fill(0);
+    text("+", x + scale * 4, y + scale + 2);
+    textSize(20);
+    text("-", x + 1 + scale * 4, y + scale * 3);
+
+
+    if (mouseX >= x + 30 && mouseX <= x + 60 && isMouseNotPressedBrush)  
+    {
+      if (mouseY >= height - 40 && mouseY < height - 25) {
+
+        if (mousePressed && brushSize < 3)
+        {
+          brushSize++;
+        } 
+        fill(10, 240, 10);
+        rect(x + scale * 3, y, scale * 3, scale * 3 / 2);
+        fill(0);
+        textSize(15);
+        text("+", x + scale * 4, y + scale + 2);
+      }
+    }
+
+    if (mouseX >= x + 30 && mouseX <= x + 60 && isMouseNotPressedBrush)  
+    {
+      if (mouseY >= height - 25 && mouseY <= height - 10) {
+
+        if (mousePressed && brushSize > 1) 
+        {
+          brushSize--;
+        } 
+        fill(240, 10, 10);
+        rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
+        fill(0);
+        textSize(20);
+        text("-", x + 1 + scale * 4, y + scale * 3);
+      }
+    }
+    if (mousePressed && mouseY >= height - 40)
+    {
+      isMouseNotPressedBrush = false;
+    } else
+    {
+      isMouseNotPressedBrush = true;
+    }
   }
 
   void saveMap()
   {
     //save map
+    int x = width / 2 + 400;
+    int y = height - 40; 
     textSize(15);
     fill(0);
-    text("Save map", width/2+375, height-45);
+    text("Save map", x - 5, y - 5);
 
-    if (mouseX >= width / 2 + 380 && mouseX <= width / 2 + 410)
+    if (mouseX >= x && mouseX <= x + 30 && isMouseNotPressedSave)  
     {
       if (mouseY >= height - 40 && mousePressed) {
         overrideMap(mapSaveNR);
@@ -422,8 +452,7 @@ class TerrainEditor {
     fill(255);
     stroke(150);
     strokeWeight(0.5);
-    int x = width / 2 + 380;
-    int y = height - 40;
+
     rect(x, y, scale * 3, scale * 3);
     fill(0);
     text(mapSaveNR, x +scale, y+scale*2);
@@ -439,12 +468,14 @@ class TerrainEditor {
     textSize(20);
     text("-", x + 1 + scale * 4, y + scale * 3);
 
-
-    if (mouseX >= width / 2 + 410 && mouseX <= width / 2 + 440 && isMouseNotPressed)
-    {
+    if (mouseX >= x + 30 && mouseX <= x + 60 && isMouseNotPressedSave) {
+      println("hej");
       if (mouseY >= height - 40 && mouseY < height - 25) {
-        if (mousePressed)
+        println("hej2");
+        if (mousePressed==true)
         {
+          println("hej3");
+
           mapSaveNR++;
         } 
         fill(10, 240, 10);
@@ -455,69 +486,95 @@ class TerrainEditor {
       }
     }
 
-    if (mouseX >= width / 2 + 410 && mouseX <= width / 2 + 440 && isMouseNotPressed)
+    if (mouseX >= x + 30 && mouseX <= x + 60 && isMouseNotPressedSave)
     {
       if (mouseY >= height - 25 && mouseY <= height - 10) {
         if (mousePressed && mapSaveNR > 0) 
         {
           mapSaveNR--;
-        } 
-        fill(240, 10, 10);
+        }  //<>// //<>// //<>// //<>//
+        fill(240, 10, 10); //<>// //<>// //<>// //<>//
         rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
-        fill(0);
-        textSize(20);
+        fill(0); //<>//
+        textSize(20); //<>//
         text("-", x + 1 + scale * 4, y + scale * 3);
-      }
-    }
-    if (mousePressed && mouseY >= height - 40)
-    {
-      isMouseNotPressed = false;
+      } //<>//
+    } //<>// //<>//
+    if (mousePressed && mouseY >= height - 40) //<>//
+    { //<>//
+      isMouseNotPressedSave = false; //<>//
       newMap = loadMap(mapSaveNR);
-    } else
+    } else //<>// //<>// //<>// //<>//
     {
-      isMouseNotPressed = true;
-    }
+      isMouseNotPressedSave = true;
+    } //<>//
   }
 
-  void updateMap()
-  {
+  void updateMap() //<>//
+  { //<>//
+
+
     if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
+    { //<>//
+      return; //<>// //<>// //<>//
+    }
+    //<>//
+    if (mousePressed && brushSize == 3)
     {
+      if (mouseX > width-30) {
+        mouseX = width-30;
+      } 
+      if (mouseX < 20) {
+        mouseX = 20;
+      } 
+      if (mouseY < 20) {
+        mouseY = 20;
+      } 
+      if (mouseY > height-90) {
+        mouseY = height-90;
+      }
+
+      for (int i = -2; i <= 2; ++i) { //<>//
+        for (int j = -2; j <= 2; ++j) {
+          if (mouseY + j * scale <= height - 60 || mouseY + j *scale >= 0 || mouseX + i * scale >= 0 || mouseX + i * scale <= width)
+          { //<>//
+            newMap[(mouseX / scale) + i][(mouseY / scale) + j].z = terrainHeight; //<>//
+          }
+        } //<>//
+      }
       return;
     }
-    if (heightVoid && mousePressed)
+
+    if (mousePressed && brushSize == 2)
     {
-      newMap[mouseX/scale][mouseY/scale].z = -1;
+      if (mouseX > width-10) {
+        mouseX = width-10;
+      } 
+      if (mouseX < 10) {
+        mouseX = 10;
+      } 
+      if (mouseY < 10) {
+        mouseY = 10;
+      } 
+      if (mouseY > height-80) {
+        mouseY = height-80;
+      }
+
+      for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {
+
+          if (mouseY + j * scale <= height - 60 || mouseY + j *scale >= 0 || mouseX + i * scale >= 0 || mouseX + i * scale <= width)
+          {
+            newMap[(mouseX / scale) + i][(mouseY / scale) + j].z = terrainHeight;
+          }
+        }
+      }
+      return;
     }
 
-    if (heightZero && mousePressed)
+    if (mousePressed)
     {
-      newMap[mouseX/scale][mouseY/scale].z = 0; //<>//
-    } //<>// //<>// //<>// //<>//
-   
-    if (heightOne && mousePressed)
-    {
-      newMap[mouseX/scale][mouseY/scale].z = 1;
-    }
-
-    if (heightTow && mousePressed)
-    {
-      newMap[mouseX/scale][mouseY/scale].z = 2;
-    }
-    //<>// //<>//
-    if (heightThree && mousePressed)
-    {
-      newMap[mouseX/scale][mouseY/scale].z = 3;
-    }
-   
-    if (heightFour && mousePressed)
-    {
-      newMap[mouseX/scale][mouseY/scale].z = 4;
-    } 
-
-    if (heightFive && mousePressed)
-    { //<>//
-      newMap[mouseX/scale][mouseY/scale].z = 5;
+      newMap[mouseX/scale][mouseY/scale].z = terrainHeight;
     }
   }
 
@@ -534,36 +591,36 @@ class TerrainEditor {
       }
     }
     saveTable(table, "Tarrains.csv");
-  }
-
-  void addMap(int mapNR)
-  {
+  } //<>//
+  //<>//
+  void addMap(int mapNR) //<>//
+  { //<>//
     TableRow newRow;
-    for (int i = 0; i < cols; i++)
-    {
+    for (int i = 0; i < cols; i++) //<>//
+    { //<>//
       for (int j = 0; j < rows; j++)
       {
         if (newMap[i][j].z != 0) {
           newRow = table.addRow();
           newRow.setInt("x", i);
-          newRow.setInt("y", j);
+          newRow.setInt("y", j); //<>//
           newRow.setInt("z", (int)newMap[i][j].z);
-          newRow.setInt("LevelNR", mapNR);
+          newRow.setInt("LevelNR", mapNR); //<>//
         }
       }
-    }
+    } //<>//
   }
 
   void Draw()
   {
     fieldDraw(newMap);
   }
+  //<>//
 
-
-  void Run()
+  void Run() //<>//
   {
     Draw();
-    hotbar();
+    hotbar(); //<>//
     saveMap();
     updateMap();
   }
