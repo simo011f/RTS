@@ -1,38 +1,57 @@
-class TowerAttackETowers  extends Tower
-{
+class Tower {   //<>//
   PVector location=new PVector(-100, -100);
+
 
   int life;
 
+  //build timer
   int t=-2;
 
   int build;
-  int energybuild = 50;
-  int energyConsomstion = 9;
+  int energybuild = 40;
+  int energyConsomstion = 3;
 
   boolean conected=false;
 
-  void weapon() {
+  int range = 20;
+
+  void weapon(Enemy[][] enemyArray) {
   }
 
-  void detection() {
+  PVector detection(Enemy[][] enemyArray) {
+    PVector closest = new PVector();
+    return closest;
   }
 
-  void build() {  
-    
-    fill(15+(20*build), 15+(20*build), 0);
+  void attack(Enemy[][] enemyArray) {
+    if (!ready()) { 
+      return ;
+    }
+    weapon(enemyArray);
+    detection(enemyArray);
+  }
+
+  void Build() {
+
+
+
     stroke(0);
     strokeWeight(1.5);
 
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
-      }
-    }
 
-    if (!conected && game.energy.energyTotal <= 0) {
+    rect((location.x - 10), (location.y - 10), 30, 30);
+
+
+
+
+    if (conected == false) {
       return;
     }
+    if (game.energy.energyTotal < 0)
+    {
+      return;
+    }
+
     if (t==-3) {
       game.energy.energyUsed = game.energy.energyUsed-energybuild;
       t=11;
@@ -42,21 +61,24 @@ class TowerAttackETowers  extends Tower
       t--;
     }
 
-
     if (t<=-1) {
       build++;
       t=11;
     }
+
     if (build==11) {
       build=12;
       t=13;
     }
+
     if (t==13) { 
       game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-
       t=14;
     }
   }
+
+
+
   boolean ready() { 
     if (t==14) {
       return true;
@@ -64,11 +86,8 @@ class TowerAttackETowers  extends Tower
       return false;
     }
   }
+  void Run() {
 
-  void run() { 
-    build();
-    if (ready()) {
-      weapon();
-    }
+    Build();
   }
 }

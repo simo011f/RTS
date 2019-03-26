@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumShot {  
+class TowerAttackTerrtoriumShot extends Tower {  
   PVector location=new PVector(-100, -100);
 
 
@@ -52,62 +52,8 @@ class TowerAttackTerrtoriumShot {
     weapon(enemyArray);
     detection(enemyArray);
   }
-
-  void build() { 
-
+  void Build() {   
     fill(0, 0, 15+(20*build));
-    stroke(0);
-    strokeWeight(1.5);
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x*10+i*10, location.y*10+j*10, 10, 10);
-      }
-    }
-
-    if (conected == false) {
-      return;
-    }
-    if (game.energy.energyTotal < 0)
-    {
-      return;
-    }
-
-    if (t==-3) {
-      game.energy.energyUsed = game.energy.energyUsed-energybuild;
-      t=11;
-    }
-
-    if (t<=11&&t>=-1) { 
-      t--;
-    }
-
-    if (t<=-1) {
-      build++;
-      t=11;
-    }
-
-    if (build==11) {
-      build=12;
-      t=13;
-    }
-
-    if (t==13) { 
-      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-      t=14;
-    }
-  }
-
-  boolean ready() { 
-    if (t==14) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  void run() { 
-
-    build();
+    super.Build();
   }
 }
