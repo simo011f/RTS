@@ -7,7 +7,7 @@ class EscMenu
   int[] chol = new int[4];
 
   EscMenu() {
-        font = createFont("arial", 16, true);
+    font = createFont("arial", 16, true);
   }
 
   void choices() {  
@@ -29,30 +29,24 @@ class EscMenu
       chol[1] = 255;
       Opt[1] = false;
     }
+
     if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) { 
-      game.menu.timer=1;
+      if (mousePressed == true)
+      {
+        game.loc = 0; //<>//
+      }
+      game.menu.timer = 1;
       //this is the main menu option
       chol[2] = 0;
       Opt[2] = true;
-
-      game.menu.screen[0]=false;
-      game.menu.screen[1]=false;
-      game.menu.screen[2]=false;
-      game.menu.screen[3]=false; 
-      game.menu.screen[4]=false;
-
-      game.loadGame.levelNR[1]=false; 
-      game.loadGame.levelNR[0]=false; 
-      game.loadGame.levelNR[2]=false; 
-      game.loadGame.levelNR[3]=false; 
-      game.loadGame.levelNR[4]=false; 
-      game.loadGame.levelNR[5]=false; 
-      game.loadGame.levelNR[6]=false; 
-      game.loadGame.levelNR[7]=false; 
-      game.loadGame.levelNR[8]=false; 
-      game.loadGame.levelNR[9]=false; 
-      game.loadGame.levelNR[10]=false; 
-      game.loadGame.levelNR[11]=false;
+      game.menu.screen[0] = false;
+      game.menu.screen[1] = false;
+      game.menu.screen[2] = false;
+      game.menu.screen[3] = false; 
+      game.menu.screen[4] = false;
+      game.menu.screen[5] = false;
+      game.menu.screen[6] = false;
+      
     } else {
       chol[2] = 255;
       Opt[2] = false;
@@ -152,6 +146,7 @@ class EscMenu
     }
     //hvis menu bliver valgt
     if (mousePressed && Opt[2]) {
+      game.loc = 0;
       escPressed = false;
     }
 

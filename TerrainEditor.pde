@@ -481,7 +481,7 @@ class TerrainEditor {
 
   void updateMap()
   {
-    if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width) //<>//
+    if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
     {
       return;
     }
@@ -535,7 +535,7 @@ class TerrainEditor {
     }
     saveTable(table, "Tarrains.csv");
   }
- //<>//
+
   void addMap(int mapNR)
   {
     TableRow newRow;
@@ -547,7 +547,7 @@ class TerrainEditor {
           newRow = table.addRow();
           newRow.setInt("x", i);
           newRow.setInt("y", j);
-          newRow.setInt("z", (int)newMap[i][j].z); //<>//
+          newRow.setInt("z", (int)newMap[i][j].z);
           newRow.setInt("LevelNR", mapNR);
         }
       }

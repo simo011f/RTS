@@ -554,7 +554,7 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
   EnemyGrid loadBasicEnemy(int levelNR, PVector[][] levelMap)
   {
     EnemyGrid newLevelEnemyGrid = new EnemyGrid(levelMap);
-    table = loadTable("EnemyPlasment.csv", "header"); //<>//
+    table = loadTable("EnemyPlasment.csv", "header");
     if (table != null)
     {
       for (int i = table.getRowCount()-1; i >= 0; i--)
