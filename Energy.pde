@@ -16,7 +16,7 @@ class Energy {
     for (int j = 0; j < game.player.energyTower.size(); j++) {   
 
       if (game.player.energyTower.get(j).conected && game.player.base.conected) {
-        println("hej");
+
         conectedTowers=game.player.energyTower.size();
       }  
       if (game.player.base != null)
@@ -44,7 +44,7 @@ class Energy {
 
 
 
-      println(energyTotal, energyMade, energyUsed, timer);
+      //println(energyTotal, energyMade, energyUsed, timer);
 
       if (energyTotal < 0 && timer > 2) {
         prodotionStop=true;
@@ -83,44 +83,22 @@ class Energy {
     }
     for (int i = 0; i < game.player.tower.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {
-        if ((game.player.tower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.tower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.tower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.tower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          line (game.player.tower.get(i).location.x*10+5, game.player.tower.get(i).location.y*10+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
+        if ((game.player.tower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 && (game.player.tower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.tower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.tower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
+          line (game.player.tower.get(i).location.x+5, game.player.tower.get(i).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
           game.player.energyTower.get(j).conected=true;
           game.player.tower.get(i).conected=true;
+         
         }        
-        if ((game.player.tower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.tower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.tower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.tower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
+        if ((game.player.tower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.tower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.tower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.tower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
           game.player.tower.get(i).conected=false;
           game.player.energyTower.get(j).conected=false;
         }
       }
     }
-    for (int i = 0; i < game.player.bombTower.size(); i++) {
-      for (int j = 0; j < game.player.energyTower.size(); j++) {
-        if ((game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          line (game.player.bombTower.get(i).location.x*10+5, game.player.bombTower.get(i).location.y*10+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
-          game.player.energyTower.get(j).conected=true;
-          game.player.bombTower.get(i).conected=true;
-        } 
-        if ((game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) > 140 || (game.player.bombTower.get(i).location.x*10+5)-(game.player.energyTower.get(j).location.x+5) < -140 || (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) > 140 || (game.player.bombTower.get(i).location.y*10+5)-(game.player.energyTower.get(j).location.y+5) < -140) {
-          game.player.bombTower.get(i).conected=false;
-          game.player.energyTower.get(j).conected=false;
-        }
-      }
-    }
 
-    for (int i = 0; i < game.player.enemyAttackTower.size(); i++) {
-      for (int j = 0; j < game.player.energyTower.size(); j++) {
-        if ((game.player.enemyAttackTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 && (game.player.enemyAttackTower.get(i).location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.enemyAttackTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 && (game.player.enemyAttackTower.get(i).location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
-          line (game.player.enemyAttackTower.get(i).location.x+5, game.player.enemyAttackTower.get(i).location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
-          game.player.energyTower.get(j).conected=true; 
-          game.player.enemyAttackTower.get(i).conected=true;
-        }
-      }
-    }
 
     for (int j = 0; j < game.player.energyTower.size(); j++) {
 
-      println((game.player.base.location.x+5)/*-(game.player.energyTower.get(j).location.x+5) ,(game.player.base.location.x+5)-(game.player.energyTower.get(j).location.x+5) ,(game.player.base.location.y+5)-(game.player.energyTower.get(j).location.y+5) ,(game.player.base.location.y+5)-(game.player.energyTower.get(j).location.y+5)*/ );
       if ((game.player.base.location.x+5)-(game.player.energyTower.get(j).location.x+5) <= 140 &&(game.player.base.location.x+5)-(game.player.energyTower.get(j).location.x+5) >= -140 && (game.player.base.location.y+5)-(game.player.energyTower.get(j).location.y+5) <= 140 &&(game.player.base.location.y+5)-(game.player.energyTower.get(j).location.y+5) >= -140) {
         line (game.player.base.location.x+5, game.player.base.location.y+5, game.player.energyTower.get(j).location.x+5, game.player.energyTower.get(j).location.y+5);
 
@@ -134,14 +112,6 @@ class Energy {
         line (game.player.base.location.x+5, game.player.base.location.y+5, game.player.tower.get(j).location.x+5, game.player.tower.get(j).location.y+5);
         game.player.base.conected=true;   
         game.player.tower.get(j).conected=true;
-      }
-    }
-
-    for (int j = 0; j < game.player.bombTower.size(); j++) {
-      if ((game.player.base.location.x+5)-(game.player.bombTower.get(j).location.x+5) <= 140 &&(game.player.base.location.x+5)-(game.player.bombTower.get(j).location.x+5) >= -140 && (game.player.base.location.y+5)-(game.player.bombTower.get(j).location.y+5) <= 140 &&(game.player.base.location.y+5)-(game.player.bombTower.get(j).location.y+5) >= -140) {
-        line (game.player.base.location.x+5, game.player.base.location.y+5, game.player.bombTower.get(j).location.x+5, game.player.bombTower.get(j).location.y+5);
-        game.player.base.conected=true;
-        game.player.bombTower.get(j).conected=true;
       }
     }
   }

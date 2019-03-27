@@ -15,7 +15,7 @@ void setup() {
 void draw() { 
   background(255);
   game.run(); 
-  println(frameRate);
+  
 }
 
 boolean[] keys = new boolean[11];
