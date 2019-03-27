@@ -146,43 +146,8 @@ class Player  //<>// //<>// //<>//
       towerPicked = false;
     }
 
-<<<<<<< HEAD
-    for (int i = 0; i < shotTower.size(); i++) {
-      if (/*kan omskrives til en boolean funktion*/shotTower.get(i).t==13 && mouseX >= shotTower.get(i).location.x && mouseX <= shotTower.get(i).location.x+10 && mouseY >= shotTower.get(i).location.y && mouseY <= shotTower.get(i).location.y+10) {
-        nr[0]=i;
-        towerpicked[0]=true;
-      }
-    }
-    for (int i = 0; i <  bombTower.size(); i++) {
-      if (bombTower.get(i).t==13 && mouseX >=  bombTower.get(i).location.x && mouseX <=  bombTower.get(i).location.x+10 && mouseY >=  bombTower.get(i).location.y && mouseY <=  bombTower.get(i).location.y+10) {
-        nr[1]=i;
-        towerpicked[1]=true;
-      }
-    }
-    for (int i = 0; i < enemyAttackTower.size(); i++) {
-      if (enemyAttackTower.get(i).t==13 && mouseX >= enemyAttackTower.get(i).location.x && mouseX <= enemyAttackTower.get(i).location.x+10 && mouseY >= enemyAttackTower.get(i).location.y && mouseY <= enemyAttackTower.get(i).location.y+10) {
-        nr[2]=i;
-        towerpicked[2]=true;
-      }
-    }
-    for (int i = 0; i < base.size(); i++) {
-      if (mouseX >= base.get(i).location.x && mouseX <= base.get(i).location.x+10 && mouseY >= base.get(i).location.y && mouseY <= base.get(i).location.y+10) {
-        nr[3]=i;
-        towerpicked[3]=true;
-      }
-    }
-    for (int i = 0; i < energyTower.size(); i++) {
-      if (mouseX >= energyTower.get(i).location.x && mouseX <= energyTower.get(i).location.x+10 && mouseY >= energyTower.get(i).location.y && mouseY <= energyTower.get(i).location.y+10) {
-        nr[4]=i;
-        towerpicked[4]=true;
-=======
-    for (int i = 0; i < tower.size(); i++) {
-      if (tower.get(i).t == 14 && mouseX >= tower.get(i).location.x && mouseX <= tower.get(i).location.x+10 && mouseY >= tower.get(i).location.y && mouseY <= tower.get(i).location.y+10) {
-        chosenTower = i;
-        towerPicked = true;
->>>>>>> Player-og-enemy-enteration
-      }
-    }
+
+
 
     if (towerPicked && mousePressed && isMouseNotPressedGat)
     {
@@ -527,7 +492,7 @@ class Player  //<>// //<>// //<>//
       e.run();
     }
 
-     
+
 
     for (int i = 0; i < enemyAttackTower.size(); i++) {
       TowerAttackETowers e = enemyAttackTower.get(i);

@@ -11,29 +11,17 @@ class Energy {
 
 
   void energyMade() { 
-<<<<<<< HEAD
-    for (int i = 0; i < game.player.base.size(); i++) {
-      for (int j = 0; j < game.player.energyTower.size(); j++) {   
-        println(i, j, game.player.base.get(i).conected);   
-        if (game.player.energyTower.get(j).conected && game.player.base.get(i).conected) {
-          println("hej");
-          conectedTowers=game.player.energyTower.size();
-        }  
-        if (game.player.base.get(i).conected == false) {
-
-          conectedTowers=0;
-        }
-=======
-    if (conectedTowers < 0) {
-      conectedTowers=0;
-    }
 
 
     for (int j = 0; j < game.player.energyTower.size(); j++) {   
-      conectedTowers = game.player.energyTower.get(j).baseConeced+conectedTowers;
-      if (game.player.energyTower.get(j).baseConeced>=1 && game.player.energyTower.get(j).coutedOnBase==false) { 
-        game.player.energyTower.get(j).coutedOnBase=true;
->>>>>>> Player-og-enemy-enteration
+
+      if (game.player.energyTower.get(j).conected && game.player.base.conected) {
+        println("hej");
+        conectedTowers=game.player.energyTower.size();
+      }  
+      if (game.player.base.conected == false) {
+
+        conectedTowers=0;
       }
     }
   }
@@ -50,15 +38,10 @@ class Energy {
 
       energy.z = energy.x + energy.y;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-      //////println(energyTotal, energyMade, energyUsed, timer);
-=======
-      println(energyTotal, energyMade, energyUsed, timer, conectedTowers);
->>>>>>> Player-og-enemy-enteration
-=======
+
+
       println(energyTotal, energyMade, energyUsed, timer);
->>>>>>> parent of 692abb3... der er lavet noget terranin
+
       if (energyTotal < 0 && timer > 2) {
         prodotionStop=true;
       }    
@@ -160,14 +143,7 @@ class Energy {
   }
 
   void run() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //////println(energy);
-=======
->>>>>>> Player-og-enemy-enteration
-=======
-    println(energy);
->>>>>>> parent of 692abb3... der er lavet noget terranin
+
     energyMade();
     energyGrid(); 
     energyLogic();

@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-=======
-class BaseLevel  //<>// //<>// //<>// //<>// //<>//
->>>>>>> Player-og-enemy-enteration
+ //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+
 {
 
   EnemyGrid enemyArray;
@@ -43,7 +41,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>//
   {
     currentTerrain = terrainEditor.loadMap(newLevel);
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
-    emitters = enemyPlasmentEditor.loadEmitters(newLevel,enemyArray);
+    emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);
     emittersRemaning = emitters.size();
   }
 
@@ -179,24 +177,9 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>//
         enemyArray.Draw(i, j);
       }
     }
-<<<<<<< HEAD
+
     for (int i = 0; i < emitters.size(); ++i) {
       emitters.get(i).Draw();
     }
-=======
-  }
-}
-
-class TestLevel extends BaseLevel
-{
-
-  TestLevel() {
-  }
-
-  TestLevel(PVector[][] grid)
-  {
-    super(grid);
-    enemys.enemyArray[0][0].strength = 100000;
->>>>>>> Player-og-enemy-enteration
   }
 }

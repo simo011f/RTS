@@ -14,24 +14,7 @@ class TowerAttackTerrtoriumBomb extends Tower
 
   int range = 20;
 
-<<<<<<< HEAD
-    if (conected && game.energy.energyTotal > 0) {
-      println("hejesafasf");
-      if (t==-3) {
-        game.energy.energyUsed = game.energy.energyUsed-energybuild;
-        t=11;
-=======
-  void weapon(Enemy[][] enemyArray) {
-    println(detection(enemyArray));
-    if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-      for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-          enemyArray[int(detection(enemyArray).x+i)+(int)location.x][int(detection(enemyArray).y+j)+(int)location.y].strength-=5;
-        }
->>>>>>> Player-og-enemy-enteration
-      }
-    }
-  }
+
 
   PVector detection(Enemy[][] enemyArray) {
     PVector inRange = new PVector(width, height);
@@ -64,25 +47,7 @@ class TowerAttackTerrtoriumBomb extends Tower
   }
 
   void Build() {   
-    super.Build();
     fill(15+(20*build), 0, 0);
+    super.Build();
   }
-
-<<<<<<< HEAD
-    build();
-println(15+(20*build));
-    if (t==14) { 
-      weapon();
-      detection();
-=======
-  boolean ready() { 
-    if (t==14) {
-      return true;
-    } else {
-      return false;
->>>>>>> Player-og-enemy-enteration
-    }
-  }
-
-  
 }
