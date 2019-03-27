@@ -1,6 +1,5 @@
-class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid extends Thread  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
-
   int scale = 10;  
 
   int cols = width / scale;
@@ -15,7 +14,6 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   EnemyGrid()
   {
-    thread("Update");
     // Begin loop for columns
     for (int i = 0; i < cols; i++) 
     {
@@ -318,6 +316,14 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       return true;
     } else {
       return false;
+    }
+  }
+  
+  void run()
+  {
+    while (true)
+    {
+      Update();
     }
   }
 

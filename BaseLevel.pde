@@ -39,7 +39,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     currentTerrain = terrainEditor.loadMap(newLevel);
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
-    emitters = enemyPlasmentEditor.loadEmitters(newLevel,enemyArray);
+    emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);
     emittersRemaning = emitters.size();
   }
 
@@ -50,12 +50,13 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       // Begin loop for rows
       for (int j = 0; j < rows; j++) {
         layerZeroDraw(i, j);
+        voidLayer(i, j, grid);
+        stroke(0);
         layerOneDraw(i, j, grid);
         layerTowDraw(i, j, grid);
         layerThreeDraw(i, j, grid);
         layerFourDraw(i, j, grid);
         layerFiveDraw(i, j, grid);
-        voidLayer(i, j, grid);
       }
     }
   }
@@ -152,14 +153,13 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     fieldDraw(currentTerrain);
   }
-
   void Update()
   {
     if (emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
     }
-    enemyArray.Update();
+    //enemyArray.Update();
     for (int i = 0; i < emitters.size(); ++i) {
       emitters.get(i).Update(enemyArray);
       if (emitters.get(i).isDead) {

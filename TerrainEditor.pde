@@ -1,5 +1,6 @@
 class TerrainEditor {
 
+  Thread thread;
   Table table;
 
   int scale = 10;
@@ -18,7 +19,6 @@ class TerrainEditor {
 
   TerrainEditor () 
   {
-    thread("hotbar");
     createTabel();
     for (int i = 0; i < cols; i++) 
     {
@@ -195,6 +195,7 @@ class TerrainEditor {
         rect(x, y, scale, scale);
       }
     }
+    stroke(0);
 
     //layer zero selekt
     textSize(15);
@@ -247,7 +248,7 @@ class TerrainEditor {
     //layer tow selekt
     textSize(15);
     fill(0);
-    text("Layer tow", width/2 - 35, height-45);
+    text("Layer two", width/2 - 35, height-45);
 
     if (mouseX >= width / 2 - 20 && mouseX <= width / 2 + 10)
     {

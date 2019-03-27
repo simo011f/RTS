@@ -13,9 +13,16 @@ void setup() {
 }
 
 void draw() { 
+  if(game.loc == 3){
+    thread("enemyUpdate");
+  }
   background(255);
   game.run(); 
-  //////println(frameRate);
+  println(frameRate);
+}
+
+void enemyUpdate(){
+  game.baseLevel.enemyArray.Update();
 }
 
 boolean[] keys = new boolean[11];
