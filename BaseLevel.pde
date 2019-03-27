@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+=======
+class BaseLevel  //<>// //<>// //<>// //<>// //<>//
+>>>>>>> Player-og-enemy-enteration
 {
 
   EnemyGrid enemyArray;
@@ -175,8 +179,24 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         enemyArray.Draw(i, j);
       }
     }
+<<<<<<< HEAD
     for (int i = 0; i < emitters.size(); ++i) {
       emitters.get(i).Draw();
     }
+=======
+  }
+}
+
+class TestLevel extends BaseLevel
+{
+
+  TestLevel() {
+  }
+
+  TestLevel(PVector[][] grid)
+  {
+    super(grid);
+    enemys.enemyArray[0][0].strength = 100000;
+>>>>>>> Player-og-enemy-enteration
   }
 }
