@@ -1,4 +1,4 @@
-class EnemyGrid extends Thread  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
   int scale = 10;  
 
@@ -316,14 +316,6 @@ class EnemyGrid extends Thread  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       return true;
     } else {
       return false;
-    }
-  }
-  
-  void run()
-  {
-    while (true)
-    {
-      Update();
     }
   }
 
