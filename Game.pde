@@ -190,11 +190,13 @@ class Game {
 
 
 
-
       baseLevel.Update();
       baseLevel.Draw();
       baseLevel.enemyRun();
 
+      player.towerDeteckt(baseLevel.enemyArray.enemys);
+      player.Run();
+      energy.run();
 
       escMenu.run();
       break;
@@ -204,11 +206,9 @@ class Game {
       terrainEditor.Run();
 
       //testLevel
-    
 
-//      player.towerDeteckt(baseLevel.enemyArray.enemys);
-//      player.Run();
-//      energy.run();
+
+      //      
       escMenu.run();
       break;
 
