@@ -7,11 +7,21 @@ class TowerEnergy
   int vis;
 
   boolean conected=false;
+  int baseConeced;
+  boolean coutedOnBase;
 
-  void weapon() {
-    for (int i = 0; i < game.player.base.size(); i++) {
-      if (conected && game.player.base.get(i).conected) {
+  void weapon() { 
+
+
+      if (conected && game.player.base.conected && coutedOnBase==false) {
+        baseConeced=1;
       }
+    
+    if (coutedOnBase) { 
+      baseConeced=0;
+    } 
+    if (conected==false && coutedOnBase) {
+      baseConeced=-1;
     }
   }
 
