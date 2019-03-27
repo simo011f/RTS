@@ -19,9 +19,13 @@ class Energy {
         println("hej");
         conectedTowers=game.player.energyTower.size();
       }  
-      if (game.player.base.conected == false) {
+      if (game.player.base != null)
+      {
 
-        conectedTowers=0;
+        if (game.player.base.conected == false) {
+
+          conectedTowers=0;
+        }
       }
     }
   }
