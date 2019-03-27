@@ -41,6 +41,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     currentTerrain = terrainEditor.loadMap(newLevel);
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
+    enemyArray.reLoad(enemyArray);
     emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);
     emittersRemaning = emitters.size();
   }
@@ -157,9 +158,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void Update()
   {
-    if (emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
-      loadLevel(currentLevel);
     }
     enemyArray.Update();
     for (int i = 0; i < emitters.size(); ++i) {
