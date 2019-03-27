@@ -14,9 +14,9 @@ class Energy {
 <<<<<<< HEAD
     for (int i = 0; i < game.player.base.size(); i++) {
       for (int j = 0; j < game.player.energyTower.size(); j++) {   
-        //////println(i, j, game.player.base.get(i).conected);   
+        println(i, j, game.player.base.get(i).conected);   
         if (game.player.energyTower.get(j).conected && game.player.base.get(i).conected) {
-          //////println("hej");
+          println("hej");
           conectedTowers=game.player.energyTower.size();
         }  
         if (game.player.base.get(i).conected == false) {
@@ -51,10 +51,14 @@ class Energy {
       energy.z = energy.x + energy.y;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       //////println(energyTotal, energyMade, energyUsed, timer);
 =======
       println(energyTotal, energyMade, energyUsed, timer, conectedTowers);
 >>>>>>> Player-og-enemy-enteration
+=======
+      println(energyTotal, energyMade, energyUsed, timer);
+>>>>>>> parent of 692abb3... der er lavet noget terranin
       if (energyTotal < 0 && timer > 2) {
         prodotionStop=true;
       }    
@@ -157,9 +161,13 @@ class Energy {
 
   void run() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //////println(energy);
 =======
 >>>>>>> Player-og-enemy-enteration
+=======
+    println(energy);
+>>>>>>> parent of 692abb3... der er lavet noget terranin
     energyMade();
     energyGrid(); 
     energyLogic();

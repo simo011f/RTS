@@ -16,7 +16,7 @@ class TowerAttackTerrtoriumBomb extends Tower
 
 <<<<<<< HEAD
     if (conected && game.energy.energyTotal > 0) {
-      ////println("hejesafasf");
+      println("hejesafasf");
       if (t==-3) {
         game.energy.energyUsed = game.energy.energyUsed-energybuild;
         t=11;
@@ -70,7 +70,7 @@ class TowerAttackTerrtoriumBomb extends Tower
 
 <<<<<<< HEAD
     build();
-////println(15+(20*build));
+println(15+(20*build));
     if (t==14) { 
       weapon();
       detection();

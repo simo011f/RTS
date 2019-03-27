@@ -156,7 +156,7 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
     strokeWeight(0.5);
     rect(x  , y, 3 * scale, 3 * scale);
 
-    //////println(enemyTypeOne, enemyTypeTow, enemyTypeThree);
+    println(enemyTypeOne, enemyTypeTow, enemyTypeThree);
   }
 
   void increaseDecreaseBasicEnemyStrength(int x, int y)
