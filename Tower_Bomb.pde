@@ -22,7 +22,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>//
         cooldown = 0;
         for (int i = -1; i <= 1; i++) {
           for (int j = -1; j <= 1; j++) {   
-            enemyArray[int(detection(enemyArray).x+i)+(int)location.x/10][int(detection(enemyArray).y+j)+(int)location.y/10].strength-=5;
+            enemyArray[int(detection(enemyArray).x+i)+(int)location.x ][int(detection(enemyArray).y+j)+(int)location.y ].strength-=5;
           }
         }
       }
@@ -37,8 +37,8 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>//
 
     for (int i = -range; i <= range; i++) {
       for (int j = -range; j <= range; j++) {
-        if (((int)location.x)/10 + i >= 0 && ((int)location.y)/10 + j >= 0 && ((int)location.x)/10 + i < width/10 && ((int)location.y)/10 + j < (height-60)/10) {
-          Enemy enemy = enemyArray[((int)location.x)/10 + i][((int)location.y)/10 + j];
+        if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
+          Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
 
 
 

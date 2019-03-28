@@ -1,4 +1,4 @@
-class EnemyGrid { //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
 
   int scale = 10;  
 
@@ -250,7 +250,7 @@ class EnemyGrid { //<>//
       }
       if (updated[i - 1][j] == 2)
       {
-        spreadWest = false; //<>// //<>//
+        spreadWest = false; //<>//
       }
     }
 
@@ -292,8 +292,8 @@ class EnemyGrid { //<>//
   } 
 
   void findCenter(int i, int j)
-  { //<>// //<>//
-    //find centeret i hvert kloster //<>// //<>//
+  { //<>//
+    //find centeret i hvert kloster //<>//
     int x = i;
     int y = j;
     int checkingX = 0;
@@ -303,7 +303,7 @@ class EnemyGrid { //<>//
 
     while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     {
-      x = (int)strongest(x, y).x; //<>// //<>// //<>// //<>//
+      x = (int)strongest(x, y).x; //<>// //<>// //<>//
       y = (int)strongest(x, y).y;
       println(x, y);
     }
@@ -401,7 +401,8 @@ class EnemyGrid { //<>//
         {
           updated[i][j] = 3;
         } else {
-          updated[i][j] = 0;
+          updated[i][j] = 0; 
+          enemys[i][j].updateNumber(0);
         }
       }
     }
@@ -411,6 +412,7 @@ class EnemyGrid { //<>//
         {
           enemys[i][j].strength = 0;
           updated[i][j] = 3;
+          enemys[i][j].updateNumber(3);
           continue;
         }
         if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {	

@@ -414,8 +414,8 @@ class Player   //<>//
       } 
       fill(0, 155, 0);
       stroke(0);
-      for (int i = -3; i <= 3; i++) {
-        for (int j = -3; j <= 3; j++) {
+      for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
       }  

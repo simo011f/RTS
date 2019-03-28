@@ -69,7 +69,6 @@ class TowerEnergy
 
 
   void energyTowerToTower(Tower tower) { 
-println("12584582");
     if (inRangeTower(tower)) {
       tower.conected=true; 
 
@@ -79,11 +78,11 @@ println("12584582");
     }
   }
 
-  void highLight() {   
 
+  void arearDraw() {   
 
     stroke(0);
-    if (vis == 255) {
+    if (vis == 100) {
       strokeWeight(1.5);
     } else {  
       noStroke();
@@ -91,18 +90,25 @@ println("12584582");
 
 
     fill(0, 155, 0, vis);
-    for (int i = -3; i <= 3; i++) {
-      for (int j = -3; j <= 3; j++) {
+    for (int i = -2; i <= 2; i++) {
+      for (int j = -2; j <= 2; j++) {
         rect(location.x*10+i*10, location.y*10+j*10, 10, 10);
       }
     }
-
-    fill(0, 255, 0);     
+  }
+  void towerDraw() {
+    fill(0, 255, 0, 10000);     
     stroke(0);
     strokeWeight(1.5);
     rect(location.x*10, location.y*10, 10, 10);
   }
+
+  void Darw() {
+    arearDraw();
+    towerDraw();
+  }
+
   void run() { 
-    highLight();
+    Darw();
   }
 }
