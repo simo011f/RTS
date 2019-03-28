@@ -5,15 +5,45 @@ class TowerEnergy
   int life;
 
   int vis;
+
   PVector range = new PVector();
   boolean conected=false;
   boolean baseConeced;
   boolean coutedOnBase;
 
-  void detection() {
+  void detection(ArrayList<TowerEnergy> energyTowers) {
+    for (TowerEnergy energyTower : energyTowers) {
+      if (energyTower == this)
+      {
+        continue;
+      }
+      energyTowersConnected(energyTower);
+    }
   }
 
-  boolean inRange(Tower tower) {
+  boolean inRangeEnergyTower(TowerEnergy energyTower) {  
+    range = PVector.sub(energyTower.location, location);
+    if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void energyTowersConnected(TowerEnergy energyTower) { 
+
+
+    if (inRangeEnergyTower(energyTower)) {       
+
+      conected=true;
+      stroke(255);
+      strokeWeight(2);
+      line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+    }
+  }
+
+
+  boolean inRangeTower(Tower tower) {
     range = PVector.sub(tower.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -23,7 +53,7 @@ class TowerEnergy
   }
 
   void towersConnected(ArrayList<Tower> towers) {
-    println("hej");
+
 
     for (Tower tower : towers) {
 
@@ -38,10 +68,14 @@ class TowerEnergy
   }
 
 
-  void energyTowerToTower(Tower tower) {
-    if (conected && inRange(tower)) {
-      tower.conected=true;
-      line(tower.location.x*10, tower.location.y*10, location.x, location.y);
+  void energyTowerToTower(Tower tower) { 
+println("12584582");
+    if (inRangeTower(tower)) {
+      tower.conected=true; 
+
+      stroke(255);
+      strokeWeight(2);
+      line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
 
@@ -70,6 +104,5 @@ class TowerEnergy
   }
   void run() { 
     highLight();
-    detection();
   }
 }

@@ -1,4 +1,4 @@
-class Enemy   //<>// //<>// //<>//
+class Enemy    //<>//
 {
   int strength;
   int terrainHeight;

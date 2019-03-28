@@ -1,5 +1,5 @@
 class Tower {  
-  PVector location=new PVector(-100, -100);
+  PVector location;
 
 
   int life;
@@ -14,6 +14,11 @@ class Tower {
   boolean conected=false;
 
   int range = 20;
+  
+  Tower()
+  {
+    location = new PVector(-10,-10);
+  }
 
   void weapon(Enemy[][] enemyArray) {
   }

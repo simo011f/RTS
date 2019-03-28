@@ -1,6 +1,5 @@
- //<>// //<>// //<>// //<>//
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
+ //<>//
+class BaseLevel  //<>//
 {
 
   EnemyGrid enemyArray;
@@ -12,6 +11,8 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   int rows = (height / scale) - 6;
   int currentLevel = 0;
   int emittersRemaning = 0;
+
+  boolean updateDraw = false;
 
   ArrayList<Emitter> emitters = new ArrayList<Emitter>();
 
@@ -156,11 +157,13 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   {
     fieldDraw(currentTerrain);
   }
+
   void Update()
   {
     if (emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
+      updateDraw = true;
     }
     //enemyArray.Update();
     for (int i = 0; i < emitters.size(); ++i) {

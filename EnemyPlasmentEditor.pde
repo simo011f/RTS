@@ -1,5 +1,4 @@
-class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
+class EnemyPlasmentEditor {     //<>//
   Table table;
 
   int scale = 10;
@@ -572,8 +571,8 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
       return newLevelEnemyGrid;
     }
     return null;
-  }  //<>//
- //<>//
+  }  //<>// //<>//
+ //<>// //<>//
   ArrayList<Emitter> loadEmitters(int levelNR, EnemyGrid enemys)
   {
     table = loadTable("EnemyPlasment.csv", "header");

@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumBomb extends Tower //<>//
+class TowerAttackTerrtoriumBomb extends Tower  //<>//
 {  
 
   int life;

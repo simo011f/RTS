@@ -1,4 +1,4 @@
-class Player  //<>// //<>// //<>// //<>// //<>// //<>//
+class Player   //<>//
 {
 
   Energy energyNetwork;
@@ -184,9 +184,6 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY < height - 60 && isMouseNotPressedGat) {
       towerPicked = false;
     }
-
-
-
 
     if (towerPicked && mousePressed && isMouseNotPressedGat)
     {
@@ -501,7 +498,7 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
 
       energyTowers.get(eTowerNR-1).location.set(loc);  
 
-      energyTowers.get(eTowerNR-1).vis = 255;
+      energyTowers.get(eTowerNR-1).vis = 100;
 
       timer=0;      
       picked = 0;
@@ -521,15 +518,13 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
   void towerRun() {
 
 
+
+
     for (int i = 0; i < energyTowers.size(); i++) {
       TowerEnergy e = energyTowers.get(i);
+      e.run(); 
+      e.detection(energyTowers);
       e.towersConnected(tower);
-    }
-
-
-    for (int i = 0; i < energyTowers.size(); i++) {
-      TowerEnergy e = energyTowers.get(i);
-      e.run();
     }
 
     for (int i = 0; i < tower.size(); i++) {
