@@ -3,9 +3,6 @@ class TerrainEditor { //<>// //<>// //<>//
   Thread thread;
   Table table;
 
-  int scale = 10;
-  int cols = width / scale;
-  int rows = (height / scale) - 6;
   int mapSaveNR = 0;
   boolean isMouseNotPressedSave = true;
   boolean isMouseNotPressedBrush = true;
@@ -470,13 +467,9 @@ class TerrainEditor { //<>// //<>// //<>//
     text("-", x + 1 + scale * 4, y + scale * 3);
 
     if (mouseX >= x + 30 && mouseX <= x + 60 && isMouseNotPressedSave) {
-      println("hej");
       if (mouseY >= height - 40 && mouseY < height - 25) {
-        println("hej2");
         if (mousePressed==true)
         {
-          println("hej3");
-
           mapSaveNR++;
         } 
         fill(10, 240, 10);

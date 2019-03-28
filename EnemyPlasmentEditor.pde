@@ -1,10 +1,7 @@
 class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   Table table;
-
-  int scale = 10;
-  int cols = width / scale;
-  int rows = (height / scale) - 6;
+  
   int mapSaveNR = 0;
 
   boolean isMouseNotPressedSave = true;

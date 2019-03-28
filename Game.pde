@@ -5,10 +5,6 @@ class Game {
   int loc = 0;  
   int lvlcode = 0;
 
-  int scale = 10;
-  int cols = width / scale;
-  int rows = (height / scale) - 6;
-
   //these are all the classes: 
 
   SquareField squareFeld = new SquareField();

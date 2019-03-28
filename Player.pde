@@ -1,4 +1,4 @@
-class Player  //<>// //<>// //<>// //<>// //<>// //<>//
+class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -417,8 +417,8 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
       } 
       fill(0, 155, 0);
       stroke(0);
-      for (int i = -3; i <= 3; i++) {
-        for (int j = -3; j <= 3; j++) {
+      for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
       }  
@@ -501,14 +501,14 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
 
       energyTowers.get(eTowerNR-1).location.set(loc);  
 
-      energyTowers.get(eTowerNR-1).vis = 255;
+      energyTowers.get(eTowerNR-1).vis = 100;
 
       timer=0;      
       picked = 0;
       placebleEnergy = false;
 
       energyNetwork.energyPruduktionArera(energyTowers);
-    }
+      }
   }
 
   void towerDeteckt(Enemy[][] enemyArray) { 
@@ -555,6 +555,9 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>//
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
     if (timer >= 20) {
       timer = 20;
+    }
+    if(energyTowers.size() > 3) {
+      println("hej"); //<>// //<>//
     }
   }
 }

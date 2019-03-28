@@ -1,7 +1,5 @@
 class TowerEnergy 
 {
-  PVector location=new PVector(-100, -100);
-
   int life;
 
   int vis;
@@ -9,6 +7,9 @@ class TowerEnergy
   boolean conected=false;
   boolean baseConeced;
   boolean coutedOnBase;
+
+
+
 
   void detection() {
   }
@@ -23,7 +24,6 @@ class TowerEnergy
   }
 
   void towersConnected(ArrayList<Tower> towers) {
-    println("hej");
 
     for (Tower tower : towers) {
 
@@ -45,31 +45,41 @@ class TowerEnergy
     }
   }
 
-  void highLight() {   
-
+  void areaDraw() {   
 
     stroke(0);
     if (vis == 255) {
-      strokeWeight(1.5);
+      strokeWeight(1);
     } else {  
       noStroke();
     }
 
-
     fill(0, 155, 0, vis);
-    for (int i = -3; i <= 3; i++) {
-      for (int j = -3; j <= 3; j++) {
-        rect(location.x*10+i*10, location.y*10+j*10, 10, 10);
+    for (int i = -2; i <= 2; i++) {
+      for (int j = -2; j <= 2; j++) {
+        if()
+        rect((location.x + i) * scale, (location.y + j) * scale, scale, scale);
       }
     }
+  }
 
+  void towerDraw()
+  {
     fill(0, 255, 0);     
     stroke(0);
     strokeWeight(1.5);
     rect(location.x*10, location.y*10, 10, 10);
   }
+
+  void Draw()
+  {
+    areaDraw();
+    noFill();
+    towerDraw();
+  }
+
   void run() { 
-    highLight();
+    Draw();
     detection();
   }
 }

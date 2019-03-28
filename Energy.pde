@@ -1,10 +1,11 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Energy {
 
   int totalEnergy;
   int energyUsed;
   int energyGained;
   int[][] energyArera;
+  int[][] terrain;
 
 
 
@@ -14,6 +15,7 @@ class Energy {
     energyGained = 0;
     energyUsed = 0;
     energyArera = new int[cols][rows];
+    terrain = new int[cols][rows];
     for (int i = 0; i < cols; ++i) {
       for (int j = 0; j < rows; ++j) {
         energyArera[i][j] = 0;
@@ -26,15 +28,19 @@ class Energy {
     int x = 0;
     int y = 0;
     for (TowerEnergy energyTower : energyTowers) {
-      x = (int)energyTower.location.x / scale;
-      y = (int)energyTower.location.y / scale;
-      for (int i = -5; i <= 5; ++i) {
-        for (int j = -5; j <= 5; ++j) {
-          if(x + i < 0 || x + i > cols)
+      x = (int)energyTower.location.x;
+      y = (int)energyTower.location.y;
+      for (int i = -2; i <= 2; ++i) {
+        for (int j = -2; j <= 2; ++j) {
+          if (x + i < 0 || x + i > cols)
           {
             continue;
           }
-          if(y + j < 0 || y + j > cols)
+          if (y + j < 0 || y + j > cols)
+          {
+            continue;
+          }
+          if(terrain[x][y] != terrain[x + i][y + j])
           {
             continue;
           }
@@ -58,6 +64,15 @@ class Energy {
     }
   }
 
+  void updateTerrain(PVector[][] newTerrain)
+  {
+    for (int i = 0; i < cols; ++i) {
+      for (int j = 0; j < rows; ++j) {
+        terrain[i][j] = (int)newTerrain[i][j].z;
+      }
+    }
+  }
+
   void energyUI()
   {
     int x = 100;
@@ -71,15 +86,15 @@ class Energy {
 
 
 
-    rect(x + 126, y - 15, 50, 15);
+    rect(x + 100, y - 15, 50, 15);
 
-    textMode(CENTER);
+    textAlign(CENTER);
     textSize(17);
     fill(0);
-    text("Energy purduktion:", x - 50, y - 10);
-    text(energyGained, x + 122, y - 9);
+    text("Energy purduktion:", x, y - 10);
+    text(energyGained, x + 100, y - 9);
 
-    textMode(CORNER);
+    textAlign(CORNER);
     rectMode(CORNER);
   }
 

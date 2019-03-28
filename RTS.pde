@@ -9,6 +9,7 @@ void setup() {
   //size(1600, 900);
 
   fullScreen();
+  
   cols = width / scale;
   rows = height / scale - 6;
   game = new Game(1);
@@ -21,7 +22,7 @@ void setup() {
 void draw() { 
 
   if (game.loc == 3) {
-    thread("enemyUpdate");
+    //thread("enemyUpdate");
   }
   background(255);
 

@@ -7,9 +7,6 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   TerrainEditor terrainEditor = new TerrainEditor();
   EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
-  int scale = 10;  
-  int cols = width / scale;
-  int rows = (height / scale) - 6;
   int currentLevel = 0;
   int emittersRemaning = 0;
 
@@ -161,6 +158,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
+      game.player.energyNetwork.updateTerrain(currentTerrain);
     }
     //enemyArray.Update();
     for (int i = 0; i < emitters.size(); ++i) {
@@ -169,6 +167,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         emitters.remove(i);
       }
     }
+    enemyArray.Update();
   }
 
   void enemyRun()

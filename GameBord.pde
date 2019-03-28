@@ -3,10 +3,6 @@ class GameBord
 
   PFont font;
   boolean GO;
-  int scale = 10;  
-
-  int cols = width/scale;
-  int rows = height/scale-6;
 
   GameBord()
   {
