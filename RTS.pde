@@ -20,7 +20,7 @@ void draw() {
   background(255);
 
   game.run(); 
-  println(frameRate);
+  
 }
 
 void enemyUpdate()

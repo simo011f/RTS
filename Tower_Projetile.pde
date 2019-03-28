@@ -1,36 +1,41 @@
 class TowerAttackTerrtoriumShot extends Tower {  
-  PVector location=new PVector(-100, -100);
 
 
   int life;
 
-  int t=-2;
 
-  int build;
   int energybuild = 40;
   int energyConsomstion = 3;
+  int cooldown;
 
-  boolean conected=false;
+  //boolean conected=false;
 
   int range = 20;
 
-  void weapon(Enemy[][] enemyArray) {
-    println(detection(enemyArray));
-    if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
 
-      enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength-=5;
+
+  void weapon(Enemy[][] enemyArray) {
+    cooldown++;
+    if (cooldown == 5) {
+      stroke(255);
+      strokeWeight(2);
+      line((detection(enemyArray).x*10+location.x)+5, (detection(enemyArray).y*10+location.y)+5, location.x, location.y);
+      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+        cooldown=0;
+        enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
+      }
     }
-    println(      enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength);
   }
 
   PVector detection(Enemy[][] enemyArray) {
-    PVector inRange = new PVector(width, height);
-    PVector closest = new PVector(-20, -20);
+
+    PVector inRange = new PVector(-range, -range);
+    PVector closest = new PVector(inRange.x, inRange.y);
 
     for (int i = -range; i <= range; i++) {
       for (int j = -range; j <= range; j++) {
-        if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < width/10 && ((int)location.y) + j < (height-60)/10) {
-          Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
+        if (((int)location.x)/10 + i >= 0 && ((int)location.y)/10 + j >= 0 && ((int)location.x)/10 + i < width/10 && ((int)location.y)/10 + j < (height-60)/10) {
+          Enemy enemy = enemyArray[((int)location.x)/10 + i][((int)location.y)/10 + j];
 
           if (enemy.strength > 0) {
             inRange = new PVector(i, j);
@@ -41,19 +46,25 @@ class TowerAttackTerrtoriumShot extends Tower {
         }
       }
     }
-    println(closest, inRange);
     return closest;
   }
 
   void attack(Enemy[][] enemyArray) {
+    super.attack(enemyArray);
     if (!ready()) { 
       return ;
     }
     weapon(enemyArray);
     detection(enemyArray);
   }
-  void Build() {   
+  void Build() {  
+
     fill(0, 0, 15+(20*build));
     super.Build();
+  }
+  void Run() {
+
+
+    Build();
   }
 }

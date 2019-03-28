@@ -1,4 +1,4 @@
-class Tower {   //<>//
+class Tower {  
   PVector location=new PVector(-100, -100);
 
 
@@ -19,7 +19,7 @@ class Tower {   //<>//
   }
 
   PVector detection(Enemy[][] enemyArray) {
-    PVector closest = new PVector();
+    PVector closest = new PVector(-20, -20);
     return closest;
   }
 
@@ -32,6 +32,7 @@ class Tower {   //<>//
   }
 
   void Build() {
+
 
 
 
@@ -86,7 +87,10 @@ class Tower {   //<>//
       return false;
     }
   }
+
+
   void Run() {
+
 
     Build();
   }

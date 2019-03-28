@@ -1,44 +1,61 @@
-class TowerAttackTerrtoriumBomb extends Tower
+class TowerAttackTerrtoriumBomb extends Tower //<>//
 {  
-  PVector location=new PVector(-100, -100);
 
   int life;
 
-  int t=-2;
 
-  int build;
   int energybuild = 40;
   int energyConsomstion = 9;
+  int strongest = 0;    
+  int cooldown;
 
-  boolean conected=false;
+  //boolean conected=false;
 
   int range = 20;
 
+  void weapon(Enemy[][] enemyArray) {
 
+    cooldown++;
+    if (cooldown == 15) {
+
+      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+        cooldown = 0;
+        for (int i = -1; i <= 1; i++) {
+          for (int j = -1; j <= 1; j++) {   
+            enemyArray[int(detection(enemyArray).x+i)+(int)location.x/10][int(detection(enemyArray).y+j)+(int)location.y/10].strength-=5;
+          }
+        }
+      }
+    }
+  }
 
   PVector detection(Enemy[][] enemyArray) {
-    PVector inRange = new PVector(width, height);
-    PVector closest = new PVector(-20, -20);
+
+    PVector inRange = new PVector(-range, -range);
+    strongest = 0;
+
 
     for (int i = -range; i <= range; i++) {
       for (int j = -range; j <= range; j++) {
-        if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < width/10 && ((int)location.y) + j < (height-60)/10) {
-          Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
+        if (((int)location.x)/10 + i >= 0 && ((int)location.y)/10 + j >= 0 && ((int)location.x)/10 + i < width/10 && ((int)location.y)/10 + j < (height-60)/10) {
+          Enemy enemy = enemyArray[((int)location.x)/10 + i][((int)location.y)/10 + j];
+
+
 
           if (enemy.strength > 0) {
-            inRange = new PVector(i, j);
-            if (inRange.mag() < closest.mag()) {
-              closest = inRange;
+            if (strongest < enemy.strength) {
+              strongest = enemy.strength;
+              inRange = new PVector(i, j);
             }
           }
         }
       }
     }
-    println(closest, inRange);
-    return closest;
+    return inRange;
   }
 
   void attack(Enemy[][] enemyArray) {
+    super.attack(enemyArray);
     if (!ready()) { 
       return ;
     }
@@ -49,5 +66,10 @@ class TowerAttackTerrtoriumBomb extends Tower
   void Build() {   
     fill(15+(20*build), 0, 0);
     super.Build();
+  }  
+  void Run() {
+
+
+    Build();
   }
 }

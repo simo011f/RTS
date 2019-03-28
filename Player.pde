@@ -471,14 +471,9 @@ class Player  //<>// //<>// //<>//
   }
 
   void towerDeteckt(Enemy[][] enemyArray) { 
-    for (int i = 0; i < shotTower.size(); i++) {
-      TowerAttackTerrtoriumShot s = shotTower.get(i);
-      s.attack(enemyArray);
-    }
-
-    for (int i = 0; i < bombTower.size(); i++) {
-      TowerAttackTerrtoriumBomb b = bombTower.get(i);
-      b.attack(enemyArray);
+    for (int i = 0; i < tower.size(); i++) {
+      Tower t = tower.get(i);
+      t.attack(enemyArray);
     }
   }
 
