@@ -1,4 +1,4 @@
-class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   int scale = 10;  
@@ -72,7 +72,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     spreadEast = false;
     spreadWest = false;
 
-    spreadBooleans(i, j);
+    spreadBooleans(i, j); //<>//
 
 
     if (!spreadNorth && !spreadSouth && !spreadEast && !spreadWest) {
@@ -98,6 +98,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 50;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -120,6 +121,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 20;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -142,6 +144,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 10;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -164,6 +167,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 5;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -186,6 +190,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 3;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -208,6 +213,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 2;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
 
@@ -230,6 +236,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         strengthChange += 1;
       }
       enemys[i][j].strength -= strengthChange;
+      updated[i][j] = 1;
       return;
     }
   }
@@ -239,15 +246,23 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (i - 1 >= 0)
     {
       spreadWest = true;
-      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength) {
+      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i - 1][j].strength + 10 * enemys[i - 1][j].terrainHeight) {
         spreadWest = false;
+      }
+      if (updated[i - 1][j] == 2)
+      {
+        spreadWest = false; //<>//
       }
     }
 
     if (i + 1 < cols) 
     {
       spreadEast = true;
-      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength) {
+      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i + 1][j].strength + 10 * enemys[i + 1][j].terrainHeight) {
+        spreadEast = false;
+      }
+      if (updated[i + 1][j] == 2)
+      {
         spreadEast = false;
       }
     }
@@ -255,7 +270,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (j - 1 >= 0)
     {
       spreadNorth = true;
-      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength) {
+      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i][j - 1].strength + 10 * enemys[i][j - 1].terrainHeight) {
+        spreadNorth = false;
+      }
+      if (updated[i][j - 1] == 2)
+      {
         spreadNorth = false;
       }
     }
@@ -263,7 +282,11 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if ( j + 1 < rows) 
     {
       spreadSouth = true;
-      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength) {
+      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i][j + 1].strength + 10 * enemys[i][j + 1].terrainHeight) {
+        spreadSouth = false;
+      }
+      if (updated[i][j + 1] == 2)
+      {
         spreadSouth = false;
       }
     }
@@ -281,15 +304,13 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
     while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     {
-      x = (int)strongest(x, y).x;
+      x = (int)strongest(x, y).x; //<>//
       y = (int)strongest(x, y).y;
+      println(x, y);
     }
-
-    updateEnemysStrength(x, y);
 
     thisCluster.add(new PVector(x, y));
     updated[x][y] = 1;
-
 
     while (thisCluster.size() > 0) {
       for (int a = -1; a <= -1; a++) {
@@ -315,16 +336,18 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       x = checkingX;
       y = checkingY;
     }
-
     return;
   }
 
   void updateCluster(ArrayList<PVector> cluster)
   {
-    for (PVector position : cluster) {
-      println((int)position.x, (int)position.y);
-      updated[(int)position.x][(int)position.y] = 1;
-      updateEnemysStrength((int)position.x, (int)position.y);
+    int x = 0;
+    int y = 0;
+    for (int i = 0; i < cluster.size(); i++) {
+      PVector position = cluster.get(i);
+      x = (int)position.x;
+      y = (int)position.y;
+      updateEnemysStrength(x, y);
     }
     cluster.remove(0);
   }
@@ -389,6 +412,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         {
           enemys[i][j].strength = 0;
           updated[i][j] = 3;
+          continue;
         }
         if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {	
           findCenter(i, j);
