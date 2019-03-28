@@ -17,10 +17,9 @@
 
 //  void detection() {
 //  }
-
-<<<<<<< HEAD
+/*
   void build() {  
-    /*
+    
     fill(15+(20*build), 15+(20*build), 0);
      stroke(0);
      strokeWeight(1.5);
@@ -57,7 +56,7 @@
      
      t=14;
      }
-     */
+     
   }
 
   boolean ready() { 
@@ -67,7 +66,7 @@
       return false;
     }
   }
-=======
+
 //  void build() {  
     
 //    fill(15+(20*build), 15+(20*build), 0);
@@ -123,3 +122,4 @@
 //    }
 //  }
 //}
+*/

@@ -1,4 +1,4 @@
-class Player  //<>// //<>// //<>// //<>// //<>//
+class Player  //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -520,31 +520,18 @@ class Player  //<>// //<>// //<>// //<>// //<>//
 
   void towerRun() {
 
-<<<<<<< HEAD
+
+    for (int i = 0; i < energyTowers.size(); i++) {
+      TowerEnergy e = energyTowers.get(i);
+      e.towersConnected(tower);
+    }
+
+
     for (int i = 0; i < energyTowers.size(); i++) {
       TowerEnergy e = energyTowers.get(i);
       e.run();
     }
 
-=======
-    for (int i = 0; i < energyTower.size(); i++) {
-      TowerEnergy e = energyTower.get(i);
-      e.towersConnected(tower);
-    }
-
-
-    for (int i = 0; i < energyTower.size(); i++) {
-      TowerEnergy e = energyTower.get(i);
-      e.run();
-    }
-
-
-
-    //for (int i = 0; i < enemyAttackTower.size(); i++) {
-    //  TowerAttackETowers e = enemyAttackTower.get(i);
-    //  //e.run();
-    //}
->>>>>>> origin/Tower-Energy-to-Tower
     for (int i = 0; i < tower.size(); i++) {
       Tower t = tower.get(i);
       t.Run();

@@ -1,7 +1,7 @@
 
 int scale = 10;
-int cols = width / scale;
-int rows = height / scale - 6;
+int cols;
+int rows;
 
 Game game;
 
@@ -9,6 +9,8 @@ void setup() {
   //size(1600, 900);
 
   fullScreen();
+  cols = width / scale;
+  rows = height / scale - 6;
   game = new Game(1);
   game = new Game();
 

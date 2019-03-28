@@ -30,6 +30,14 @@ class Energy {
       y = (int)energyTower.location.y / scale;
       for (int i = -5; i <= 5; ++i) {
         for (int j = -5; j <= 5; ++j) {
+          if(x + i < 0 || x + i > cols)
+          {
+            continue;
+          }
+          if(y + j < 0 || y + j > cols)
+          {
+            continue;
+          }
           energyArera[x + i][y + j] = 1;
         }
       }
@@ -63,13 +71,13 @@ class Energy {
 
 
 
-    rect(x + 125, y - 15, 50, 15);
+    rect(x + 126, y - 15, 50, 15);
 
     textMode(CENTER);
     textSize(17);
     fill(0);
     text("Energy purduktion:", x - 50, y - 10);
-    text(energyGained, x, y - 10);
+    text(energyGained, x + 122, y - 9);
 
     textMode(CORNER);
     rectMode(CORNER);

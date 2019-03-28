@@ -70,10 +70,6 @@ class TowerEnergy
   }
   void run() { 
     highLight();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Tower-Energy-to-Tower
     detection();
   }
 }
