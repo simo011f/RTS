@@ -48,13 +48,13 @@ class Tower {
     if (conected == false) {
       return;
     }
-    if (game.energy.energyTotal < 0)
+    if (game.player.energyNetwork.totalEnergy < 0)
     {
       return;
     }
 
     if (t==-3) {
-      game.energy.energyUsed = game.energy.energyUsed-energybuild;
+      game.player.energyNetwork.energyUsed = game.player.energyNetwork.energyUsed-energybuild;
       t=11;
     }
 
@@ -73,7 +73,7 @@ class Tower {
     }
 
     if (t==13) { 
-      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
+      game.player.energyNetwork.energyUsed = game.player.energyNetwork.energyUsed+energybuild-energyConsomstion; 
       t=14;
     }
   }

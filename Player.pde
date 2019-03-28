@@ -1,5 +1,7 @@
-class Player  //<>// //<>// //<>//
+class Player  //<>// //<>// //<>// //<>// //<>//
 {
+
+  Energy energyNetwork;
 
   int timer;
   int towernr; 
@@ -11,11 +13,9 @@ class Player  //<>// //<>// //<>//
 
   ArrayList<Tower> tower = new ArrayList<Tower>();
 
-  ArrayList<TowerAttackTerrtoriumShot> shotTower = new ArrayList<TowerAttackTerrtoriumShot>();
-  ArrayList<TowerAttackTerrtoriumBomb> bombTower = new ArrayList<TowerAttackTerrtoriumBomb>();
-  ArrayList<TowerAttackETowers> enemyAttackTower = new ArrayList<TowerAttackETowers>(); 
+
   TowerBase base;
-  ArrayList<TowerEnergy> energyTower = new ArrayList<TowerEnergy>();
+  ArrayList<TowerEnergy> energyTowers = new ArrayList<TowerEnergy>();
 
   boolean[] towerpickedOnBar = new boolean[5];    
   boolean towerPicked = false; 
@@ -26,8 +26,6 @@ class Player  //<>// //<>// //<>//
   boolean placeble;
   boolean placebleEnergy;
   boolean placebleBase;
-
-  boolean[] placeble2 = new boolean[5];
 
   boolean GO = false;
 
@@ -40,6 +38,7 @@ class Player  //<>// //<>// //<>//
   int rageDisply = 195;
 
   Player() {
+    energyNetwork = new Energy();
   }
 
   void PickTowerOnBar() { 
@@ -121,11 +120,11 @@ class Player  //<>// //<>// //<>//
     if (towerpickedOnBar[4] && mousePressed) {   
       eTowerNR = eTowerNR + 1;
 
-      energyTower.add(new TowerEnergy());
+      energyTowers.add(new TowerEnergy());
       timer=0; 
       picked=5;
       placebleEnergy=true;
-      energyTower.get(eTowerNR - 1).vis = 0;
+      energyTowers.get(eTowerNR - 1).vis = 0;
       towerpickedOnBar[4]=false; 
       GO = true;
     }
@@ -137,6 +136,46 @@ class Player  //<>// //<>// //<>//
     {
       isMouseNotPressedHotBar = true;
     }
+  }
+
+  void drawHotbar() {
+    PVector location=new PVector(width/2, height-45);
+
+    fill(150);
+    stroke(0);
+    strokeWeight(1.5);
+    rect(width/2-500, height-60, 1000, 60);
+    fill(0, 0, 255);
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        rect(location.x+i*10, location.y+j*10+10, 10, 10);
+      }
+    }  
+
+    fill(255, 0, 0);
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        rect((location.x+i*10)+10*3+5, (location.y+j*10)+10, 10, 10);
+      }
+    } 
+
+    fill(255, 255, 0);
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        rect((location.x+i*10)+10*6+10, (location.y+j*10)+10, 10, 10);
+      }
+    }
+
+    fill(0, 255, 255);
+    for (int i = -2; i <= 2; i++) {
+      for (int j = -2; j <= 2; j++) {
+        rect((location.x+i*10)+10*6+100, (location.y+j*10)+10, 10, 10);
+      }
+    }
+
+    fill(0, 255, 0);   
+    rect((location.x+10)+10*6+145, (location.y+10), 10, 10);
+    energyNetwork.energyUI();
   }
 
   //nyt navn
@@ -460,13 +499,15 @@ class Player  //<>// //<>// //<>//
       int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       PVector loc = new PVector(x, y);
 
-      energyTower.get(eTowerNR-1).location.set(loc);  
+      energyTowers.get(eTowerNR-1).location.set(loc);  
 
-      energyTower.get(eTowerNR-1).vis = 255;
+      energyTowers.get(eTowerNR-1).vis = 255;
 
       timer=0;      
       picked = 0;
       placebleEnergy = false;
+
+      energyNetwork.energyPruduktionArera(energyTowers);
     }
   }
 
@@ -479,20 +520,11 @@ class Player  //<>// //<>// //<>//
 
   void towerRun() {
 
-
-
-
-    for (int i = 0; i < energyTower.size(); i++) {
-      TowerEnergy e = energyTower.get(i);
+    for (int i = 0; i < energyTowers.size(); i++) {
+      TowerEnergy e = energyTowers.get(i);
       e.run();
     }
 
-
-
-    for (int i = 0; i < enemyAttackTower.size(); i++) {
-      TowerAttackETowers e = enemyAttackTower.get(i);
-      e.run();
-    }
     for (int i = 0; i < tower.size(); i++) {
       Tower t = tower.get(i);
       t.Run();

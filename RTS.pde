@@ -1,4 +1,8 @@
 
+int scale = 10;
+int cols = width / scale;
+int rows = height / scale - 6;
+
 Game game;
 
 void setup() {
@@ -13,14 +17,13 @@ void setup() {
 }
 
 void draw() { 
-  
+
   if (game.loc == 3) {
     thread("enemyUpdate");
   }
   background(255);
 
-  game.run(); 
-  
+  game.run();
 }
 
 void enemyUpdate()

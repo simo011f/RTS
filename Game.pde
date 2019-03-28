@@ -19,7 +19,6 @@ class Game {
 
   EscMenu escMenu = new EscMenu();
   Player player = new Player();
-  Energy energy = new Energy();
 
   GameBord gameBord = new GameBord(); 
 
@@ -185,7 +184,7 @@ class Game {
       timer.run();
       //gameBoard.run();
 
-      gameBord.hotbar();
+      player.drawHotbar();
       //player stas
 
 
@@ -196,7 +195,6 @@ class Game {
 
       player.towerDeteckt(baseLevel.enemyArray.enemys);
       player.Run();
-      energy.run();
 
       escMenu.run();
       break;

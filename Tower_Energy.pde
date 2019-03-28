@@ -39,7 +39,6 @@ class TowerEnergy
   }
   void run() { 
     highLight();
-    weapon();
     detection();
   }
 }

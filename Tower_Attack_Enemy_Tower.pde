@@ -19,44 +19,46 @@ class TowerAttackETowers  extends Tower
   }
 
   void build() {  
-    
+    /*
     fill(15+(20*build), 15+(20*build), 0);
-    stroke(0);
-    strokeWeight(1.5);
-
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10, 10, 10);
-      }
-    }
-
-    if (!conected && game.energy.energyTotal <= 0) {
-      return;
-    }
-    if (t==-3) {
-      game.energy.energyUsed = game.energy.energyUsed-energybuild;
-      t=11;
-    }
-
-    if (t<=11&&t>=-1) { 
-      t--;
-    }
-
-
-    if (t<=-1) {
-      build++;
-      t=11;
-    }
-    if (build==11) {
-      build=12;
-      t=13;
-    }
-    if (t==13) { 
-      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-
-      t=14;
-    }
+     stroke(0);
+     strokeWeight(1.5);
+     
+     for (int i = -1; i <= 1; i++) {
+     for (int j = -1; j <= 1; j++) {
+     rect(location.x+i*10, location.y+j*10, 10, 10);
+     }
+     }
+     
+     if (!conected && game.energy.energyTotal <= 0) {
+     return;
+     }
+     if (t==-3) {
+     game.energy.energyUsed = game.energy.energyUsed-energybuild;
+     t=11;
+     }
+     
+     if (t<=11&&t>=-1) { 
+     t--;
+     }
+     
+     
+     if (t<=-1) {
+     build++;
+     t=11;
+     }
+     if (build==11) {
+     build=12;
+     t=13;
+     }
+     if (t==13) { 
+     game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
+     
+     t=14;
+     }
+     */
   }
+
   boolean ready() { 
     if (t==14) {
       return true;
