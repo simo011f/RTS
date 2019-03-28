@@ -7,25 +7,11 @@ class TowerEnergy
   int vis;
 
   boolean conected=false;
-  int baseConeced;
+  boolean baseConeced;
   boolean coutedOnBase;
 
-  void weapon() { 
-
-
-      if (conected && game.player.base.conected && coutedOnBase==false) {
-        baseConeced=1;
-      }
-    
-    if (coutedOnBase) { 
-      baseConeced=0;
-    } 
-    if (conected==false && coutedOnBase) {
-      baseConeced=-1;
-    }
-  }
-
   void detection() {
+    
   }
 
   void highLight() {   
