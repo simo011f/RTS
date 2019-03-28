@@ -7,9 +7,9 @@ class Tower {
   //build timer
   int t=-2;
 
-  int build;
-  int energybuild = 40;
-  int energyConsomstion = 3;
+  int underCunstructoin;
+
+  int energyConsomstion ;
 
   boolean conected=false;
 
@@ -24,12 +24,14 @@ class Tower {
   }
 
   void attack(Enemy[][] enemyArray) {
-    if (!ready()) { 
+    if (!build()) { 
       return ;
     }
     weapon(enemyArray);
     detection(enemyArray);
   }
+
+
 
   void Build() {
 
@@ -40,7 +42,7 @@ class Tower {
     strokeWeight(1.5);
 
 
-    rect((location.x - 10), (location.y - 10), 30, 30);
+    rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
 
 
 
@@ -48,13 +50,13 @@ class Tower {
     if (conected == false) {
       return;
     }
-    if (game.energy.energyTotal < 0)
-    {
-      return;
-    }
+    //if (game.energy.energyTotal < 0)
+    //{
+    //  return;
+    //}
 
     if (t==-3) {
-      game.energy.energyUsed = game.energy.energyUsed-energybuild;
+      //game.energy.energyUsed = game.energy.energyUsed-energybuild;
       t=11;
     }
 
@@ -63,24 +65,25 @@ class Tower {
     }
 
     if (t<=-1) {
-      build++;
+      underCunstructoin++;
       t=11;
     }
 
-    if (build==11) {
-      build=12;
+    if (underCunstructoin==11) {
+      underCunstructoin=12;
       t=13;
     }
 
     if (t==13) { 
-      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
+
+      //game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
       t=14;
     }
   }
 
 
 
-  boolean ready() { 
+  boolean build () { 
     if (t==14) {
       return true;
     } else {

@@ -11,9 +11,7 @@ class Player  //<>// //<>// //<>//
 
   ArrayList<Tower> tower = new ArrayList<Tower>();
 
-  ArrayList<TowerAttackTerrtoriumShot> shotTower = new ArrayList<TowerAttackTerrtoriumShot>();
-  ArrayList<TowerAttackTerrtoriumBomb> bombTower = new ArrayList<TowerAttackTerrtoriumBomb>();
-  ArrayList<TowerAttackETowers> enemyAttackTower = new ArrayList<TowerAttackETowers>(); 
+
   TowerBase base;
   ArrayList<TowerEnergy> energyTower = new ArrayList<TowerEnergy>();
 
@@ -89,7 +87,7 @@ class Player  //<>// //<>// //<>//
     if (towerpickedOnBar[2] && mousePressed) {   
       towernr = towernr + 1;
 
-      tower.add(new TowerAttackETowers());
+      //tower.add(new TowerAttackETowers());
       timer = 0; 
       picked = 3;
       placeble = true;
@@ -343,8 +341,8 @@ class Player  //<>// //<>// //<>//
       location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       stroke(rageDisply, rageDisply, 0);
       noFill();
-      for (int i = -14; i <= 14; i++) {
-        for (int j = -14; j <= 14; j++) {
+      for (int i = -7; i <= 7; i++) {
+        for (int j = -7; j <= 7; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
       }    
@@ -371,8 +369,8 @@ class Player  //<>// //<>// //<>//
       location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
       stroke(rageDisply, rageDisply, 0);
       noFill();
-      for (int i = -14; i <= 14; i++) {
-        for (int j = -14; j <= 14; j++) {
+      for (int i = -7; i <= 7; i++) {
+        for (int j = -7; j <= 7; j++) {
           rect(location.x+i*10, location.y+j*10, 10, 10);
         }
       } 
@@ -404,8 +402,8 @@ class Player  //<>// //<>// //<>//
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
-      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      int x = mouseX/10;
+      int y = mouseY/10;
       PVector loc = new PVector(x, y);
       tower.get(towernr - 1).location.set(loc);
       picked = 0;
@@ -456,8 +454,8 @@ class Player  //<>// //<>// //<>//
         mouseY = height-100;
       }
 
-      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
-      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      int x = mouseX/10;
+      int y = mouseY/10;
       PVector loc = new PVector(x, y);
 
       energyTower.get(eTowerNR-1).location.set(loc);  
@@ -479,7 +477,10 @@ class Player  //<>// //<>// //<>//
 
   void towerRun() {
 
-
+    for (int i = 0; i < energyTower.size(); i++) {
+      TowerEnergy e = energyTower.get(i);
+      e.towersConnected(tower);
+    }
 
 
     for (int i = 0; i < energyTower.size(); i++) {
@@ -489,10 +490,10 @@ class Player  //<>// //<>// //<>//
 
 
 
-    for (int i = 0; i < enemyAttackTower.size(); i++) {
-      TowerAttackETowers e = enemyAttackTower.get(i);
-      e.run();
-    }
+    //for (int i = 0; i < enemyAttackTower.size(); i++) {
+    //  TowerAttackETowers e = enemyAttackTower.get(i);
+    //  //e.run();
+    //}
     for (int i = 0; i < tower.size(); i++) {
       Tower t = tower.get(i);
       t.Run();

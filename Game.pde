@@ -196,7 +196,7 @@ class Game {
 
       player.towerDeteckt(baseLevel.enemyArray.enemys);
       player.Run();
-      energy.run();
+      //energy.run();
 
       escMenu.run();
       break;
