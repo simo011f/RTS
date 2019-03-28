@@ -1,7 +1,7 @@
 class TowerEnergy 
 {
   PVector location=new PVector(-100, -100);
-  
+
   int life;
 
   int vis;
@@ -11,12 +11,7 @@ class TowerEnergy
   boolean baseConeced;
   boolean coutedOnBase;
 
-<<<<<<< HEAD
 
-
-
-  void detection() {
-=======
   void detection(ArrayList<TowerEnergy> energyTowers) {
     for (TowerEnergy energyTower : energyTowers) {
       if (energyTower == this)
@@ -46,7 +41,6 @@ class TowerEnergy
       strokeWeight(2);
       //line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
->>>>>>> Tower-Energy-to-Tower
   }
 
 
@@ -60,10 +54,6 @@ class TowerEnergy
   }
 
   void towersConnected(ArrayList<Tower> towers) {
-<<<<<<< HEAD
-=======
-
->>>>>>> Tower-Energy-to-Tower
 
     for (Tower tower : towers) {
 
@@ -88,20 +78,13 @@ class TowerEnergy
     }
   }
 
-<<<<<<< HEAD
-  void areaDraw() {   
 
-    stroke(0);
-    if (vis == 255) {
-      strokeWeight(1);
-=======
 
   void arearDraw() {   
 
     stroke(0);
     if (vis == 100) {
       strokeWeight(1.5);
->>>>>>> Tower-Energy-to-Tower
     } else {  
       noStroke();
     }
@@ -109,47 +92,31 @@ class TowerEnergy
     fill(0, 155, 0, vis);
     for (int i = -2; i <= 2; i++) {
       for (int j = -2; j <= 2; j++) {
-<<<<<<< HEAD
-        if(0==0);
+
+
         rect((location.x + i) * scale, (location.y + j) * scale, scale, scale);
       }
-    }
-  }
-
-  void towerDraw()
-  {
-=======
-        rect(location.x*10+i*10, location.y*10+j*10, 10, 10);
-      }
+  
     }
   }
   void towerDraw() {
     noFill(); 
->>>>>>> Tower-Energy-to-Tower
     fill(0, 255, 0);     
     stroke(0);
     strokeWeight(1.5);
     rect(location.x*10, location.y*10, 10, 10);
   }
 
-<<<<<<< HEAD
-  void Draw()
-  {
-    areaDraw();
-    noFill();
-=======
+
+
   void Darw() {
     arearDraw();
->>>>>>> Tower-Energy-to-Tower
+
     towerDraw();
   }
 
   void run() { 
-<<<<<<< HEAD
-    Draw();
-    detection();
-=======
+
     Darw();
->>>>>>> Tower-Energy-to-Tower
   }
 }

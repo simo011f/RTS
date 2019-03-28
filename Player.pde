@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-=======
+ //<>//
 class Player   //<>//
->>>>>>> Tower-Energy-to-Tower
 {
 
   Energy energyNetwork;
