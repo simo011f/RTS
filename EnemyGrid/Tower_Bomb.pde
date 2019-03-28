@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumBomb extends Tower
+class TowerAttackTerrtoriumBomb 
 {  
 
   int life;
@@ -6,7 +6,7 @@ class TowerAttackTerrtoriumBomb extends Tower
 
   int energybuild = 40;
   int energyConsomstion = 9;
-  int strongest = 0;
+  int strongest;
 
   //boolean conected=false;
 
@@ -14,7 +14,7 @@ class TowerAttackTerrtoriumBomb extends Tower
 
   void weapon(Enemy[][] enemyArray) {
 
-    println(detection(enemyArray));
+
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
 
       enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
@@ -32,19 +32,18 @@ class TowerAttackTerrtoriumBomb extends Tower
         if (((int)location.x)/10 + i >= 0 && ((int)location.y)/10 + j >= 0 && ((int)location.x)/10 + i < width/10 && ((int)location.y)/10 + j < (height-60)/10) {
           Enemy enemy = enemyArray[((int)location.x)/10 + i][((int)location.y)/10 + j];
 
-
-     
-          if (enemy.strength > 0) {
-            if (strongest < enemy.strength) {
-              strongest = enemy.strength;  
+          if (enemy.strength > 0) {  
+            inRange = new PVector(i, j); 
+            if (strongest > enemy.strength) {
+              strongest = enemy.strength;
               inRange = new PVector(i, j);
-            }
-            if (inRange.mag() < closest.mag()) {
-              closest = inRange;
+              if (inRange.mag() < closest.mag()) {
+                closest.set(inRange);
+              }
             }
           }
         }
-        //println(closest, inRange);
+        println(closest);
       }
     }
     return closest;
@@ -59,6 +58,7 @@ class TowerAttackTerrtoriumBomb extends Tower
     detection(enemyArray);
   }
 
+<<<<<<< HEAD
   void Build() {   
     fill(15+(20*build), 0, 0);
     super.Build();
@@ -68,5 +68,56 @@ class TowerAttackTerrtoriumBomb extends Tower
 
     println(build, conected, t, ready(), strongest);
     Build();
+=======
+  void build() {   
+
+    if (!conected && game.energy.energyTotal <= 0) {
+      return;
+    }
+    if (t==-3) {
+      game.energy.energyUsed = game.energy.energyUsed-energybuild;
+      t=11;
+    }
+
+    if (t<=11&&t>=-1) { 
+      t--;
+    }
+
+
+    if (t<=-1) {
+      build++;
+      t=11;
+    }
+    if (build==11) {
+      build=12;
+      t=13;
+    }
+    if (t==13) { 
+      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
+
+      t=14;
+    }
+
+    fill(15+(20*build), 0, 0);
+    stroke(0);
+    strokeWeight(1.5);
+
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        rect(location.x*10+i*10, location.y*10+j*10, 10, 10);
+      }
+    }
+  }
+  boolean ready() { 
+    if (t==14) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void run() { 
+    build();
+>>>>>>> parent of 33733a5... david har gjordt at player er blver mindre og tower har en over klasse
   }
 }
