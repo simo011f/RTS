@@ -38,7 +38,7 @@ class TowerEnergy
       conected=true;
       stroke(255);
       strokeWeight(2);
-      line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+      //line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
 
@@ -97,7 +97,8 @@ class TowerEnergy
     }
   }
   void towerDraw() {
-    fill(0, 255, 0, 10000);     
+    noFill(); 
+    fill(0, 255, 0);     
     stroke(0);
     strokeWeight(1.5);
     rect(location.x*10, location.y*10, 10, 10);

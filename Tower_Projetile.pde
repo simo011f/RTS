@@ -23,9 +23,9 @@ class TowerAttackTerrtoriumShot extends Tower {
       shoot=true;
     } 
     cooldown++;
-    println(shoot);
+
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-      if (cooldown == 5 && shoot) { 
+      if (cooldown >= 5 && shoot) { 
         stroke(255);
         strokeWeight(2);
         line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
@@ -35,6 +35,8 @@ class TowerAttackTerrtoriumShot extends Tower {
         enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength-=5;
       }
     }
+   
+  
   }
 
 
@@ -48,13 +50,7 @@ class TowerAttackTerrtoriumShot extends Tower {
 
         if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
           Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
-
-
-
-
-
           if (enemy.strength > 0) {   
-
             inRange = new PVector(i, j);
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
