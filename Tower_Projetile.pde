@@ -6,18 +6,24 @@ class TowerAttackTerrtoriumShot extends Tower {
 
   int energybuild = 40;
   int energyConsomstion = 3;
-
+  int cooldown;
 
   //boolean conected=false;
 
   int range = 20;
 
+
+
   void weapon(Enemy[][] enemyArray) {
-
-
-    if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-
-      enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
+    cooldown++;
+    if (cooldown == 5) {
+      stroke(255);
+      strokeWeight(2);
+      line((detection(enemyArray).x*10+location.x)+5, (detection(enemyArray).y*10+location.y)+5, location.x, location.y);
+      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+        cooldown=0;
+        enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
+      }
     }
   }
 
@@ -38,7 +44,6 @@ class TowerAttackTerrtoriumShot extends Tower {
             }
           }
         }
-      
       }
     }
     return closest;
