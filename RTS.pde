@@ -25,7 +25,7 @@ void draw() {
 
 void enemyUpdate()
 {
-  game.baseLevel.Update();
+  game.baseLevel.enemyArray.Update();
 }
 
 boolean[] keys = new boolean[11];

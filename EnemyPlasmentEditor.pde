@@ -1,4 +1,4 @@
-class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   Table table;
 
@@ -396,6 +396,7 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void overrideMap(int mapNR)
   {
+    
     int rowMapNr;
     for (int i = table.getRowCount()-1; i >= 0; i--)
     {
@@ -571,7 +572,7 @@ class EnemyPlasmentEditor {         //<>// //<>// //<>// //<>// //<>// //<>// //
       return newLevelEnemyGrid;
     }
     return null;
-  } 
+  }  //<>//
  //<>//
   ArrayList<Emitter> loadEmitters(int levelNR, EnemyGrid enemys)
   {

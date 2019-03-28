@@ -169,7 +169,6 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
         emitters.remove(i);
       }
     }
-    enemyArray.Update();
   }
 
   void enemyRun()
