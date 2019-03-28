@@ -9,9 +9,9 @@ class Tower {
 
   int underCunstructoin;
 
-  int energyConsomstion ;
+  int energyConsomstion;
 
-  boolean conected=false;
+  boolean conected = false;
 
   int range = 20;
 
@@ -24,7 +24,7 @@ class Tower {
   }
 
   void attack(Enemy[][] enemyArray) {
-    if (!build()) { 
+    if (!isBuild()) { 
       return ;
     }
     weapon(enemyArray);
@@ -34,32 +34,18 @@ class Tower {
 
 
   void Build() {
-
-
-
-
     stroke(0);
     strokeWeight(1.5);
-
-
     rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
-
-
-
 
     if (conected == false) {
       return;
     }
+
     if (game.player.energyNetwork.totalEnergy < 0)
     {
       return;
     }
-
-    //if (game.energy.energyTotal < 0)
-    //{
-    //  return;
-    //}
-
 
     if (t==-3) {
       //game.energy.energyUsed = game.energy.energyUsed-energybuild;
@@ -90,7 +76,7 @@ class Tower {
 
 
 
-  boolean build () { 
+  boolean isBuild () { 
     if (t==14) {
       return true;
     } else {

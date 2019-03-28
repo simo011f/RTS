@@ -1,5 +1,7 @@
 class TowerEnergy 
 {
+  PVector location=new PVector(-100, -100);
+  
   int life;
 
   int vis;
@@ -57,7 +59,7 @@ class TowerEnergy
     fill(0, 155, 0, vis);
     for (int i = -2; i <= 2; i++) {
       for (int j = -2; j <= 2; j++) {
-        if()
+        if(0==0);
         rect((location.x + i) * scale, (location.y + j) * scale, scale, scale);
       }
     }

@@ -507,7 +507,7 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       picked = 0;
       placebleEnergy = false;
 
-      energyNetwork.energyPruduktionArera(energyTowers);
+      energyNetwork.energyPruduktion(energyTowers);
       }
   }
 
@@ -545,6 +545,7 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   void Run() {
 
+    energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   
     if (keys[0]) {

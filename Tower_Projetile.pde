@@ -3,7 +3,6 @@ class TowerAttackTerrtoriumShot extends Tower {
 
   int life;
 
-
   int energybuild = 40;
   int energyConsomstion = 3;
   int cooldown;
@@ -51,7 +50,7 @@ class TowerAttackTerrtoriumShot extends Tower {
 
   void attack(Enemy[][] enemyArray) {
     super.attack(enemyArray);
-    if (!build()) { 
+    if (!isBuild()) { 
       return ;
     }
     weapon(enemyArray);
