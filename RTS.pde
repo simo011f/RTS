@@ -12,7 +12,6 @@ void setup() {
   
   cols = width / scale;
   rows = height / scale - 6;
-  game = new Game(1);
   game = new Game();
 
   background(255); 
@@ -24,7 +23,6 @@ void draw() {
   if (game.loc == 3) {
     //thread("enemyUpdate");
   }
-  background(255);
 
   game.run();
 }

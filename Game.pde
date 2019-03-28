@@ -22,18 +22,9 @@ class Game {
   TerrainEditor terrainEditor = new TerrainEditor();
   EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
-  Game(int i) {
-    if (i == 1)
-    {
-      squareFeld = new SquareField();
-      println("why is this nessesary");
-    }
-  }
-
   Game() {
     squareFeld = new SquareField();
     gameBord = new GameBord(); 
-
     baseLevel = new BaseLevel();
   }
 
@@ -159,6 +150,7 @@ class Game {
 
     case 0:
       //this is the menu
+
       menu.run();
       break;
 
@@ -171,6 +163,7 @@ class Game {
 
     case 2:
       //this is the key menu
+
       keyMenu.run(); 
       escMenu.run();
       break;
@@ -178,11 +171,9 @@ class Game {
     case 3: 
       //this is the main game
       timer.run();
-      //gameBoard.run();
 
       player.drawHotbar();
       //player stas
-
 
 
       baseLevel.Update();
@@ -197,6 +188,7 @@ class Game {
 
     case 4:
       //this is the level editor
+
       terrainEditor.Run();
 
       //testLevel

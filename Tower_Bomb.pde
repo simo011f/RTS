@@ -1,28 +1,39 @@
-class TowerAttackTerrtoriumBomb extends Tower //<>//
+class TowerAttackTerrtoriumBomb extends Tower  //<>//
 {  
 
   int life;
 
 
   int energybuild = 40;
-  int energyConsomstion = 9;
-  int strongest = 0;    
+  int energyConsomstion = 3;
   int cooldown;
+  int range = 20;
+  int strongest = 0;    
 
+  boolean shoot = false;
   //boolean conected=false;
 
-  int range = 20;
+
 
   void weapon(Enemy[][] enemyArray) {
-
+    if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
+      shoot=false;
+    } else {
+      shoot=true;
+    } 
     cooldown++;
-    if (cooldown == 15) {
+    println(shoot);
+    if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+      if (cooldown >= 5 && shoot) { 
+        stroke(255);
+        strokeWeight(2);
+        line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
+        noStroke();
 
-      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
         cooldown = 0;
         for (int i = -1; i <= 1; i++) {
           for (int j = -1; j <= 1; j++) {   
-            enemyArray[int(detection(enemyArray).x+i)+(int)location.x/10][int(detection(enemyArray).y+j)+(int)location.y/10].strength-=5;
+            enemyArray[int(detection(enemyArray).x+i)+(int)location.x ][int(detection(enemyArray).y+j)+(int)location.y ].strength-=5;
           }
         }
       }
@@ -37,11 +48,8 @@ class TowerAttackTerrtoriumBomb extends Tower //<>//
 
     for (int i = -range; i <= range; i++) {
       for (int j = -range; j <= range; j++) {
-        if (((int)location.x)/10 + i >= 0 && ((int)location.y)/10 + j >= 0 && ((int)location.x)/10 + i < width/10 && ((int)location.y)/10 + j < (height-60)/10) {
-          Enemy enemy = enemyArray[((int)location.x)/10 + i][((int)location.y)/10 + j];
-
-
-
+        if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
+          Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
           if (enemy.strength > 0) {
             if (strongest < enemy.strength) {
               strongest = enemy.strength;

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+=======
+class Player   //<>//
+>>>>>>> Tower-Energy-to-Tower
 {
 
   Energy energyNetwork;
@@ -184,9 +188,6 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY < height - 60 && isMouseNotPressedGat) {
       towerPicked = false;
     }
-
-
-
 
     if (towerPicked && mousePressed && isMouseNotPressedGat)
     {
@@ -521,15 +522,13 @@ class Player  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   void towerRun() {
 
 
+
+
     for (int i = 0; i < energyTowers.size(); i++) {
       TowerEnergy e = energyTowers.get(i);
+      e.run(); 
+      e.detection(energyTowers);
       e.towersConnected(tower);
-    }
-
-
-    for (int i = 0; i < energyTowers.size(); i++) {
-      TowerEnergy e = energyTowers.get(i);
-      e.run();
     }
 
     for (int i = 0; i < tower.size(); i++) {
