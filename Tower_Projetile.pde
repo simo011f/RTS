@@ -19,7 +19,7 @@ class TowerAttackTerrtoriumShot extends Tower {
     if (cooldown == 5) {
       stroke(255);
       strokeWeight(2);
-      line((detection(enemyArray).x*10+location.x)+5, (detection(enemyArray).y*10+location.y)+5, location.x, location.y);
+      line((detection(enemyArray).x * 10 + location.x) + 5, (detection(enemyArray).y * 10 + location.y) + 5, location.x + 5, location.y + 5);
       if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
         cooldown=0;
         enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
