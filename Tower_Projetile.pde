@@ -18,13 +18,12 @@ class TowerAttackTerrtoriumShot extends Tower {
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
 
       enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength-=5;
-      println(enemyArray[int(detection(enemyArray).x)+(int)location.x/10][int(detection(enemyArray).y)+(int)location.y/10].strength+"hej", detection(enemyArray));
     }
   }
 
   PVector detection(Enemy[][] enemyArray) {
 
-    PVector inRange = new PVector(width, height);
+    PVector inRange = new PVector(-range, -range);
     PVector closest = new PVector(inRange.x, inRange.y);
 
     for (int i = -range; i <= range; i++) {
@@ -39,7 +38,7 @@ class TowerAttackTerrtoriumShot extends Tower {
             }
           }
         }
-        //println(closest, inRange);
+      
       }
     }
     return closest;
