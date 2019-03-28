@@ -56,7 +56,7 @@ class TowerAttackTerrtoriumBomb extends Tower //<>//
 
   void attack(Enemy[][] enemyArray) {
     super.attack(enemyArray);
-    if (!ready()) { 
+    if (!build()) { 
       return ;
     }
     weapon(enemyArray);
@@ -64,7 +64,7 @@ class TowerAttackTerrtoriumBomb extends Tower //<>//
   }
 
   void Build() {   
-    fill(15+(20*build), 0, 0);
+    fill(15+(20*underCunstructoin), 0, 0);
     super.Build();
   }  
   void Run() {

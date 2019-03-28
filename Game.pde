@@ -195,6 +195,10 @@ class Game {
 
       player.towerDeteckt(baseLevel.enemyArray.enemys);
       player.Run();
+<<<<<<< HEAD
+=======
+      //energy.run();
+>>>>>>> origin/Tower-Energy-to-Tower
 
       escMenu.run();
       break;
