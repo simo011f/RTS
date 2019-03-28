@@ -246,7 +246,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (i - 1 >= 0)
     {
       spreadWest = true;
-      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i - 1][j].strength + 10 * enemys[i - 1][j].terrainHeight) {
+      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i - 1][j].strength + 10 * enemys[i - 1][j].terrainHeight) {
         spreadWest = false;
       }
       if (updated[i - 1][j] == 2)
@@ -258,7 +258,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (i + 1 < cols) 
     {
       spreadEast = true;
-      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i + 1][j].strength + 10 * enemys[i + 1][j].terrainHeight) {
+      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i + 1][j].strength + 10 * enemys[i + 1][j].terrainHeight) {
         spreadEast = false;
       }
       if (updated[i + 1][j] == 2)
@@ -270,7 +270,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if (j - 1 >= 0)
     {
       spreadNorth = true;
-      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i][j - 1].strength + 10 * enemys[i][j - 1].terrainHeight) {
+      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i][j - 1].strength + 10 * enemys[i][j - 1].terrainHeight) {
         spreadNorth = false;
       }
       if (updated[i][j - 1] == 2)
@@ -282,7 +282,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     if ( j + 1 < rows) 
     {
       spreadSouth = true;
-      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight < enemys[i][j + 1].strength + 10 * enemys[i][j + 1].terrainHeight) {
+      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i][j + 1].strength + 10 * enemys[i][j + 1].terrainHeight) {
         spreadSouth = false;
       }
       if (updated[i][j + 1] == 2)
@@ -304,7 +304,7 @@ class EnemyGrid  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
     while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     {
-      x = (int)strongest(x, y).x; //<>//
+      x = (int)strongest(x, y).x; //<>// //<>//
       y = (int)strongest(x, y).y;
       println(x, y);
     }
