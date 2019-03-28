@@ -190,7 +190,7 @@ class Game {
 
 
 
-      baseLevel.Update();
+      //baseLevel.Update();
       baseLevel.Draw();
       baseLevel.enemyRun();
 

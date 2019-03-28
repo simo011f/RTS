@@ -1,3 +1,2 @@
 x,y,EmitterDelay,EmitterStrength,BasicEnemyStrength,EnemyType,LevelNR
-92,50,,,100000,1,1
-100,58,,,100000,1,1
+88,46,1,20,,2,1

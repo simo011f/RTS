@@ -492,7 +492,7 @@ class TerrainEditor {
 
     if (heightZero && mousePressed)
     {
-      newMap[mouseX/scale][mouseY/scale].z = 0; //<>//
+      newMap[mouseX/scale][mouseY/scale].z = 0;
     } //<>// //<>// //<>// //<>//
    
     if (heightOne && mousePressed)
