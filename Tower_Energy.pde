@@ -119,7 +119,6 @@ class TowerEnergy
 
 
   void energyTowerToTower(Tower tower) { 
-    tower.conected = false;
     println(tower.conected, frameCount);
     if (baseConeced && inRangeTower(tower)) {
       tower.conected=true; 

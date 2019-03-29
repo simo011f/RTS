@@ -143,7 +143,7 @@ class Energy {
     if (totalEnergy <= 0)
     {
       transmit = false;
-      totalEnergy += energyGained;
+      totalEnergy += energyGained + 1;
     } else {
       transmit = true;
       totalEnergy += energyGained - energyUsed;

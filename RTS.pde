@@ -15,7 +15,7 @@ void setup() {
   game = new Game();
 
   background(255); 
-  frameRate(30);
+  frameRate(45);
 }
 
 void draw() { 

@@ -70,6 +70,22 @@ class Tower {
     }
   }
 
+  boolean terrainColision(PVector[][] terrain)
+  {
+    int x = (int)location.x;
+    int y = (int)location.y;
+
+    for (int i = -1; i <= 1; ++i) {
+      for (int j = -1; j <= 1; ++j) {
+        if(terrain[x][y].z != terrain[x + i][y + j].z)
+        {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   void Build() {
     stroke(0);
     strokeWeight(1.5);

@@ -1,125 +1,58 @@
-//class TowerAttackETowers  extends Tower
-//{
-//  PVector location=new PVector(-100, -100);
+class TowerAttackETowers  extends Tower
+{
+ PVector location=new PVector(-100, -100);
 
-//  int life;
+  int energybuild = 40;
+  int cooldown;
 
-//  int t=-2;
+  boolean shoot = false;
 
-//  int build;
-//  int energybuild = 50;
-//  int energyConsomstion = 9;
-
-//  boolean conected=false;
-
-//  void weapon() {
-//  }
-
-//  void detection() {
-//  }
-/*
-  void build() {  
-    
-    fill(15+(20*build), 15+(20*build), 0);
-     stroke(0);
-     strokeWeight(1.5);
-     
-     for (int i = -1; i <= 1; i++) {
-     for (int j = -1; j <= 1; j++) {
-     rect(location.x+i*10, location.y+j*10, 10, 10);
-     }
-     }
-     
-     if (!conected && game.energy.energyTotal <= 0) {
-     return;
-     }
-     if (t==-3) {
-     game.energy.energyUsed = game.energy.energyUsed-energybuild;
-     t=11;
-     }
-     
-     if (t<=11&&t>=-1) { 
-     t--;
-     }
-     
-     
-     if (t<=-1) {
-     build++;
-     t=11;
-     }
-     if (build==11) {
-     build=12;
-     t=13;
-     }
-     if (t==13) { 
-     game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-     
-     t=14;
-     }
-     
+  TowerAttackETowers()
+  {
+    super();
+    underCunstruction = 0;
+    cunstructionEnergyConsomstion = 30;
+    energyConsomstion = 100;
+    range = 10;
   }
 
-  boolean ready() { 
-    if (t==14) {
-      return true;
-    } else {
-      return false;
+
+  void weapon(ArrayList<Emitter> emitters) {
+    for (Emitter emitter : emitters) {
+      if(emitterInRange(emitter) == null)
+      {
+        continue;
+      }
+      emitter.isDead = true;
+      isDead = true;
     }
   }
 
-//  void build() {  
-    
-//    fill(15+(20*build), 15+(20*build), 0);
-//    stroke(0);
-//    strokeWeight(1.5);
 
-//    for (int i = -1; i <= 1; i++) {
-//      for (int j = -1; j <= 1; j++) {
-//        rect(location.x+i*10, location.y+j*10, 10, 10);
-//      }
-//    }
+  PVector emitterInRange(Emitter emitter) {
 
-//    if (!conected && game.energy.energyTotal <= 0) {
-//      return;
-//    }
-//    if (t==-3) {
-//      game.energy.energyUsed = game.energy.energyUsed-energybuild;
-//      t=11;
-//    }
+    for (int i = -range; i <= range; ++i) {
+      for (int j = -range; j <= range; ++j) {
+        if (emitter.location.x == location.x + i && emitter.location.y == location.y + j) {
+          energyConsomstion = 100;
+          return emitter.location;
+        }
+      }
+    }
+    energyConsomstion = 0;
+    return null;
+  }
 
-//    if (t<=11&&t>=-1) { 
-//      t--;
-//    }
+  void attack(ArrayList<Emitter> emitters) {
+    if (!isBuild()) { 
+      return ;
+    }
+    weapon(emitters);
+  }
+  
+  void Build() {  
+    fill(15+(20*underCunstruction), 15+(20*underCunstruction), 0);
+    super.Build();
+  }
 
-
-//    if (t<=-1) {
-//      build++;
-//      t=11;
-//    }
-//    if (build==11) {
-//      build=12;
-//      t=13;
-//    }
-//    if (t==13) { 
-//      game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-
-//      t=14;
-//    }
-//  }
-//  boolean ready() { 
-//    if (t==14) {
-//      return true;
-//    } else {
-//      return false;
-//    }
-//  }
->>>>>>> origin/Tower-Energy-to-Tower
-
-//  void run() { 
-//    build();
-//    if (ready()) {
-//      weapon();
-//    }
-//  }
-//}
-*/
+}

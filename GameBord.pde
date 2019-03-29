@@ -14,7 +14,6 @@ class GameBord
     fill(150);
     stroke(0);
     strokeWeight(1.5);
-    rect(width/2-500, height-60, 1000, 60);
     fill(0, 0, 255);
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {

@@ -423,6 +423,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
 
     if (enemys[i][j].strength >= 1)
     {
+      strokeWeight(0.5);
       fill(0, enemys[i][j].strength*5, 255, 100);
       rect(i*10, j*10, 10, 10);
       //for at se styrke går FPS fra ca. 13 til ca. 5

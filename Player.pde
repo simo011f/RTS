@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Player  
 {
 
@@ -13,6 +13,7 @@ class Player
   int [] towernrremeber = new int[5];
 
   ArrayList<Tower> towers = new ArrayList<Tower>();
+  ArrayList<TowerAttackETowers> towerAttackETowers = new ArrayList<TowerAttackETowers>();
 
 
   TowerBase base;
@@ -27,6 +28,7 @@ class Player
   boolean placeble;
   boolean placebleEnergy;
   boolean placebleBase;
+  boolean placebleETowers;
 
   boolean GO = false;
 
@@ -87,12 +89,11 @@ class Player
       towerpickedOnBar[2]=false;
     }
     if (towerpickedOnBar[2] && mousePressed) {   
-      towernr += 1;
 
-      //tower.add(new TowerAttackETowers());
+      towerAttackETowers.add(new TowerAttackETowers());
       timer = 0; 
       picked = 3;
-      placeble = true;
+      placebleETowers = true;
       towerpickedOnBar[2] = false;   
       GO = true;
     }
@@ -140,6 +141,11 @@ class Player
   }
 
   void drawHotbar() {
+    
+    noStroke();
+    fill(255);
+    rect(0, height-60, width, height);
+    
     PVector location=new PVector(width/2, height-45);
 
     fill(150);
@@ -252,6 +258,8 @@ class Player
   void highLight() { 
 
     PVector location;
+    strokeWeight(0.5);
+    location = new PVector(mouseX / scale, mouseY / scale);
 
     if (picked==1) {
       if (mouseX>width-20) {
@@ -266,32 +274,21 @@ class Player
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
 
       stroke(rageDisply, 0, 0);
-      noFill();
-      for (int i = -20; i <= 20; i++) {
-        for (int j = -20; j <= 20; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }   
+      fill(rageDisply, 0, 0, 100);
+      rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
+
       stroke(rageDisply, rageDisply, 0);
-      noFill();
-      for (int i = -14; i <= 14; i++) {
-        for (int j = -14; j <= 14; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      } 
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
+
       fill(0, 0, 255);
       stroke(0);
       strokeWeight(1.5);
-
-      for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }
+      rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
     } 
+
     if (picked==2) {
       if (mouseX>width-20) {
         mouseX = width-20;
@@ -305,29 +302,22 @@ class Player
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
 
       stroke(rageDisply, 0, 0);
-      noFill();
-      for (int i = -20; i <= 20; i++) {
-        for (int j = -20; j <= 20; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }       
+      fill(rageDisply, 0, 0, 100);
+      rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
+
       stroke(rageDisply, rageDisply, 0);
-      noFill();
-      for (int i = -14; i <= 14; i++) {
-        for (int j = -14; j <= 14; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      } 
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
+
       fill(255, 0, 0);
-      for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }
+      stroke(0);
+      strokeWeight(1.5);
+      rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
     } 
+
+    //TowerAttackEnemyTower
     if (picked==3) {
       if (mouseX>width-20) {
         mouseX = width-20;
@@ -341,29 +331,21 @@ class Player
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
 
       stroke(rageDisply, 0, 0);
-      noFill();
-      for (int i = -20; i <= 20; i++) {
-        for (int j = -20; j <= 20; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }       
+      fill(rageDisply, 0, 0, 100);
+      rect((location.x - 10) * scale, (location.y - 10) * scale, 21 * scale, 21 * scale);
+
       stroke(rageDisply, rageDisply, 0);
-      noFill();
-      for (int i = -14; i <= 14; i++) {
-        for (int j = -14; j <= 14; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }  
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
+
       fill(255, 255, 0);
-      for (int i = -1; i <= 1; i++) {
-        for (int j = -1; j <= 1; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }
+      stroke(0);
+      strokeWeight(1.5);
+      rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
     }
+
     if (picked==4) {
       if (mouseX>width-20) {
         mouseX = width-20;
@@ -377,21 +359,15 @@ class Player
       if (mouseY>height-80) {
         mouseY = height-80;
       }
-      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+
       stroke(rageDisply, rageDisply, 0);
-      noFill();
-      for (int i = -7; i <= 7; i++) {
-        for (int j = -7; j <= 7; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }    
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);    
+
       fill(0, 255, 255);
-      for (int i = -2; i <= 2; i++) {
-        for (int j = -2; j <= 2; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }
+      rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);
     }    
+
     if (picked==5) {
       if (mouseX>width-40) {
         mouseX = width-40;
@@ -405,24 +381,17 @@ class Player
       if (mouseY>height-100) {
         mouseY = height-100;
       }
-      location = new PVector(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x, game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+
       stroke(rageDisply, rageDisply, 0);
-      noFill();
-      for (int i = -7; i <= 7; i++) {
-        for (int j = -7; j <= 7; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      } 
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
+
       fill(0, 155, 0);
       stroke(0);
-      for (int i = -2; i <= 2; i++) {
-        for (int j = -2; j <= 2; j++) {
-          rect(location.x+i*10, location.y+j*10, 10, 10);
-        }
-      }  
+      rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);    
 
       fill(0, 255, 0);
-      rect(location.x, location.y, 10, 10);
+      rect(location.x * scale, location.y * scale, scale, scale);
     }
   }
 
@@ -444,11 +413,33 @@ class Player
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      towers.get(towernr - 1).location.set(loc);
+      towers.get(towers.size() - 1).location.set(loc);
       picked = 0;
       placeble = false;
       timer = 0;
     }  
+
+    if (placebleETowers && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
+      if (mouseX>width-20) {
+        mouseX = width-20;
+      } 
+      if (mouseX<10) {
+        mouseX = 10;
+      } 
+      if (mouseY<10) {
+        mouseY = 10;
+      } 
+      if (mouseY>height-80) {
+        mouseY = height-80;
+      }
+      int x = mouseX/10;
+      int y = mouseY/10;
+      PVector loc = new PVector(x, y);
+      towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc); //<>//
+      picked = 0;
+      placebleETowers = false;
+      timer = 0;
+    } 
 
     if (placebleBase  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
 
@@ -518,8 +509,8 @@ class Player
       {
         energyTowers.remove(i);
         energyTower.towersConnected(towers, energyTowers, base);
-        for(Tower tower: towers){
-        energyTower.energyTowerToTower(tower);
+        for (Tower tower : towers) {
+          energyTower.energyTowerToTower(tower);
         }
         energyNetwork.energyPruduktion(energyTowers);
         eTowerNR--;
@@ -539,11 +530,23 @@ class Player
     }
   }
 
-  void towerAttack(Enemy[][] enemyArray)
+  //kan ikke overskue at gøre feridg
+  void towerTerrain(PVector[][]terrain)
   {
-if (energyNetwork.transmit) {
+    for (Tower tower : towers) {
+      tower.terrainColision(terrain);
+    }
+  }
+
+  void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
+  {
+    if (energyNetwork.transmit) {
       for (Tower tower : towers) {
         tower.attack(enemyArray);
+      }
+      for (TowerAttackETowers towerAttackETower : towerAttackETowers)
+      {
+        towerAttackETower.attack(emitters);
       }
     }
   }
@@ -561,6 +564,15 @@ if (energyNetwork.transmit) {
       Tower tower = towers.get(i);
       tower.Run();
     }    
+
+    //gider ikke at tegne dem
+    for (int i = 0; i < towerAttackETowers.size(); i++)
+    {
+      TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
+      tAttackETower.Build();
+      println(tAttackETower.location);
+    }
+
     energyNetwork.useEnergy(towers);
 
     if (base != null)
@@ -579,6 +591,7 @@ if (energyNetwork.transmit) {
     }
     place();  
     towerRun();
+
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
     if (timer >= 20) {
       timer = 20;

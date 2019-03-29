@@ -140,7 +140,6 @@ class Game {
   }
 
   void run() {
-    background(255);
     changeState();
     switch (loc) {
     case -1: 
@@ -172,16 +171,17 @@ class Game {
       //this is the main game
       timer.run();
 
+      baseLevel.Update();
+      baseLevel.Draw();
+
+
       player.drawHotbar();
       //player stas
 
-
-      baseLevel.Update();
-      baseLevel.Draw();
       baseLevel.enemyRun();
 
       player.towerDamige(baseLevel.enemyArray.enemys);
-      player.towerAttack(baseLevel.enemyArray.enemys);
+      player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
       player.Run();
 
       escMenu.run();

@@ -1,5 +1,5 @@
- //<>// //<>// //<>// //<>//
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
 
@@ -9,6 +9,9 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   int currentLevel = 0;
   int emittersRemaning = 0;
+
+  int x;
+  int y;
 
   ArrayList<Emitter> emitters = new ArrayList<Emitter>();
 
@@ -43,125 +46,152 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
     emittersRemaning = emitters.size();
   }
 
+
+
   void fieldDraw(PVector[][] grid) 
   {   
-    // Begin loop for cols
+    voidLayer();
     for (int i = 0; i < cols; i++) {
-      // Begin loop for rows
       for (int j = 0; j < rows; j++) {
-        layerZeroDraw(i, j);
-        voidLayer(i, j, grid);
+        x = i*scale;
+        y = j*scale;
+
+
+        if (currentTerrain[i][j].z == -1 && frameCount % 2 == 0)
+        {
+        }
         stroke(0);
-        layerOneDraw(i, j, grid);
-        layerTowDraw(i, j, grid);
-        layerThreeDraw(i, j, grid);
-        layerFourDraw(i, j, grid);
-        layerFiveDraw(i, j, grid);
+
+
+        if (grid[i][j].z == 0)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerZeroDraw();
+        }
+        if (grid[i][j].z == 1)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerOneDraw();
+        }    
+        if (grid[i][j].z == 2)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerTowDraw();
+        }  
+        if (grid[i][j].z == 3)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerThreeDraw();
+        }  
+        if (grid[i][j].z == 4)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerFourDraw();
+        }        
+        if (grid[i][j].z == 5)
+        {
+
+          noStroke();
+          fill(255);
+          rect(x, y, scale, scale);
+          layerFiveDraw();
+        }
       }
     }
+    strokeWeight(0);
   }
 
-  void voidLayer(int i, int j, PVector[][] grid)
+  void voidLayer()
   {
-    if (grid[i][j].z == -1)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(0);
-      stroke(255);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(0);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(0, 0, cols * scale, rows * scale);
   }
 
-  void layerZeroDraw(int i, int j)
+  void layerZeroDraw()
   {
-    int x = i*scale;
-    int y = j*scale;
     fill(120, 58, 8);
     stroke(0);
     strokeWeight(0.5);
     rect(x, y, scale, scale);
   }
 
-  void layerOneDraw(int i, int j, PVector[][] grid)
+  void layerOneDraw()
   {
-    if (grid[i][j].z == 1)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(160, 75, 30);
-      stroke(0);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(160, 75, 30);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
   }
 
-  void layerTowDraw(int i, int j, PVector[][] grid)
+  void layerTowDraw()
   {
-    if (grid[i][j].z == 2)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(100);
-      stroke(0);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(100);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
   }
 
-  void layerThreeDraw(int i, int j, PVector[][] grid)
+  void layerThreeDraw()
   {
-    if (grid[i][j].z == 3)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(100, 70, 40);
-      stroke(0);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(100, 70, 40);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
   }
 
-  void layerFourDraw(int i, int j, PVector[][] grid)
+
+  void layerFourDraw()
   {
-    if (grid[i][j].z == 4)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(90, 60, 30);
-      stroke(0);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(90, 60, 30);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
   }
 
-  void layerFiveDraw(int i, int j, PVector[][] grid)
+
+  void layerFiveDraw()
   {
-    if (grid[i][j].z == 5)
-    {
-      int x = i*scale;
-      int y = j*scale;
-      fill(10);
-      stroke(0);
-      strokeWeight(0.5);
-      rect(x, y, scale, scale);
-    }
+    fill(10);
+    stroke(0);
+    strokeWeight(0.5);
+    rect(x, y, scale, scale);
   }
 
+
+  //denher æder fames
   void Draw()
   {
     fieldDraw(currentTerrain);
   }
+
   void Update()
   {
     if (emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
       game.player.energyNetwork.updateTerrain(currentTerrain);
+      background(255);
+      Draw();
     }
     //enemyArray.Update();
-    for (int i = 0; i < emitters.size(); ++i) {
+    for (int i = emitters.size() - 1; i >= 0; i--) {
       emitters.get(i).Update(enemyArray);
       if (emitters.get(i).isDead) {
         emitters.remove(i);
