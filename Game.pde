@@ -180,7 +180,7 @@ class Game {
 
       baseLevel.enemyRun();
 
-      player.towerDamige(baseLevel.enemyArray.enemys);
+      player.towerDead(baseLevel.enemyArray.enemys);
       player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
       player.Run();
 

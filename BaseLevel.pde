@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
@@ -190,14 +190,17 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       background(255);
       Draw();
     }
-    //enemyArray.Update();
-    for (int i = emitters.size() - 1; i >= 0; i--) {
-      emitters.get(i).Update(enemyArray);
-      if (emitters.get(i).isDead) {
-        emitters.remove(i);
+    if (frameCount % 2 == 0) {
+      //enemyArray.Update();
+      for (int i = emitters.size() - 1; i >= 0; i--) {
+        emitters.get(i).Update(enemyArray);
+        if (emitters.get(i).isDead) {
+          emitters.remove(i);
+        }
       }
+
+      enemyArray.Update();
     }
-    enemyArray.Update();
   }
 
   void enemyRun()

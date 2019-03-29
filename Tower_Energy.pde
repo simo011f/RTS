@@ -118,12 +118,7 @@ class TowerEnergy
   }
 
   void energyTowerToTower(Tower tower) { 
-<<<<<<< HEAD
-    println(tower.conected, frameCount);
-=======
     tower.conected = false;
-    println(baseConeced, inRangeTower(tower));
->>>>>>> master
     if (baseConeced && inRangeTower(tower)) {
       tower.conected=true; 
       stroke(255);

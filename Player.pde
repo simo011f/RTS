@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Player  
 {
 
@@ -90,14 +90,8 @@ class Player
       towerAttackETowers.add(new TowerAttackETowers());
       timer = 0; 
       picked = 3;
-<<<<<<< HEAD
-      placebleETowers = true;
-      towerpickedOnBar[2] = false;   
-      GO = true;
-=======
       placeble = true;
       towerpickedOnBar[2] = false;
->>>>>>> master
     }
 
     //tukis
@@ -506,15 +500,8 @@ class Player
         energyTowers.get(i).conected=false;
         energyTowers.get(i).baseConeced=false;
         energyTowers.remove(i);
-<<<<<<< HEAD
-        energyTower.towersConnected(towers, energyTowers, base);
-        for (Tower tower : towers) {
-          energyTower.energyTowerToTower(tower);
-=======
-
         for (Tower tower : towers) {
           tower.conected=false;
->>>>>>> master
         }
 
         energyNetwork.energyPruduktion(energyTowers);
@@ -537,7 +524,6 @@ class Player
   //kan ikke overskue at gøre feridg
   void towerTerrain(PVector[][]terrain)
   {
-<<<<<<< HEAD
     for (Tower tower : towers) {
       tower.terrainColision(terrain);
     }
@@ -545,8 +531,6 @@ class Player
 
   void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
   {
-=======
->>>>>>> master
     if (energyNetwork.transmit) {
       for (Tower tower : towers) {
         tower.attack(enemyArray);
