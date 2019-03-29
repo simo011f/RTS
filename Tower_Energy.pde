@@ -1,29 +1,29 @@
-class TowerEnergy 
-{
+class TowerEnergy {
   PVector location=new PVector(-100, -100);
-
+  PVector naborsLocation = new PVector();
   int leif = 2;
-
+  int ancetToBase;
   int vis;
 
   PVector range = new PVector();
+
   boolean conected=false;
   boolean baseConeced;
-  boolean coutedOnBase;
+
   boolean isDead = false;
 
-
-  void detection(ArrayList<TowerEnergy> energyTowers) {
-    for (TowerEnergy energyTower : energyTowers) {
-      if (energyTower == this)
-      {
-        continue;
-      }
-      energyTowersConnected(energyTower);
-    }
+  TowerEnergy() {
+    ancetToBase = 4;
   }
+
 
   boolean inRangeEnergyTower(TowerEnergy energyTower) {  
+    if (naborsLocation.mag()<location.mag()) { 
+      naborsLocation.set(energyTower.location);
+    }
+    if (naborsLocation.mag()>energyTower.location.mag()) {
+      naborsLocation.set(location);
+    }
     range = PVector.sub(energyTower.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -32,21 +32,16 @@ class TowerEnergy
     }
   }
 
-  void energyTowersConnected(TowerEnergy energyTower) { 
 
 
-    if (inRangeEnergyTower(energyTower)) {       
+  boolean inRangeTower(Tower tower) {  
 
-      conected=true;
-      stroke(255);
-      strokeWeight(2);
-      //line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+    range = PVector.sub(tower.location, naborsLocation);
+    if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
+      return true;
     }
-  }
 
-
-  boolean inRangeTower(Tower tower) {
-    range = PVector.sub(tower.location, location);
+    range = PVector.sub(tower.location, location); 
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
     } else {
@@ -54,18 +49,9 @@ class TowerEnergy
     }
   }
 
-  boolean inRangeTower(TowerEnergy energyTower) {
-    range = PVector.sub(energyTower.location, location);
-    if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
-  boolean inRangeTower(TowerBase base) {
-    if (base == null)
-    {
+  boolean inRangeBase(TowerBase base) {
+    if (base == null) {
       return false;
     }
     range = PVector.sub(base.location, location);
@@ -82,9 +68,13 @@ class TowerEnergy
 
     connectedToBase(base);
 
-    for (TowerEnergy energyTower : energyTowers)
-    {
-      energyTowerToEnergyTower(energyTower);
+    for (TowerEnergy energyTower : energyTowers) { 
+
+      if (energyTower==this) {
+        continue;
+      }
+
+      energyTowersConnected(energyTower);
     }
 
     for (Tower tower : towers) {
@@ -93,23 +83,13 @@ class TowerEnergy
     strokeWeight(0.5);
   }
 
-  void energyTowerToEnergyTower(TowerEnergy energyTower) {
-    if (energyTower == this) {
-      return;
-    }
-    if (inRangeTower(energyTower) && energyTower.baseConeced)
-    {
-      baseConeced = true;
-      stroke(255);
-      strokeWeight(2);
-      line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
-    }
-  }
+
+
 
   void connectedToBase(TowerBase base)
   {
-    if (inRangeTower(base))
-    {
+    if (inRangeBase(base)) {
+
       baseConeced = true;
       stroke(255);
       strokeWeight(2);
@@ -117,13 +97,30 @@ class TowerEnergy
     }
   }
 
+  void energyTowersConnected(TowerEnergy energyTower) {  
+    if (baseConeced) {  
+      conected=true;
+    }
+    if (energyTower.baseConeced && inRangeEnergyTower(energyTower)) {    
+      baseConeced=true;
+      conected=true;
+      ancetToBase=12;
+    }
+    if (inRangeEnergyTower(energyTower)) {    
+
+      conected=true;
+      stroke(15+(20*ancetToBase));
+
+      strokeWeight(2);
+      line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+    }
+  }
 
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
-    println(tower.conected, frameCount);
+    println(baseConeced, inRangeTower(tower));
     if (baseConeced && inRangeTower(tower)) {
       tower.conected=true; 
-      println(tower.conected,frameCount);
       stroke(255);
       strokeWeight(2);
       line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
@@ -131,30 +128,26 @@ class TowerEnergy
     }
   }
 
-  void enemyColition (Enemy[][] enemyArray)
-  {
-    for (int i = -1; i <= 1; i++)
-    {
+  void enemyColition (Enemy[][] enemyArray) {
+    for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if ((int)location.x + i < 0 || (int)location.x + i >= cols)
-        {
+        if ((int)location.x + i < 0 || (int)location.x + i >= cols) {
           continue;
         }
-        if ((int)location.y + j < 0 || (int)location.y + j >= cols)
-        {
+        if ((int)location.y + j < 0 || (int)location.y + j >= cols) {
           continue;
         }
-        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
-        {
+        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3) {
           leif--;
         }
       }
     }
-    if (leif <= 0)
-    {
+    if (leif <= 0) {
       isDead = true;
     }
   }
+
+
 
 
   void arearDraw() {   

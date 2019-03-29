@@ -1,4 +1,5 @@
 class Tower {  
+  //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
 
@@ -13,7 +14,7 @@ class Tower {
   int energyConsomstion;
 
   boolean conected = false;
-  boolean isDead = false;
+  boolean isDead = false;)
 
   int range = 20;
 
@@ -35,37 +36,38 @@ class Tower {
       return ;
     }
     leif += leifRegen;
-    if (leif >= maxLeif)
-    {
-      leif = maxLeif;
-    }
+    if (leif >= maxLeif) {
+      leif = maxLeif; 
+      underCunstruction=12;
+    }  
+
     if (conected) {
+
       weapon(enemyArray);
       detection(enemyArray);
     }
   }
-  
+
   void enemyColition (Enemy[][] enemyArray)
   {
     for (int i = -1; i <= 1; i++)
     {
       for (int j = -1; j <= 1; j++) {
-        if ((int)location.x + i < 0 || (int)location.x + i >= cols)
-        {
+        if ((int)location.x + i < 0 || (int)location.x + i >= cols) {
           continue;
         }
-        if ((int)location.y + j < 0 || (int)location.y + j >= cols)
-        {
+        if ((int)location.y + j < 0 || (int)location.y + j >= cols) {
           continue;
         }
-        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
-        {
+        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3) { 
+          underCunstruction=6;
           leif--;
         }
       }
     }
     if (leif <= 0)
     {
+      conected = false;
       isDead = true;
     }
   }

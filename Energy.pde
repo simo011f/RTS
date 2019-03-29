@@ -40,24 +40,20 @@ class Energy {
     int x = 0;
     int y = 0;
     for (TowerEnergy energyTower : energyTowers) {
-      if (!energyTower.baseConeced)
-      {
+      if (!energyTower.baseConeced)      {
         continue;
       }
       x = (int)energyTower.location.x;
       y = (int)energyTower.location.y;
       for (int i = -2; i <= 2; ++i) {
         for (int j = -2; j <= 2; ++j) {
-          if (x + i < 0 || x + i > cols)
-          {
+          if (x + i < 0 || x + i > cols)          {
             continue;
           }
-          if (y + j < 0 || y + j > cols)
-          {
+          if (y + j < 0 || y + j > cols)          {
             continue;
           }
-          if (terrain[x][y] != terrain[x + i][y + j] || terrain[x + i][y + j] == -1)
-          {
+          if (terrain[x][y] != terrain[x + i][y + j] || terrain[x + i][y + j] == -1)          {
             continue;
           }
           energyArera[x + i][y + j] = 1;

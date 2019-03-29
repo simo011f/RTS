@@ -39,8 +39,6 @@ class TowerAttackTerrtoriumShot extends Tower {
         enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength-=5;
       }
     }
-   
-  
   }
 
 
@@ -67,12 +65,15 @@ class TowerAttackTerrtoriumShot extends Tower {
   }
 
   void attack(Enemy[][] enemyArray) {
-    super.attack(enemyArray);
-    if (!isBuild()) { 
-      return ;
+    println(conected);
+    if (conected) {
+      super.attack(enemyArray);
+      if (!isBuild()) { 
+        return ;
+      }
+      weapon(enemyArray);
+      detection(enemyArray);
     }
-    weapon(enemyArray);
-    detection(enemyArray);
   }
   void Build() {  
 

@@ -66,13 +66,15 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
     return inRange;
   }
 
-  void attack(Enemy[][] enemyArray) {
-    super.attack(enemyArray);
-    if (!isBuild()) { 
-      return ;
+  void attack(Enemy[][] enemyArray) {    
+    if (conected) {
+      super.attack(enemyArray);
+      if (!isBuild()) { 
+        return ;
+      }
+      weapon(enemyArray);
+      detection(enemyArray);
     }
-    weapon(enemyArray);
-    detection(enemyArray);
   }
 
   void Build() {   
