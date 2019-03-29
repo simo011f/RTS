@@ -8,6 +8,7 @@ class TowerEnergy
 
   PVector range = new PVector();
 
+  //bog her
   boolean conected=false;
   boolean baseConeced;
 
