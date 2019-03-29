@@ -65,7 +65,7 @@ class TowerAttackTerrtoriumShot extends Tower {
   }
 
   void attack(Enemy[][] enemyArray) {
-    println(conected);
+
     if (conected) {
       super.attack(enemyArray);
       if (!isBuild()) { 

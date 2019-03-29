@@ -543,6 +543,7 @@ class Player
   }
 
   void towerRun() {
+    //tower attack enemy tower skal dræbe emitter
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
