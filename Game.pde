@@ -180,7 +180,8 @@ class Game {
       baseLevel.Draw();
       baseLevel.enemyRun();
 
-      player.towerDeteckt(baseLevel.enemyArray.enemys);
+      player.towerDamige(baseLevel.enemyArray.enemys);
+      player.towerAttack(baseLevel.enemyArray.enemys);
       player.Run();
 
       escMenu.run();

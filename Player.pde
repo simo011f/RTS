@@ -508,7 +508,7 @@ class Player
     }
   }
 
-  void towerDeteckt(Enemy[][] enemyArray) {
+  void towerDamige(Enemy[][] enemyArray) {
 
     for (int i = 0; i < energyTowers.size(); i++)
     {
@@ -537,8 +537,11 @@ class Player
         continue;
       }
     }
-  
-    if (energyNetwork.transmit) {
+  }
+
+  void towerAttack(Enemy[][] enemyArray)
+  {
+if (energyNetwork.transmit) {
       for (Tower tower : towers) {
         tower.attack(enemyArray);
       }
