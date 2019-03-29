@@ -1,23 +1,25 @@
 class Tower {  
+
   PVector location;
 
-
-  int life;
+  int leif = 2;
+  int maxLeif = 2;
+  int leifRegen = 0;
 
   //build timer
   int t=-2;
-
-  int underCunstructoin;
-
+  int underCunstruction;
+  int cunstructionEnergyConsomstion;
   int energyConsomstion;
 
   boolean conected = false;
+  boolean isDead = false;
 
   int range = 20;
-  
+
   Tower()
   {
-    location = new PVector(-10,-10);
+    location = new PVector(-10, -10);
   }
 
   void weapon(Enemy[][] enemyArray) {
@@ -32,11 +34,41 @@ class Tower {
     if (!isBuild()) { 
       return ;
     }
-    weapon(enemyArray);
-    detection(enemyArray);
+    leif += leifRegen;
+    if (leif >= maxLeif)
+    {
+      leif = maxLeif;
+    }
+    if (conected) {
+      weapon(enemyArray);
+      detection(enemyArray);
+    }
   }
-
-
+  
+  void enemyColition (Enemy[][] enemyArray)
+  {
+    for (int i = -1; i <= 1; i++)
+    {
+      for (int j = -1; j <= 1; j++) {
+        if ((int)location.x + i < 0 || (int)location.x + i >= cols)
+        {
+          continue;
+        }
+        if ((int)location.y + j < 0 || (int)location.y + j >= cols)
+        {
+          continue;
+        }
+        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
+        {
+          leif--;
+        }
+      }
+    }
+    if (leif <= 0)
+    {
+      isDead = true;
+    }
+  }
 
   void Build() {
     stroke(0);
@@ -62,12 +94,12 @@ class Tower {
     }
 
     if (t<=-1) {
-      underCunstructoin++;
+      underCunstruction++;
       t=11;
     }
 
-    if (underCunstructoin==11) {
-      underCunstructoin=12;
+    if (underCunstruction==11) {
+      underCunstruction=12;
       t=13;
     }
 
@@ -91,7 +123,6 @@ class Tower {
 
 
   void Run() {
-
 
     Build();
   }

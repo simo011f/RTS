@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Energy {
 
   int totalEnergy;
@@ -42,7 +42,7 @@ class Energy {
     for (TowerEnergy energyTower : energyTowers) {
       if (!energyTower.baseConeced)
       {
-        // continue;
+        continue;
       }
       x = (int)energyTower.location.x;
       y = (int)energyTower.location.y;
@@ -87,8 +87,6 @@ class Energy {
       return;
     }
     energyUsed = 0;
-    int x = 0;
-    int y = 0;
     for (Tower tower : towers) {
       if (!tower.conected)
       {
@@ -99,7 +97,7 @@ class Energy {
         energyUsed += tower.energyConsomstion;
       } else 
       {
-        energyUsed += tower.underCunstructoin;
+        energyUsed += tower.cunstructionEnergyConsomstion;
       }
     }
   }
@@ -142,7 +140,7 @@ class Energy {
 
   void Update()
   {
-    if (totalEnergy < energyUsed)
+    if (totalEnergy <= 0)
     {
       transmit = false;
       totalEnergy += energyGained;

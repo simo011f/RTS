@@ -9,7 +9,7 @@ void setup() {
   //size(1600, 900);
 
   fullScreen();
-  
+
   cols = width / scale;
   rows = height / scale - 6;
   game = new Game();
@@ -25,6 +25,7 @@ void draw() {
   }
 
   game.run();
+  println(frameRate);
 }
 
 void enemyUpdate()

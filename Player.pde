@@ -1,18 +1,18 @@
- //<>//
-class Player   //<>//
+//<>// //<>// //<>// //<>//
+class Player  
 {
 
   Energy energyNetwork;
 
   int timer;
-  int towernr; 
+  int towernr = 0; 
 
   //skal kigges på igen
   int eTowerNR;
 
   int [] towernrremeber = new int[5];
 
-  ArrayList<Tower> tower = new ArrayList<Tower>();
+  ArrayList<Tower> towers = new ArrayList<Tower>();
 
 
   TowerBase base;
@@ -52,9 +52,9 @@ class Player   //<>//
       towerpickedOnBar[0] = false;
     }
     if (towerpickedOnBar[0] && mousePressed) {   
-      towernr = towernr + 1;
+      towernr += 1;
 
-      tower.add(new TowerAttackTerrtoriumShot());
+      towers.add(new TowerAttackTerrtoriumShot());
       timer = 0; 
       picked = 1;
       placeble = true;
@@ -70,9 +70,9 @@ class Player   //<>//
       towerpickedOnBar[1] = false;
     }
     if (towerpickedOnBar[1] && mousePressed) {   
-      towernr = towernr + 1;
+      towernr += 1;
 
-      tower.add(new TowerAttackTerrtoriumBomb());
+      towers.add(new TowerAttackTerrtoriumBomb());
       timer = 0; 
       picked = 2;
       placeble = true;
@@ -87,7 +87,7 @@ class Player   //<>//
       towerpickedOnBar[2]=false;
     }
     if (towerpickedOnBar[2] && mousePressed) {   
-      towernr = towernr + 1;
+      towernr += 1;
 
       //tower.add(new TowerAttackETowers());
       timer = 0; 
@@ -214,7 +214,7 @@ class Player   //<>//
         if (mouseY>height-80) {
           mouseY = height-80;
         }
-        base.location.set(game.squareFeld.grid[mouseX/10][mouseY/10]);
+        base.location.set(new PVector(mouseX/scale, mouseY/scale));
       }
       towerPicked=false; 
       basePicked = true;
@@ -243,7 +243,7 @@ class Player   //<>//
     if (mouseY>height-80) {
       mouseY = height-80;
     } 
-    tower.get(i).location.set(game.squareFeld.grid[mouseX/10][mouseY/10]);
+    towers.get(i).location.set(game.squareFeld.grid[mouseX/10][mouseY/10]);
   }
 
 
@@ -444,7 +444,7 @@ class Player   //<>//
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      tower.get(towernr - 1).location.set(loc);
+      towers.get(towernr - 1).location.set(loc);
       picked = 0;
       placeble = false;
       timer = 0;
@@ -466,11 +466,12 @@ class Player   //<>//
       }
 
 
-      int x = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].x);
-      int y = int(game.squareFeld.grid[(mouseX/10)][(mouseY/10)].y);
+      int x = (int)mouseX/scale;
+      int y = (int)mouseY/scale;
       PVector loc = new PVector(x, y);
 
       base.location.set(loc);  
+
 
 
       timer=0;      
@@ -504,34 +505,60 @@ class Player   //<>//
       timer=0;      
       picked = 0;
       placebleEnergy = false;
-
-      energyNetwork.energyPruduktion(energyTowers);
-      }
+    }
   }
 
-  void towerDeteckt(Enemy[][] enemyArray) { 
-    for (int i = 0; i < tower.size(); i++) {
-      Tower t = tower.get(i);
-      t.attack(enemyArray);
+  void towerDeteckt(Enemy[][] enemyArray) {
+
+    for (int i = 0; i < energyTowers.size(); i++)
+    {
+      TowerEnergy energyTower = energyTowers.get(i); 
+      energyTower.enemyColition(enemyArray);
+      if (energyTower.isDead)
+      {
+        energyTowers.remove(i);
+        energyTower.towersConnected(towers, energyTowers, base);
+        for(Tower tower: towers){
+        energyTower.energyTowerToTower(tower);
+        }
+        energyNetwork.energyPruduktion(energyTowers);
+        eTowerNR--;
+        continue;
+      }
+    }
+
+    for (int i = 0; i < towers.size(); i++) {
+      Tower tower = towers.get(i); 
+      tower.enemyColition(enemyArray);
+      if (tower.isDead)
+      {
+        towers.remove(tower);
+        towernr--;
+        continue;
+      }
+    }
+  
+    if (energyNetwork.transmit) {
+      for (Tower tower : towers) {
+        tower.attack(enemyArray);
+      }
     }
   }
 
   void towerRun() {
 
-
-
-
-    for (int i = 0; i < energyTowers.size(); i++) {
-      TowerEnergy e = energyTowers.get(i);
-      e.run(); 
-      e.detection(energyTowers);
-      e.towersConnected(tower);
+    for (TowerEnergy energyTower : energyTowers) {
+      energyTower.run(); 
+      energyTower.detection(energyTowers);
+      energyTower.towersConnected(towers, energyTowers, base);
     }
+    energyNetwork.energyPruduktion(energyTowers);
 
-    for (int i = 0; i < tower.size(); i++) {
-      Tower t = tower.get(i);
-      t.Run();
+    for (int i = 0; i < towers.size(); i++) {
+      Tower tower = towers.get(i);
+      tower.Run();
     }    
+    energyNetwork.useEnergy(towers);
 
     if (base != null)
     {
@@ -552,9 +579,6 @@ class Player   //<>//
     //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
     if (timer >= 20) {
       timer = 20;
-    }
-    if(energyTowers.size() > 3) {
-      println("hej"); //<>// //<>//
     }
   }
 }

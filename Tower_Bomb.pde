@@ -1,11 +1,6 @@
-class TowerAttackTerrtoriumBomb extends Tower  //<>//
+class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
 {  
-
-  int life;
-
-
   int energybuild = 40;
-  int energyConsomstion = 3;
   int cooldown;
   int range = 20;
   int strongest = 0;    
@@ -13,6 +8,15 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>//
   boolean shoot = false;
   //boolean conected=false;
 
+  TowerAttackTerrtoriumBomb()
+  {
+    super();
+    underCunstruction = 0;
+    cunstructionEnergyConsomstion = 20;
+    energyConsomstion = 25;
+    leifRegen = 1;
+    maxLeif = 25;
+  }
 
 
   void weapon(Enemy[][] enemyArray) {
@@ -22,12 +26,12 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>//
       shoot=true;
     } 
     cooldown++;
-    println(shoot);
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
       if (cooldown >= 5 && shoot) { 
         stroke(255);
         strokeWeight(2);
         line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
+        strokeWeight(0.5);
         noStroke();
 
         cooldown = 0;
@@ -72,7 +76,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>//
   }
 
   void Build() {   
-    fill(15+(20*underCunstructoin), 0, 0);
+    fill(15+(20*underCunstruction), 0, 0);
     super.Build();
   }  
   void Run() {
