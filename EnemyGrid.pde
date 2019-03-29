@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
 
   boolean spreadNorth = false;
   boolean spreadSouth = false;
@@ -245,7 +245,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
       }
       if (updated[i - 1][j] == 2)
       {
-        spreadWest = false; //<>//
+        spreadWest = false; //<>// //<>//
       }
     }
 
@@ -287,8 +287,8 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
   } 
 
   void findCenter(int i, int j)
-  { //<>//
-    //find centeret i hvert kloster //<>//
+  { //<>// //<>//
+    //find centeret i hvert kloster //<>// //<>//
     int x = i;
     int y = j;
     int checkingX = 0;
@@ -298,9 +298,8 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>//
 
     while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     {
-      x = (int)strongest(x, y).x; //<>// //<>// //<>//
+      x = (int)strongest(x, y).x; //<>// //<>// //<>// //<>//
       y = (int)strongest(x, y).y;
-      println(x, y);
     }
 
     thisCluster.add(new PVector(x, y));

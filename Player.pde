@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Player  
 {
 
@@ -90,7 +90,7 @@ class Player
       towerAttackETowers.add(new TowerAttackETowers());
       timer = 0; 
       picked = 3;
-      placeble = true;
+      placebleETowers = true;
       towerpickedOnBar[2] = false;
     }
 
@@ -135,11 +135,11 @@ class Player
   }
 
   void drawHotbar() {
-    
+
     noStroke();
     fill(255);
     rect(0, height-60, width, height);
-    
+
     PVector location=new PVector(width/2, height-45);
 
     fill(150);
@@ -246,7 +246,7 @@ class Player
 
 
   // vise range og energyrange
-  // skrives om til at virke med kun en arrayliste
+  // skrives om hvor der er underfunktioner
   void highLight() { 
 
     PVector location;
@@ -519,6 +519,14 @@ class Player
         continue;
       }
     }
+    for (int i = 0; i < towerAttackETowers.size(); i++) {
+      TowerAttackETowers tower = towerAttackETowers.get(i); 
+      tower.enemyColition(enemyArray);
+      if (tower.isDead) {
+        towers.remove(tower);
+        continue;
+      }
+    }
   }
 
   //kan ikke overskue at gøre feridg
@@ -560,9 +568,10 @@ class Player
     for (int i = 0; i < towerAttackETowers.size(); i++)
     {
       TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
-      tAttackETower.Build();
+      tAttackETower.Run();
       println(tAttackETower.location);
     }
+    println(towerAttackETowers.size());
 
     energyNetwork.useEnergy(towers);
 
@@ -583,7 +592,6 @@ class Player
     place();  
     towerRun();
 
-    //println(shotTower.size(), towernr[0], placeble[1], towerpickedOnBar[1], picked, width/2+215, mouseX);
     if (timer >= 20) {
       timer = 20;
     }

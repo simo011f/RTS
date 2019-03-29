@@ -1,7 +1,5 @@
 class TowerAttackETowers  extends Tower
 {
- PVector location=new PVector(-100, -100);
-
   int energybuild = 40;
   int cooldown;
 
