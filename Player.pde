@@ -30,7 +30,6 @@ class Player
   boolean placebleBase;
   boolean placebleETowers;
 
-  boolean GO = false;
 
   boolean isMouseNotPressedGat = true;
   boolean isMouseNotPressedPlace = true;
@@ -60,8 +59,7 @@ class Player
       timer = 0; 
       picked = 1;
       placeble = true;
-      towerpickedOnBar[0] = false; 
-      GO = true;
+      towerpickedOnBar[0] = false;
     }
 
 
@@ -78,8 +76,7 @@ class Player
       timer = 0; 
       picked = 2;
       placeble = true;
-      towerpickedOnBar[1] = false;   
-      GO = true;
+      towerpickedOnBar[1] = false;
     }
 
     //gul
@@ -93,9 +90,14 @@ class Player
       towerAttackETowers.add(new TowerAttackETowers());
       timer = 0; 
       picked = 3;
+<<<<<<< HEAD
       placebleETowers = true;
       towerpickedOnBar[2] = false;   
       GO = true;
+=======
+      placeble = true;
+      towerpickedOnBar[2] = false;
+>>>>>>> master
     }
 
     //tukis
@@ -109,8 +111,7 @@ class Player
       timer=0; 
       picked=4;
       placebleBase = true;
-      towerpickedOnBar[3]=false; 
-      GO = true;
+      towerpickedOnBar[3]=false;
     }
 
     //grøn
@@ -127,8 +128,7 @@ class Player
       picked=5;
       placebleEnergy=true;
       energyTowers.get(eTowerNR - 1).vis = 0;
-      towerpickedOnBar[4]=false; 
-      GO = true;
+      towerpickedOnBar[4]=false;
     }
 
     if (mousePressed && mouseY >= height - 40)
@@ -195,8 +195,7 @@ class Player
     if (towerPicked && mousePressed && isMouseNotPressedGat)
     {
       newPlace(chosenTower);
-      towerPicked=false; 
-      GO = true;
+      towerPicked=false;
     }
 
     if (mouseX >= base.location.x && mouseX <= base.location.x+10 && mouseY >= base.location.y && mouseY <= base.location.y+10) {
@@ -224,7 +223,6 @@ class Player
       }
       towerPicked=false; 
       basePicked = true;
-      GO = true;
     }
     if (mousePressed && mouseY >= height - 40)
     { 
@@ -499,19 +497,26 @@ class Player
     }
   }
 
-  void towerDamige(Enemy[][] enemyArray) {
-
-    for (int i = 0; i < energyTowers.size(); i++)
-    {
+  void towerDead(Enemy[][] enemyArray) {
+    for (int i = 0; i < energyTowers.size(); i++) {
       TowerEnergy energyTower = energyTowers.get(i); 
       energyTower.enemyColition(enemyArray);
-      if (energyTower.isDead)
-      {
+      if (energyTower.isDead) { 
+        energyTowers.get(i).ancetToBase=4;
+        energyTowers.get(i).conected=false;
+        energyTowers.get(i).baseConeced=false;
         energyTowers.remove(i);
+<<<<<<< HEAD
         energyTower.towersConnected(towers, energyTowers, base);
         for (Tower tower : towers) {
           energyTower.energyTowerToTower(tower);
+=======
+
+        for (Tower tower : towers) {
+          tower.conected=false;
+>>>>>>> master
         }
+
         energyNetwork.energyPruduktion(energyTowers);
         eTowerNR--;
         continue;
@@ -521,8 +526,7 @@ class Player
     for (int i = 0; i < towers.size(); i++) {
       Tower tower = towers.get(i); 
       tower.enemyColition(enemyArray);
-      if (tower.isDead)
-      {
+      if (tower.isDead) {
         towers.remove(tower);
         towernr--;
         continue;
@@ -533,6 +537,7 @@ class Player
   //kan ikke overskue at gøre feridg
   void towerTerrain(PVector[][]terrain)
   {
+<<<<<<< HEAD
     for (Tower tower : towers) {
       tower.terrainColision(terrain);
     }
@@ -540,6 +545,8 @@ class Player
 
   void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
   {
+=======
+>>>>>>> master
     if (energyNetwork.transmit) {
       for (Tower tower : towers) {
         tower.attack(enemyArray);
@@ -555,7 +562,7 @@ class Player
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
-      energyTower.detection(energyTowers);
+
       energyTower.towersConnected(towers, energyTowers, base);
     }
     energyNetwork.energyPruduktion(energyTowers);

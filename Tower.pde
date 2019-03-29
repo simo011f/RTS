@@ -1,4 +1,5 @@
 class Tower {  
+  //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
 
@@ -35,11 +36,13 @@ class Tower {
       return ;
     }
     leif += leifRegen;
-    if (leif >= maxLeif)
-    {
-      leif = maxLeif;
-    }
+    if (leif >= maxLeif) {
+      leif = maxLeif; 
+      underCunstruction=12;
+    }  
+
     if (conected) {
+
       weapon(enemyArray);
       detection(enemyArray);
     }
@@ -66,6 +69,7 @@ class Tower {
     }
     if (leif <= 0)
     {
+      conected = false;
       isDead = true;
     }
   }
