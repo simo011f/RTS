@@ -8,7 +8,8 @@ class TowerEnergy
 
   PVector range = new PVector();
 
-  boolean conected=false;
+  //bog her
+  boolean conected;
   boolean baseConeced;
 
   boolean isDead = false;
@@ -19,8 +20,11 @@ class TowerEnergy
 
 
   boolean inRangeEnergyTower(TowerEnergy energyTower) {  
+
     if (naborsLocation.mag()<location.mag()) { 
       naborsLocation.set(energyTower.location);
+    } else { 
+      naborsLocation.set(location);
     }
     if (naborsLocation.mag()>energyTower.location.mag()) {
       naborsLocation.set(location);
@@ -36,13 +40,7 @@ class TowerEnergy
 
 
   boolean inRangeTower(Tower tower) {  
-
     range = PVector.sub(tower.location, naborsLocation);
-    if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
-      return true;
-    }
-
-    range = PVector.sub(tower.location, location); 
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
     } else {
@@ -51,10 +49,13 @@ class TowerEnergy
   }
 
 
-  boolean inRangeBase(TowerBase base) {
+  boolean inRangeBase(TowerBase base) { 
+
+
     if (base == null) {
       return false;
-    }
+    } 
+    println(naborsLocation.mag(), location.mag(), naborsLocation.mag()<location.mag(), base.location, location );
     range = PVector.sub(base.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -73,7 +74,8 @@ class TowerEnergy
       energyTowersConnected(energyTower);
     }
 
-    for (Tower tower : towers) {
+    for (Tower tower : towers) { 
+
       energyTowerToTower(tower);
     }
     strokeWeight(0.5);
@@ -96,6 +98,7 @@ class TowerEnergy
   void energyTowersConnected(TowerEnergy energyTower) {  
 
     if (baseConeced) {  
+   
       conected=true;
     }
     if (energyTower.baseConeced && inRangeEnergyTower(energyTower)) {    
