@@ -2,13 +2,15 @@
 int scale = 10;
 int cols;
 int rows;
-
+PImage voidImg;
 Game game;
+
+
 
 void setup() {
   //size(1600, 900);
-
   fullScreen();
+  spriteLoad();
 
   cols = width / scale;
   rows = height / scale - 6;
@@ -31,6 +33,11 @@ void draw() {
 void enemyUpdate()
 {
   game.baseLevel.enemyArray.Update();
+}
+
+void spriteLoad()
+{
+  voidImg = loadImage("voidImg.png");
 }
 
 boolean[] keys = new boolean[11];

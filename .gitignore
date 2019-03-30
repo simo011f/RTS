@@ -2,3 +2,4 @@
 out/source/RTS.java
 *.autosave
 out/
+*.class

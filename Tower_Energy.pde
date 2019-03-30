@@ -70,11 +70,6 @@ class TowerEnergy
     connectedToBase(base);
 
     for (TowerEnergy energyTower : energyTowers) { 
-
-      if (energyTower==this) {
-        continue;
-      }
-
       energyTowersConnected(energyTower);
     }
 
@@ -99,6 +94,7 @@ class TowerEnergy
   }
 
   void energyTowersConnected(TowerEnergy energyTower) {  
+
     if (baseConeced) {  
       conected=true;
     }
