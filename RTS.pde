@@ -2,7 +2,12 @@
 int scale = 10;
 int cols;
 int rows;
+
 PImage voidImg;
+PImage emitterImg;
+PImage baseImg;
+PImage bombTowerImg;
+
 Game game;
 
 
@@ -38,6 +43,9 @@ void enemyUpdate()
 void spriteLoad()
 {
   voidImg = loadImage("voidImg.png");
+  emitterImg = loadImage("EmitterSprite.png");
+  baseImg = loadImage("BaseSprite.png");
+  bombTowerImg = loadImage("BombTower.png");
 }
 
 boolean[] keys = new boolean[11];

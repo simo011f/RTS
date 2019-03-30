@@ -34,7 +34,7 @@ class Emitter //<>//
   {
     fill(200, 200, 25, 150);
     stroke(200, 100, 0);
-    rect(((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
+    image(emitterImg,((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
   }
 
   void Update(EnemyGrid enemys) 
