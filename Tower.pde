@@ -10,6 +10,7 @@ class Tower {
   //build timer
   int t=-2;
   int underCunstruction;
+  int cunstructionTime;
   int cunstructionEnergyConsomstion;
   int energyConsomstion;
 
@@ -47,17 +48,17 @@ class Tower {
       detection(enemyArray);
     }
   }
-  
+
   void enemyColition (Enemy[][] enemyArray)
   {
     for (int i = -1; i <= 1; i++)
     {
       for (int j = -1; j <= 1; j++) {
-        if ((int)location.x + i < 0 || (int)location.x + i >= cols)
+        if ((int)location.x + i < 0 || (int)location.x + i > cols)
         {
           continue;
         }
-        if ((int)location.y + j < 0 || (int)location.y + j >= cols)
+        if ((int)location.y + j < 0 || (int)location.y + j > cols)
         {
           continue;
         }
@@ -81,7 +82,7 @@ class Tower {
 
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
-        if(terrain[x][y].z != terrain[x + i][y + j].z)
+        if (terrain[x][y].z != terrain[x + i][y + j].z)
         {
           return false;
         }
@@ -109,43 +110,36 @@ class Tower {
       t=11;
     }
 
-    if (t<=11&&t>=-1) { 
+    if (t<=cunstructionTime&&t>=0) { 
       t--;
     }
 
-    if (t<=-1) {
+    if (t<=0) {
       underCunstruction++;
-      t=11;
+      t=cunstructionTime;
     }
 
     if (underCunstruction==11) {
       underCunstruction=12;
       t=13;
     }
-
-    if (t==13) { 
-
-
-      //game.energy.energyUsed = game.energy.energyUsed+energybuild-energyConsomstion; 
-      t=14;
-    }
   }
 
 
 
   boolean isBuild () { 
-    if (t==14) {
+    if (t==13) {
       return true;
     } else {
       return false;
     }
   }
-  
+
   void move(PVector newLoc)
   {
     PVector newLocation = newLoc;
-    
-    
+
+
     location = newLocation;
   }
 

@@ -50,7 +50,7 @@ void spriteLoad()
 
 void mouseClicked()
 {
-  game.player.towerMove();
+  //game.player.towerMove();
 }
 
 boolean[] keys = new boolean[11];
