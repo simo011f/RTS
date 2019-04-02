@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Player  
 {
 
@@ -9,6 +9,7 @@ class Player
 
   //skal kigges på igen
   int eTowerNR;
+  int NRInHand = -1;
 
   int [] towernrremeber = new int[5];
 
@@ -22,7 +23,7 @@ class Player
   boolean[] towerpickedOnBar = new boolean[5];    
   boolean towerPicked = false; 
   boolean basePicked = false;
-  boolean towerSelected = false;
+  boolean towerInHand = false;
 
 
   int picked;
@@ -33,7 +34,6 @@ class Player
   boolean placebleETowers;
 
 
-  boolean isMouseNotPressedGat = true;
   boolean isMouseNotPressedPlace = true;
   boolean isMouseNotPressedHotBar = true;
 
@@ -61,6 +61,7 @@ class Player
       timer = 0; 
       picked = 1;
       placeble = true;
+      towerInHand = true;
       towerpickedOnBar[0] = false;
     }
 
@@ -78,6 +79,7 @@ class Player
       timer = 0; 
       picked = 2;
       placeble = true;
+      towerInHand = true;
       towerpickedOnBar[1] = false;
     }
 
@@ -93,6 +95,7 @@ class Player
       timer = 0; 
       picked = 3;
       placebleETowers = true;
+      towerInHand = true;
       towerpickedOnBar[2] = false;
     }
 
@@ -107,6 +110,7 @@ class Player
       timer=0; 
       picked=4;
       placebleBase = true;
+      towerInHand = true;
       towerpickedOnBar[3]=false;
     }
 
@@ -123,6 +127,7 @@ class Player
       timer=0; 
       picked=5;
       placebleEnergy=true;
+      towerInHand = true;
       energyTowers.get(eTowerNR - 1).vis = 0;
       towerpickedOnBar[4]=false;
     }
@@ -181,68 +186,10 @@ class Player
     energyNetwork.energyUI();
   }
 
-  //nyt navn
-  void gat() {
-
-    if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY < height - 60 && isMouseNotPressedGat) {
-      towerPicked = false;
-    }
-
-    if (towerPicked && mousePressed && isMouseNotPressedGat)
-    {
-      newPlace(chosenTower);
-      towerPicked=false;
-    }
-
-    if (mouseX >= base.location.x && mouseX <= base.location.x+10 && mouseY >= base.location.y && mouseY <= base.location.y+10) {
-      basePicked = true;
-      towerPicked = true;
-    }
-
-    if (towerPicked && mousePressed && isMouseNotPressedGat)
-    {
-      if (mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
-        if (mouseX>width-20) {
-          mouseX = width-20;
-        } 
-        if (mouseX<10) {
-          mouseX = 10;
-        } 
-        if (mouseY<10) {
-          mouseY = 10;
-        } 
-        if (mouseY>height-80) {
-          mouseY = height-80;
-        }
-        base.location.set(new PVector(mouseX/scale, mouseY/scale));
-      }
-      towerPicked=false; 
-      basePicked = true;
-    }
-    if (mousePressed && mouseY >= height - 40)
-    { 
-      isMouseNotPressedGat = false;
-    } else
-    {
-      isMouseNotPressedGat = true;
-    }
-  }
-
   void newPlace(int i)
   {
-    if (mouseX>width-20) {
-      mouseX = width-20;
-    } 
-    if (mouseX<10) {
-      mouseX = 10;
-    } 
-    if (mouseY<10) {
-      mouseY = 10;
-    } 
-    if (mouseY>height-80) {
-      mouseY = height-80;
-    } 
+    restrainMouse();
+
     towers.get(i).location.set(game.squareFeld.grid[mouseX/10][mouseY/10]);
   }
 
@@ -256,18 +203,7 @@ class Player
     location = new PVector(mouseX / scale, mouseY / scale);
 
     if (picked==1) {
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+      restrainMouse();
 
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
@@ -284,18 +220,7 @@ class Player
     } 
 
     if (picked==2) {
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+      restrainMouse();
 
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
@@ -313,18 +238,7 @@ class Player
 
     //TowerAttackEnemyTower
     if (picked==3) {
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+      restrainMouse();
 
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
@@ -341,18 +255,7 @@ class Player
     }
 
     if (picked==4) {
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+      restrainMouse();
 
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
@@ -363,18 +266,7 @@ class Player
     }    
 
     if (picked==5) {
-      if (mouseX>width-40) {
-        mouseX = width-40;
-      } 
-      if (mouseX<30) {
-        mouseX = 30;
-      } 
-      if (mouseY<30) {
-        mouseY = 30;
-      } 
-      if (mouseY>height-100) {
-        mouseY = height-100;
-      }
+      restrainMouse();
 
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
@@ -392,63 +284,38 @@ class Player
   void place() {     
 
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+
+      restrainMouse();
+
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
       towers.get(towers.size() - 1).location.set(loc);
       picked = 0;
+      towerInHand = false;
+
       placeble = false;
       timer = 0;
     }  
 
     if (placebleETowers && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+
+      restrainMouse();
+
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
       towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc);
       picked = 0;
+      towerInHand = false;
+
       placebleETowers = false;
       timer = 0;
     } 
 
     if (placebleBase  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
 
-      if (mouseX>width-20) {
-        mouseX = width-20;
-      } 
-      if (mouseX<10) {
-        mouseX = 10;
-      } 
-      if (mouseY<10) {
-        mouseY = 10;
-      } 
-      if (mouseY>height-80) {
-        mouseY = height-80;
-      }
+      restrainMouse();
 
 
       int x = (int)mouseX/scale;
@@ -461,23 +328,14 @@ class Player
 
       timer=0;      
       picked = 0;
+      towerInHand = false;
+
       placebleBase = false;
     }
 
     if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
 
-      if (mouseX>width-40) {
-        mouseX = width-40;
-      } 
-      if (mouseX<30) {
-        mouseX = 30;
-      } 
-      if (mouseY<30) {
-        mouseY = 30;
-      } 
-      if (mouseY>height-100) {
-        mouseY = height-100;
-      }
+      restrainMouse();
 
       int x = mouseX/10;
       int y = mouseY/10;
@@ -489,7 +347,24 @@ class Player
 
       timer=0;      
       picked = 0;
+      towerInHand = false;
+
       placebleEnergy = false;
+    }
+  }
+  void restrainMouse()
+  {
+    if (mouseX>width-40) {
+      mouseX = width-40;
+    } 
+    if (mouseX<30) {
+      mouseX = 30;
+    } 
+    if (mouseY<30) {
+      mouseY = 30;
+    } 
+    if (mouseY>height-100) {
+      mouseY = height-100;
     }
   }
 
@@ -551,38 +426,49 @@ class Player
       }
     }
   }
-  
-  
-// hej 
+
+
+  // hej 
   void towerMove()
   {
-    if(mouseY > rows * scale)
-  {
-    return;
-  }
-    
+    if (mouseY > rows * scale)
+    {
+      return;
+    }
     PVector newLocation = new PVector(mouseX/scale, mouseY/scale);
 
-    for (Tower tower : towers)
+    for (int i = 0; i < towers.size(); i++)
     {
-      if (towerSelected) {
-        tower.move(newLocation);
-        towerSelected = false;
-      }
-      if (towerSelect(tower.location, newLocation))
-      {
+      Tower tower = towers.get(i);
+      if (mouseOverTower(tower.location, newLocation) && !towerInHand && tower.isBuild()) {
+        NRInHand = i;
+        towerInHand = true;
+        return;
       }
     }
+
+    if (towerInHand && NRInHand != -1) {
+
+      towers.get(NRInHand).updateNewLocation(newLocation);
+      towers.get(NRInHand).isMoving = true;
+      NRInHand = -1;
+      towerInHand = false;
+      return;
+    }
+    NRInHand = -1;
+    towerInHand = false;
   }
 
-  boolean towerSelect(PVector towerLocatino, PVector mouseLocaton)
+
+  boolean mouseOverTower(PVector towerLocatino, PVector mouseLocaton)
   {
-    if (towerLocatino.x == mouseLocaton.x && towerLocatino.y == mouseLocaton.y) {
-      towerSelected = true;
-      println("hej");
-      return true;
+    for (int i = -1; i <= 1; i++) {
+      for (int j = -1; j <= 1; j++) {
+        if (towerLocatino.x + i == mouseLocaton.x && towerLocatino.y + j == mouseLocaton.y) {
+          return true;
+        }
+      }
     }
-    towerSelected = false;
     return false;
   }
 
@@ -595,9 +481,12 @@ class Player
       energyTower.towersConnected(towers, energyTowers, base);
     }
     energyNetwork.energyPruduktion(energyTowers);
-
     for (int i = 0; i < towers.size(); i++) {
       Tower tower = towers.get(i);
+      stroke(0);
+      if (i == NRInHand) {
+        stroke(255);
+      }
       tower.Run();
     }    
 
@@ -606,10 +495,7 @@ class Player
     {
       TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
       tAttackETower.Run();
-      println(tAttackETower.location);
     }
-    println(towerAttackETowers.size());
-
     energyNetwork.useEnergy(towers);
 
     if (base != null)
@@ -619,17 +505,13 @@ class Player
   }
 
   void Run() {
-
     energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   
     if (keys[0]) {
-      gat();
     }
     place();  
     towerRun();
-    towerMove();
-
     if (timer >= 20) {
       timer = 20;
     }

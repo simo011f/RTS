@@ -81,9 +81,5 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
     fill(15+(20*underCunstruction), 0, 0);
     super.Build();
   }  
-  void Run() {
 
-
-    Build();
-  }
 }

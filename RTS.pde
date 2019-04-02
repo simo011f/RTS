@@ -10,7 +10,7 @@ PImage bombTowerImg;
 
 Game game;
 
-
+//conding cahllenge doppelt pendul baggurnd / terrain ved hjelp canvis
 
 void setup() {
   //size(1600, 900);

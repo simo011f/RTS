@@ -55,7 +55,6 @@ class TowerEnergy
     if (base == null) {
       return false;
     } 
-    println(naborsLocation.mag(), location.mag(), naborsLocation.mag()<location.mag(), base.location, location );
     range = PVector.sub(base.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
