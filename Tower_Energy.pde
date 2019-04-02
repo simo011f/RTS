@@ -3,19 +3,19 @@ class TowerEnergy
   PVector location=new PVector(-100, -100);
   PVector naborsLocation = new PVector();
   int leif = 2;
-  int ancetToBase;
+  int anchoredToBase;
   int vis;
 
   PVector range = new PVector();
 
   //bog her
   boolean conected;
-  boolean baseConeced;
+  boolean baseConected;
 
   boolean isDead = false;
 
   TowerEnergy() {
-    ancetToBase = 4;
+    anchoredToBase = 4;
   }
 
 
@@ -26,10 +26,12 @@ class TowerEnergy
     } else { 
       naborsLocation.set(location);
     }
+
     if (naborsLocation.mag()>energyTower.location.mag()) {
       naborsLocation.set(location);
     }
     range = PVector.sub(energyTower.location, location);
+
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
     } else {
@@ -47,6 +49,14 @@ class TowerEnergy
       return false;
     }
   }
+  boolean inRangeAETower(TowerAttackETowers attackEmitterTower) {  
+    range = PVector.sub(attackEmitterTower.location, naborsLocation);
+    if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
   boolean inRangeBase(TowerBase base) { 
@@ -55,7 +65,7 @@ class TowerEnergy
     if (base == null) {
       return false;
     } 
-    println(naborsLocation.mag(), location.mag(), naborsLocation.mag()<location.mag(), base.location, location );
+
     range = PVector.sub(base.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -64,14 +74,16 @@ class TowerEnergy
     }
   }
 
-  void towersConnected(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base) {
+  void towersConnected(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackETowers> towerAttackETowers) {
 
-    baseConeced = false;
 
     connectedToBase(base);
 
     for (TowerEnergy energyTower : energyTowers) { 
       energyTowersConnected(energyTower);
+    }
+    for (TowerAttackETowers attackEmitterTower : towerAttackETowers) { 
+      AttackEmitterConnected(attackEmitterTower);
     }
 
     for (Tower tower : towers) { 
@@ -84,41 +96,47 @@ class TowerEnergy
 
 
 
-  void connectedToBase(TowerBase base)
-  {
+  void connectedToBase(TowerBase base) {
     if (inRangeBase(base)) {
-
-      baseConeced = true;
       stroke(255);
       strokeWeight(2);
       line(base.location.x*scale+5, base.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
-
-  void energyTowersConnected(TowerEnergy energyTower) {  
-
-    if (baseConeced) {  
-   
-      conected=true;
+  void AttackEmitterConnected(TowerAttackETowers attackEmitterTower) { 
+    attackEmitterTower.conected = false;
+    if (baseConected && inRangeAETower(attackEmitterTower)) {
+      attackEmitterTower.conected=true; 
+      stroke(255);
+      strokeWeight(2);
+      line(attackEmitterTower.location.x*scale+5, attackEmitterTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+      return;
     }
-    if (energyTower.baseConeced && inRangeEnergyTower(energyTower)) {    
-      baseConeced=true;
-      conected=true;
-      ancetToBase=12;
-    }
-    if (inRangeEnergyTower(energyTower)) {    
+  }
+  //her
+  void energyTowersConnected(TowerEnergy energyTower) {    
 
-      conected=true;
-      stroke(15+(20*ancetToBase));
+    if (inRangeEnergyTower(energyTower)) { 
+      if (energyTower.conected) 
+      {
+        stroke(255);
+        strokeWeight(2);
+        line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+        conected = true;
+      }
+    }   
 
+    if (inRangeEnergyTower(energyTower)&&!conected) {
+      stroke(15+(20*anchoredToBase));
       strokeWeight(2);
       line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
 
+
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
-    if (baseConeced && inRangeTower(tower)) {
+    if (conected && inRangeTower(tower)) {
       tower.conected=true; 
       stroke(255);
       strokeWeight(2);
