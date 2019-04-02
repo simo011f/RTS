@@ -83,7 +83,6 @@ class Player
       placeble = true;
       towerInHand = true;
       towerpickedOnBar[1] = false;
-      exit();
     }
 
     //gul

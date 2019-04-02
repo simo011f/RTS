@@ -185,13 +185,17 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void Update()
   {
-    if (emitters.size() == 0 || currentLevel == 0) {
+    //viktury
+    if(currentLevel >= 25){println("Game Over");}
+    
+    if (currentLevel < 25 && emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
       game.player.energyNetwork.updateTerrain(currentTerrain);
       background(255);
       fieldDraw(currentTerrain);
       Draw();
+      game.player = new Player();
     }
     if (frameCount % 2 == 0) {
       //enemyArray.Update();
