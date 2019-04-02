@@ -32,7 +32,7 @@ void draw() {
   }
 
   game.run();
-  //(frameRate);
+  println(frameRate);
 }
 
 void enemyUpdate()

@@ -1,5 +1,5 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
 
@@ -14,11 +14,15 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   int x;
   int y;
 
+  PGraphics thisMap;  
+
   ArrayList<Emitter> emitters = new ArrayList<Emitter>();
 
   PVector[][] currentTerrain = new PVector[cols][rows];
 
   BaseLevel() {
+    thisMap = createGraphics(width, height);
+
     enemyArray = new EnemyGrid();
     thread("feildDraw");
     for (int i = 0; i < cols; ++i) {
@@ -51,134 +55,132 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void fieldDraw(PVector[][] grid) 
   {   
+    thisMap.beginDraw();
     voidLayer();
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
         x = i*scale;
         y = j*scale;
 
-
-        if (currentTerrain[i][j].z == -1 && frameCount % 2 == 0)
-        {
-        }
-        stroke(0);
+        thisMap.stroke(0);
 
 
         if (grid[i][j].z == 0)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerZeroDraw();
         }
         if (grid[i][j].z == 1)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerOneDraw();
         }    
         if (grid[i][j].z == 2)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerTowDraw();
         }  
         if (grid[i][j].z == 3)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerThreeDraw();
         }  
         if (grid[i][j].z == 4)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerFourDraw();
         }        
         if (grid[i][j].z == 5)
         {
 
-          noStroke();
-          fill(255);
-          rect(x, y, scale, scale);
+          thisMap.noStroke();
+          thisMap.fill(255);
+          thisMap.rect(x, y, scale, scale);
           layerFiveDraw();
         }
       }
     }
     strokeWeight(0);
+    thisMap.endDraw();
   }
 
   void voidLayer()
   {
-    fill(0);
-    stroke(0);
-    image(voidImg, 0, 0);
+    thisMap.fill(0);
+    thisMap.stroke(0);
+    thisMap.image(voidImg, 0, 0);
   }
 
   void layerZeroDraw()
   {
-    fill(120, 58, 8);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(120, 58, 8);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
   void layerOneDraw()
   {
-    fill(160, 75, 30);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(160, 75, 30);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
   void layerTowDraw()
   {
-    fill(100);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(100);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
   void layerThreeDraw()
   {
-    fill(100, 70, 40);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(100, 70, 40);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
 
   void layerFourDraw()
   {
-    fill(90, 60, 30);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(90, 60, 30);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
 
   void layerFiveDraw()
   {
-    fill(10);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    thisMap.fill(10);
+    thisMap.stroke(0);
+    thisMap.strokeWeight(0.5);
+    thisMap.rect(x, y, scale, scale);
   }
 
 
   //denher æder fames
   void Draw()
   {
-    fieldDraw(currentTerrain);
+    image(thisMap, 0, 0);
   }
 
   void Update()
@@ -188,6 +190,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       loadLevel(currentLevel);
       game.player.energyNetwork.updateTerrain(currentTerrain);
       background(255);
+      fieldDraw(currentTerrain);
       Draw();
     }
     if (frameCount % 2 == 0) {

@@ -474,7 +474,7 @@ class Player
       //}
       tower.Run();
     }    
-
+stroke(0);
     //gider ikke at tegne dem
     for (int i = 0; i < towerAttackETowers.size(); i++)
     {
@@ -497,7 +497,6 @@ class Player
   }
 
   void Run() {
-    println(towerInHand, placeble, isMouseNotPressedHotBar, towerpickedOnBar[0], towerpickedOnBar[1], towerpickedOnBar[2], towerpickedOnBar[3], towerpickedOnBar[4]);
     energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   
