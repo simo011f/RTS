@@ -140,6 +140,14 @@ class Tower {
       return false;
     }
   }
+  
+  void move(PVector newLoc)
+  {
+    PVector newLocation = newLoc;
+    
+    
+    location = newLocation;
+  }
 
 
   void Run() {

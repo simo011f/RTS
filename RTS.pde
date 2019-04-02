@@ -48,6 +48,11 @@ void spriteLoad()
   bombTowerImg = loadImage("BombTower.png");
 }
 
+void mouseClicked()
+{
+  game.player.towerMove();
+}
+
 boolean[] keys = new boolean[11];
 //this boolean handles all the key inputs.
 

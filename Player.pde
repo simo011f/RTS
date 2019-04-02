@@ -1,4 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 class Player  
 {
 
@@ -22,6 +22,8 @@ class Player
   boolean[] towerpickedOnBar = new boolean[5];    
   boolean towerPicked = false; 
   boolean basePicked = false;
+  boolean towerSelected = false;
+
 
   int picked;
 
@@ -427,7 +429,7 @@ class Player
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc); //<>//
+      towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc);
       picked = 0;
       placebleETowers = false;
       timer = 0;
@@ -549,6 +551,40 @@ class Player
       }
     }
   }
+  
+  
+// hej 
+  void towerMove()
+  {
+    if(mouseY > rows * scale)
+  {
+    return;
+  }
+    
+    PVector newLocation = new PVector(mouseX/scale, mouseY/scale);
+
+    for (Tower tower : towers)
+    {
+      if (towerSelected) {
+        tower.move(newLocation);
+        towerSelected = false;
+      }
+      if (towerSelect(tower.location, newLocation))
+      {
+      }
+    }
+  }
+
+  boolean towerSelect(PVector towerLocatino, PVector mouseLocaton)
+  {
+    if (towerLocatino.x == mouseLocaton.x && towerLocatino.y == mouseLocaton.y) {
+      towerSelected = true;
+      println("hej");
+      return true;
+    }
+    towerSelected = false;
+    return false;
+  }
 
   void towerRun() {
     //tower attack enemy tower skal dræbe emitter
@@ -592,6 +628,7 @@ class Player
     }
     place();  
     towerRun();
+    towerMove();
 
     if (timer >= 20) {
       timer = 20;
