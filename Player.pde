@@ -497,6 +497,10 @@ class Player
       TowerEnergy energyTower = energyTowers.get(i); 
       energyTower.enemyColition(enemyArray);
       if (energyTower.isDead) { 
+<<<<<<< HEAD
+=======
+        energyTowers.get(i).anchoredToBase=4;
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
         energyTowers.get(i).conected=false;
         energyTowers.get(i).baseConected=false;
         energyTowers.remove(i);
@@ -553,7 +557,11 @@ class Player
 
   // hej 
   void towerMove()
+<<<<<<< HEAD
   {
+=======
+  {  
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
     if (mouseY > rows * scale)
     {
       return;
@@ -602,7 +610,23 @@ class Player
 
 
     for (TowerEnergy energyTower : energyTowers) {
+      energyTower.conected = false;
+      energyTower.baseConected = false;
+    }
+
+
+    if (base != null)
+    {
+      base.energyTowersConected(energyTowers);
+      base.run();
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
       energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
     }
    
