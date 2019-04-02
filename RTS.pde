@@ -28,7 +28,7 @@ void setup() {
 void draw() { 
 
   if (game.loc == 3) {
-    //thread("enemyUpdate");
+    thread("enemyUpdate");
   }
 
   game.run();
@@ -37,7 +37,9 @@ void draw() {
 
 void enemyUpdate()
 {
-  game.baseLevel.enemyArray.Update();
+  if (frameCount % 2 == 0) {
+    game.baseLevel.enemyArray.Update();
+  }
 }
 
 void spriteLoad()

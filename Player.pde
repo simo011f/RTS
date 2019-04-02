@@ -498,9 +498,9 @@ class Player
       TowerEnergy energyTower = energyTowers.get(i); 
       energyTower.enemyColition(enemyArray);
       if (energyTower.isDead) { 
-        energyTowers.get(i).ancetToBase=4;
+        energyTowers.get(i).anchoredToBase=4;
         energyTowers.get(i).conected=false;
-        energyTowers.get(i).baseConeced=false;
+        energyTowers.get(i).baseConected=false;
         energyTowers.remove(i);
         for (Tower tower : towers) {
           tower.conected=false;
@@ -551,16 +551,16 @@ class Player
       }
     }
   }
-  
-  
-// hej 
+
+
+  // hej 
   void towerMove()
-  {
-    if(mouseY > rows * scale)
-  {
-    return;
-  }
-    
+  {  
+    if (mouseY > rows * scale)
+    {
+      return;
+    }
+
     PVector newLocation = new PVector(mouseX/scale, mouseY/scale);
 
     for (Tower tower : towers)
@@ -590,9 +590,21 @@ class Player
     //tower attack enemy tower skal dræbe emitter
 
     for (TowerEnergy energyTower : energyTowers) {
+      energyTower.conected = false;
+      energyTower.baseConected = false;
+    }
+
+
+    if (base != null)
+    {
+      base.energyTowersConected(energyTowers);
+      base.run();
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
 
-      energyTower.towersConnected(towers, energyTowers, base);
+      energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
     }
     energyNetwork.energyPruduktion(energyTowers);
 
@@ -611,11 +623,6 @@ class Player
     println(towerAttackETowers.size());
 
     energyNetwork.useEnergy(towers);
-
-    if (base != null)
-    {
-      base.run();
-    }
   }
 
   void Run() {
