@@ -41,6 +41,8 @@ class Player
   int chosenTower;
   int rageDisply = 195;
 
+
+
   Player() {
     energyNetwork = new Energy();
   }
@@ -81,6 +83,7 @@ class Player
       placeble = true;
       towerInHand = true;
       towerpickedOnBar[1] = false;
+      exit();
     }
 
     //gul
@@ -186,12 +189,7 @@ class Player
     energyNetwork.energyUI();
   }
 
-  void newPlace(int i)
-  {
-    restrainMouse();
 
-    towers.get(i).location.set(game.squareFeld.grid[mouseX/10][mouseY/10]);
-  }
 
 
   // vise range og energyrange
@@ -352,21 +350,7 @@ class Player
       placebleEnergy = false;
     }
   }
-  void restrainMouse()
-  {
-    if (mouseX>width-40) {
-      mouseX = width-40;
-    } 
-    if (mouseX<30) {
-      mouseX = 30;
-    } 
-    if (mouseY<30) {
-      mouseY = 30;
-    } 
-    if (mouseY>height-100) {
-      mouseY = height-100;
-    }
-  }
+
 
   void towerDead(Enemy[][] enemyArray) {
     for (int i = 0; i < energyTowers.size(); i++) {
@@ -406,12 +390,10 @@ class Player
     }
   }
 
-  //kan ikke overskue at gøre feridg
-  void towerTerrain(PVector[][]terrain)
+
+
+  void updateTerain()
   {
-    for (Tower tower : towers) {
-      tower.terrainColision(terrain);
-    }
   }
 
   void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
@@ -487,6 +469,9 @@ class Player
       if (i == NRInHand) {
         stroke(255);
       }
+      //if () {
+      //  stroke(200, 10, 10);
+      //}
       tower.Run();
     }    
 
@@ -503,8 +488,16 @@ class Player
       base.run();
     }
   }
+  void terrain(PVector[][] currentTarine) {
+    for (TowerEnergy energyTower : energyTowers) {
+    }
+    for (Tower tower : towers) {
+      tower.terrainHight(currentTarine);
+    }
+  }
 
   void Run() {
+    println(towerInHand, placeble, isMouseNotPressedHotBar, towerpickedOnBar[0], towerpickedOnBar[1], towerpickedOnBar[2], towerpickedOnBar[3], towerpickedOnBar[4]);
     energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   

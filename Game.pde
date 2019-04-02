@@ -182,7 +182,9 @@ class Game {
 
       player.towerDead(baseLevel.enemyArray.enemys);
       player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
+      player.terrain(baseLevel.currentTerrain);
       player.Run();
+
 
       escMenu.run();
       break;

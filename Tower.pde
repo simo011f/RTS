@@ -77,16 +77,31 @@ class Tower {   //<>//
       isDead = true;
     }
   }
-
-  boolean terrainColision(PVector[][] terrain)
-  {
-    int x = (int)location.x;
-    int y = (int)location.y;
-
+  void terrainHight(PVector[][] terrain) {
+    if (sameTerrainHeight(terrain)) {
+      if (mouseX/scale < cols||mouseX/scale > 0) {
+        return;
+      }
+      if (mouseY/scale < rows||mouseY/scale > 0) {
+        return;
+      }
+      location.z=terrain[(int)mouseX/scale][(int)mouseY/scale].z;
+    }
+  }
+  boolean sameTerrainHeight(PVector[][] terrain) {
+    //måske det der gør at den er bug    restrainMouse();
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
-        if (terrain[x][y].z != terrain[x + i][y + j].z)
-        {
+        //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
+        //  return false;
+        //} 
+        if (mouseX/scale + i < cols||mouseX/scale + i > 0) {
+          continue;
+        }
+        if (mouseY/scale + j < rows||mouseY/scale + j > 0) {
+          continue;
+        }
+        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
           return false;
         }
       }
@@ -152,8 +167,6 @@ class Tower {   //<>//
 
   void move()
   {
-    println("hej_1", location, newLocation, velocity);
-
     velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();

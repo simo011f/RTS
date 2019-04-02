@@ -32,7 +32,7 @@ void draw() {
   }
 
   game.run();
-  //println(frameRate);
+  //(frameRate);
 }
 
 void enemyUpdate()
@@ -50,6 +50,7 @@ void spriteLoad()
 
 void mouseClicked()
 {
+  game.player.isMouseNotPressedHotBar=false;
   game.player.towerMove();
 }
 
@@ -146,5 +147,20 @@ void keyReleased() {
   case ENTER:
     keys[10] = true;
     break;
+  }
+}
+void restrainMouse()
+{
+  if (mouseX>width-40) {
+    mouseX = width-40;
+  } 
+  if (mouseX<30) {
+    mouseX = 30;
+  } 
+  if (mouseY<30) {
+    mouseY = 30;
+  } 
+  if (mouseY>height-100) {
+    mouseY = height-100;
   }
 }

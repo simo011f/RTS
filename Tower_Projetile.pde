@@ -6,8 +6,6 @@ class TowerAttackTerrtoriumShot extends Tower {
 
   //boolean conected=false;
 
-  int range = 20;
-
   TowerAttackTerrtoriumShot()
   {
     super();
@@ -52,6 +50,9 @@ class TowerAttackTerrtoriumShot extends Tower {
 
         if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
           Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
+          if (location.z<enemy.terrainHeight) {
+            continue;
+          }
           if (enemy.strength > 0) {   
             inRange = new PVector(i, j);
             if (inRange.mag() < closest.mag()) {
@@ -79,5 +80,4 @@ class TowerAttackTerrtoriumShot extends Tower {
     fill(0, 0, 15+(20*underCunstruction));
     super.Build();
   }
-
 }
