@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   PVector[] directions = new PVector[4];
 
@@ -425,7 +425,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
           enemys[i][j].updateNumber(3);
           continue;
         }
-        if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {	
+        if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {  
           findCenter(i, j);
         }
       }
