@@ -28,7 +28,7 @@ void setup() {
 void draw() { 
 
   if (game.loc == 3) {
-    //thread("enemyUpdate");
+    thread("enemyUpdate");
   }
 
   game.run();
