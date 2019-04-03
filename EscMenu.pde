@@ -33,7 +33,7 @@ class EscMenu
     if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) { 
       if (mousePressed == true)
       {
-        game.loc = 0; //<>// //<>//
+        game.loc = 0; //<>// //<>// //<>//
       }
       game.menu.timer = 1;
       //this is the main menu option

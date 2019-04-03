@@ -1,4 +1,4 @@
-class Tower {   //<>// //<>//
+class Tower {   //<>// //<>// //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
@@ -108,22 +108,21 @@ class Tower {   //<>// //<>//
 
   boolean sameTerrainHeight(PVector[][] terrain) {    
 
-    if (mouseY/scale<rows) {
-      if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
-        //midlertideigt
-        game.player.placeble=false;
-        println("hrj");
-        return false;
-      }
-      if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
-        //midlertideigt
-        game.player.placeble=true;
-      }
+    restrainMouse();
+    if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
+      //midlertideigt
+      game.player.placeble=false;
+      println("hrj");
+      return false;
+    }
+    if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
+      //midlertideigt
+      game.player.placeble=true;
     }
 
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
-<<<<<<< HEAD
+
         //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
         //  return false;
         //} 
@@ -134,19 +133,7 @@ class Tower {   //<>// //<>//
           continue;
         }
         if (terrain[(int)location.x][(int)location.y].z != terrain[(int)location.x + i][(int)location.y + j].z) { 
-=======
 
-        //skal de ikke være omvent < skal være > og omvent? da man ikke kommer igennem de to nendstående funktioner
-        if (mouseX/scale + i < cols||mouseX/scale + i > 0) {
-          continue;
-        }   
-
-        if (mouseY/scale + j < rows||mouseY/scale + j > 0) {
-          continue;
-        }
-
-        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
->>>>>>> Player-z-location
           return false;
         }
       }
@@ -202,16 +189,8 @@ class Tower {   //<>// //<>//
   {
     newLocation.set(newLoc);
   }
-<<<<<<< HEAD
-=======
 
-  void move(PVector newLoc)
-  {
-    location = newLocation;
-  }
->>>>>>> Player-z-location
-
-  void move()
+    void move()
   {
     velocity.set(newLocation);
     velocity.sub(location);

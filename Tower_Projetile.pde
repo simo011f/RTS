@@ -50,12 +50,9 @@ class TowerAttackTerrtoriumShot extends Tower {
 
         if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
           Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
-<<<<<<< HEAD
+
           if (enemy.terrainHeight > location.z) {
-=======
-     
-          if (enemy.terrainHeight>location.z) {
->>>>>>> Player-z-location
+
             continue;
           }
           if (enemy.strength > 0) {   
