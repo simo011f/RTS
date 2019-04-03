@@ -1,4 +1,6 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+
+  PVector[] directions = new PVector[4];
 
   boolean spreadNorth = false;
   boolean spreadSouth = false;
@@ -8,10 +10,18 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
   Enemy[][] enemys = new Enemy[cols][rows];
   int[][] updated = new int[cols][rows];
   ArrayList<PVector> thisCluster = new ArrayList<PVector>();
+  ArrayList<PVector> thisClusterCheking = new ArrayList<PVector>();
+  
+  int damping = 0; 
+
 
 
   EnemyGrid()
   {
+    directions[0] = new PVector(1, 0);
+    directions[1] = new PVector(-1, 0);
+    directions[2] = new PVector(0, 1);
+    directions[3] = new PVector(0, -1);
     // Begin loop for columns
     for (int i = 0; i < cols; i++) 
     {
@@ -24,6 +34,10 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
   EnemyGrid(PVector[][] grid) {
+    directions[0] = new PVector(1, 0);
+    directions[1] = new PVector(-1, 0);
+    directions[2] = new PVector(0, 1);
+    directions[3] = new PVector(0, -1);
     // Begin loop for columns
     for (int i = 0; i < cols; i++)   
     {
@@ -240,19 +254,19 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
     if (i - 1 >= 0)
     {
       spreadWest = true;
-      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i - 1][j].strength + 10 * enemys[i - 1][j].terrainHeight || enemys[i - 1][j].terrainHeight == -1) {
+      if (i - 1 == 0 && enemys[i][j].strength <= enemys[i - 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + damping < enemys[i - 1][j].strength + 10 * enemys[i - 1][j].terrainHeight || enemys[i - 1][j].terrainHeight == -1) {
         spreadWest = false;
       }
       if (updated[i - 1][j] == 2)
       {
-        spreadWest = false; //<>// //<>//
+        spreadWest = false;
       }
     }
 
     if (i + 1 < cols) 
     {
       spreadEast = true;
-      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i + 1][j].strength + 10 * enemys[i + 1][j].terrainHeight || enemys[i + 1][j].terrainHeight == -1) {
+      if (i + 1 == cols - 1 && enemys[i][j].strength <= enemys[i + 1][j].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + damping < enemys[i + 1][j].strength + 10 * enemys[i + 1][j].terrainHeight || enemys[i + 1][j].terrainHeight == -1) {
         spreadEast = false;
       }
       if (updated[i + 1][j] == 2)
@@ -264,7 +278,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
     if (j - 1 >= 0)
     {
       spreadNorth = true;
-      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i][j - 1].strength + 10 * enemys[i][j - 1].terrainHeight || enemys[i][j - 1].terrainHeight == -1) {
+      if (j - 1 == 0 && enemys[i][j].strength <= enemys[i][j - 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + damping < enemys[i][j - 1].strength + 10 * enemys[i][j - 1].terrainHeight || enemys[i][j - 1].terrainHeight == -1) {
         spreadNorth = false;
       }
       if (updated[i][j - 1] == 2)
@@ -276,7 +290,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
     if ( j + 1 < rows) 
     {
       spreadSouth = true;
-      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + 10 < enemys[i][j + 1].strength + 10 * enemys[i][j + 1].terrainHeight || enemys[i][j + 1].terrainHeight == -1) {
+      if (j + 1 == rows - 1 && enemys[i][j].strength <= enemys[i][j + 1].strength || enemys[i][j].strength + 10 * enemys[i][j].terrainHeight + damping < enemys[i][j + 1].strength + 10 * enemys[i][j + 1].terrainHeight || enemys[i][j + 1].terrainHeight == -1) {
         spreadSouth = false;
       }
       if (updated[i][j + 1] == 2)
@@ -287,99 +301,101 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
   } 
 
   void findCenter(int i, int j)
-  { //<>// //<>//
-    //find centeret i hvert kloster //<>// //<>//
+  {
+    //find centeret i hvert kloster
     int x = i;
     int y = j;
     int checkingX = 0;
     int checkingY = 0;
-
     thisCluster.clear();
-
-    while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
-    {
-      x = (int)strongest(x, y).x; //<>// //<>// //<>// //<>//
-      y = (int)strongest(x, y).y;
-    }
-
-    thisCluster.add(new PVector(x, y));
+    thisClusterCheking.clear();
     updated[x][y] = 1;
+    thisClusterCheking.add(new PVector(x, y));
 
-    while (thisCluster.size() > 0) {
-      for (int a = -1; a <= -1; a++) {
-        for (int b = -1; b <= -1; b++) {
-          checkingX = x + a;
-          checkingY = y + b;
-          if (checkingX < 0 || checkingX >= cols) {
-            continue;
-          }
-
-          if (checkingY < 0 || checkingY >= rows) {
-            continue;
-          }
-
-          if (updated[checkingX][checkingY] == 0)
-          {
-            updated[checkingX][checkingY] = 1;
-            thisCluster.add(new PVector(checkingX, checkingY));
-          }
+    while (thisClusterCheking.size() > 0)
+    {
+      for (PVector direction : directions)
+      {
+        checkingX = x + (int)direction.x;
+        checkingY = y + (int)direction.y;
+        if (checkingX < 0 || checkingX >= cols) {
+          continue;
+        }
+        if (checkingY < 0 || checkingY >= rows) {
+          continue;
+        }
+        if (updated[checkingX][checkingY] == 0) {
+          updated[checkingX][checkingY] = 1;
+          thisClusterCheking.add(new PVector(checkingX, checkingY));
         }
       }
-      updateCluster(thisCluster);
-      x = checkingX;
-      y = checkingY;
+      thisCluster.add(thisClusterCheking.get(0));
+      thisClusterCheking.remove(0);
     }
-    return;
-  }
 
-  void updateCluster(ArrayList<PVector> cluster)
-  {
-    int x = 0;
-    int y = 0;
-    for (int i = 0; i < cluster.size(); i++) {
-      PVector position = cluster.get(i);
-      x = (int)position.x;
-      y = (int)position.y;
+    if (thisCluster.size() == 0) {
+      return;
+    }
+
+    while (thisCluster.size() > 0)
+    {
+      PVector thisStrongest = strongest(thisCluster);
+      x = (int)thisStrongest.x;
+      y = (int)thisStrongest.y;
       updateEnemysStrength(x, y);
     }
-    cluster.remove(0);
+    //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
+    //{
+    //  x = (int)strongest(x, y).x; //<>// //<>//
+    //  y = (int)strongest(x, y).y;
+    //}
+
+    //thisCluster.add(new PVector(x, y));
+    //updated[x][y] = 1;
+
+    //while (thisCluster.size() > 0) {
+    //  for (int a = -1; a <= -1; a++) {
+    //    for (int b = -1; b <= -1; b++) {
+    //      checkingX = x + a;
+    //      checkingY = y + b;
+    //      if (checkingX < 0 || checkingX >= cols) {
+    //        continue;
+    //      }
+
+    //      if (checkingY < 0 || checkingY >= rows) {
+    //        continue;
+    //      }
+
+    //      if (updated[checkingX][checkingY] == 0)
+    //      {
+    //        updated[checkingX][checkingY] = 1;
+    //        thisCluster.add(new PVector(checkingX, checkingY));
+    //      }
+    //    }
+    //  }
+    //  updateCluster(thisCluster);
+    //  x = checkingX;
+    //  y = checkingY;
+    //}
+    //return;
   }
 
-  PVector strongest(int x, int y)
+  PVector strongest(ArrayList<PVector> cluster)
   {
-    if (x - 1 < 0 || x + 1 >= cols) {
-      return null;
-    }
-
-    if (y - 1 < 0 || y + 1 >= rows) {
-      return null;
-    }
-    int strengthNorth = enemys[x][y - 1].strength;
-    int strengthSouth = enemys[x][y + 1].strength;
-    int strengthEast = enemys[x + 1][y].strength;
-    int strengthWest = enemys[x - 1][y].strength;
-
-    if (strengthNorth > strengthSouth && strengthNorth > strengthEast && strengthNorth > strengthWest)
+    PVector strongest = new PVector();
+    int strongestStrength = 0;
+    for (PVector clusterPositions : cluster)
     {
-      return new PVector(x, y - 1);
+      if (updated[(int)clusterPositions.x][(int)clusterPositions.y] == 1) {
+        if (enemys[(int)clusterPositions.x][(int)clusterPositions.y].strength > strongestStrength)
+        {
+          strongestStrength = enemys[(int)clusterPositions.x][(int)clusterPositions.y].strength;
+          strongest.set(clusterPositions);
+        }
+      }
     }
-
-    if (strengthSouth > strengthNorth && strengthSouth > strengthEast && strengthSouth > strengthWest)
-    {
-      return new PVector(x, y + 1);
-    }
-
-    if (strengthEast > strengthSouth && strengthEast > strengthNorth && strengthEast > strengthWest)
-    {
-      return new PVector(x + 1, y);
-    }
-
-    if (strengthWest > strengthSouth && strengthWest > strengthEast && strengthWest > strengthNorth)
-    {
-      return new PVector(x - 1, y);
-    }
-
-    return new PVector(x, y);
+    cluster.remove(strongest);
+    return strongest;
   }
 
   void terrainUpdate(int i, int j, PVector[][] grid)
@@ -409,7 +425,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>//
           enemys[i][j].updateNumber(3);
           continue;
         }
-        if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {	
+        if (enemys[i][j].strength >= 5 && updated[i][j] == 0) {  
           findCenter(i, j);
         }
       }

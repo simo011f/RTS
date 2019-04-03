@@ -65,7 +65,6 @@ class TowerEnergy
     if (base == null) {
       return false;
     } 
-
     range = PVector.sub(base.location, location);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -105,7 +104,11 @@ class TowerEnergy
   }
   void AttackEmitterConnected(TowerAttackETowers attackEmitterTower) { 
     attackEmitterTower.conected = false;
+<<<<<<< HEAD
     if (inRangeAETower(attackEmitterTower)&&conected) {
+=======
+    if (conected && inRangeAETower(attackEmitterTower)) {
+>>>>>>> Energy-rework
       attackEmitterTower.conected=true; 
       stroke(255);
       strokeWeight(2);

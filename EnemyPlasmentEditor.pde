@@ -595,7 +595,8 @@ class EnemyPlasmentEditor {     //<>// //<>// //<>//
 
   void Draw()
   {
-    terrainEditor.fieldDraw(terrainEditor.loadMap(mapSaveNR));
+    game.baseLevel.fieldDraw(terrainEditor.loadMap(mapSaveNR));
+    image(game.baseLevel.thisMap,0,0);
   }
 
   void Run()

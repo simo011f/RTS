@@ -10,7 +10,7 @@ PImage bombTowerImg;
 
 Game game;
 
-
+//conding cahllenge doppelt pendul baggurnd / terrain ved hjelp canvis
 
 void setup() {
   //size(1600, 900);
@@ -32,7 +32,7 @@ void draw() {
   }
 
   game.run();
-  //println(frameRate);
+  println(frameRate);
 }
 
 void enemyUpdate()
@@ -52,7 +52,8 @@ void spriteLoad()
 
 void mouseClicked()
 {
-  //game.player.towerMove();
+  game.player.isMouseNotPressedHotBar=false;
+  game.player.towerMove();
 }
 
 boolean[] keys = new boolean[11];
@@ -148,5 +149,20 @@ void keyReleased() {
   case ENTER:
     keys[10] = true;
     break;
+  }
+}
+void restrainMouse()
+{
+  if (mouseX>width-40) {
+    mouseX = width-40;
+  } 
+  if (mouseX<30) {
+    mouseX = 30;
+  } 
+  if (mouseY<30) {
+    mouseY = 30;
+  } 
+  if (mouseY>height-100) {
+    mouseY = height-100;
   }
 }

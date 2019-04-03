@@ -1,7 +1,10 @@
-class Tower {  
+class Tower {   //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
+  PVector newLocation;
+  PVector velocity = new PVector();
+
 
   int leif = 2;
   int maxLeif = 2;
@@ -16,6 +19,7 @@ class Tower {
 
   boolean conected = false;
   boolean isDead = false;
+  boolean isMoving = false;
 
   int range = 20;
 
@@ -74,16 +78,36 @@ class Tower {
       isDead = true;
     }
   }
-
-  boolean terrainColision(PVector[][] terrain)
-  {
-    int x = (int)location.x;
-    int y = (int)location.y;
-
+  void terrainHight(PVector[][] terrain) {
+    if (sameTerrainHeight(terrain)) {
+      if (mouseX/scale < cols||mouseX/scale > 0) {
+        return;
+      }
+      if (mouseY/scale < rows||mouseY/scale > 0) {
+        return;
+      }
+      location.z=terrain[(int)mouseX/scale][(int)mouseY/scale].z;
+    }
+  }
+  boolean sameTerrainHeight(PVector[][] terrain) {
+    //måske det der gør at den er bug    restrainMouse();
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
+<<<<<<< HEAD
+        //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
+        //  return false;
+        //} 
+        if (mouseX/scale + i < cols||mouseX/scale + i > 0) {
+          continue;
+        }
+        if (mouseY/scale + j < rows||mouseY/scale + j > 0) {
+          continue;
+        }
+        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
+=======
         if (terrain[x][y].z != terrain[x + i][y + j].z)
         {
+>>>>>>> Tower-Energy-to-Tower
           return false;
         }
       }
@@ -92,7 +116,7 @@ class Tower {
   }
 
   void Build() {
-    stroke(0);
+    //stroke(0);
     strokeWeight(1.5);
     rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
 
@@ -135,16 +159,45 @@ class Tower {
     }
   }
 
+<<<<<<< HEAD
+  void updateNewLocation(PVector newLoc)
+  {
+    newLocation = newLoc;
+=======
   void move(PVector newLoc)
   {
     PVector newLocation = newLoc;
 
 
     location = newLocation;
+>>>>>>> Tower-Energy-to-Tower
   }
 
+  void move()
+  {
+    velocity.set(newLocation);
+    velocity.sub(location);
+    float dist = velocity.mag();
+    if (dist < 0.1)
+    {
+      location = newLocation;
+      return;
+    }
+    if (dist > 3) {
+      velocity.setMag(1);
+    } else {    
+      velocity.setMag(dist/2);
+    }
+    location.x += velocity.x;
+    location.y += velocity.y;
+  }
 
   void Run() {
+
+    if (newLocation != null && location != newLocation && isBuild())
+    {
+      move();
+    }
 
     Build();
   }
