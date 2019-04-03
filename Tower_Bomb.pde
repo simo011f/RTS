@@ -15,7 +15,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
     cunstructionEnergyConsomstion = 20;
     energyConsomstion = 25;
     leifRegen = 1;
-    maxLeif = 25;
+    maxLeif = 25;cunstructionTime=11;
   }
 
 

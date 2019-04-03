@@ -210,6 +210,8 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void enemyRun()
   {
+    enemyArray.Update();
+
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
         enemyArray.Draw(i, j);

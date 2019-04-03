@@ -279,7 +279,6 @@ class Player
   }
 
   void place() {     
-
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
 
       restrainMouse();
@@ -383,7 +382,7 @@ class Player
       TowerAttackETowers tower = towerAttackETowers.get(i); 
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
-        towers.remove(tower);
+        towerAttackETowers.remove(tower);
         continue;
       }
     }
@@ -456,6 +455,20 @@ class Player
   void towerRun() {
     //tower attack enemy tower skal dræbe emitter
 
+
+
+    for (Tower tower : towers)
+    {
+      tower.conected = false;
+    }
+
+    if (base != null)
+    {
+      base.run();
+      //base.energyTowersConected(energyTowers);
+    }
+
+
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.conected = false;
       energyTower.baseConected = false;
@@ -470,9 +483,9 @@ class Player
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
-
       energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
     }
+   
     energyNetwork.energyPruduktion(energyTowers);
     for (int i = 0; i < towers.size(); i++) {
       Tower tower = towers.get(i);
@@ -510,6 +523,7 @@ stroke(0);
     }
     place();  
     towerRun();
+    //towerMove();
     if (timer >= 20) {
       timer = 20;
     }
