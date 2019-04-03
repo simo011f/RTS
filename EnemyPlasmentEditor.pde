@@ -1,6 +1,6 @@
-class EnemyPlasmentEditor {     //<>//
+class EnemyPlasmentEditor {     //<>// //<>// //<>//
   Table table;
-  
+
   int mapSaveNR = 0;
 
   boolean isMouseNotPressedSave = true;
@@ -150,8 +150,7 @@ class EnemyPlasmentEditor {     //<>//
     fill(0);
     stroke(0);
     strokeWeight(0.5);
-    rect(x  , y, 3 * scale, 3 * scale);
-
+    rect(x, y, 3 * scale, 3 * scale);
   }
 
   void increaseDecreaseBasicEnemyStrength(int x, int y)
@@ -361,7 +360,7 @@ class EnemyPlasmentEditor {     //<>//
         text("+", x + scale * 4, y + scale + 2);
       }
     }
-    
+
 
     if (mouseX >= width / 2 + 410 && mouseX <= width / 2 + 440 && isMouseNotPressedSave)
     {
@@ -392,7 +391,7 @@ class EnemyPlasmentEditor {     //<>//
 
   void overrideMap(int mapNR)
   {
-    
+
     int rowMapNr;
     for (int i = table.getRowCount()-1; i >= 0; i--)
     {
@@ -568,8 +567,8 @@ class EnemyPlasmentEditor {     //<>//
       return newLevelEnemyGrid;
     }
     return null;
-  }  //<>// //<>//
- //<>// //<>//
+  }  //<>//
+  //<>//
   ArrayList<Emitter> loadEmitters(int levelNR, EnemyGrid enemys)
   {
     table = loadTable("EnemyPlasment.csv", "header");

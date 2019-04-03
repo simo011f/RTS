@@ -40,11 +40,9 @@ class Energy {
     int x = 0;
     int y = 0;
     for (TowerEnergy energyTower : energyTowers) {
-<<<<<<< HEAD
-      if (!energyTower.baseConected)
-=======
+
       if (!energyTower.conected)
->>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
+
       {
         continue;
       }
