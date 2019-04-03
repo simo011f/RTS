@@ -14,6 +14,7 @@ class TowerEnergy  //<>//
   boolean isDead = false;
 
   TowerEnergy() {
+    conected=false;
     anchoredToBase = 4;
   }
 
@@ -137,11 +138,14 @@ class TowerEnergy  //<>//
 
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
-    if (conected && inRangeTower(tower)) {
-      tower.conected=true; 
-      stroke(255);
+    if (inRangeTower(tower)) {
+
+      stroke(15+(20*anchoredToBase));
       strokeWeight(2);
       line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+      if (conected) {  
+        tower.conected=true;
+      }
       return;
     }
   }

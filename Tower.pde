@@ -5,6 +5,7 @@ class Tower {   //<>// //<>//
   PVector newLocation = new PVector();
   PVector velocity = new PVector();
 
+  PVector[][] terrainHieght;
 
   int leif = 2;
   int maxLeif = 2;
@@ -26,7 +27,15 @@ class Tower {   //<>// //<>//
 
   Tower()
   {
-    location = new PVector(-10, -10);
+    location = new PVector(-10, -10);  
+    //midlertideigt
+    terrainHieght=game.baseLevel.currentTerrain;
+  }
+
+  Tower(PVector[][] levelTarrain) {
+    terrainHieght=levelTarrain;
+
+    terrainHieght=game.baseLevel.currentTerrain;
   }
 
   void weapon(Enemy[][] enemyArray) {
@@ -79,7 +88,10 @@ class Tower {   //<>// //<>//
       isDead = true;
     }
   }
-  void terrainHight(PVector[][] terrain) {
+
+  void terrainHight(PVector[][] terrain) { 
+
+    println(sameTerrainHeight(terrain));
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
@@ -91,10 +103,27 @@ class Tower {   //<>// //<>//
       newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
-  boolean sameTerrainHeight(PVector[][] terrain) {
-    //måske det der gør at den er bug    restrainMouse();
+
+
+
+  boolean sameTerrainHeight(PVector[][] terrain) {    
+
+    if (mouseY/scale<rows) {
+      if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
+        //midlertideigt
+        game.player.placeble=false;
+        println("hrj");
+        return false;
+      }
+      if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
+        //midlertideigt
+        game.player.placeble=true;
+      }
+    }
+
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
+<<<<<<< HEAD
         //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
         //  return false;
         //} 
@@ -105,6 +134,19 @@ class Tower {   //<>// //<>//
           continue;
         }
         if (terrain[(int)location.x][(int)location.y].z != terrain[(int)location.x + i][(int)location.y + j].z) { 
+=======
+
+        //skal de ikke være omvent < skal være > og omvent? da man ikke kommer igennem de to nendstående funktioner
+        if (mouseX/scale + i < cols||mouseX/scale + i > 0) {
+          continue;
+        }   
+
+        if (mouseY/scale + j < rows||mouseY/scale + j > 0) {
+          continue;
+        }
+
+        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
+>>>>>>> Player-z-location
           return false;
         }
       }
@@ -160,6 +202,14 @@ class Tower {   //<>// //<>//
   {
     newLocation.set(newLoc);
   }
+<<<<<<< HEAD
+=======
+
+  void move(PVector newLoc)
+  {
+    location = newLocation;
+  }
+>>>>>>> Player-z-location
 
   void move()
   {

@@ -2,16 +2,21 @@ class TowerBase
 {
   PVector location=new PVector(-100, -100);
 
-  int life;
+  int leif = 2;
+  int maxLeif = 2;
+  int leifRegen = 1;
 
-  boolean conected=false;
+
+  boolean isDead = false;
 
   ArrayList<PVector> energyTowersConectedIndex = new ArrayList<PVector>();
 
-  void weapon() {
-  }
 
-  void detection() {
+  void regen() { 
+    leif += leifRegen;
+    if (leif >= maxLeif) {
+      leif = maxLeif;
+    }
   }
 
   void energyTowersConected(ArrayList<TowerEnergy> energyTowers)
@@ -27,7 +32,7 @@ class TowerBase
         energyTowersConectedIndex.add(new PVector(i, 0));
       }
     }
-    
+
     while (energyTowersConectedIndex.size() > 0)
     {
       for (int i = energyTowersConectedIndex.size() - 1; i >= 0; i--)
@@ -53,6 +58,30 @@ class TowerBase
       energyTowersConectedIndex.remove(0);
     }
   }
+  void inEnemy (Enemy[][] enemyArray) {
+    for (int i = -1; i <= 1; i++)
+    {
+      for (int j = -1; j <= 1; j++) {
+        if ((int)location.x + i < 0 || (int)location.x + i > cols)
+        {
+          continue;
+        }
+        if ((int)location.y + j < 0 || (int)location.y + j > cols)
+        {
+          continue;
+        }
+        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
+        {
+          leif--;
+        }
+      }
+    }
+    if (leif <= 0)
+    {
+
+      isDead = true;
+    }
+  }
 
   void highLight() {   
 
@@ -68,7 +97,7 @@ class TowerBase
   }
   void run() { 
     highLight();
-    weapon();
-    detection();
+
+    regen();
   }
 }

@@ -12,6 +12,7 @@ class Player
 
   int [] towernrremeber = new int[5];
 
+
   ArrayList<Tower> towers = new ArrayList<Tower>();
   ArrayList<TowerAttackETowers> towerAttackETowers = new ArrayList<TowerAttackETowers>();
 
@@ -43,6 +44,7 @@ class Player
   Player() {
     energyNetwork = new Energy();
   }
+
 
   void PickTowerOnBar() { 
     timer++;
@@ -504,9 +506,13 @@ class Player
     energyNetwork.useEnergy(towers);
   }
   void terrain(PVector[][] currentTarine) {
+
+
+
     for (TowerEnergy energyTower : energyTowers) {
     }
-    for (Tower tower : towers) {
+    for (Tower tower : towers) {  
+      Tower towerTerreain = new Tower(currentTarine);
       tower.terrainHight(currentTarine);
     }
   }
