@@ -494,12 +494,12 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
         textSize(20);
         text("-", x + 1 + scale * 4, y + scale * 3);
       }
-    } //<>//
+    }
     if (mousePressed && mouseY >= height - 40)
     {
       isMouseNotPressedSave = false;
       newMap = loadMap(mapSaveNR);
-    } else //<>// //<>// //<>//
+    } else //<>// //<>//
     {
       isMouseNotPressedSave = true;
     }
@@ -509,7 +509,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
   {
     if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
     {
-      return; //<>// //<>//
+      return; //<>//
     }
 
     if (mousePressed && brushSize == 3)
