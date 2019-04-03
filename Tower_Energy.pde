@@ -105,7 +105,7 @@ class TowerEnergy
   }
   void AttackEmitterConnected(TowerAttackETowers attackEmitterTower) { 
     attackEmitterTower.conected = false;
-    if (baseConected && inRangeAETower(attackEmitterTower)) {
+    if (inRangeAETower(attackEmitterTower)&&conected) {
       attackEmitterTower.conected=true; 
       stroke(255);
       strokeWeight(2);
