@@ -93,7 +93,6 @@ class Tower {   //<>//
     //måske det der gør at den er bug    restrainMouse();
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
-<<<<<<< HEAD
         //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
         //  return false;
         //} 
@@ -104,10 +103,6 @@ class Tower {   //<>//
           continue;
         }
         if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
-=======
-        if (terrain[x][y].z != terrain[x + i][y + j].z)
-        {
->>>>>>> Tower-Energy-to-Tower
           return false;
         }
       }
@@ -159,18 +154,14 @@ class Tower {   //<>//
     }
   }
 
-<<<<<<< HEAD
-  void updateNewLocation(PVector newLoc)
+  void updateNewLocation(PVector newLoc) 
   {
-    newLocation = newLoc;
-=======
+    newLocation.set(newLoc);
+  }
+  
   void move(PVector newLoc)
   {
-    PVector newLocation = newLoc;
-
-
     location = newLocation;
->>>>>>> Tower-Energy-to-Tower
   }
 
   void move()

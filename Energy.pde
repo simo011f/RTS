@@ -42,10 +42,6 @@ class Energy {
     for (TowerEnergy energyTower : energyTowers) {
 
       if (!energyTower.conected)
-<<<<<<< HEAD
-
-=======
->>>>>>> Energy-rework
       {
         continue;
       }
