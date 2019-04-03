@@ -390,7 +390,6 @@ class Player
   }
 
   void place() {     
-
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
       if (mouseX>width-20) {
         mouseX = width-20;
@@ -407,7 +406,7 @@ class Player
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      towers.get(towers.size() - 1).location.set(loc);
+      towers.get(towers.size()-1).location.set(loc);
       picked = 0;
       placeble = false;
       timer = 0;
@@ -498,7 +497,10 @@ class Player
       TowerEnergy energyTower = energyTowers.get(i); 
       energyTower.enemyColition(enemyArray);
       if (energyTower.isDead) { 
+<<<<<<< HEAD
+=======
         energyTowers.get(i).anchoredToBase=4;
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
         energyTowers.get(i).conected=false;
         energyTowers.get(i).baseConected=false;
         energyTowers.remove(i);
@@ -525,7 +527,7 @@ class Player
       TowerAttackETowers tower = towerAttackETowers.get(i); 
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
-        towers.remove(tower);
+        towerAttackETowers.remove(tower);
         continue;
       }
     }
@@ -555,7 +557,11 @@ class Player
 
   // hej 
   void towerMove()
+<<<<<<< HEAD
+  {
+=======
   {  
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
     if (mouseY > rows * scale)
     {
       return;
@@ -579,7 +585,7 @@ class Player
   {
     if (towerLocatino.x == mouseLocaton.x && towerLocatino.y == mouseLocaton.y) {
       towerSelected = true;
-      println("hej");
+
       return true;
     }
     towerSelected = false;
@@ -588,6 +594,20 @@ class Player
 
   void towerRun() {
     //tower attack enemy tower skal dræbe emitter
+
+
+
+    for (Tower tower : towers)
+    {
+      tower.conected = false;
+    }
+
+    if (base != null)
+    {
+      base.run();
+      //base.energyTowersConected(energyTowers);
+    }
+
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.conected = false;
@@ -603,9 +623,14 @@ class Player
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.run(); 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 67dbbee20a7e922b481d740682f4728427a3b7da
       energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
     }
+   
+
     energyNetwork.energyPruduktion(energyTowers);
 
     for (int i = 0; i < towers.size(); i++) {
@@ -618,9 +643,7 @@ class Player
     {
       TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
       tAttackETower.Run();
-      println(tAttackETower.location);
     }
-    println(towerAttackETowers.size());
 
     energyNetwork.useEnergy(towers);
   }
@@ -635,7 +658,7 @@ class Player
     }
     place();  
     towerRun();
-    towerMove();
+    //towerMove();
 
     if (timer >= 20) {
       timer = 20;

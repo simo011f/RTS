@@ -1,5 +1,4 @@
-class TowerAttackETowers  extends Tower
-{
+class TowerAttackETowers  extends Tower{
   int energybuild = 40;
   int cooldown;
 
@@ -12,12 +11,13 @@ class TowerAttackETowers  extends Tower
     cunstructionEnergyConsomstion = 30;
     energyConsomstion = 100;
     range = 10;
+    cunstructionTime=20;
   }
 
 
   void weapon(ArrayList<Emitter> emitters) {
     for (Emitter emitter : emitters) {
-      if(emitterInRange(emitter) == null)
+      if (emitterInRange(emitter) == null)
       {
         continue;
       }
@@ -47,10 +47,16 @@ class TowerAttackETowers  extends Tower
     }
     weapon(emitters);
   }
-  
+
   void Build() {  
+  
     fill(15+(20*underCunstruction), 15+(20*underCunstruction), 0);
     super.Build();
+    
   }
+  void Run() {
 
+
+    Build();
+  }
 }

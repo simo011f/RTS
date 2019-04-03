@@ -6,15 +6,17 @@ class TowerEnergy
   int anchoredToBase;
   int vis;
 
+
   PVector range = new PVector();
 
-  //bog her
+
   boolean conected;
   boolean baseConected;
 
   boolean isDead = false;
 
   TowerEnergy() {
+    conected=false;
     anchoredToBase = 4;
   }
 
@@ -86,6 +88,46 @@ class TowerEnergy
       AttackEmitterConnected(attackEmitterTower);
     }
 
+
+
+
+
+    //for (int i = 0; i < energyTowers.size(); i++) {
+
+    //  if (i-1<0) {
+    //    continue;
+    //  } 
+    //  println(i, energyTowers.get(i).conected);
+    //  if (energyTowers.get(i).baseConected&&inRangeEnergyTower(energyTowers.get(i))) {
+    //    energyTowers.get(i-1).baseConected=true;
+    //  }
+    //  if (energyTowers.get(i).conected&&inRangeEnergyTower(energyTowers.get(i))) {
+    //    energyTowers.get(i-1).conected=true;
+    //  }  
+    //  if (i+1 < energyTowers.size()) {    
+    //    if (baseConected==false&&inRangeEnergyTower(energyTowers.get(i))) {  
+    //      energyTowers.get(i).baseConected=false;
+    //    }
+    //    if (energyTowers.get(0).baseConected) {
+    //      energyTowers.get(1).baseConected=true;
+    //    } 
+    //    if (energyTowers.get(0).conected) {
+    //      energyTowers.get(1).conected=true;
+    //    } 
+
+    //    if (energyTowers.get(i).conected && inRangeEnergyTower(energyTowers.get(i))) {
+    //      energyTowers.get(i+1).conected=true;
+    //    }  
+    //    if (energyTowers.get(i).baseConected&&inRangeEnergyTower(energyTowers.get(i))) {
+    //      energyTowers.get(i+1).baseConected=true;
+    //    }
+    //  }
+
+    //  if (conected&&inRangeEnergyTower(energyTowers.get(i)) && energyTowers.get(i).location.x>-100 ) {
+    //    energyTowers.get(i).conected=true;
+    //  }
+    //}
+
     for (Tower tower : towers) { 
 
       energyTowerToTower(tower);
@@ -97,7 +139,15 @@ class TowerEnergy
 
 
   void connectedToBase(TowerBase base) {
+    if (!inRangeBase(base)) { 
+      baseConected=false; 
+      conected=false;
+
+      anchoredToBase=4;
+    }
     if (inRangeBase(base)) {
+
+      baseConected=true;
       stroke(255);
       strokeWeight(2);
       line(base.location.x*scale+5, base.location.y*scale+5, location.x*scale+5, location.y*scale+5);
@@ -114,34 +164,65 @@ class TowerEnergy
     }
   }
   //her
-  void energyTowersConnected(TowerEnergy energyTower) {    
+  void energyTowersConnected(TowerEnergy energyTower) {   
 
-    if (inRangeEnergyTower(energyTower)) { 
-      if (energyTower.conected) 
-      {
-        stroke(255);
-        strokeWeight(2);
-        line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
-        conected = true;
-      }
-    }   
 
-    if (inRangeEnergyTower(energyTower)&&!conected) {
-      stroke(15+(20*anchoredToBase));
-      strokeWeight(2);
-      line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
-    }
+//    if (energyTower.baseConected == false && baseConected== false) { 
+//      anchoredToBase = 4;
+//      conected=false;
+//      energyTower.conected=false;
+//    }
+
+
+//    if (inRangeEnergyTower(energyTower)) { 
+//      if (baseConected && energyTower.baseConected ) {
+//        conected=true;
+//      }
+
+//      if (energyTower.conected ) {
+//        conected=true;
+//      }
+
+//      println(conected, energyTower.conected, energyTower);
+
+//      if (conected) { 
+
+//        //conected = true; 
+//        //energyTower.conected= true; 
+//        stroke(255);
+//        strokeWeight(2);
+//        line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+//      }
+
+
+//      if (conected==false) { 
+
+
+//        stroke(15+(20*anchoredToBase));
+//        strokeWeight(2);
+//        line(energyTower.location.x*scale+5, energyTower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
+//      }
+//    }
   }
 
 
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
+
+
+
     if (conected && inRangeTower(tower)) {
-      tower.conected=true; 
+
       stroke(255);
       strokeWeight(2);
       line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
       return;
+    }
+
+    if (inRangeTower(tower)) {
+      stroke(15+(20*anchoredToBase));
+      strokeWeight(2);
+      line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
 

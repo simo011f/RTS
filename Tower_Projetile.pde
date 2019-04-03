@@ -16,6 +16,7 @@ class TowerAttackTerrtoriumShot extends Tower {
     energyConsomstion = 10;
     leifRegen = 1;
     maxLeif = 25;
+    cunstructionTime=11;
   }
 
 
