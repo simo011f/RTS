@@ -193,6 +193,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
       game.player.energyNetwork.updateTerrain(currentTerrain);
       background(255);
       fieldDraw(currentTerrain);
+      enemyArray.terrainUpdate(currentTerrain);
       Draw();
       game.player = new Player();
     }

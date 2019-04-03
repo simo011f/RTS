@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   PVector[] directions = new PVector[4];
 
@@ -11,7 +11,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   int[][] updated = new int[cols][rows];
   ArrayList<PVector> thisCluster = new ArrayList<PVector>();
   ArrayList<PVector> thisClusterCheking = new ArrayList<PVector>();
-  
+
   int damping = 0; 
 
 
@@ -346,7 +346,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     //{
-    //  x = (int)strongest(x, y).x; //<>// //<>//
+    //  x = (int)strongest(x, y).x; //<>//
     //  y = (int)strongest(x, y).y;
     //}
 
@@ -401,6 +401,15 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   void terrainUpdate(int i, int j, PVector[][] grid)
   {
     enemys[i][j].terrainHeight = (int)grid[i][j].z;
+  }
+
+  void terrainUpdate(PVector[][] grid)
+  {
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        enemys[i][j].terrainHeight = (int)grid[i][j].z;
+      }
+    }
   }
 
   void Update()

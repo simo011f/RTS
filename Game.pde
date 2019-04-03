@@ -181,9 +181,9 @@ class Game {
       baseLevel.enemyRun();
 
       player.towerDead(baseLevel.enemyArray.enemys);
+      player.Run();
       player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
       player.terrain(baseLevel.currentTerrain);
-      player.Run();
 
 
       escMenu.run();

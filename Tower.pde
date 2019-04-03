@@ -1,14 +1,16 @@
-class Tower {   //<>//
+class Tower {   //<>// //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
-  PVector newLocation;
+  PVector newLocation = new PVector();
   PVector velocity = new PVector();
 
 
   int leif = 2;
   int maxLeif = 2;
   int leifRegen = 0;
+  int cooldown;
+
 
   //build timer
   int t=-2;
@@ -19,7 +21,6 @@ class Tower {   //<>//
 
   boolean conected = false;
   boolean isDead = false;
-  boolean isMoving = false;
 
   int range = 20;
 
@@ -80,13 +81,14 @@ class Tower {   //<>//
   }
   void terrainHight(PVector[][] terrain) {
     if (sameTerrainHeight(terrain)) {
-      if (mouseX/scale < cols||mouseX/scale > 0) {
+      if (location.x > cols || location.x < 0) {
         return;
       }
-      if (mouseY/scale < rows||mouseY/scale > 0) {
+      if (location.y > rows || location.y < 0) {
         return;
       }
-      location.z=terrain[(int)mouseX/scale][(int)mouseY/scale].z;
+      location.z = terrain[(int)location.x][(int)location.y].z;
+      newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
   boolean sameTerrainHeight(PVector[][] terrain) {
@@ -96,13 +98,13 @@ class Tower {   //<>//
         //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
         //  return false;
         //} 
-        if (mouseX/scale + i < cols||mouseX/scale + i > 0) {
+        if (location.x + i < cols || location.x + i > 0) {
           continue;
         }
-        if (mouseY/scale + j < rows||mouseY/scale + j > 0) {
+        if (location.y + j < rows || location.y + j > 0) {
           continue;
         }
-        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale) + j].z) { 
+        if (terrain[(int)location.x][(int)location.y].z != terrain[(int)location.x + i][(int)location.y + j].z) { 
           return false;
         }
       }
@@ -158,11 +160,6 @@ class Tower {   //<>//
   {
     newLocation.set(newLoc);
   }
-  
-  void move(PVector newLoc)
-  {
-    location = newLocation;
-  }
 
   void move()
   {
@@ -171,7 +168,7 @@ class Tower {   //<>//
     float dist = velocity.mag();
     if (dist < 0.1)
     {
-      location = newLocation;
+      location = newLocation; //<>//
       return;
     }
     if (dist > 3) {
@@ -188,6 +185,7 @@ class Tower {   //<>//
     if (newLocation != null && location != newLocation && isBuild())
     {
       move();
+      cooldown = 0; //<>//
     }
 
     Build();

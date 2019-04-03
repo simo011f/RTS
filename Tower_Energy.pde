@@ -1,4 +1,4 @@
-class TowerEnergy 
+class TowerEnergy  //<>//
 {
   PVector location=new PVector(-100, -100);
   PVector naborsLocation = new PVector();
@@ -10,7 +10,6 @@ class TowerEnergy
 
   //bog her
   boolean conected;
-  boolean baseConected;
 
   boolean isDead = false;
 
@@ -86,7 +85,10 @@ class TowerEnergy
     }
 
     for (Tower tower : towers) { 
-
+      if (tower.conected)
+      {
+        continue;
+      }
       energyTowerToTower(tower);
     }
     strokeWeight(0.5);
@@ -196,7 +198,6 @@ class TowerEnergy
 
   void Darw() {
     arearDraw();
-
     towerDraw();
   }
 

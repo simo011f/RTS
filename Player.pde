@@ -284,6 +284,7 @@ class Player
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
       towers.get(towers.size()-1).location.set(loc);
+      towers.get(towers.size()-1).newLocation.set(loc);
       picked = 0;
       towerInHand = false;
 
@@ -354,7 +355,6 @@ class Player
       if (energyTower.isDead) { 
         energyTowers.get(i).anchoredToBase=4;
         energyTowers.get(i).conected=false;
-        energyTowers.get(i).baseConected=false;
         energyTowers.remove(i);
         for (Tower tower : towers) {
           tower.conected=false;
@@ -427,7 +427,6 @@ class Player
     if (towerInHand && NRInHand != -1) {
 
       towers.get(NRInHand).updateNewLocation(newLocation);
-      towers.get(NRInHand).isMoving = true;
       NRInHand = -1;
       towerInHand = false;
       return;
@@ -468,7 +467,7 @@ class Player
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.conected = false;
-      energyTower.baseConected = false;
+      energyTower.arearDraw();
     }
 
 
@@ -479,7 +478,7 @@ class Player
     }
 
     for (TowerEnergy energyTower : energyTowers) {
-      energyTower.run(); 
+      energyTower.towerDraw(); 
       energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
     }
 
