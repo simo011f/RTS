@@ -37,7 +37,7 @@ void draw() {
 
 void enemyUpdate()
 {
-  if (frameCount % 2 == 0) {
+  if (!game.pause) {
     game.baseLevel.enemyArray.Update();
   }
 }
@@ -64,7 +64,7 @@ void keyPressed() {
   case ' ':
     keys[0] = true;
     break;
-  case 'a':
+  case 'x':
     keys[1] = true;
     break;
   case 's':

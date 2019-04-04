@@ -170,7 +170,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void layerFiveDraw()
   {
     thisMap.fill(10);
-    thisMap.stroke(0);
+    thisMap.stroke(50);
     thisMap.strokeWeight(0.5);
     thisMap.rect(x, y, scale, scale);
   }
@@ -180,13 +180,25 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void Draw()
   {
     image(thisMap, 0, 0);
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        enemyArray.Draw(i, j);
+      }
+    }
+
+    for (int i = 0; i < emitters.size(); ++i) {
+      emitters.get(i).Draw();
+    }
   }
+
 
   void Update()
   {
     //viktury
-    if(currentLevel >= 25){println("Game Over");}
-    
+    if (currentLevel >= 25) {
+      println("Game Over");
+    }
+
     if (currentLevel < 25 && emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);
@@ -211,15 +223,5 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void enemyRun()
   {
     enemyArray.Update();
-
-    for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {
-        enemyArray.Draw(i, j);
-      }
-    }
-
-    for (int i = 0; i < emitters.size(); ++i) {
-      emitters.get(i).Draw();
-    }
   }
 }

@@ -15,7 +15,8 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
     cunstructionEnergyConsomstion = 20;
     energyConsomstion = 25;
     leifRegen = 1;
-    maxLeif = 25;cunstructionTime=11;
+    maxLeif = 25;
+    cunstructionTime=11;
   }
 
 
@@ -78,8 +79,12 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
   }
 
   void Build() {   
-    fill(15+(20*underCunstruction), 0, 0);
+    Draw();
     super.Build();
   }  
-
+  void Draw()
+  {
+    fill(15+(20*underCunstruction), 0, 0);
+    super.Draw();
+  }
 }

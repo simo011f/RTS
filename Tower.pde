@@ -88,7 +88,7 @@ class Tower {   //<>// //<>//
         return;
       }
       location.z = terrain[(int)location.x][(int)location.y].z;
-      newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
+      //newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
   boolean sameTerrainHeight(PVector[][] terrain) {
@@ -114,8 +114,6 @@ class Tower {   //<>// //<>//
 
   void Build() {
     //stroke(0);
-    strokeWeight(1.5);
-    rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
 
     if (conected == false) {
       return;
@@ -166,9 +164,11 @@ class Tower {   //<>// //<>//
     velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();
-    if (dist < 0.1)
+    if (dist < 0.4)
     {
-      location = newLocation; //<>//
+      location.x = floor(newLocation.x);
+      location.y = floor(newLocation.y);
+
       return;
     }
     if (dist > 3) {
@@ -180,14 +180,19 @@ class Tower {   //<>// //<>//
     location.y += velocity.y;
   }
 
+  void Draw() {
+    strokeWeight(1.5);
+    rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
+  }
+
   void Run() {
 
-    if (newLocation != null && location != newLocation && isBuild())
+    if (newLocation != null && location.x != newLocation.x && location.y != newLocation.y && isBuild())
     {
       move();
-      cooldown = 0; //<>//
+      cooldown = 0;
     }
-
+    Draw();
     Build();
   }
 }

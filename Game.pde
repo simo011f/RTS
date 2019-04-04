@@ -1,6 +1,8 @@
 class Game {
   int gameContinue = 0;
   boolean win = false;
+  boolean pause = false;
+  int pauseDelay = 0;
   int nr = 0;
   int loc = 0;  
   int lvlcode = 0;
@@ -149,25 +151,60 @@ class Game {
 
     case 0:
       //this is the menu
-
+      background(255);
       menu.run();
       break;
 
     case 1:
       //this is the load game menu
-
+      background(255);
       loadGame.run(); 
       escMenu.run();
       break;
 
     case 2:
       //this is the key menu
-
+      background(255);
       keyMenu.run(); 
       escMenu.run();
       break;
 
     case 3: 
+
+      if (pause) {
+        if (keys[0] && pauseDelay <= 0) {
+          pause = false;
+          pauseDelay = 10;
+        } 
+        baseLevel.Draw();
+        player.energyNetwork.Update();
+        player.PickTowerOnBar();   
+        player.highLight();
+        player.place();  
+        player.drawHotbar();
+        player.towerPause();
+        rectMode(CENTER);
+        fill(255, 100);
+        rect(width/2, height/2 - 7, 110, 40);
+        fill(0);
+        rectMode(CORNER);
+        textAlign(CENTER);
+        fill(0);
+        textSize(35);
+        text("Pause", width/2, height/2 + 5);
+        textAlign(CORNER);
+        pauseDelay--;
+        return;
+      }
+      if (keys[0] && pauseDelay <= 0) {
+        pause = true;
+        pauseDelay =10 ;
+      }
+      pauseDelay--;
+      if (pause)
+      {
+        println("hej");
+      }
       //this is the main game
       timer.run();
 
@@ -178,12 +215,12 @@ class Game {
       player.drawHotbar();
       //player stas
 
-      baseLevel.enemyRun();
+      //baseLevel.enemyRun();
 
       player.towerDead(baseLevel.enemyArray.enemys);
-      player.Run();
       player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
       player.terrain(baseLevel.currentTerrain);
+      player.Run();
 
 
       escMenu.run();

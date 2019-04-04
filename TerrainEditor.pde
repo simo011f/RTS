@@ -1,4 +1,4 @@
-class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
+class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   Thread thread;
   Table table;
@@ -21,7 +21,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
     {
       for (int j = 0; j < rows; j++)
       {
-        newMap[i][j] = new PVector(i, j, 0);
+        newMap[i][j] = new PVector(i, j, -1);
       }
     }
   }
@@ -39,7 +39,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
   {   
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        layerZeroDraw(i, j);
+        layerZeroDraw(i, j, grid);
         layerOneDraw(i, j, grid);
         layerTowDraw(i, j, grid);
         layerThreeDraw(i, j, grid);
@@ -63,14 +63,16 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
     }
   }
 
-  void layerZeroDraw(int i, int j)
+  void layerZeroDraw(int i, int j, PVector[][] grid)
   {
-    int x = i*scale;
-    int y = j*scale;
-    fill(120, 58, 8);
-    stroke(0);
-    strokeWeight(0.5);
-    rect(x, y, scale, scale);
+    if (grid[i][j].z == 0) {
+      int x = i*scale;
+      int y = j*scale;
+      fill(120, 58, 8);
+      stroke(0);
+      strokeWeight(0.5);
+      rect(x, y, scale, scale);
+    }
   }
 
   void layerOneDraw(int i, int j, PVector[][] grid)
@@ -131,7 +133,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
     {
       int x = i*scale;
       int y = j*scale;
-      fill(10);
+      fill(50);
       stroke(0);
       strokeWeight(0.5);
       rect(x, y, scale, scale);
@@ -143,7 +145,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
     PVector[][] thisMap = new PVector[cols][rows];
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
-        thisMap[i][j] = new PVector(i, j);
+        thisMap[i][j] = new PVector(i, j, -1);
       }
     }
     table = loadTable("Tarrains.csv", "header");
@@ -332,7 +334,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
       {
         int x = width / 2 + i*scale + 260;
         int y = height + j*scale - 30;
-        fill(10);
+        fill(50);
         stroke(0);
         strokeWeight(0.5);
         rect(x, y, scale, scale);
@@ -487,19 +489,19 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
         if (mousePressed && mapSaveNR > 0) 
         {
           mapSaveNR--;
-        }  //<>// //<>// //<>//
-        fill(240, 10, 10); //<>// //<>// //<>//
+        }  //<>// //<>//
+        fill(240, 10, 10); //<>// //<>//
         rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
         fill(0);
         textSize(20);
         text("-", x + 1 + scale * 4, y + scale * 3);
       }
-    } //<>//
+    }
     if (mousePressed && mouseY >= height - 40)
     {
       isMouseNotPressedSave = false;
       newMap = loadMap(mapSaveNR);
-    } else //<>// //<>// //<>//
+    } else //<>// //<>//
     {
       isMouseNotPressedSave = true;
     }
@@ -509,7 +511,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
   {
     if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
     {
-      return; //<>// //<>//
+      return; //<>//
     }
 
     if (mousePressed && brushSize == 3)
@@ -540,8 +542,8 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
 
     if (mousePressed && brushSize == 2)
     {
-      if (mouseX > width-10) {
-        mouseX = width-10;
+      if (mouseX > width - 20) {
+        mouseX = width - 20;
       } 
       if (mouseX < 10) {
         mouseX = 10;
@@ -556,7 +558,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
       for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
 
-          if (mouseY + j * scale <= height - 60 || mouseY + j *scale >= 0 || mouseX + i * scale >= 0 || mouseX + i * scale <= width)
+          if (mouseY + j * scale < height - 60 || mouseY + j *scale >= 0 || mouseX + i * scale >= 0 || mouseX + i * scale < width - 10)
           {
             newMap[(mouseX / scale) + i][(mouseY / scale) + j].z = terrainHeight;
           }
@@ -593,7 +595,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
     {
       for (int j = 0; j < rows; j++)
       {
-        if (newMap[i][j].z != 0) {
+        if (newMap[i][j].z != -1) {
           newRow = table.addRow();
           newRow.setInt("x", i);
           newRow.setInt("y", j);
@@ -603,6 +605,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>//
       }
     }
   }
+
 
   void Draw()
   {

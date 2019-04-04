@@ -13,7 +13,7 @@ class Player
   int [] towernrremeber = new int[5];
 
   ArrayList<Tower> towers = new ArrayList<Tower>();
-  ArrayList<TowerAttackETowers> towerAttackETowers = new ArrayList<TowerAttackETowers>();
+  ArrayList<TowerAttackEmitters> towersAttackEmitters = new ArrayList<TowerAttackEmitters>();
 
 
   TowerBase base;
@@ -90,7 +90,7 @@ class Player
     }
     if (towerpickedOnBar[2] && mousePressed) {   
 
-      towerAttackETowers.add(new TowerAttackETowers());
+      towersAttackEmitters.add(new TowerAttackEmitters());
       timer = 0; 
       picked = 3;
       placebleETowers = true;
@@ -299,7 +299,7 @@ class Player
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc);
+      towersAttackEmitters.get(towersAttackEmitters.size() - 1).location.set(loc);
       picked = 0;
       towerInHand = false;
 
@@ -375,11 +375,11 @@ class Player
         continue;
       }
     }
-    for (int i = 0; i < towerAttackETowers.size(); i++) {
-      TowerAttackETowers tower = towerAttackETowers.get(i); 
+    for (int i = 0; i < towersAttackEmitters.size(); i++) {
+      TowerAttackEmitters tower = towersAttackEmitters.get(i); 
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
-        towerAttackETowers.remove(tower);
+        towersAttackEmitters.remove(tower);
         continue;
       }
     }
@@ -397,7 +397,7 @@ class Player
       for (Tower tower : towers) {
         tower.attack(enemyArray);
       }
-      for (TowerAttackETowers towerAttackETower : towerAttackETowers)
+      for (TowerAttackEmitters towerAttackETower : towersAttackEmitters)
       {
         towerAttackETower.attack(emitters);
       }
@@ -424,7 +424,7 @@ class Player
       }
     }
 
-    if (towerInHand && NRInHand != -1) {
+    if (towerInHand && NRInHand >= 0) {
 
       towers.get(NRInHand).updateNewLocation(newLocation);
       NRInHand = -1;
@@ -440,7 +440,7 @@ class Player
   {
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if (towerLocatino.x + i == mouseLocaton.x && towerLocatino.y + j == mouseLocaton.y) {
+        if ((int)towerLocatino.x + i == (int)mouseLocaton.x && (int)towerLocatino.y + j == (int)mouseLocaton.y) {
           return true;
         }
       }
@@ -458,18 +458,10 @@ class Player
       tower.conected = false;
     }
 
-    if (base != null)
-    {
-      base.run();
-      //base.energyTowersConected(energyTowers);
-    }
-
-
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.conected = false;
       energyTower.arearDraw();
     }
-
 
     if (base != null)
     {
@@ -479,7 +471,7 @@ class Player
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.towerDraw(); 
-      energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
+      energyTower.towersConnected(towers, energyTowers, base, towersAttackEmitters);
     }
 
     energyNetwork.energyPruduktion(energyTowers);
@@ -496,10 +488,10 @@ class Player
     }    
     stroke(0);
     //gider ikke at tegne dem
-    for (int i = 0; i < towerAttackETowers.size(); i++)
+    for (int i = 0; i < towersAttackEmitters.size(); i++)
     {
-      TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
-      tAttackETower.Run();
+      TowerAttackEmitters towerAttackEmitters = towersAttackEmitters.get(i);
+      towerAttackEmitters.Run();
     }
     energyNetwork.useEnergy(towers);
   }
@@ -511,7 +503,91 @@ class Player
     }
   }
 
+  //runs when the game is paused
+  void towerPause()
+  {
+    destroyTower();
+    for (Tower tower : towers)
+    {
+      tower.conected = false;
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
+      energyTower.conected = false;
+      energyTower.arearDraw();
+    }
+
+    if (base != null) {
+      base.energyTowersConected(energyTowers);
+      base.run();
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
+      energyTower.towerDraw(); 
+      energyTower.towersConnected(towers, energyTowers, base, towersAttackEmitters);
+    }
+    stroke(0);
+
+    for (Tower tower : towers) {
+      tower.Draw();
+    }
+    stroke(0);
+    for (TowerAttackEmitters towerAttackEmitters : towersAttackEmitters)
+    {
+      towerAttackEmitters.Run();
+    }
+    energyNetwork.useEnergy(towers);
+  }
+
+  void destroyTower()
+  {
+    PVector mouseLocation = new PVector(mouseX/scale, mouseY/scale);
+    if (!keys[1])
+    {
+      return;
+    }
+    if (towers.size() > 0) {
+      for (Tower tower : towers) {
+        if (mouseOverTower(tower.location, mouseLocation)) {
+          towers.remove(tower);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (towersAttackEmitters.size() > 0) {
+      for (TowerAttackEmitters towerAttackEmitters : towersAttackEmitters)
+      {
+        if (mouseOverTower(towerAttackEmitters.location, mouseLocation)) {
+          towersAttackEmitters.remove(towerAttackEmitters);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (energyTowers.size() > 0) {
+      for (TowerEnergy energyTower : energyTowers) {
+        if (mouseOverTower(energyTower.location, mouseLocation)) {
+          energyTowers.remove(energyTower);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (base != null && mouseOverTower(base.location, mouseLocation))
+    {
+      base = null;
+      keys[1] = false;
+      return;
+    }
+    keys[1] = false;
+  }
+
   void Run() {
+    destroyTower();
     energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   

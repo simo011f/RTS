@@ -54,7 +54,7 @@ class TowerBase
     }
   }
 
-  void highLight() {   
+  void Draw() {   
 
     fill(0, 255, 255);
     stroke(0);
@@ -67,7 +67,7 @@ class TowerBase
     }
   }
   void run() { 
-    highLight();
+    Draw();
     weapon();
     detection();
   }
