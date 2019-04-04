@@ -43,13 +43,13 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void loadLevel(int newLevel)
   {
-    currentTerrain = terrainEditor.loadMap(newLevel);
+    currentTerrain = terrainEditor.loadMap(newLevel);  
+    game.player.levelTerrain=currentTerrain;
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
     enemyArray.reLoad(enemyArray);
     emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);
     emittersRemaning = emitters.size();
   }
-
 
 
   void fieldDraw(PVector[][] grid) 
@@ -185,8 +185,10 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void Update()
   {
     //viktury
-    if(currentLevel >= 25){println("Game Over");}
-    
+    if (currentLevel >= 25) {
+      println("Game Over");
+    }
+
     if (currentLevel < 25 && emitters.size() == 0 || currentLevel == 0) {
       currentLevel++;
       loadLevel(currentLevel);

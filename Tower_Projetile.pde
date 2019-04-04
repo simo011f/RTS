@@ -51,6 +51,9 @@ class TowerAttackTerrtoriumShot extends Tower {
         if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
           Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
 
+
+
+
           if (enemy.terrainHeight > location.z) {
 
             continue;
@@ -59,6 +62,14 @@ class TowerAttackTerrtoriumShot extends Tower {
             inRange = new PVector(i, j);
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
+            }
+          }      
+          for (int tx = 0; tx <= (location.x-closest.x); i++) {
+            for (int ty = 0; ty <= (location.y-closest.y); j++) {
+              if (enemyArray[((int)location.x) -tx][((int)location.y) -ty].terrainHeight> location.z) {
+                fill(255, 0, 0);
+                rect( game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].x-5, game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].y, scale, scale);
+              }
             }
           }
         }

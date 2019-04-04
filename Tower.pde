@@ -1,11 +1,11 @@
-class Tower {   //<>// //<>// //<>//
+class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
   PVector newLocation = new PVector();
   PVector velocity = new PVector();
 
-  PVector[][] terrainHieght;
+
 
   int leif = 2;
   int maxLeif = 2;
@@ -27,16 +27,12 @@ class Tower {   //<>// //<>// //<>//
 
   Tower()
   {
-    location = new PVector(-10, -10);  
-    //midlertideigt
-    terrainHieght=game.baseLevel.currentTerrain;
+    location = new PVector(-10, -10);
+    ////midlertideigt
+    //terrainHieght=game.baseLevel.currentTerrain;
   }
 
-  Tower(PVector[][] levelTarrain) {
-    terrainHieght=levelTarrain;
 
-    terrainHieght=game.baseLevel.currentTerrain;
-  }
 
   void weapon(Enemy[][] enemyArray) {
   }
@@ -108,17 +104,7 @@ class Tower {   //<>// //<>// //<>//
 
   boolean sameTerrainHeight(PVector[][] terrain) {    
 
-    restrainMouse();
-    if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
-      //midlertideigt
-      game.player.placeble=false;
-      println("hrj");
-      return false;
-    }
-    if (terrainHieght[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
-      //midlertideigt
-      game.player.placeble=true;
-    }
+
 
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
@@ -190,14 +176,14 @@ class Tower {   //<>// //<>// //<>//
     newLocation.set(newLoc);
   }
 
-    void move()
+  void move()
   {
     velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();
     if (dist < 0.1)
     {
-      location = newLocation; //<>//
+      location = newLocation;
       return;
     }
     if (dist > 3) {
@@ -214,7 +200,7 @@ class Tower {   //<>// //<>// //<>//
     if (newLocation != null && location != newLocation && isBuild())
     {
       move();
-      cooldown = 0; //<>//
+      cooldown = 0;
     }
 
     Build();

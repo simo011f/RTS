@@ -1,4 +1,4 @@
-class Player  
+class Player   //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -11,7 +11,7 @@ class Player
   int NRInHand = -1;
 
   int [] towernrremeber = new int[5];
-
+  PVector[][] levelTerrain = new PVector[cols][rows];
 
   ArrayList<Tower> towers = new ArrayList<Tower>();
   ArrayList<TowerAttackETowers> towerAttackETowers = new ArrayList<TowerAttackETowers>();
@@ -277,7 +277,19 @@ class Player
     }
   }
 
-  void place() {     
+  void place() {    
+
+    restrainMouse() ;
+    if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
+
+      placeble=false;
+    }
+    if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
+
+      placeble=true;
+    }
+
+
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
 
       restrainMouse();
@@ -512,7 +524,7 @@ class Player
     for (TowerEnergy energyTower : energyTowers) {
     }
     for (Tower tower : towers) {  
-      Tower towerTerreain = new Tower(currentTarine);
+
       tower.terrainHight(currentTarine);
     }
   }
