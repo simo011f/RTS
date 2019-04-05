@@ -89,8 +89,12 @@ class TowerAttackTerrtoriumShot extends Tower {
     }
   }
   void Build() {  
-
-    fill(0, 0, 15+(20*underCunstruction));
+    Draw();
     super.Build();
+  }
+  void Draw()
+  {
+    fill(0, 0, 15+(20*underCunstruction));    
+    super.Draw();
   }
 }

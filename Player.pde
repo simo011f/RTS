@@ -18,6 +18,8 @@ class Player   //<>// //<>//
 
 
   TowerBase base;
+  ArrayList<Tower> towers = new ArrayList<Tower>();
+  ArrayList<TowerAttackEmitters> towersAttackEmitters = new ArrayList<TowerAttackEmitters>();
   ArrayList<TowerEnergy> energyTowers = new ArrayList<TowerEnergy>();
 
   boolean[] towerpickedOnBar = new boolean[5];    
@@ -25,14 +27,12 @@ class Player   //<>// //<>//
   boolean basePicked = false;
   boolean towerInHand = false;
 
-
   int picked;
 
   boolean placeble;
   boolean placebleEnergy;
   boolean placebleBase;
   boolean placebleETowers;
-
 
   boolean isMouseNotPressedPlace = true;
   boolean isMouseNotPressedHotBar = true;
@@ -92,7 +92,7 @@ class Player   //<>// //<>//
     }
     if (towerpickedOnBar[2] && mousePressed) {   
 
-      towerAttackETowers.add(new TowerAttackETowers());
+      towersAttackEmitters.add(new TowerAttackEmitters());
       timer = 0; 
       picked = 3;
       placebleETowers = true;
@@ -129,7 +129,7 @@ class Player   //<>// //<>//
       picked=5;
       placebleEnergy=true;
       towerInHand = true;
-      energyTowers.get(eTowerNR - 1).vis = 0;
+      energyTowers.get(energyTowers.size() - 1).vis = 0;
       towerpickedOnBar[4]=false;
     }
 
@@ -200,15 +200,12 @@ class Player   //<>// //<>//
 
     if (picked==1) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
-
       fill(0, 0, 255);
       stroke(0);
       strokeWeight(1.5);
@@ -217,15 +214,12 @@ class Player   //<>// //<>//
 
     if (picked==2) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
-
       fill(255, 0, 0);
       stroke(0);
       strokeWeight(1.5);
@@ -235,15 +229,12 @@ class Player   //<>// //<>//
     //TowerAttackEnemyTower
     if (picked==3) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 10) * scale, (location.y - 10) * scale, 21 * scale, 21 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
-
       fill(255, 255, 0);
       stroke(0);
       strokeWeight(1.5);
@@ -252,31 +243,27 @@ class Player   //<>// //<>//
 
     if (picked==4) {
       restrainMouse();
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);    
-
       fill(0, 255, 255);
       rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);
     }    
 
     if (picked==5) {
       restrainMouse();
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
-
       fill(0, 155, 0);
       stroke(0);
       rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);    
-
       fill(0, 255, 0);
       rect(location.x * scale, location.y * scale, scale, scale);
     }
   }
 
+<<<<<<< HEAD
   void place() {    
 
     restrainMouse() ;
@@ -292,8 +279,18 @@ class Player   //<>// //<>//
 
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
 
+=======
+  void place() {
+    if (towers.size() > 0) {
+      towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
+    }
+    
+    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
+      if (towers.get(towers.size()-1).coliding) {
+        return;
+      }
+>>>>>>> Tower-Logistiks
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
@@ -301,62 +298,44 @@ class Player   //<>// //<>//
       towers.get(towers.size()-1).newLocation.set(loc);
       picked = 0;
       towerInHand = false;
-
       placeble = false;
       timer = 0;
     }  
 
     if (placebleETowers && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
-
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-      towerAttackETowers.get(towerAttackETowers.size() - 1).location.set(loc);
+      towersAttackEmitters.get(towersAttackEmitters.size() - 1).location.set(loc);
       picked = 0;
       towerInHand = false;
-
       placebleETowers = false;
       timer = 0;
     } 
 
     if (placebleBase  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
       restrainMouse();
-
-
       int x = (int)mouseX/scale;
       int y = (int)mouseY/scale;
       PVector loc = new PVector(x, y);
-
-      base.location.set(loc);  
-
-
-
+      base.location.set(loc);
       timer=0;      
       picked = 0;
       towerInHand = false;
-
       placebleBase = false;
     }
 
-    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
+    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-
-      energyTowers.get(eTowerNR-1).location.set(loc);  
-
-      energyTowers.get(eTowerNR-1).vis = 100;
-
+      energyTowers.get(energyTowers.size()-1).location.set(loc);
+      energyTowers.get(energyTowers.size()-1).vis = 100;
       timer=0;      
       picked = 0;
       towerInHand = false;
-
       placebleEnergy = false;
     }
   }
@@ -389,11 +368,16 @@ class Player   //<>// //<>//
         continue;
       }
     }
-    for (int i = 0; i < towerAttackETowers.size(); i++) {
-      TowerAttackETowers tower = towerAttackETowers.get(i); 
+    for (int i = 0; i < towersAttackEmitters.size(); i++) {
+      TowerAttackEmitters tower = towersAttackEmitters.get(i); 
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
-        towerAttackETowers.remove(tower);
+        if (i == NRInHand)
+        {
+          NRInHand = -1;
+          towerInHand = false;
+        }
+        towersAttackEmitters.remove(tower);
         continue;
       }
     }
@@ -411,7 +395,7 @@ class Player   //<>// //<>//
       for (Tower tower : towers) {
         tower.attack(enemyArray);
       }
-      for (TowerAttackETowers towerAttackETower : towerAttackETowers)
+      for (TowerAttackEmitters towerAttackETower : towersAttackEmitters)
       {
         towerAttackETower.attack(emitters);
       }
@@ -438,7 +422,7 @@ class Player   //<>// //<>//
       }
     }
 
-    if (towerInHand && NRInHand != -1) {
+    if (towerInHand && NRInHand >= 0) {
 
       towers.get(NRInHand).updateNewLocation(newLocation);
       NRInHand = -1;
@@ -454,7 +438,7 @@ class Player   //<>// //<>//
   {
     for (int i = -1; i <= 1; i++) {
       for (int j = -1; j <= 1; j++) {
-        if (towerLocatino.x + i == mouseLocaton.x && towerLocatino.y + j == mouseLocaton.y) {
+        if ((int)towerLocatino.x + i == (int)mouseLocaton.x && (int)towerLocatino.y + j == (int)mouseLocaton.y) {
           return true;
         }
       }
@@ -472,18 +456,10 @@ class Player   //<>// //<>//
       tower.conected = false;
     }
 
-    if (base != null)
-    {
-      base.run();
-      //base.energyTowersConected(energyTowers);
-    }
-
-
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.conected = false;
       energyTower.arearDraw();
     }
-
 
     if (base != null)
     {
@@ -493,7 +469,7 @@ class Player   //<>// //<>//
 
     for (TowerEnergy energyTower : energyTowers) {
       energyTower.towerDraw(); 
-      energyTower.towersConnected(towers, energyTowers, base, towerAttackETowers);
+      energyTower.towersConnected(towers, energyTowers, base, towersAttackEmitters);
     }
 
     energyNetwork.energyPruduktion(energyTowers);
@@ -510,10 +486,10 @@ class Player   //<>// //<>//
     }    
     stroke(0);
     //gider ikke at tegne dem
-    for (int i = 0; i < towerAttackETowers.size(); i++)
+    for (int i = 0; i < towersAttackEmitters.size(); i++)
     {
-      TowerAttackETowers tAttackETower = towerAttackETowers.get(i);
-      tAttackETower.Run();
+      TowerAttackEmitters towerAttackEmitters = towersAttackEmitters.get(i);
+      towerAttackEmitters.Run();
     }
     energyNetwork.useEnergy(towers);
   }
@@ -529,7 +505,91 @@ class Player   //<>// //<>//
     }
   }
 
+  //runs when the game is paused
+  void towerPause()
+  {
+    destroyTower();
+    for (Tower tower : towers)
+    {
+      tower.conected = false;
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
+      energyTower.conected = false;
+      energyTower.arearDraw();
+    }
+
+    if (base != null) {
+      base.energyTowersConected(energyTowers);
+      base.run();
+    }
+
+    for (TowerEnergy energyTower : energyTowers) {
+      energyTower.towerDraw(); 
+      energyTower.towersConnected(towers, energyTowers, base, towersAttackEmitters);
+    }
+    stroke(0);
+
+    for (Tower tower : towers) {
+      tower.Draw();
+    }
+    stroke(0);
+    for (TowerAttackEmitters towerAttackEmitters : towersAttackEmitters)
+    {
+      towerAttackEmitters.Run();
+    }
+    energyNetwork.useEnergy(towers);
+  }
+
+  void destroyTower()
+  {
+    PVector mouseLocation = new PVector(mouseX/scale, mouseY/scale);
+    if (!keys[1])
+    {
+      return;
+    }
+    if (towers.size() > 0) {
+      for (Tower tower : towers) {
+        if (mouseOverTower(tower.location, mouseLocation)) {
+          towers.remove(tower);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (towersAttackEmitters.size() > 0) {
+      for (TowerAttackEmitters towerAttackEmitters : towersAttackEmitters)
+      {
+        if (mouseOverTower(towerAttackEmitters.location, mouseLocation)) {
+          towersAttackEmitters.remove(towerAttackEmitters);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (energyTowers.size() > 0) {
+      for (TowerEnergy energyTower : energyTowers) {
+        if (mouseOverTower(energyTower.location, mouseLocation)) {
+          energyTowers.remove(energyTower);
+          keys[1] = false;
+          return;
+        }
+      }
+    }
+
+    if (base != null && mouseOverTower(base.location, mouseLocation))
+    {
+      base = null;
+      keys[1] = false;
+      return;
+    }
+    keys[1] = false;
+  }
+
   void Run() {
+    destroyTower();
     energyNetwork.Update();
     PickTowerOnBar();   
     highLight();   

@@ -1,4 +1,4 @@
-class EnemyPlasmentEditor {     //<>// //<>// //<>//
+class EnemyPlasmentEditor {     //<>// //<>// //<>// //<>//
   Table table;
 
   int mapSaveNR = 0;
@@ -222,7 +222,7 @@ class EnemyPlasmentEditor {     //<>// //<>// //<>//
     if (mouseX >= x && mouseX <= x + 30 && isMouseNotPressedEmitterStrength)  
     {
       if (mouseY >= height - 40 && mouseY < height - 25) {
-        if (mousePressed && newLevelEmitterStrength < 100)
+        if (mousePressed && newLevelEmitterStrength < 10000)
         {
           newLevelEmitterStrength++;
         } 
@@ -567,8 +567,8 @@ class EnemyPlasmentEditor {     //<>// //<>// //<>//
       return newLevelEnemyGrid;
     }
     return null;
-  }  //<>//
-  //<>//
+  }  //<>// //<>//
+  //<>// //<>//
   ArrayList<Emitter> loadEmitters(int levelNR, EnemyGrid enemys)
   {
     table = loadTable("EnemyPlasment.csv", "header");

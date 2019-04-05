@@ -46,7 +46,6 @@ class EscMenu
       game.menu.screen[4] = false;
       game.menu.screen[5] = false;
       game.menu.screen[6] = false;
-      
     } else {
       chol[2] = 255;
       Opt[2] = false;

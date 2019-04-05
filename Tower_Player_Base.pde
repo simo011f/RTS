@@ -83,7 +83,7 @@ class TowerBase
     }
   }
 
-  void highLight() {   
+  void Draw() {   
 
     fill(0, 255, 255);
     stroke(0);
@@ -96,8 +96,14 @@ class TowerBase
     }
   }
   void run() { 
+<<<<<<< HEAD
     highLight();
 
     regen();
+=======
+    Draw();
+    weapon();
+    detection();
+>>>>>>> Tower-Logistiks
   }
 }

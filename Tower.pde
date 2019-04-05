@@ -22,6 +22,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
 
   boolean conected = false;
   boolean isDead = false;
+  boolean coliding = false;
 
   int range = 20;
 
@@ -85,9 +86,103 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
     }
   }
 
+<<<<<<< HEAD
   void terrainHight(PVector[][] terrain) { 
 
     println(sameTerrainHeight(terrain));
+=======
+  void towerColition(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers)
+  {
+    for (Tower tower : towers)
+    {
+      if (tower == this)
+      {
+        continue;
+      }
+      for (int i = -7; i <= 7; i++) 
+      {
+        for (int j = -7; j <= 7; j++) 
+        {
+          if (newLocation.x + i == tower.location.x && newLocation.y + j == tower.location.y)
+          {
+            newLocation.set(location);
+          }
+        }
+      }
+    }
+  }
+
+  void towerColitionPlase(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers)
+  {
+    for (Tower tower : towers)
+    {
+      if (tower == this)
+      {
+        continue;
+      }
+      for (int i = -2; i <= 2; i++) 
+      {
+        for (int j = -2; j <= 2; j++) 
+        {
+          if (location.x + i == tower.location.x && location.y == tower.location.y) 
+          {
+            coliding = true;
+            return;
+          }
+        }
+      }
+    }
+    for (TowerAttackEmitters tower : towerAttackETowers)
+    {
+      if (tower == this)
+      {
+        continue;
+      }
+      for (int i = -2; i <= 2; i++) 
+      {
+        for (int j = -2; j <= 2; j++) 
+        {
+          if (location.x + i == tower.location.x && location.y == tower.location.y) 
+          {
+            coliding = true;
+            return;
+          }
+        }
+      }
+    }
+    for (TowerEnergy energyTower : energyTowers)
+    {
+      for (int i = -1; i <= 1; i++) 
+      {
+        for (int j = -1; j <= 1; j++) 
+        {
+          if (location.x + i == energyTower.location.x && location.y == energyTower.location.y) 
+          {
+            coliding = true;
+            return;
+          }
+        }
+      }
+    }
+    if (base == null) {
+      return;
+    }
+    for (int i = -4; i <= 4; i++) 
+    {
+      for (int j = -4; j <= 4; j++) 
+      {
+        if (location.x + i == base.location.x && location.y == base.location.y) 
+        {
+          coliding = true;
+          return;
+        }
+      }
+    }
+    coliding = false;
+  }
+
+  void terrainHight(PVector[][] terrain) {
+>>>>>>> Tower-Logistiks
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
@@ -96,7 +191,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
         return;
       }
       location.z = terrain[(int)location.x][(int)location.y].z;
-      newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
+      //newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
 
@@ -129,8 +224,6 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
 
   void Build() {
     //stroke(0);
-    strokeWeight(1.5);
-    rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
 
     if (conected == false) {
       return;
@@ -181,9 +274,15 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
     velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();
-    if (dist < 0.1)
+    if (dist < 0.4)
     {
+<<<<<<< HEAD
       location = newLocation;
+=======
+      location.x = floor(newLocation.x);
+      location.y = floor(newLocation.y);
+
+>>>>>>> Tower-Logistiks
       return;
     }
     if (dist > 3) {
@@ -195,14 +294,24 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
     location.y += velocity.y;
   }
 
+  void Draw() {
+    strokeWeight(1.5);
+    if (coliding)
+    {
+      stroke(255, 50, 50);
+      strokeWeight(2);
+    }
+    rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
+  }
+
   void Run() {
 
-    if (newLocation != null && location != newLocation && isBuild())
+    if (newLocation != null && location.x != newLocation.x && location.y != newLocation.y && isBuild())
     {
       move();
       cooldown = 0;
     }
-
+    Draw();
     Build();
   }
 }

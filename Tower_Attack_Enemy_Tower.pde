@@ -1,10 +1,10 @@
-class TowerAttackETowers  extends Tower{
+class TowerAttackEmitters  extends Tower {
   int energybuild = 40;
   int cooldown;
 
   boolean shoot = false;
 
-  TowerAttackETowers()
+  TowerAttackEmitters()
   {
     super();
     underCunstruction = 0;
@@ -49,10 +49,14 @@ class TowerAttackETowers  extends Tower{
   }
 
   void Build() {  
-  
-    fill(15+(20*underCunstruction), 15+(20*underCunstruction), 0);
+    Draw();
     super.Build();
-    
+  }
+
+  void Draw()
+  {
+    fill(15+(20*underCunstruction), 15+(20*underCunstruction), 0);
+    super.Draw();
   }
   void Run() {
 
