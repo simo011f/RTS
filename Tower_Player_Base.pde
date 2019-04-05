@@ -35,7 +35,7 @@ class TowerBase
 
     while (energyTowersConectedIndex.size() > 0)
     {   
-      println("hej1");
+   
       for (int i = energyTowersConectedIndex.size() - 1; i >= 0; i--)
 
       {

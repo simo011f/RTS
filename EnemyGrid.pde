@@ -314,7 +314,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
     while (thisClusterCheking.size() > 0)
     {
-      println("hej2");     
+    
       for (PVector direction : directions) 
       {
         checkingX = x + (int)direction.x;
@@ -339,7 +339,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
 
     while (thisCluster.size() > 0)
-    { println("hej3");
+    { 
       PVector thisStrongest = strongest(thisCluster);
       x = (int)thisStrongest.x;
       y = (int)thisStrongest.y;
