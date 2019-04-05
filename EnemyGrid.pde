@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   PVector[] directions = new PVector[4];
 
@@ -314,7 +314,8 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
     while (thisClusterCheking.size() > 0)
     {
-      for (PVector direction : directions)
+      println("hej2");     
+      for (PVector direction : directions) 
       {
         checkingX = x + (int)direction.x;
         checkingY = y + (int)direction.y;
@@ -338,7 +339,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
 
     while (thisCluster.size() > 0)
-    {
+    { println("hej3");
       PVector thisStrongest = strongest(thisCluster);
       x = (int)thisStrongest.x;
       y = (int)thisStrongest.y;
@@ -346,7 +347,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     //{
-    //  x = (int)strongest(x, y).x; //<>// //<>//
+    //  x = (int)strongest(x, y).x; //<>//
     //  y = (int)strongest(x, y).y;
     //}
 

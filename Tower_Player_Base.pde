@@ -34,8 +34,10 @@ class TowerBase
     }
 
     while (energyTowersConectedIndex.size() > 0)
-    {
+    {   
+      println("hej1");
       for (int i = energyTowersConectedIndex.size() - 1; i >= 0; i--)
+
       {
         int j = (int)energyTowersConectedIndex.get(i).x;
         TowerEnergy thisEnergyTower = energyTowers.get(j); 
@@ -96,14 +98,11 @@ class TowerBase
     }
   }
   void run() { 
-<<<<<<< HEAD
-    highLight();
+
+
 
     regen();
-=======
+
     Draw();
-    weapon();
-    detection();
->>>>>>> Tower-Logistiks
   }
 }

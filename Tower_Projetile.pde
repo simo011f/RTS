@@ -64,14 +64,14 @@ class TowerAttackTerrtoriumShot extends Tower {
               closest = inRange;
             }
           }      
-          for (int tx = 0; tx <= (location.x-closest.x); i++) {
-            for (int ty = 0; ty <= (location.y-closest.y); j++) {
-              if (enemyArray[((int)location.x) -tx][((int)location.y) -ty].terrainHeight> location.z) {
-                fill(255, 0, 0);
-                rect( game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].x-5, game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].y, scale, scale);
-              }
-            }
-          }
+          //for (int tx = 0; tx <= (location.x-closest.x); i++) {
+          //  for (int ty = 0; ty <= (location.y-closest.y); j++) {
+          //    if (enemyArray[((int)location.x) -tx][((int)location.y) -ty].terrainHeight> location.z) {
+          //      fill(255, 0, 0);
+          //      rect( game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].x-5, game.baseLevel.currentTerrain[((int)location.x) -tx][((int)location.y) -ty].y, scale, scale);
+          //    }
+          //  }
+          //}
         }
       }
     }

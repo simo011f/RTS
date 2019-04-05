@@ -13,8 +13,6 @@ class Player   //<>// //<>//
   int [] towernrremeber = new int[5];
   PVector[][] levelTerrain = new PVector[cols][rows];
 
-  ArrayList<Tower> towers = new ArrayList<Tower>();
-  ArrayList<TowerAttackETowers> towerAttackETowers = new ArrayList<TowerAttackETowers>();
 
 
   TowerBase base;
@@ -263,33 +261,32 @@ class Player   //<>// //<>//
     }
   }
 
-<<<<<<< HEAD
+
   void place() {    
 
-    restrainMouse() ;
-    if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
-
-      placeble=false;
-    }
-    if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
-
-      placeble=true;
-    }
 
 
-    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
 
-=======
-  void place() {
+
+
     if (towers.size() > 0) {
       towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
     }
-    
+    if (mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61) {
+      if (placeble && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
+
+        placeble=false;
+      }
+      if (placebleEnergy==false&&placebleBase==false && placebleETowers==false && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
+
+        placeble=true;
+      }
+    }
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
       if (towers.get(towers.size()-1).coliding) {
         return;
       }
->>>>>>> Tower-Logistiks
+
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;

@@ -138,15 +138,11 @@ class TowerEnergy  //<>// //<>//
 
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
-<<<<<<< HEAD
+
     if (inRangeTower(tower)) {
 
       stroke(15+(20*anchoredToBase));
-=======
-    if (conected && inRangeTower(tower)){
-      tower.conected=true; 
-      stroke(255);
->>>>>>> Tower-Logistiks
+
       strokeWeight(2);
       line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
       if (conected) {  

@@ -86,11 +86,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
     }
   }
 
-<<<<<<< HEAD
-  void terrainHight(PVector[][] terrain) { 
 
-    println(sameTerrainHeight(terrain));
-=======
   void towerColition(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers)
   {
     for (Tower tower : towers)
@@ -182,7 +178,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
   void terrainHight(PVector[][] terrain) {
->>>>>>> Tower-Logistiks
+
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
@@ -276,13 +272,11 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
     float dist = velocity.mag();
     if (dist < 0.4)
     {
-<<<<<<< HEAD
-      location = newLocation;
-=======
+
       location.x = floor(newLocation.x);
       location.y = floor(newLocation.y);
 
->>>>>>> Tower-Logistiks
+
       return;
     }
     if (dist > 3) {
