@@ -1,4 +1,4 @@
-class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   Thread thread;
   Table table;
@@ -6,6 +6,11 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
   int mapSaveNR = 0;
   boolean isMouseNotPressedSave = true;
   boolean isMouseNotPressedBrush = true;
+
+  PVector rectangelStart = null;
+  PVector rectangelEnd = null;
+  boolean rectangelEngage = false;
+  int delay = 0;
 
 
   int terrainHeight = 0;
@@ -192,6 +197,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(0);
         stroke(255);
         strokeWeight(0.5);
+        if (terrainHeight == -1) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -217,6 +226,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(120, 58, 8);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 0) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -241,6 +254,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(160, 75, 30);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 1) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -265,6 +282,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(100);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 2) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -289,6 +310,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(100, 70, 40);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 3) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -313,6 +338,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(90, 60, 30);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 4) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -337,6 +366,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         fill(50);
         stroke(0);
         strokeWeight(0.5);
+        if (terrainHeight == 5) {
+          stroke(100, 255, 100);
+          strokeWeight(1);
+        }
         rect(x, y, scale, scale);
       }
     }
@@ -474,6 +507,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         if (mousePressed==true)
         {
           mapSaveNR++;
+          newMap = loadMap(mapSaveNR);
         } 
         fill(10, 240, 10);
         rect(x + scale * 3, y, scale * 3, scale * 3 / 2);
@@ -489,6 +523,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         if (mousePressed && mapSaveNR > 0) 
         {
           mapSaveNR--;
+          newMap = loadMap(mapSaveNR);
         }  //<>// //<>//
         fill(240, 10, 10); //<>// //<>//
         rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
@@ -500,18 +535,78 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     if (mousePressed && mouseY >= height - 40)
     {
       isMouseNotPressedSave = false;
-      newMap = loadMap(mapSaveNR);
     } else //<>// //<>//
     {
       isMouseNotPressedSave = true;
     }
   }
 
+  void rectangelTool() {
+    delay--;
+    if (keys[2] && !rectangelEngage && delay <= 0)
+    {
+      rectangelStart = new PVector((int)(mouseX / scale), (int)(mouseY / scale));
+      delay = 10;
+      rectangelEngage = true;
+      keys[2] = false;
+      return;
+    }
+
+    if (rectangelEngage)
+    {
+      noFill();
+      stroke(255);
+      strokeWeight(1);
+      
+      rect(rectangelStart.x * scale + 5, rectangelStart.y * scale + 5, mouseX - rectangelStart.x * scale - 5, mouseY - rectangelStart.y * scale - 5);
+    }
+
+    if (keys[2] && rectangelEngage && delay <= 0)
+    {
+      rectangelEnd = new PVector(mouseX / scale, mouseY / scale);
+      if (rectangelStart.x > rectangelEnd.x)
+      {
+        float saveX = rectangelEnd.x;
+        rectangelEnd.x = rectangelStart.x;
+        rectangelStart.x = saveX;
+      }
+
+      if (rectangelStart.y > rectangelEnd.y)
+      {
+        float saveY = rectangelEnd.y;
+        rectangelEnd.y = rectangelStart.y;
+        rectangelStart.y = saveY;
+      }
+      updateRectangel((int)rectangelStart.x, (int)rectangelStart.y, (int)rectangelEnd.x, (int)rectangelEnd.y);
+      rectangelEngage = false;
+      delay = 10;
+      keys[2] = false;
+      return;
+    }
+  }
+
+  void updateRectangel(int x1, int y1, int x2, int y2)
+  {
+    for (int i = x1; i <= x2; i++)
+    {
+      for (int j = y1; j <= y2; j++)
+      {
+        newMap[i][j].z = terrainHeight;
+      }
+    }
+  }
+
   void updateMap()
   {
+    fill(255, 100);
+    stroke(terrainHeight * 25);
+    rectMode(CENTER);
+    rect((mouseX/scale)*scale + 5, (mouseY/scale)*scale + 5, (2 * brushSize - 1) * scale, (2 * brushSize - 1) * scale);
+    rectMode(CORNER);
+    noFill();
     if (mouseY >= height - 60 || mouseY <= 0 || mouseX <= 0 || mouseX >= width)
     {
-      return; //<>//
+      return;
     }
 
     if (mousePressed && brushSize == 3)
@@ -618,6 +713,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     Draw();
     hotbar();
     saveMap();
+    rectangelTool();
     updateMap();
   }
 }

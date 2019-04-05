@@ -10,13 +10,9 @@ class Player
   int eTowerNR;
   int NRInHand = -1;
 
-  int [] towernrremeber = new int[5];
-
+  TowerBase base;
   ArrayList<Tower> towers = new ArrayList<Tower>();
   ArrayList<TowerAttackEmitters> towersAttackEmitters = new ArrayList<TowerAttackEmitters>();
-
-
-  TowerBase base;
   ArrayList<TowerEnergy> energyTowers = new ArrayList<TowerEnergy>();
 
   boolean[] towerpickedOnBar = new boolean[5];    
@@ -24,14 +20,12 @@ class Player
   boolean basePicked = false;
   boolean towerInHand = false;
 
-
   int picked;
 
   boolean placeble;
   boolean placebleEnergy;
   boolean placebleBase;
   boolean placebleETowers;
-
 
   boolean isMouseNotPressedPlace = true;
   boolean isMouseNotPressedHotBar = true;
@@ -127,7 +121,7 @@ class Player
       picked=5;
       placebleEnergy=true;
       towerInHand = true;
-      energyTowers.get(eTowerNR - 1).vis = 0;
+      energyTowers.get(energyTowers.size() - 1).vis = 0;
       towerpickedOnBar[4]=false;
     }
 
@@ -198,15 +192,12 @@ class Player
 
     if (picked==1) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
-
       fill(0, 0, 255);
       stroke(0);
       strokeWeight(1.5);
@@ -215,15 +206,12 @@ class Player
 
     if (picked==2) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
-
       fill(255, 0, 0);
       stroke(0);
       strokeWeight(1.5);
@@ -233,15 +221,12 @@ class Player
     //TowerAttackEnemyTower
     if (picked==3) {
       restrainMouse();
-
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
       rect((location.x - 10) * scale, (location.y - 10) * scale, 21 * scale, 21 * scale);
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
-
       fill(255, 255, 0);
       stroke(0);
       strokeWeight(1.5);
@@ -250,36 +235,36 @@ class Player
 
     if (picked==4) {
       restrainMouse();
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);    
-
       fill(0, 255, 255);
       rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);
     }    
 
     if (picked==5) {
       restrainMouse();
-
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale); 
-
       fill(0, 155, 0);
       stroke(0);
       rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);    
-
       fill(0, 255, 0);
       rect(location.x * scale, location.y * scale, scale, scale);
     }
   }
 
-  void place() {     
-    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
-
+  void place() {
+    if (towers.size() > 0) {
+      towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
+    }
+    
+    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
+      if (towers.get(towers.size()-1).coliding) {
+        return;
+      }
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
@@ -287,62 +272,44 @@ class Player
       towers.get(towers.size()-1).newLocation.set(loc);
       picked = 0;
       towerInHand = false;
-
       placeble = false;
       timer = 0;
     }  
 
     if (placebleETowers && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) { 
-
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
       towersAttackEmitters.get(towersAttackEmitters.size() - 1).location.set(loc);
       picked = 0;
       towerInHand = false;
-
       placebleETowers = false;
       timer = 0;
     } 
 
     if (placebleBase  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
       restrainMouse();
-
-
       int x = (int)mouseX/scale;
       int y = (int)mouseY/scale;
       PVector loc = new PVector(x, y);
-
-      base.location.set(loc);  
-
-
-
+      base.location.set(loc);
       timer=0;      
       picked = 0;
       towerInHand = false;
-
       placebleBase = false;
     }
 
-    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
-
+    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
       restrainMouse();
-
       int x = mouseX/10;
       int y = mouseY/10;
       PVector loc = new PVector(x, y);
-
-      energyTowers.get(eTowerNR-1).location.set(loc);  
-
-      energyTowers.get(eTowerNR-1).vis = 100;
-
+      energyTowers.get(energyTowers.size()-1).location.set(loc);
+      energyTowers.get(energyTowers.size()-1).vis = 100;
       timer=0;      
       picked = 0;
       towerInHand = false;
-
       placebleEnergy = false;
     }
   }
@@ -379,6 +346,11 @@ class Player
       TowerAttackEmitters tower = towersAttackEmitters.get(i); 
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
+        if (i == NRInHand)
+        {
+          NRInHand = -1;
+          towerInHand = false;
+        }
         towersAttackEmitters.remove(tower);
         continue;
       }

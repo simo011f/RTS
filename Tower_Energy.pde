@@ -1,4 +1,4 @@
-class TowerEnergy  //<>//
+class TowerEnergy  //<>// //<>//
 {
   PVector location=new PVector(-100, -100);
   PVector naborsLocation = new PVector();

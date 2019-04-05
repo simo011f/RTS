@@ -7,6 +7,12 @@ PImage voidImg;
 PImage emitterImg;
 PImage baseImg;
 PImage bombTowerImg;
+PImage layerZeroImg;
+PImage layerOneImg;
+PImage layerTowImg;
+PImage layerThreeImg;
+PImage layerFureImg;
+PImage layerFiveImg;
 
 Game game;
 
@@ -32,13 +38,13 @@ void draw() {
   }
 
   game.run();
-  println(frameRate);
+  //println(frameRate);
 }
 
 void enemyUpdate()
 {
   if (!game.pause) {
-    game.baseLevel.enemyArray.Update();
+    game.baseLevel.enemyRun();
   }
 }
 
@@ -48,6 +54,12 @@ void spriteLoad()
   emitterImg = loadImage("EmitterSprite.png");
   baseImg = loadImage("BaseSprite.png");
   bombTowerImg = loadImage("BombTower.png");
+  layerZeroImg = loadImage("LayerZero.png");
+  layerOneImg = loadImage("LayerOne.png");
+  layerTowImg = loadImage("LayerTow.png");
+  layerThreeImg = loadImage("LayerThree.png");
+  layerFureImg = loadImage("LayerFure.png");
+  layerFiveImg = loadImage("LayerFive.png");
 }
 
 void mouseClicked()
@@ -67,7 +79,7 @@ void keyPressed() {
   case 'x':
     keys[1] = true;
     break;
-  case 's':
+  case 'r':
     keys[2] = true;
     break;
   case 'd':

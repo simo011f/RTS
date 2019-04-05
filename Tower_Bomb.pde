@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>//
+class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
 {  
   int energybuild = 40;
   int cooldown;
