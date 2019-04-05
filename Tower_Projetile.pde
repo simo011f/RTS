@@ -55,12 +55,7 @@ class TowerAttackTerrtoriumShot extends Tower {
 
 
     if (isBuild ()) {
-
       //hvis David vil have Expermental verion så sig til
-
-
-
-
       float chec = 0;
       PVector enemyLocation = PVector.add(detection(enemyArray), location);
       PVector enemyDir = PVector.sub(enemyLocation, location);
@@ -68,12 +63,9 @@ class TowerAttackTerrtoriumShot extends Tower {
         float X = location.x + chec*(enemyDir.x/enemyDir.mag()); 
         float Y = location.y + chec*(enemyDir.y/enemyDir.mag()); 
         float Z = location.z;
-
         //line(terrain[int(X)][int(Y)].x*10+5, terrain[int(X)][int(Y)].y*10+5, location.x*10+5, location.y *10+5);
-
         if (terrain[int(X)][int(Y)].z>Z) {
           rect(terrain[int(X)][int(Y)].x*10, terrain[int(X)][int(Y)].y*10, scale, scale);      
-
           terrainInPath=true;
         }
         if (terrain[int(X)][int(Y)].z<=Z) {
