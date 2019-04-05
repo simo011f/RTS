@@ -1,8 +1,12 @@
 class TowerAttackTerrtoriumShot extends Tower {  
   int energybuild = 40;
 
-  boolean shoot = false;
+  PVector EXenemyDir;
 
+  int tZ;
+  int t=0;
+  boolean shoot = false;
+  boolean terrainInPath = false;
   //boolean conected=false;
 
   TowerAttackTerrtoriumShot()
@@ -23,6 +27,11 @@ class TowerAttackTerrtoriumShot extends Tower {
     } else {
       shoot=true;
     } 
+
+    if (terrainInPath) { 
+      shoot=false;
+    }
+
     cooldown++;
 
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
@@ -39,6 +48,46 @@ class TowerAttackTerrtoriumShot extends Tower {
     }
   }
 
+
+  void terrainInWay(PVector[][] terrain, Enemy[][] enemyArray) {  
+    //super.terrainInWay(terrain, enemyArray) ;
+
+
+
+    if (isBuild ()) {
+
+      //hvis David vil have Expermental verion så sig til
+
+
+
+
+      float chec = 0;
+      PVector enemyLocation = PVector.add(detection(enemyArray), location);
+      PVector enemyDir = PVector.sub(enemyLocation, location);
+      while (chec < enemyDir.mag()  ) {
+        float X = location.x + chec*(enemyDir.x/enemyDir.mag()); 
+        float Y = location.y + chec*(enemyDir.y/enemyDir.mag()); 
+        float Z = location.z;
+
+        //line(terrain[int(X)][int(Y)].x*10+5, terrain[int(X)][int(Y)].y*10+5, location.x*10+5, location.y *10+5);
+
+        if (terrain[int(X)][int(Y)].z>Z) {
+          rect(terrain[int(X)][int(Y)].x*10, terrain[int(X)][int(Y)].y*10, scale, scale);      
+
+          terrainInPath=true;
+        }
+        if (terrain[int(X)][int(Y)].z<=Z) {
+          terrainInPath=false;
+        }
+        chec+=1;
+      }
+      if (terrainInPath) {  
+
+        fill(255, 0, 0);
+        rect(enemyLocation.x * scale + 5, enemyLocation.y* scale + 5, scale, scale);
+      }
+    }
+  }
 
   PVector detection(Enemy[][] enemyArray) {
 
@@ -63,36 +112,6 @@ class TowerAttackTerrtoriumShot extends Tower {
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
             }
-<<<<<<< HEAD
-          }     
-          
-          boolean terrainInPath=false;
-          float chec = 0;
-          PVector enemyDir = PVector.sub(closest, location);
-          while (chec < enemyDir.mag()) { 
-=======
-          }      
-          boolean terrainInPath=false;
-          float chec = 0;
-          PVector enemyDir = PVector.sub(closest, location);
-          while (chec < enemyDir.mag()) {    
-            println("hej1");
->>>>>>> master
-            float X =location.x + chec*(enemyDir.x/enemyDir.mag()); 
-            float Y = location.y + chec*(enemyDir.y/enemyDir.mag());
-            float Z = location.z;
-            if (enemyArray[int(X)][int(Y)].terrainHeight>Z) {
-              terrainInPath=true;
-            }
-            chec+=1;
-          }
-          if (terrainInPath) {
-            terrainInPath=false; 
-            continue;
-          }
-          if (terrainInPath) {
-            terrainInPath=false; 
-            continue;
           }
         }
       }

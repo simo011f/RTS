@@ -1,4 +1,4 @@
-class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
+class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
@@ -179,6 +179,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
 
   void terrainHight(PVector[][] terrain) {
 
+
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
@@ -186,11 +187,13 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>//
       if (location.y > rows || location.y < 0) {
         return;
       }
-      location.z = terrain[(int)location.x][(int)location.y].z;
+      //location.z = terrain[(int)location.x][(int)location.y].z;
       //newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
 
+  void terrainInWay(PVector[][] terrain, Enemy[][] enemyArray) {
+  }
 
 
   boolean sameTerrainHeight(PVector[][] terrain) {    

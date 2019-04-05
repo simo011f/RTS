@@ -1,4 +1,4 @@
-class Player   //<>// //<>//
+class Player   //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -11,7 +11,7 @@ class Player   //<>// //<>//
   int NRInHand = -1;
 
   int [] towernrremeber = new int[5];
-  PVector[][] levelTerrain = new PVector[cols][rows];
+  PVector[][] levelTerrain;
 
 
 
@@ -41,10 +41,11 @@ class Player   //<>// //<>//
 
   Player() {
     energyNetwork = new Energy();
+    levelTerrain = new PVector[cols][rows];
   }
 
 
-  void PickTowerOnBar() { 
+  void PickTowerOnBar() {
     timer++;
 
     //blå
@@ -267,7 +268,9 @@ class Player   //<>// //<>//
 
 
 
-
+    if (towers.size() < 0) {
+      placeble=false;
+    }
 
     if (towers.size() > 0) {
       towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
@@ -277,7 +280,8 @@ class Player   //<>// //<>//
 
         placeble=false;
       }
-      if (placebleEnergy==false&&placebleBase==false && placebleETowers==false && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
+      //println(levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z);
+      if (towers.size()>0&&placebleEnergy==false&&placebleBase==false && placebleETowers==false && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
 
         placeble=true;
       }
@@ -290,7 +294,8 @@ class Player   //<>// //<>//
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;
-      PVector loc = new PVector(x, y);
+      int z = int(levelTerrain[x][y].z);
+      PVector loc = new PVector(x, y, z);
       towers.get(towers.size()-1).location.set(loc);
       towers.get(towers.size()-1).newLocation.set(loc);
       picked = 0;
@@ -389,7 +394,9 @@ class Player   //<>// //<>//
   void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
   {
     if (energyNetwork.transmit) {
-      for (Tower tower : towers) {
+      for (Tower tower : towers) {  
+        tower.terrainInWay(levelTerrain, enemyArray); 
+       
         tower.attack(enemyArray);
       }
       for (TowerAttackEmitters towerAttackETower : towersAttackEmitters)

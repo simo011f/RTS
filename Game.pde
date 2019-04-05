@@ -244,7 +244,7 @@ class Game {
 
       baseLevel.Update();
       baseLevel.Draw();
-      player.levelTerrain = baseLevel.currentTerrain;
+      player.levelTerrain = game.baseLevel.currentTerrain;
 
       player.drawHotbar();
       //player stas

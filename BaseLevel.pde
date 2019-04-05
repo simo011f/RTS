@@ -1,4 +1,4 @@
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
 
@@ -44,10 +44,11 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void loadLevel(int newLevel)
   {
     currentTerrain = terrainEditor.loadMap(newLevel);  
-    game.player.levelTerrain=currentTerrain;
+
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
     enemyArray.reLoad(enemyArray);
-    emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);
+    emitters = enemyPlasmentEditor.loadEmitters(newLevel, enemyArray);  
+    game.player.levelTerrain=currentTerrain;
     emittersRemaning = emitters.size();
   }
 
