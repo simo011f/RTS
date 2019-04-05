@@ -1,124 +1,60 @@
-class KeyMenu 
+ class KeyMenu 
 {
 
   boolean leave;
   int leaveColor;
   int t;
   PFont f;
+  PVector towerMoveLocation = new PVector(width*1/5, height*3/5);
+  PVector towerMoveVelocity = new PVector(1, 0);
+
 
   KeyMenu() {
     f = createFont("arial", 16, true);
   }
   void tekst() { 
     textAlign(CENTER);
+    if (mousePressed)
+    {
+      println(mouseX, mouseY, 100*mouseX/width, 100*mouseY/height);
+    }
     fill(0);
     textFont(f, 35);
-    text("← A", 115, 170);  
-    text("D →", 245, 170); 
-
-    text("W ↑", 445, 185);  
-    text("S ↓", 445, 305); 
-
-    text("Space"+"\n"+"Accept", 700, 125);  
-    text("Esc"+"\n"+"Mini Menu", 700, 300);
-
-    if (t >= 41 && t <= 49) { 
-      textAlign(CENTER);
-      fill(155);
-      textFont(f, 35);
-      text("← A", 115, 170); 
-      text("S ↓", 445, 305);
-    }
-    if (t >= 86 && t <= 94) { 
-      textAlign(CENTER);
-      fill(155);
-      textFont(f, 35);
-      text("D →", 245, 170);
-      text("W ↑", 445, 185);
-    }   
-    if (t >= 131 && t <= 139) { 
-      textAlign(CENTER);
-      fill(155);
-      textFont(f, 35);
-      text("D →", 245, 170);
-      text("W ↑", 445, 185);
-    }
-    if (t >= 176 && t <= 180) { 
-      textAlign(CENTER);
-      fill(155);
-      textFont(f, 35);
-      text("← A", 115, 170);
-      text("S ↓", 445, 305);
-    }
-
-
-
+    text("Hover over tower and click to select a tower", width*1/5, height*1/5);
+    text("Clik again to move the tower", width*1/5, height*2/5);
     textAlign(LEFT);
   }
 
   void display() {
-
-
-    t++;
-
-
-
-    fill(0, 150, 0);
+    rectMode(CENTER);
     stroke(0);
-    strokeWeight(2);
-    rect(25, height*2/4, height*1/4, width*1/8);     
-    rect(width*1/4+25, height*2/4, height*1/4, width*1/8); 
-    fill(150);
-    stroke(0);
-    strokeWeight(2);
-    rect(width*1/8+25, height*2/4, height*1/4, width*1/8);
+    fill(0, 0, 255);
+    if (width * 1 / 5 - 15 <= mouseX && width * 1 / 5 + 15 >= mouseX && height*1/5 + height*1/20 - 15 <= mouseY && height*1/5 + height*1/20 + 15 >= mouseY) {
+      if (mousePressed) {
+        stroke(255);
+      }
+    }
+    rect(width*1/5, height*1/5 + height*1/20, 30, 30);
 
-    fill(0, 150, 0);
-    stroke(0);
-    strokeWeight(2);
-    rect(width*5/8, height/4-25, height*1/4, width*1/8);
-    rect(width*5/8, height*3/4-25, height*1/4, width*1/8);
-    fill(150);
-    stroke(0);
-    strokeWeight(2);
-    rect(width*5/8, height*2/4-25, height*1/4, width*1/8);
+    stroke(255);
+    rect(towerMoveLocation.x, towerMoveLocation.y, 30, 30);
+
+
+    rectMode(CORNER);
   }
 
   void highligt() {
-    //the animation of how to change spots
-    if (t<=45) { 
-      fill(200);
-      stroke(random(170, 250));
-      strokeWeight(2);
-      rect(width*1/8+25, height*2/4, height*1/4, width*1/8);
-      rect(width*5/8, height*2/4-25, height*1/4, width*1/8);
+    t++;
+    if (t > 45) {
+      towerMoveLocation.x += towerMoveVelocity.x;
+      towerMoveLocation.y += towerMoveVelocity.y;
     }
-    if (t >= 45 && t <= 90) { 
-
-      fill(0, 200, 0);
-      stroke(random(170, 250));
-      strokeWeight(2);
-      rect(25, height*2/4, height*1/4, width*1/8);
-      rect(width*5/8, height*3/4-25, height*1/4, width*1/8);
-    }
-    if (t>=90 && t<135) { 
-      fill(200);
-      stroke(random(170, 250));
-      strokeWeight(2);
-      rect(width*1/8+25, height*2/4, height*1/4, width*1/8);
-      rect(width*5/8, height*2/4-25, height*1/4, width*1/8);
-    }
-    if (t >= 135 && t <= 180) { 
-
-      fill(0, 200, 0);
-      stroke(random(170, 250));
-      strokeWeight(2);
-      rect(width*1/4+25, height*2/4, height*1/4, width*1/8);  
-      rect(width*5/8, height/4-25, height*1/4, width*1/8);
-    } 
-
-    if (t>=180) {
-      t=0;
+    if (towerMoveLocation.x > width*3/10 || towerMoveLocation.x < width*1/10 || towerMoveLocation.y < height*2/5 || towerMoveLocation.y > height*4/5)
+    {
+      towerMoveLocation = new PVector(width * 1 / 5, height * 3 / 5 );
+      towerMoveVelocity = new PVector(random(-1,1),random(-1,1));
+      towerMoveVelocity.setMag(1);
+      t = 0;
     }
   }
 

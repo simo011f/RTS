@@ -1,4 +1,4 @@
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
 
@@ -127,51 +127,57 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void layerZeroDraw()
   {
-    thisMap.fill(120, 58, 8);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.5);  
+    thisMap.image(layerZeroImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
   void layerOneDraw()
   {
-    thisMap.fill(160, 75, 30);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.5);  
+    thisMap.image(layerOneImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
   void layerTowDraw()
   {
-    thisMap.fill(100);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.5);  
+    thisMap.image(layerTowImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
   void layerThreeDraw()
   {
-    thisMap.fill(100, 70, 40);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.5);  
+    thisMap.image(layerThreeImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
 
   void layerFourDraw()
   {
-    thisMap.fill(90, 60, 30);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.5);  
+    thisMap.image(layerFureImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
 
   void layerFiveDraw()
   {
-    thisMap.fill(10);
+    thisMap.noFill();
     thisMap.stroke(0);
-    thisMap.strokeWeight(0.5);
+    thisMap.strokeWeight(0.75);  
+    thisMap.image(layerFiveImg, x, y);
     thisMap.rect(x, y, scale, scale);
   }
 
@@ -180,6 +186,26 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void Draw()
   {
     image(thisMap, 0, 0);
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        enemyArray.Draw(i, j);
+      }
+    }
+
+    for (int i = 0; i < emitters.size(); ++i) {
+      emitters.get(i).Draw();
+    }
+  }
+
+  void reloadLevel()
+  {
+    loadLevel(currentLevel);
+    game.player.energyNetwork.updateTerrain(currentTerrain);
+    background(255);
+    fieldDraw(currentTerrain);
+    enemyArray.terrainUpdate(currentTerrain);
+    Draw();
+    game.player = new Player();
   }
 
   void Update()
@@ -213,15 +239,5 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
   void enemyRun()
   {
     enemyArray.Update();
-
-    for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {
-        enemyArray.Draw(i, j);
-      }
-    }
-
-    for (int i = 0; i < emitters.size(); ++i) {
-      emitters.get(i).Draw();
-    }
   }
 }

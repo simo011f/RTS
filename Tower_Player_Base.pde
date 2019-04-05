@@ -34,8 +34,10 @@ class TowerBase
     }
 
     while (energyTowersConectedIndex.size() > 0)
-    {
+    {   
+   
       for (int i = energyTowersConectedIndex.size() - 1; i >= 0; i--)
+
       {
         int j = (int)energyTowersConectedIndex.get(i).x;
         TowerEnergy thisEnergyTower = energyTowers.get(j); 
@@ -83,7 +85,7 @@ class TowerBase
     }
   }
 
-  void highLight() {   
+  void Draw() {   
 
     fill(0, 255, 255);
     stroke(0);
@@ -96,8 +98,11 @@ class TowerBase
     }
   }
   void run() { 
-    highLight();
+
+
 
     regen();
+
+    Draw();
   }
 }

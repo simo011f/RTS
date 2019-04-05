@@ -63,18 +63,32 @@ class TowerAttackTerrtoriumShot extends Tower {
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
             }
+<<<<<<< HEAD
           }     
           
           boolean terrainInPath=false;
           float chec = 0;
           PVector enemyDir = PVector.sub(closest, location);
           while (chec < enemyDir.mag()) { 
+=======
+          }      
+          boolean terrainInPath=false;
+          float chec = 0;
+          PVector enemyDir = PVector.sub(closest, location);
+          while (chec < enemyDir.mag()) {    
+            println("hej1");
+>>>>>>> master
             float X =location.x + chec*(enemyDir.x/enemyDir.mag()); 
             float Y = location.y + chec*(enemyDir.y/enemyDir.mag());
             float Z = location.z;
             if (enemyArray[int(X)][int(Y)].terrainHeight>Z) {
               terrainInPath=true;
             }
+            chec+=1;
+          }
+          if (terrainInPath) {
+            terrainInPath=false; 
+            continue;
           }
           if (terrainInPath) {
             terrainInPath=false; 
@@ -97,8 +111,12 @@ class TowerAttackTerrtoriumShot extends Tower {
     }
   }
   void Build() {  
-
-    fill(0, 0, 15+(20*underCunstruction));
+    Draw();
     super.Build();
+  }
+  void Draw()
+  {
+    fill(0, 0, 15+(20*underCunstruction));    
+    super.Draw();
   }
 }

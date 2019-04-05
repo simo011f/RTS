@@ -1,4 +1,4 @@
-class TowerEnergy  //<>//
+class TowerEnergy  //<>// //<>//
 {
   PVector location=new PVector(-100, -100);
   PVector naborsLocation = new PVector();
@@ -49,7 +49,7 @@ class TowerEnergy  //<>//
       return false;
     }
   }
-  boolean inRangeAETower(TowerAttackETowers attackEmitterTower) {  
+  boolean inRangeAETower(TowerAttackEmitters attackEmitterTower) {  
     range = PVector.sub(attackEmitterTower.location, naborsLocation);
     if (range.x <= 7 && range.x >= -7 && range.y <= 7 && range.y >= -7) {
       return true;
@@ -73,7 +73,7 @@ class TowerEnergy  //<>//
     }
   }
 
-  void towersConnected(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackETowers> towerAttackETowers) {
+  void towersConnected(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers) {
 
 
     connectedToBase(base);
@@ -81,7 +81,7 @@ class TowerEnergy  //<>//
     for (TowerEnergy energyTower : energyTowers) { 
       energyTowersConnected(energyTower);
     }
-    for (TowerAttackETowers attackEmitterTower : towerAttackETowers) { 
+    for (TowerAttackEmitters attackEmitterTower : towerAttackETowers) { 
       AttackEmitterConnected(attackEmitterTower);
     }
 
@@ -105,7 +105,7 @@ class TowerEnergy  //<>//
       line(base.location.x*scale+5, base.location.y*scale+5, location.x*scale+5, location.y*scale+5);
     }
   }
-  void AttackEmitterConnected(TowerAttackETowers attackEmitterTower) { 
+  void AttackEmitterConnected(TowerAttackEmitters attackEmitterTower) { 
     attackEmitterTower.conected = false;
     if (conected && inRangeAETower(attackEmitterTower)) {
       attackEmitterTower.conected=true; 
@@ -138,9 +138,11 @@ class TowerEnergy  //<>//
 
   void energyTowerToTower(Tower tower) { 
     tower.conected = false;
+
     if (inRangeTower(tower)) {
 
       stroke(15+(20*anchoredToBase));
+
       strokeWeight(2);
       line(tower.location.x*scale+5, tower.location.y*scale+5, location.x*scale+5, location.y*scale+5);
       if (conected) {  
@@ -184,8 +186,6 @@ class TowerEnergy  //<>//
     fill(0, 155, 0, vis);
     for (int i = -2; i <= 2; i++) {
       for (int j = -2; j <= 2; j++) {
-
-
         rect((location.x + i) * scale, (location.y + j) * scale, scale, scale);
       }
     }

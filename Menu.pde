@@ -12,6 +12,7 @@ class Menu
   int colorEscMenu;
   int colorTerrainEditor;
   int colorEnemyPlasmentEditor;
+  int continueLevelNR = 1;
 
   PVector mouseLocation = new PVector(mouseX, mouseY);
 

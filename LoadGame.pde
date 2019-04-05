@@ -16,7 +16,7 @@ class LoadGame {
     //this draws all the necessary numbers at the right locations
 
     fill(0, 0, 0); 
-    textFont(f, 26);
+    textFont(f, 40);
     textAlign(CENTER);
     text("Load Game", width*4/8, 40);
     textAlign(LEFT);
@@ -25,160 +25,160 @@ class LoadGame {
     fill(levelColors[0], 255, levelColors[0]);
     stroke(0);
     strokeWeight(2);
-    rect(width*1/8, 50, 150, height*1/4); 
+    rect(width*2/16, height*1/8, width*5/16 - width*2/16, height*3/8 - height*1/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL1", width*1/8+75, 110);
+    text("LvL1", width*3/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
 
 
 
     fill(levelColors[1], 255, levelColors[1] );
     if (game.nr <= 1) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*2/8+50, 50, 150, height*1/4);     
+    rect(width*5/16, height*1/8 , width*8/16 - width*5/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL2", width*2/8+125, 110);
+    text("LvL2", width*6/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
 
 
     fill(levelColors[2], 255, levelColors[2] );
     if (game.nr <= 2) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*3/8+100, 50, 150, height*1/4);  
+    rect(width*8/16, height*1/8 , width*11/16 - width*8/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL3", width*3/8+175, 110);
+    text("LvL3", width*9/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
 
 
     fill(levelColors[3], 255, levelColors[3] );
     if (game.nr <= 3) {
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*4/8+150, 50, 150, height*1/4);
+    rect(width*11/16, height*1/8 , width*14/16 - width*11/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL4", width*4/8+225, 110);
+    text("LvL4", width*12/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
 
     fill(levelColors[4], 255, levelColors[4] );
     if (game.nr <= 4) {
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*1/8, 150, 150, height*1/4); 
+    rect(width*2/16, height*3/8, width*5/16 - width*2/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL5", width*1/8+75, 210);    
+    text("LvL5", width*3/16 + width*1/32, height*4/8 + 10);    
     textAlign(LEFT);
 
 
     fill(levelColors[5], 255, levelColors[5] );
     if (game.nr <= 5) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*2/8+50, 150, 150, height*1/4);     
+    rect(width*5/16, height*3/8, width*8/16 - width*5/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL6", width*2/8+125, 210);
+    text("LvL6", width*6/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT);
 
     fill(levelColors[6], 255, levelColors[6] );
     if (game.nr <= 6) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*3/8+100, 150, 150, height*1/4);      
+    rect(width*8/16, height*3/8, width*11/16 - width*8/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL7", width*3/8+175, 210);
+    text("LvL7", width*9/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT); 
 
     fill(levelColors[7], 255, levelColors[7] );
     if (game.nr <= 7) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*4/8+150, 150, 150, height*1/4); 
+    rect(width*11/16, height*3/8, width*14/16 - width*11/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL8", width*4/8+225, 210);
+    text("LvL8", width*12/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT);
 
     fill(levelColors[8], 255, levelColors[8] );
     if (game.nr <= 8) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*1/8, 250, 150, height*1/4);     
+    rect(width*2/16, height*5/8, width*5/16 - width*2/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL9", width*1/8+75, 310);    
+    text("LvL9", width*3/16 + width*1/32, height*6/8 + 10);    
     textAlign(LEFT);
 
 
     fill(levelColors[9], 255, levelColors[9]);
     if (game.nr <= 9) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*2/8+50, 250, 150, height*1/4);     
+    rect(width*5/16, height*5/8, width*8/16 - width*5/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL10", width*2/8+125, 310);
+    text("LvL10", width*6/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT);
 
     fill(levelColors[10], 255, levelColors[10] );
     if (game.nr <= 10) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*3/8+100, 250, 150, height*1/4);  
+    rect(width*8/16, height*5/8, width*11/16 - width*8/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL11", width*3/8+175, 310);
+    text("LvL11", width*9/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT); 
 
     fill(levelColors[11], 255, levelColors[11] );
     if (game.nr <= 11) {  
-      fill(0);
+      fill(0, 200);
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*4/8+150, 250, 150, height*1/4);
+    rect(width*11/16, height*5/8, width*14/16 - width*11/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
-    text("LvL12", width*4/8+225, 310);
+    text("LvL12", width*12/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT);
   }
 
