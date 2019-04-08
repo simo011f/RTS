@@ -204,16 +204,13 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   void move()
   {
-    velocity.set(newLocation); //<>//
+    velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();
     if (dist < 0.4)
     {
-
       location.x = floor(newLocation.x);
       location.y = floor(newLocation.y);
-
-
       return;
     }
     if (dist > 3) {

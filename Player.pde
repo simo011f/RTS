@@ -1,4 +1,4 @@
-class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -61,10 +61,9 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       timer = 0; 
       picked = 1;
       placeble = true;
-      towerInHand = true;
+      towerInHand = false;
       towerpickedOnBar[0] = false;
     }
-
 
     //rød
     if (mouseX>= width/2 && mouseX<=width/2+30 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
@@ -79,7 +78,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       timer = 0; 
       picked = 2;
       placeble = true;
-      towerInHand = true;
+      towerInHand = false;
       towerpickedOnBar[1] = false;
     }
 
@@ -95,7 +94,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       timer = 0; 
       picked = 3;
       placebleETowers = true;
-      towerInHand = true;
+      towerInHand = false;
       towerpickedOnBar[2] = false;
     }
 
@@ -110,7 +109,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       timer=0; 
       picked=4;
       placebleBase = true;
-      towerInHand = true;
+      towerInHand = false;
       towerpickedOnBar[3]=false;
     }
 
@@ -127,7 +126,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       timer=0; 
       picked=5;
       placebleEnergy=true;
-      towerInHand = true;
+      towerInHand = false;
       energyTowers.get(energyTowers.size() - 1).vis = 0;
       towerpickedOnBar[4]=false;
     }
@@ -264,16 +263,15 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
 
   void place() {
-    //if (towers.size() > 0) {
-    //  towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
-    //}
-    if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
-      placeble = false;
-    } else if (!placebleETowers && !placebleBase && !placebleEnergy && towers.size() > 0) {
-      placeble = true;
-    } 
+
+    if (towerInHand) {
+      return;
+    }
 
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        return;
+      }
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;
@@ -367,9 +365,9 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     if (base == null) {
       return false;
     }
-    for (int i = -4; i <= 4; i++) 
+    for (int i = -3; i <= 3; i++) 
     {
-      for (int j = -4; j <= 4; j++) 
+      for (int j = -3; j <= 3; j++) 
       {
         if (x + i == base.location.x && y + j == base.location.y) 
         {
@@ -446,7 +444,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void towerMove()
   {
-    if (mouseY > rows * scale)
+    if (mouseY > rows * scale || placeble || towers.size() == 0)
     {
       return;
     }
@@ -455,22 +453,25 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     for (int i = 0; i < towers.size(); i++)
     {
       Tower tower = towers.get(i);
-      if (mouseOverTower(tower.location, newLocation) && !towerInHand && tower.isBuild()) {
+      if (mouseOverTower(tower.location, newLocation) && !towerInHand && tower.isBuild() && !placeble) {
         NRInHand = i;
+        newLocation = null;
         towerInHand = true;
+        placeble = false;
         return;
       }
     }
 
-    if (towerInHand && NRInHand >= 0) {
-
+    if (towerInHand && NRInHand >= 0 && !placeble) {
       towers.get(NRInHand).updateNewLocation(newLocation);
       NRInHand = -1;
+      newLocation = null;
       towerInHand = false;
-      return;
+      placeble = false;
     }
     NRInHand = -1;
     towerInHand = false;
+    placeble = false;
   }
 
 
@@ -488,9 +489,6 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   void towerRun() {
     //tower attack enemy tower skal dræbe emitter
-
-
-
     for (Tower tower : towers)
     {
       tower.conected = false;
