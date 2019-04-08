@@ -140,7 +140,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     }
   }
 
-  void drawHotbar() {
+  void drawHotbar(Enemy[][] enemyArray) {
 
     noStroke();
     fill(255);
@@ -152,30 +152,34 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     stroke(0);
     strokeWeight(1.5);
     rect(width/2-500, height-60, 1000, 60);
-    fill(0, 0, 255);
 
+    fill(0, 0, 255);
     rect(location.x-6*10, location.y-1*10+10, 30, 30);
 
-
     fill(255, 0, 0);
-
     rect(location.x, (location.y-1*10)+10, 30, 30);
 
-
     fill(255, 255, 0);
-
     rect(location.x+6*10, (location.y-1*10)+10, 30, 30);
 
-
     fill(0, 255, 255);
-
     rect(location.x+10*12, location.y-10, 50, 50);
-
 
     fill(0, 155, 0);   
     rect(location.x+10*20, (location.y-10), 50, 50);
+
     fill(0, 255, 0);   
     rect(location.x+10*22, (location.y+10), 10, 10);
+
+    textAlign(CENTER);
+    fill(0);
+    textSize(17);
+    text("Terrain height:", location.x - 250, location.y + 10);
+    text("Enemy strength:", location.x - 259, location.y + 30);
+    text((int)levelTerrain[(int)mouseX/scale][(int)mouseY/scale].z, location.x - 185, location.y + 10);
+    text(enemyArray[(int)mouseX/scale][(int)mouseY/scale].strength, location.x - 185, location.y + 30);
+    textAlign(CORNER);
+
     energyNetwork.energyUI();
   }
 
