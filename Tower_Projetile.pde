@@ -26,14 +26,22 @@ class TowerAttackTerrtoriumShot extends Tower {
     if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
       shoot=false;
     } else {
-      shoot=true;
+      shoot=true;    
+      println( "hej");
     } 
 
     if (terrainInPath) { 
+
       shoot=false;
     }
 
-    cooldown++;
+    if (cooldown==1) {
+      cooldown+=1;
+    }   
+    cooldown+=1;
+
+
+    println(detection(enemyArray), cooldown);
 
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
       if (cooldown >= finishCooling && shoot) { 
@@ -112,12 +120,14 @@ class TowerAttackTerrtoriumShot extends Tower {
           }
         }
       }
-    } 
+    }  
+
     return closest;
   }
 
   void attack(Enemy[][] enemyArray) {
     if (conected) {
+
       super.attack(enemyArray);
       if (!isBuild()) { 
         return ;
@@ -132,6 +142,7 @@ class TowerAttackTerrtoriumShot extends Tower {
   }
   void Draw()
   {
+
     fill(0, 0, 15+(20*underCunstruction));    
     super.Draw();
   }

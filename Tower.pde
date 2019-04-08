@@ -237,7 +237,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (newLocation != null && location.x != newLocation.x && location.y != newLocation.y && isBuild())
     {
       move();
-      cooldown = 0;
+  
     }
     Draw();
     Build();
