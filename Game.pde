@@ -219,7 +219,7 @@ class Game {
         player.PickTowerOnBar();   
         player.highLight();
         player.place();  
-        player.drawHotbar();
+        player.drawHotbar(baseLevel.enemyArray.enemys);
         player.towerPause();
         rectMode(CENTER);
         fill(255, 100);
@@ -246,7 +246,7 @@ class Game {
       baseLevel.Draw();
       player.levelTerrain = game.baseLevel.currentTerrain;
 
-      player.drawHotbar();
+      player.drawHotbar(baseLevel.enemyArray.enemys);
       //player stas
 
       //baseLevel.enemyRun();

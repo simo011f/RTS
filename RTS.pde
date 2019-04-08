@@ -64,10 +64,10 @@ void spriteLoad()
 
 void mouseClicked()
 {
-  if (game.loc == 3) {
+  //if (game.loc == 3) {
     game.player.isMouseNotPressedHotBar = false;
     game.player.towerMove();
-  }
+  //}
 }
 
 boolean[] keys = new boolean[11];
