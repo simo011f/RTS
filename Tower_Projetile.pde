@@ -76,7 +76,7 @@ class TowerAttackTerrtoriumShot extends Tower {
       if (terrainInPath) {  
 
         fill(255, 0, 0);
-        rect(enemyLocation.x * scale + 5, enemyLocation.y* scale + 5, scale, scale);
+        rect(enemyLocation.x * scale, enemyLocation.y* scale, scale, scale);
       }
     }
   }

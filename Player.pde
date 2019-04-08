@@ -49,7 +49,7 @@ class Player   //<>// //<>// //<>//
     timer++;
 
     //blå
-    if (mouseX>= width/2-10 && mouseX<=width/2+20 && mouseY>=height-55 && mouseY<=height-25 && isMouseNotPressedHotBar) { 
+    if (mouseX>= width/2-(6*10) && mouseX<=width/2-(3*10) && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
       towerpickedOnBar[0] = true;
     } else {
       towerpickedOnBar[0] = false;
@@ -67,7 +67,7 @@ class Player   //<>// //<>// //<>//
 
 
     //rød
-    if (mouseX>= width/2+25 && mouseX<=width/2+55 && mouseY>=height-55 && mouseY<=height-25 && isMouseNotPressedHotBar) { 
+    if (mouseX>= width/2 && mouseX<=width/2+30 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
       towerpickedOnBar[1] = true;
     } else {
       towerpickedOnBar[1] = false;
@@ -84,7 +84,7 @@ class Player   //<>// //<>// //<>//
     }
 
     //gul
-    if (mouseX>= width/2+60 && mouseX<=width/2+90 && mouseY>=height-55 && mouseY<=height-25 && isMouseNotPressedHotBar) { 
+    if (mouseX>= width/2+60 && mouseX<=width/2+90 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
       towerpickedOnBar[2]=true;
     } else {
       towerpickedOnBar[2]=false;
@@ -100,7 +100,7 @@ class Player   //<>// //<>// //<>//
     }
 
     //tukis
-    if (mouseX>= width/2+140 && mouseX<=width/2+190 && mouseY>=height-65 && mouseY<=height-15 && isMouseNotPressedHotBar) { 
+    if (mouseX>= width/2+120 && mouseX<=width/2+170 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
       towerpickedOnBar[3]=true;
     } else {
       towerpickedOnBar[3]=false;
@@ -115,7 +115,7 @@ class Player   //<>// //<>// //<>//
     }
 
     //grøn
-    if (mouseX >= width/2+215 && mouseX<=width/2+225 && mouseY>=height-55 && mouseY<=height-25 && isMouseNotPressedHotBar) { 
+    if (mouseX >= width/2+10*20 && mouseX<=width/2+10*25 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
       towerpickedOnBar[4]=true;
     } else {
       towerpickedOnBar[4]=false;
@@ -154,35 +154,29 @@ class Player   //<>// //<>// //<>//
     strokeWeight(1.5);
     rect(width/2-500, height-60, 1000, 60);
     fill(0, 0, 255);
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect(location.x+i*10, location.y+j*10+10, 10, 10);
-      }
-    }  
+
+    rect(location.x-6*10, location.y-1*10+10, 30, 30);
+
 
     fill(255, 0, 0);
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect((location.x+i*10)+10*3+5, (location.y+j*10)+10, 10, 10);
-      }
-    } 
+
+    rect(location.x, (location.y-1*10)+10, 30, 30);
+
 
     fill(255, 255, 0);
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        rect((location.x+i*10)+10*6+10, (location.y+j*10)+10, 10, 10);
-      }
-    }
+
+    rect(location.x+6*10, (location.y-1*10)+10, 30, 30);
+
 
     fill(0, 255, 255);
-    for (int i = -2; i <= 2; i++) {
-      for (int j = -2; j <= 2; j++) {
-        rect((location.x+i*10)+10*6+100, (location.y+j*10)+10, 10, 10);
-      }
-    }
 
+    rect(location.x+10*12, location.y-10, 50, 50);
+
+
+    fill(0, 155, 0);   
+    rect(location.x+10*20, (location.y-10), 50, 50);
     fill(0, 255, 0);   
-    rect((location.x+10)+10*6+145, (location.y+10), 10, 10);
+    rect(location.x+10*22, (location.y+10), 10, 10);
     energyNetwork.energyUI();
   }
 
@@ -396,7 +390,7 @@ class Player   //<>// //<>// //<>//
     if (energyNetwork.transmit) {
       for (Tower tower : towers) {  
         tower.terrainInWay(levelTerrain, enemyArray); 
-       
+
         tower.attack(enemyArray);
       }
       for (TowerAttackEmitters towerAttackETower : towersAttackEmitters)
