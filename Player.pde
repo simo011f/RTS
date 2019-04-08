@@ -171,6 +171,11 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     fill(0, 255, 0);   
     rect(location.x+10*22, (location.y+10), 10, 10);
 
+    energyNetwork.energyUI();
+
+    if (mouseY/scale > rows - 1) {
+      return;
+    }
     textAlign(CENTER);
     fill(0);
     textSize(17);
@@ -179,8 +184,6 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     text((int)levelTerrain[(int)mouseX/scale][(int)mouseY/scale].z, location.x - 185, location.y + 10);
     text(enemyArray[(int)mouseX/scale][(int)mouseY/scale].strength, location.x - 185, location.y + 30);
     textAlign(CORNER);
-
-    energyNetwork.energyUI();
   }
 
 
