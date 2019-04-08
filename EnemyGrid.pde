@@ -12,7 +12,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   ArrayList<PVector> thisCluster = new ArrayList<PVector>();
   ArrayList<PVector> thisClusterCheking = new ArrayList<PVector>();
 
-  int damping = 0; 
+  int damping = -1; 
 
 
 
@@ -449,7 +449,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (enemys[i][j].strength >= 1)
     {
       strokeWeight(0.5);
-      fill(0, enemys[i][j].strength*5, 255, 100);
+      fill(0, enemys[i][j].strength*2, 255, 100);
       rect(i*10, j*10, 10, 10);
       //for at se styrke går FPS fra ca. 13 til ca. 5
       //fill(0);
