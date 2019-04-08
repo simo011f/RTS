@@ -202,6 +202,9 @@ class Player   //<>// //<>// //<>//
       fill(0, 0, 255);
       stroke(0);
       strokeWeight(1.5);
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        stroke(255, 100, 100);
+      } 
       rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
     } 
 
@@ -216,6 +219,9 @@ class Player   //<>// //<>// //<>//
       fill(255, 0, 0);
       stroke(0);
       strokeWeight(1.5);
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        stroke(255, 100, 100);
+      } 
       rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
     } 
 
@@ -256,6 +262,7 @@ class Player   //<>// //<>// //<>//
     }
   }
 
+<<<<<<< HEAD
 
   void place() {    
 
@@ -285,6 +292,23 @@ class Player   //<>// //<>// //<>//
         return;
       }
 
+=======
+  void place() {
+    //if (towers.size() > 0) {
+    //  towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
+    //}
+    if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+      placeble = false;
+    } else if (!placebleETowers && !placebleBase && !placebleEnergy && towers.size() > 0) {
+      if (placebleEnergy)
+      {
+        println("hej" + frameCount);
+      }
+      placeble = true;
+    } 
+
+    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
+>>>>>>> Tower-Logistiks
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;
@@ -336,6 +360,60 @@ class Player   //<>// //<>// //<>//
     }
   }
 
+  boolean towerColitionPlase(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers, int x, int y)
+  {
+
+    for (Tower tower : towers)
+    {
+      if (tower.location.x == -10) {
+        continue;
+      }
+      if (x - 2 <= tower.location.x && x + 2 >= tower.location.x && y - 2 <= tower.location.y && y + 2 >= tower.location.y) 
+      {        
+        return true;
+      }
+    }
+    for (TowerAttackEmitters tower : towerAttackETowers)
+    {
+      for (int i = -2; i <= 2; i++) 
+      {
+        for (int j = -2; j <= 2; j++) 
+        {
+          if (x + i == tower.location.x && y + j == tower.location.y) 
+          {
+            return true;
+          }
+        }
+      }
+    }
+    for (TowerEnergy energyTower : energyTowers)
+    {
+      for (int i = -1; i <= 1; i++) 
+      {
+        for (int j = -1; j <= 1; j++) 
+        {
+          if (x + i == energyTower.location.x && y + j == energyTower.location.y) 
+          {
+            return true;
+          }
+        }
+      }
+    }
+    if (base == null) {
+      return false;
+    }
+    for (int i = -4; i <= 4; i++) 
+    {
+      for (int j = -4; j <= 4; j++) 
+      {
+        if (x + i == base.location.x && y + j == base.location.y) 
+        {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
   void towerDead(Enemy[][] enemyArray) {
     for (int i = 0; i < energyTowers.size(); i++) {
@@ -401,7 +479,6 @@ class Player   //<>// //<>// //<>//
   }
 
 
-  // hej 
   void towerMove()
   {
     if (mouseY > rows * scale)

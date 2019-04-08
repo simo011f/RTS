@@ -17,6 +17,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
     leifRegen = 1;
     maxLeif = 25;
     cunstructionTime=11;
+    finishCooling = 45;
   }
 
 
@@ -28,7 +29,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
     } 
     cooldown++;
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-      if (cooldown >= 5 && shoot) { 
+      if (cooldown >= finishCooling && shoot) { 
         stroke(255);
         strokeWeight(2);
         line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
