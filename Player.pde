@@ -1,4 +1,4 @@
-class Player   //<>// //<>// //<>//
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -262,37 +262,7 @@ class Player   //<>// //<>// //<>//
     }
   }
 
-<<<<<<< HEAD
 
-  void place() {    
-
-
-
-
-    if (towers.size() < 0) {
-      placeble=false;
-    }
-
-    if (towers.size() > 0) {
-      towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
-    }
-    if (mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61) {
-      if (placeble && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {
-
-        placeble=false;
-      }
-      //println(levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z);
-      if (towers.size()>0&&placebleEnergy==false&&placebleBase==false && placebleETowers==false && levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z>-1) { 
-
-        placeble=true;
-      }
-    }
-    if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
-      if (towers.get(towers.size()-1).coliding) {
-        return;
-      }
-
-=======
   void place() {
     //if (towers.size() > 0) {
     //  towers.get(towers.size()-1).towerColitionPlase(towers, energyTowers, base, towersAttackEmitters);
@@ -300,15 +270,10 @@ class Player   //<>// //<>// //<>//
     if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
       placeble = false;
     } else if (!placebleETowers && !placebleBase && !placebleEnergy && towers.size() > 0) {
-      if (placebleEnergy)
-      {
-        println("hej" + frameCount);
-      }
       placeble = true;
     } 
 
     if (placeble && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer >= 10) {
->>>>>>> Tower-Logistiks
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;
