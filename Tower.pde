@@ -10,6 +10,7 @@ class Tower {   //<>// //<>//
   int maxLeif = 2;
   int leifRegen = 0;
   int cooldown;
+  int finishCooling;
 
 
   //build timer
@@ -102,74 +103,7 @@ class Tower {   //<>// //<>//
     }
   }
 
-  void towerColitionPlase(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers)
-  {
-    for (Tower tower : towers)
-    {
-      if (tower == this)
-      {
-        continue;
-      }
-      for (int i = -2; i <= 2; i++) 
-      {
-        for (int j = -2; j <= 2; j++) 
-        {
-          if (location.x + i == tower.location.x && location.y == tower.location.y) 
-          {
-            coliding = true;
-            return;
-          }
-        }
-      }
-    }
-    for (TowerAttackEmitters tower : towerAttackETowers)
-    {
-      if (tower == this)
-      {
-        continue;
-      }
-      for (int i = -2; i <= 2; i++) 
-      {
-        for (int j = -2; j <= 2; j++) 
-        {
-          if (location.x + i == tower.location.x && location.y == tower.location.y) 
-          {
-            coliding = true;
-            return;
-          }
-        }
-      }
-    }
-    for (TowerEnergy energyTower : energyTowers)
-    {
-      for (int i = -1; i <= 1; i++) 
-      {
-        for (int j = -1; j <= 1; j++) 
-        {
-          if (location.x + i == energyTower.location.x && location.y == energyTower.location.y) 
-          {
-            coliding = true;
-            return;
-          }
-        }
-      }
-    }
-    if (base == null) {
-      return;
-    }
-    for (int i = -4; i <= 4; i++) 
-    {
-      for (int j = -4; j <= 4; j++) 
-      {
-        if (location.x + i == base.location.x && location.y == base.location.y) 
-        {
-          coliding = true;
-          return;
-        }
-      }
-    }
-    coliding = false;
-  }
+ //<>//
 
   void terrainHight(PVector[][] terrain) {
     if (sameTerrainHeight(terrain)) {
@@ -253,7 +187,7 @@ class Tower {   //<>// //<>//
 
   void move()
   {
-    velocity.set(newLocation);
+    velocity.set(newLocation); //<>//
     velocity.sub(location);
     float dist = velocity.mag();
     if (dist < 0.4)

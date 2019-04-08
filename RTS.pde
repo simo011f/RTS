@@ -1,4 +1,4 @@
-
+ //<>//
 int scale = 10;
 int cols;
 int rows;
@@ -64,8 +64,10 @@ void spriteLoad()
 
 void mouseClicked()
 {
-  game.player.isMouseNotPressedHotBar=false;
-  game.player.towerMove();
+  if (game.loc == 3) {
+    game.player.isMouseNotPressedHotBar = false;
+    game.player.towerMove();
+  }
 }
 
 boolean[] keys = new boolean[11];
