@@ -1,7 +1,7 @@
 class TowerAttackTerrtoriumShot extends Tower {  
   int energybuild = 40;
 
-  PVector EXenemyDir;
+
 
   int tZ;
   int t=0;
@@ -18,7 +18,7 @@ class TowerAttackTerrtoriumShot extends Tower {
     leifRegen = 1;
     maxLeif = 25;
     cunstructionTime=11;
-    finishCooling = 22;
+    finishCooling = 11;
   }
 
 
@@ -44,7 +44,7 @@ class TowerAttackTerrtoriumShot extends Tower {
         strokeWeight(0.5);
 
         cooldown=0;
-        enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength-=5;
+        enemyArray[int(detection(enemyArray).x)+(int)location.x][int(detection(enemyArray).y)+(int)location.y].strength-=3;
       }
     }
   }
@@ -101,14 +101,18 @@ class TowerAttackTerrtoriumShot extends Tower {
             continue;
           }
           if (enemy.strength > 0) {   
+
             inRange = new PVector(i, j);
+
+
+
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
             }
           }
         }
       }
-    }
+    } 
     return closest;
   }
 
