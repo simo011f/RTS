@@ -26,18 +26,15 @@ class TowerAttackTerrtoriumShot extends Tower {
     if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
       shoot=false;
     } else {
-      shoot=true;    
-      println( "hej");
-    } 
+      shoot=true;
+      } 
 
     if (terrainInPath) { 
 
       shoot=false;
     }
 
-    if (cooldown==1) {
-      cooldown+=1;
-    }   
+
     cooldown+=1;
 
 
