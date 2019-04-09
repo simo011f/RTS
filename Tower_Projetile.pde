@@ -27,7 +27,7 @@ class TowerAttackTerrtoriumShot extends Tower {
       shoot=false;
     } else {
       shoot=true;
-      } 
+    } 
 
     if (terrainInPath) { 
 
@@ -38,7 +38,7 @@ class TowerAttackTerrtoriumShot extends Tower {
     cooldown+=1;
 
 
-    println(detection(enemyArray), cooldown);
+  
 
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
       if (cooldown >= finishCooling && shoot) { 
