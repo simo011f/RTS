@@ -1,4 +1,4 @@
-class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;
@@ -109,12 +109,12 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
   }
 
-  //<>// //<>//
+  //<>//
 
-  void terrainHight(PVector[][] terrain, boolean inHand) {
+  void terrainHight(PVector[][] terrain) {
 
 
-    if (sameTerrainHeight(terrain, inHand)) {
+    if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
       }
@@ -130,7 +130,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
 
-  boolean sameTerrainHeight(PVector[][] terrain, boolean inHand) {    
+  boolean sameTerrainHeight(PVector[][] terrain) {    
 
 
 
@@ -150,9 +150,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
           return false;
         }
-        if (terrain[int(mouseX/scale)][int(mouseY/scale)].z != terrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z && inHand) {
-          return false;
-        }
+    
       }
     }
     return true;
@@ -213,7 +211,8 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (dist < 0.4)
     {
       location.x = floor(newLocation.x);
-      location.y = floor(newLocation.y);
+      location.y = floor(newLocation.y); 
+      location.z = floor(newLocation.z);
       return;
     }
     if (dist > 3) {
@@ -223,6 +222,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     location.x += velocity.x;
     location.y += velocity.y;
+    location.z += velocity.z;
   }
 
   void Draw() {
@@ -240,7 +240,6 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (newLocation != null && location.x != newLocation.x && location.y != newLocation.y && isBuild())
     {
       move();
-  
     }
     Draw();
     Build();

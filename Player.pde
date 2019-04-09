@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-=======
-class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
->>>>>>> master
+ //<>// //<>//
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+
 {
 
   Energy energyNetwork;
@@ -309,6 +307,9 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     } 
 
     if (placebleBase  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        return;
+      }
       restrainMouse();
       int x = (int)mouseX/scale;
       int y = (int)mouseY/scale;
@@ -336,6 +337,16 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
 
   boolean towerColitionPlase(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers, int x, int y)
   {
+
+    for (int i = -1; i <= 1; ++i) {
+      for (int j = -1; j <= 1; ++j) {  
+
+
+        if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z ||levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {  
+          return true;
+        }
+      }
+    } 
 
     for (Tower tower : towers)
     {
@@ -372,6 +383,15 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
           }
         }
       }
+    } 
+    if (placebleBase) {
+      for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) { 
+          if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z) {  
+            return true;
+          }
+        }
+      }
     }
     if (base == null) {
       return false;
@@ -379,7 +399,8 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     for (int i = -3; i <= 3; i++) 
     {
       for (int j = -3; j <= 3; j++) 
-      {
+      { 
+
         if (x + i == base.location.x && y + j == base.location.y) 
         {
           return true;
@@ -459,7 +480,10 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     {
       return;
     }
-    PVector newLocation = new PVector(mouseX/scale, mouseY/scale);
+    int x = mouseX/10;
+    int y = mouseY/10;
+    int z = int(levelTerrain[x][y].z);
+    PVector newLocation = new PVector(x, y, z);
 
     for (int i = 0; i < towers.size(); i++)
     {
@@ -550,7 +574,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     }
     for (Tower tower : towers) {  
 
-      tower.terrainHight(currentTarine,towerInHand);
+      tower.terrainHight(currentTarine);
     }
   }
 
