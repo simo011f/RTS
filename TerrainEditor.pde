@@ -1,4 +1,4 @@
-class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   Thread thread;
   Table table;
@@ -181,6 +181,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     textSize(15);
     fill(0);
     text("Void layer", width/2-305, height-45);
+
 
     if (mouseX >= width / 2 - 290 && mouseX <= width / 2 - 260)
     {
@@ -391,6 +392,10 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     rect(width / 2 - 400, height - 40, 3 * scale, 3 * scale);
 
     choseBrushSize();
+
+
+    text("X"+((mouseX)/scale), width/2-500, height-35);    
+    text("Y"+((mouseY)/scale), width/2-500, height-15);
   }
 
   void choseBrushSize()
@@ -524,8 +529,8 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
         {
           mapSaveNR--;
           newMap = loadMap(mapSaveNR);
-        }  //<>// //<>//
-        fill(240, 10, 10); //<>// //<>//
+        }  //<>//
+        fill(240, 10, 10); //<>//
         rect(x + scale * 3, y + scale * 3 / 2, scale * 3, scale * 3 / 2);
         fill(0);
         textSize(20);
@@ -535,7 +540,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
     if (mousePressed && mouseY >= height - 40)
     {
       isMouseNotPressedSave = false;
-    } else //<>// //<>//
+    } else //<>//
     {
       isMouseNotPressedSave = true;
     }
@@ -557,7 +562,7 @@ class TerrainEditor {  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// /
       noFill();
       stroke(255);
       strokeWeight(1);
-      
+
       rect(rectangelStart.x * scale + 5, rectangelStart.y * scale + 5, mouseX - rectangelStart.x * scale - 5, mouseY - rectangelStart.y * scale - 5);
     }
 

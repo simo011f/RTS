@@ -207,16 +207,13 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   void move()
   {
-    velocity.set(newLocation); //<>//
+    velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();
     if (dist < 0.4)
     {
-
       location.x = floor(newLocation.x);
       location.y = floor(newLocation.y);
-
-
       return;
     }
     if (dist > 3) {
@@ -243,7 +240,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (newLocation != null && location.x != newLocation.x && location.y != newLocation.y && isBuild())
     {
       move();
-      cooldown = 0;
+  
     }
     Draw();
     Build();
