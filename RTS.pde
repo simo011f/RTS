@@ -1,4 +1,4 @@
- //<>//
+//<>// //<>//
 int scale = 10;
 int cols;
 int rows;
@@ -38,7 +38,7 @@ void draw() {
   }
 
   game.run();
-    //println(frameRate);
+  //println(frameRate);
 }
 
 void enemyUpdate()
@@ -64,10 +64,13 @@ void spriteLoad()
 
 void mouseClicked()
 {
-  //if (game.loc == 3) {
+  if (game.loc == 3) {
     game.player.isMouseNotPressedHotBar = false;
     game.player.towerMove();
-  //}
+  }
+  if (game.win && game.baseLevel.currentLevel >= 12) {
+    game.loc = 0;
+  }
 }
 
 boolean[] keys = new boolean[11];

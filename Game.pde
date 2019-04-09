@@ -3,7 +3,7 @@ class Game {
   boolean win = false;
   boolean pause = false;
   int pauseDelay = 0;
-  int nr = 10;
+  int nr = 12;
   int loc = 0;  
   int lvlcode = 0;
 
@@ -43,7 +43,6 @@ class Game {
 
     if (mousePressed && escMenu.Opt[2]) { 
       //if the main menu button is pressed in the ESC menu. 
-      nr = baseLevel.currentLevel;
       menu.continueLevelNR = baseLevel.currentLevel;
       escMenu.escPressed = false;
       escMenu.Opt[2]=false;
@@ -66,7 +65,6 @@ class Game {
     if (mousePressed && menu.screen[2]) {   
       //if new game is pressed on the start menu
       menu.screen[2]=false;
-      nr = 0;
       loc = 3;
       baseLevel.currentLevel = 0;
       baseLevel.Update();
@@ -209,55 +207,13 @@ class Game {
 
     case 3: 
 
-      if (pause) {
-        if (keys[0] && pauseDelay <= 0) {
-          pause = false;
-          pauseDelay = 10;
-        } 
-        baseLevel.Draw();
-        player.energyNetwork.Update();
-        player.PickTowerOnBar();   
-        player.highLight();
-        player.place();  
-        player.drawHotbar(baseLevel.enemyArray.enemys);
-        player.towerPause();
-        rectMode(CENTER);
-        fill(255, 100);
-        rect(width/2, height/2 - 7, 110, 40);
-        fill(0);
-        rectMode(CORNER);
-        textAlign(CENTER);
-        fill(0);
-        textSize(35);
-        text("Pause", width/2, height/2 + 5);
-        textAlign(CORNER);
-        pauseDelay--;
+      if (win) {
+        levelWon();
+        escMenu.run();
         return;
       }
-      if (keys[0] && pauseDelay <= 0) {
-        pause = true;
-        pauseDelay =10 ;
-      }
-      pauseDelay--;
       //this is the main game
-      timer.run();
-
-      baseLevel.Update();
-      baseLevel.Draw();
-      player.levelTerrain = game.baseLevel.currentTerrain;
-
-      player.drawHotbar(baseLevel.enemyArray.enemys);
-      //player stas
-
-      //baseLevel.enemyRun();
-
-      player.towerDead(baseLevel.enemyArray.enemys);
-      player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
-      player.terrain(baseLevel.currentTerrain);
-      player.Run();
-
-
-      escMenu.run();
+      gameRun();
       break;
 
     case 4:
@@ -283,6 +239,188 @@ class Game {
       enemyPlasmentEditor.Run();
       escMenu.run();
       break;
+    }
+  }
+  void gameRun() {
+    if (pause) {
+      if (keys[0] && pauseDelay <= 0) {
+        pause = false;
+        pauseDelay = 10;
+      } 
+      baseLevel.Draw();
+      player.energyNetwork.Update();
+      player.PickTowerOnBar();   
+      player.highLight();
+      player.place();  
+      player.drawHotbar(baseLevel.enemyArray.enemys);
+      player.towerPause();
+      rectMode(CENTER);
+      fill(255, 100);
+      rect(width/2, height/2 - 7, 110, 40);
+      fill(0);
+      rectMode(CORNER);
+      textAlign(CENTER);
+      fill(0);
+      textSize(35);
+      text("Pause", width/2, height/2 + 5);
+      textAlign(CORNER);
+      pauseDelay--;
+      levelLost();
+      escMenu.run();
+      return;
+    }
+    if (keys[0] && pauseDelay <= 0) {
+      pause = true;
+      pauseDelay =10 ;
+    }
+    pauseDelay--;
+    timer.run();
+    baseLevel.Update();
+    baseLevel.Draw();
+    player.levelTerrain = game.baseLevel.currentTerrain;
+    player.drawHotbar(baseLevel.enemyArray.enemys);
+    player.towerDead(baseLevel.enemyArray.enemys);
+    player.towerAttack(baseLevel.enemyArray.enemys, baseLevel.emitters);
+    player.terrain(baseLevel.currentTerrain);
+    player.Run();
+    levelLost();
+    levelWon();
+    escMenu.run();
+  }
+
+  void levelWon()
+  {
+    //viktury
+
+    if (baseLevel.currentLevel == 0)
+    {
+      baseLevel.currentLevel++;
+      baseLevel.loadLevel(baseLevel.currentLevel);
+      player.energyNetwork.updateTerrain(baseLevel.currentTerrain);
+      background(255);
+      baseLevel.fieldDraw(baseLevel.currentTerrain);
+      baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain);
+      baseLevel.Draw();
+      player = new Player();
+    }
+    if (baseLevel.emitters.size() == 0)
+    {
+      win = true;
+    }
+    if (!win) {
+      return;
+    }
+    if (baseLevel.currentLevel == 12) {
+      background(255);
+      textAlign(CENTER);
+      fill(0);
+      textSize(50);
+      text("You have won the game", width/2, height/2);
+      text("Press the mouse to return to main menu", width/2, height/2 + 60);
+      textAlign(CORNER);
+      return;
+    }
+    
+    fill(255);
+    stroke(0);
+    strokeWeight(1);
+    background(255);
+    rectMode(CENTER);
+    if (mouseX >= width/2-width*1/6 && mouseX <= width/2+width*1/6 && mouseY >= height*1/4-height/8-10 && mouseY <= height*1/4+height/8-10)
+    {
+      fill(0, 255, 0, 200);
+      if (mousePressed)
+      {
+        baseLevel.currentLevel++;
+        baseLevel.loadLevel(baseLevel.currentLevel);
+        player.energyNetwork.updateTerrain(baseLevel.currentTerrain);
+        background(255);
+        baseLevel.fieldDraw(baseLevel.currentTerrain);
+        baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain);
+        baseLevel.Draw();
+        player = new Player();
+        win = false;
+      }
+    }
+    rect(width/2, height*1/4, width*1/3, height/4-20);
+    fill(255);
+    if (mouseX >= width/2-width*1/6 && mouseX <= width/2+width*1/6 && mouseY >= height*2/4-height/8-10 && mouseY <= height*2/4+height/8-10)
+    {
+      fill(255, 255, 0, 200);
+      if (mousePressed)
+      {
+        for (int i = 0; i < menu.screen.length; i++) {
+          menu.screen[i] = false;
+        }
+        pause = false;
+        loc = 0;
+      }
+    }
+    rect(width/2, height*2/4, width*1/3, height/4-20);
+    fill(255);
+    if (mouseX >= width/2-width*1/6 && mouseX <= width/2+width*1/6 && mouseY >= height*3/4-height/8-10 && mouseY <= height*3/4+height/8-10)
+    {
+      fill(255, 100, 0, 200);
+      if (mousePressed)
+      {
+        baseLevel.reloadLevel();
+        win = false;
+      }
+    }
+    rect(width/2, height*3/4, width*1/3, height/4-20);
+    rectMode(CORNER);
+    fill(0);
+    textSize(45);
+    textAlign(CENTER);
+    text("You won this level", width/2, 130);
+    text("Next level", width/2, height * 1/4 + 15);
+    text("Restart level", width/2, height * 3/4 + 15);
+    text("Main menu", width/2, height * 2/4 + 15);
+    textAlign(CORNER);
+  }
+
+  void levelLost() 
+  {
+    if (player.base != null &&player.base.isDead)
+    {
+      pause = true;
+      fill(255);
+      stroke(0);
+      strokeWeight(1);
+      background(255);
+      rectMode(CENTER);
+      if (mouseX >= width/2-width*1/6 && mouseX <= width/2+width*1/6 && mouseY >= height*1/3-height/8-10 && mouseY <= height*1/3+height/8-10)
+      {
+        fill(0, 255, 0, 200);
+        if (mousePressed)
+        {
+          baseLevel.reloadLevel();
+          pause = false;
+        }
+      }
+      rect(width/2, height*1/3, width*1/3, height/4-20);
+      fill(255);
+      if (mouseX >= width/2-width*1/6 && mouseX <= width/2+width*1/6 && mouseY >= height*2/3-height/8-10 && mouseY <= height*2/3+height/8-10)
+      {
+        fill(255, 255, 0, 200);
+        if (mousePressed)
+        {
+          for (int i = 0; i < menu.screen.length; i++) {
+            menu.screen[i] = false;
+          }
+          pause = false;
+          loc = 0;
+        }
+      }
+      rect(width/2, height*2/3, width*1/3, height/4-20);
+      rectMode(CORNER);
+      fill(0);
+      textSize(45);
+      textAlign(CENTER);
+      text("You lost your base", width/2, 130);
+      text("Restart level", width/2, height * 1/3 + 15);
+      text("Main menu", width/2, height * 2/3 + 15);
+      textAlign(CORNER);
     }
   }
 }

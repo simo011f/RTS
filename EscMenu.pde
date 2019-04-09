@@ -39,13 +39,9 @@ class EscMenu
       //this is the main menu option
       chol[2] = 0;
       Opt[2] = true;
-      game.menu.screen[0] = false;
-      game.menu.screen[1] = false;
-      game.menu.screen[2] = false;
-      game.menu.screen[3] = false; 
-      game.menu.screen[4] = false;
-      game.menu.screen[5] = false;
-      game.menu.screen[6] = false;
+      for (int i = 0; i < game.menu.screen.length; i++) {
+            game.menu.screen[i] = false;
+          }
     } else {
       chol[2] = 255;
       Opt[2] = false;

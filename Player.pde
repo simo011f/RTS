@@ -1,4 +1,4 @@
- //<>// //<>//
+//<>// //<>// //<>//
 class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
@@ -107,6 +107,10 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       towerpickedOnBar[3]=false;
     }
     if (towerpickedOnBar[3] && mousePressed) {   
+      if (base != null)
+      {
+        return;
+      }
       base = new TowerBase();
       timer=0; 
       picked=4;
@@ -449,6 +453,10 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
         towersAttackEmitters.remove(tower);
         continue;
       }
+    }
+    if (base != null)
+    {
+      base.enemyColition(enemyArray);
     }
   }
 

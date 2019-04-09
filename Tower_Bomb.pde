@@ -1,8 +1,6 @@
 class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
 {  
   int energybuild = 40;
-  int cooldown;
-  int range = 20;
   int strongest = 0;    
 
   boolean shoot = false;

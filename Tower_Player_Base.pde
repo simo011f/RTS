@@ -4,13 +4,18 @@ class TowerBase
 
   int leif = 2;
   int maxLeif = 2;
-  int leifRegen = 1;
+  int leifRegen = 0;
 
 
   boolean isDead = false;
 
   ArrayList<PVector> energyTowersConectedIndex = new ArrayList<PVector>();
 
+  TowerBase() {
+    leif = 50;
+    maxLeif = 250;
+    leifRegen = 5;
+  }
 
   void regen() { 
     leif += leifRegen;
@@ -35,7 +40,7 @@ class TowerBase
 
     while (energyTowersConectedIndex.size() > 0)
     {   
-   
+
       for (int i = energyTowersConectedIndex.size() - 1; i >= 0; i--)
 
       {
@@ -81,6 +86,31 @@ class TowerBase
     if (leif <= 0)
     {
 
+      isDead = true;
+    }
+  }
+
+  void enemyColition (Enemy[][] enemyArray)
+  {
+    for (int i = -2; i <= 2; i++)
+    {
+      for (int j = -2; j <= 2; j++) {
+        if ((int)location.x + i < 0 || (int)location.x + i > cols)
+        {
+          continue;
+        }
+        if ((int)location.y + j < 0 || (int)location.y + j > cols)
+        {
+          continue;
+        }
+        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
+        {
+          leif--;
+        }
+      }
+    }
+    if (leif <= 0)
+    {
       isDead = true;
     }
   }
