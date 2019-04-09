@@ -1,4 +1,4 @@
-class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {
 
   Energy energyNetwork;
@@ -541,7 +541,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     }
     for (Tower tower : towers) {  
 
-      tower.terrainHight(currentTarine);
+      tower.terrainHight(currentTarine,towerInHand);
     }
   }
 
