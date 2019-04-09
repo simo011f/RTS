@@ -409,6 +409,9 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
         enemys[i][j].terrainHeight = (int)grid[i][j].z;
+        if(enemys[i][j].terrainHeight == -1){
+          enemys[i][j].strength = 0;
+        }
       }
     }
   }
