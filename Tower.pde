@@ -184,14 +184,14 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
     if (underCunstruction==11) {
       underCunstruction=12;
-      t=13;
+      t=cunstructionTime+1;
     }
   }
 
 
 
   boolean isBuild () { 
-    if (t==13) {
+    if (t==cunstructionTime+1) {
       return true;
     } else {
       return false;

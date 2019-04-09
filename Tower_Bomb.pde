@@ -12,34 +12,41 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
   {
     super();
     underCunstruction = 0;
-    cunstructionEnergyConsomstion = 20;
-    energyConsomstion = 25;
+    cunstructionEnergyConsomstion = 50;
+    energyConsomstion = 0;
     leifRegen = 1;
     maxLeif = 25;
-    cunstructionTime=11;
-    finishCooling = 45;
+    cunstructionTime=120;
+    finishCooling = 90;
   }
 
 
   void weapon(Enemy[][] enemyArray) {
+    energyConsomstion = 0;
     if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
       shoot=false;
     } else {
       shoot=true;
     } 
-    cooldown++;
-    if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-      if (cooldown >= finishCooling && shoot) { 
-        stroke(255);
-        strokeWeight(2);
-        line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
-        strokeWeight(0.5);
-        noStroke();
+    if (game.menu.overRide) {
+      finishCooling=1;
+    }
+
+    if (cooldown >= finishCooling && shoot) {
+      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+
 
         cooldown = 0;
+        energyConsomstion = 45;
+        stroke(255);
+        strokeWeight(2);
+        line(((detection(enemyArray).x + location.x)) * scale + 5, ((detection(enemyArray).y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);
+        strokeWeight(0.5);
+
+        noStroke();
         for (int i = -1; i <= 1; i++) {
           for (int j = -1; j <= 1; j++) {   
-            enemyArray[int(detection(enemyArray).x+i)+(int)location.x ][int(detection(enemyArray).y+j)+(int)location.y ].strength-=5;
+            enemyArray[int(detection(enemyArray).x+(int)location.x )+i][int(detection(enemyArray).y+(int)location.y)+j ].strength-=20;
           }
         }
       }
@@ -69,6 +76,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
   }
 
   void attack(Enemy[][] enemyArray) {    
+    println(isBuild (), underCunstruction);
     if (conected) {
       super.attack(enemyArray);
       if (!isBuild()) { 

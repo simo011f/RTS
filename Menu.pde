@@ -17,6 +17,7 @@ class Menu
   PVector mouseLocation = new PVector(mouseX, mouseY);
 
   boolean[] screen = new boolean[7];
+  boolean overRide=false;
 
   Menu() {
     font = createFont("areal", 16, true);
@@ -84,6 +85,10 @@ class Menu
     //enemy plasement box
 
     textAlign(LEFT);
+    
+    if (mouseX>=0 && mouseX<=80 && mouseY>=height-80 && mouseY<=height && timer >= 10) {
+    overRide=true;
+    }
   }
   void lvlChoiceLogic() {
 

@@ -14,15 +14,16 @@ class TowerAttackTerrtoriumShot extends Tower {
     super();
     underCunstruction = 0;
     cunstructionEnergyConsomstion = 10;
-    energyConsomstion = 10;
+    energyConsomstion = 0;
     leifRegen = 1;
     maxLeif = 25;
-    cunstructionTime=11;
+    cunstructionTime=45;
     finishCooling = 11;
   }
 
 
-  void weapon(Enemy[][] enemyArray) {
+  void weapon(Enemy[][] enemyArray) { 
+    energyConsomstion = 0;
     if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
       shoot=false;
     } else {
@@ -34,14 +35,19 @@ class TowerAttackTerrtoriumShot extends Tower {
       shoot=false;
     }
 
+    if (game.menu.overRide) {
+      finishCooling=1;
+    }
+
 
     cooldown+=1;
 
 
-  
+
 
     if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
-      if (cooldown >= finishCooling && shoot) { 
+      if (cooldown >= finishCooling && shoot) {  
+        energyConsomstion = 10;
         stroke(255);
         strokeWeight(2);
         line((detection(enemyArray).x + location.x) * scale + 5, (detection(enemyArray).y + location.y) * scale + 5, location.x * scale + 5, location.y * scale + 5);
@@ -69,20 +75,13 @@ class TowerAttackTerrtoriumShot extends Tower {
         float X = location.x + chec*(enemyDir.x/enemyDir.mag()); 
         float Y = location.y + chec*(enemyDir.y/enemyDir.mag()); 
         float Z = location.z;
-        //line(terrain[int(X)][int(Y)].x*10+5, terrain[int(X)][int(Y)].y*10+5, location.x*10+5, location.y *10+5);
         if (terrain[int(X)][int(Y)].z>Z) {
-          rect(terrain[int(X)][int(Y)].x*10, terrain[int(X)][int(Y)].y*10, scale, scale);      
           terrainInPath=true;
         }
         if (terrain[int(X)][int(Y)].z<=Z) {
           terrainInPath=false;
         }
         chec+=1;
-      }
-      if (terrainInPath) {  
-
-        fill(255, 0, 0);
-        rect(enemyLocation.x * scale, enemyLocation.y* scale, scale, scale);
       }
     }
   }
