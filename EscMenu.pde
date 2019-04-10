@@ -129,11 +129,9 @@ class EscMenu  //<>// //<>// //<>//
     }
 
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
-<<<<<<< HEAD
-    if (keys[9] && !escPressed) {
-=======
+
     if (keys[9]&& !escPressed) {
->>>>>>> Level-desine
+
       escPressed = true;
       Opt[0] = false;
       Opt[1] = false;

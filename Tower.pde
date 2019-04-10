@@ -16,13 +16,11 @@ class Tower {           //<>//
   boolean conected = false;
   boolean isDead = false;
   boolean coliding = false;
-<<<<<<< HEAD
-  int range = 20;
-=======
+
 
   int range = 15;
 
->>>>>>> Level-desine
+
   Tower()
   {
     location = new PVector(-10, -10);
