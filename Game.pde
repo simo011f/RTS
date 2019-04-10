@@ -48,6 +48,7 @@ class Game {
 
     if (mousePressed && escMenu.Opt[2]) { 
       //if the main menu button is pressed in the ESC menu. 
+
       menu.continueLevelNR = baseLevel.currentLevel;
       escMenu.escPressed = false;
       escMenu.Opt[2]=false;
@@ -184,7 +185,8 @@ class Game {
     //this is a function that changes the data that is used for the level essentialy changes the level.
   }
 
-  void run() {
+  void run() {   
+    println(game.baseLevel.emitters.size());
     changeState();
     switch (loc) {
     case -1: 
@@ -192,10 +194,15 @@ class Game {
       exit();
       break;
 
-    case 0:
+    case 0: 
+      for (int i = game.baseLevel.emitters.size() - 1; i >= 0; i--) {
+        game.baseLevel.emitters.get(i).isDead=true;
+        visualizer.remove(game.baseLevel.emitters.get(i));
+      }
       //this is the menu
       background(255);
-      menu.run();
+      menu.run(); 
+     
       break;
 
     case 1:
@@ -297,7 +304,7 @@ class Game {
 
   void levelWon()
   {
-    //viktury
+    //vikturyfor 
 
     if (baseLevel.currentLevel == 0)
     {
@@ -338,7 +345,7 @@ class Game {
       fill(0, 255, 0, 200);
       if (mousePressed)
       {
-        
+
         visualizer.remove(baseLevel.enemyArray);
         baseLevel.currentLevel++;
         baseLevel.loadLevel(baseLevel.currentLevel);
@@ -358,6 +365,7 @@ class Game {
       fill(255, 255, 0, 200);
       if (mousePressed)
       {
+
         for (int i = 0; i < menu.screen.length; i++) {
           menu.screen[i] = false;
         }
@@ -414,6 +422,7 @@ class Game {
         fill(255, 255, 0, 200);
         if (mousePressed)
         {
+
           for (int i = 0; i < menu.screen.length; i++) {
             menu.screen[i] = false;
           }
