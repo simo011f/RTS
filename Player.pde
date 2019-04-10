@@ -59,7 +59,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     if (towerpickedOnBar[0] && mousePressed) {   
       towernr += 1;
 
-      towers.add(new TowerAttackTerrtoriumShot());
+      towers.add(new TowerShot());
       timer = 0; 
       picked = 1;
       placeble = true;
@@ -76,7 +76,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
     if (towerpickedOnBar[1] && mousePressed) {   
       towernr += 1;
 
-      towers.add(new TowerAttackTerrtoriumBomb());
+      towers.add(new TowerBomb());
       timer = 0; 
       picked = 2;
       placeble = true;

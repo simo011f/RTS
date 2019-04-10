@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumShot extends Tower {  
+class TowerShot extends Tower {  
   int energybuild = 40;
 
 
@@ -9,7 +9,7 @@ class TowerAttackTerrtoriumShot extends Tower {
   boolean terrainInPath = false;
   //boolean conected=false;
 
-  TowerAttackTerrtoriumShot()
+  TowerShot()
   {
     super();
     underCunstruction = 0;

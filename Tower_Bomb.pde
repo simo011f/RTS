@@ -1,4 +1,4 @@
-class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
+class TowerBomb extends Tower  //<>// //<>// //<>//
 {  
   int energybuild = 40;
   int strongest = 0;    
@@ -6,7 +6,7 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
   boolean shoot = false;
   //boolean conected=false;
 
-  TowerAttackTerrtoriumBomb()
+  TowerBomb()
   {
     super();
     underCunstruction = 0;
