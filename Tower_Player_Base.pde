@@ -1,14 +1,10 @@
 class TowerBase 
 {
   PVector location=new PVector(-100, -100);
-
   int leif = 2;
   int maxLeif = 2;
   int leifRegen = 0;
-
-
   boolean isDead = false;
-
   ArrayList<PVector> energyTowersConectedIndex = new ArrayList<PVector>();
 
   TowerBase() {
@@ -65,32 +61,8 @@ class TowerBase
       energyTowersConectedIndex.remove(0);
     }
   }
-  void inEnemy (Enemy[][] enemyArray) {
-    for (int i = -1; i <= 1; i++)
-    {
-      for (int j = -1; j <= 1; j++) {
-        if ((int)location.x + i < 0 || (int)location.x + i > cols)
-        {
-          continue;
-        }
-        if ((int)location.y + j < 0 || (int)location.y + j > cols)
-        {
-          continue;
-        }
-        if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
-        {
-          leif--;
-        }
-      }
-    }
-    if (leif <= 0)
-    {
 
-      isDead = true;
-    }
-  }
-
-  void enemyColition (Enemy[][] enemyArray)
+  void contactWithEnemy (Enemy[][] enemyArray)
   {
     for (int i = -2; i <= 2; i++)
     {
@@ -116,23 +88,18 @@ class TowerBase
   }
 
   void Draw() {   
-
     fill(0, 255, 255);
     stroke(0);
     strokeWeight(1.5);
-
     for (int i = -2; i <= 2; i++) {
       for (int j = -2; j <= 2; j++) {
         rect((location.x+i)*scale, (location.y+j)*scale, 10, 10);
       }
     }
   }
+  
   void run() { 
-
-
-
     regen();
-
     Draw();
   }
 }
