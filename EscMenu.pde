@@ -110,7 +110,7 @@ class EscMenu  //<>// //<>//
 
   void run() {
 
-    if (momousePressed, Opt[2], usePressed && Opt[1]) {
+    if (mousePressed && Opt[1]) {
 
       //game.player.energyTower.clear();
       //game.player.shotTower.clear();
@@ -138,11 +138,9 @@ class EscMenu  //<>// //<>//
     }
 
 
-
     if (escPressed) {
-      display();    //hvis menu bliver valgt
+      display();  
+      choices();
     }
-    escPressed = false;
-  }      
-  choices();
+  }
 }

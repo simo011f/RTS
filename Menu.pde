@@ -85,9 +85,9 @@ class Menu
     //enemy plasement box
 
     textAlign(LEFT);
-    
+
     if (mouseX>=0 && mouseX<=80 && mouseY>=height-80 && mouseY<=height && timer >= 10) {
-    overRide=true;
+      overRide=true;
     }
   }
   void lvlChoiceLogic() {
@@ -110,6 +110,7 @@ class Menu
     }
 
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
+     
       colorLoadGame = 0;
       screen[1] = true;
     } else {

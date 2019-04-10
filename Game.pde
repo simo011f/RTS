@@ -34,6 +34,13 @@ class Game {
   {
     visualizer.add(baseLevel);
   }
+  void backToMenu() { 
+    baseLevel.reloadLevel();
+    for (int i = baseLevel.emitters.size() - 1; i >= 0; i--) {  
+      visualizer.remove(baseLevel.emitters.get(i));
+      baseLevel.emitters.remove(i);
+    }
+  }
 
   void changeState() {
     if (mousePressed && keyMenu.leave) { 
@@ -48,7 +55,7 @@ class Game {
 
     if (mousePressed && escMenu.Opt[2]) { 
       //if the main menu button is pressed in the ESC menu. 
-
+      backToMenu();
       menu.continueLevelNR = baseLevel.currentLevel;
       escMenu.escPressed = false;
       escMenu.Opt[2]=false;
@@ -66,7 +73,8 @@ class Game {
 
     if (mousePressed && menu.screen[1]) {  
       //load game is pressed
-      menu.screen[1] = false;
+      menu.screen[1] = false; 
+      loadGame.timer=0;
       loc = 1;
     }
 
@@ -195,28 +203,23 @@ class Game {
       break;
 
     case 0: 
-      for (int i = game.baseLevel.emitters.size() - 1; i >= 0; i--) {
-        game.baseLevel.emitters.get(i).isDead=true;
-        visualizer.remove(game.baseLevel.emitters.get(i));
-      }
+     
       //this is the menu
       background(255);
       menu.run(); 
-     
+
       break;
 
     case 1:
       //this is the load game menu
       background(255);
       loadGame.run(); 
-      escMenu.run();
       break;
 
     case 2:
       //this is the key menu
       background(255);
       keyMenu.run(); 
-      escMenu.run();
       break;
 
     case 3: 
@@ -352,7 +355,8 @@ class Game {
         player.energyNetwork.updateTerrain(baseLevel.currentTerrain);
         background(255);
         baseLevel.fieldDraw(baseLevel.currentTerrain);
-        baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain);
+        baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain); 
+
         visualizer.add(baseLevel.enemyArray);
         player = new Player();
         win = false;
@@ -369,6 +373,7 @@ class Game {
         for (int i = 0; i < menu.screen.length; i++) {
           menu.screen[i] = false;
         }
+        backToMenu();
         pause = false;
         loc = 0;
       }
@@ -426,6 +431,7 @@ class Game {
           for (int i = 0; i < menu.screen.length; i++) {
             menu.screen[i] = false;
           }
+          backToMenu();
           pause = false;
           loc = 0;
         }
