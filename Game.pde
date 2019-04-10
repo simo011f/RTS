@@ -10,7 +10,6 @@ class Game {
   //these are all the classes: 
 
   SquareField squareFeld = new SquareField();
-  Timer timer = new Timer();
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
@@ -281,7 +280,6 @@ class Game {
       pauseDelay =10 ;
     }
     pauseDelay--;
-    timer.run();
     baseLevel.Update();
     //baseLevel.Draw();
     player.levelTerrain = game.baseLevel.currentTerrain;
