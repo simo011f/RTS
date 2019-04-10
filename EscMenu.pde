@@ -1,4 +1,4 @@
-class EscMenu  //<>// //<>//
+class EscMenu  //<>// //<>// //<>//
 {
 
   PFont font;
@@ -141,10 +141,9 @@ class EscMenu  //<>// //<>//
     }
 
 
-
     if (escPressed) {
-      display();    //hvis menu bliver valgt
+      display();  
+      choices();
     }
-    choices();
   }
 }

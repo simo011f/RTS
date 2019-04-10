@@ -40,7 +40,7 @@ class LoadGame {
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*5/16, height*1/8 , width*8/16 - width*5/16, height*3/8 - height*1/8);     
+    rect(width*5/16, height*1/8, width*8/16 - width*5/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
@@ -54,7 +54,7 @@ class LoadGame {
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*8/16, height*1/8 , width*11/16 - width*8/16, height*3/8 - height*1/8);     
+    rect(width*8/16, height*1/8, width*11/16 - width*8/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
@@ -68,7 +68,7 @@ class LoadGame {
     }
     stroke(0);
     strokeWeight(2);
-    rect(width*11/16, height*1/8 , width*14/16 - width*11/16, height*3/8 - height*1/8);     
+    rect(width*11/16, height*1/8, width*14/16 - width*11/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
     textFont(f, 26);
     textAlign(CENTER);
@@ -188,111 +188,112 @@ class LoadGame {
       timer++;
     }
     //You can chose the level that you want to play.
-
-    if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
-      levelColors[0] = 0;
-      levelNR[0] = true;
-    } else {
-      levelColors[0] = 255;
-      levelNR[0] = false;
-    }
-    if (game.nr >= 1) { 
-      if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
-        levelColors[1] = 0;
-        levelNR[1] = true;
+    if ( timer >= 10) {
+      if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
+        levelColors[0] = 0;
+        levelNR[0] = true;
       } else {
-        levelColors[1] = 255;
-        levelNR[1] = false;
+        levelColors[0] = 255;
+        levelNR[0] = false;
       }
-    } 
-    if (game.nr >= 2) { 
-      if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
-        levelColors[2] = 0;
-        levelNR[2] = true;
-      } else {
-        levelColors[2] = 255;
-        levelNR[2] = false;
+      if (game.nr >= 1) { 
+        if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
+          levelColors[1] = 0;
+          levelNR[1] = true;
+        } else {
+          levelColors[1] = 255;
+          levelNR[1] = false;
+        }
+      } 
+      if (game.nr >= 2) { 
+        if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
+          levelColors[2] = 0;
+          levelNR[2] = true;
+        } else {
+          levelColors[2] = 255;
+          levelNR[2] = false;
+        }
+      } 
+      if (game.nr >= 3) { 
+        if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
+          levelColors[3] = 0;
+          levelNR[3] = true;
+        } else {
+          levelColors[3] = 255;
+          levelNR[3] = false;
+        }
+      }     
+      if (game.nr >= 4) { 
+        if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
+          levelColors[4] = 0;
+          levelNR[4] = true;
+        } else {
+          levelColors[4] = 255;
+          levelNR[4] = false;
+        }
       }
-    } 
-    if (game.nr >= 3) { 
-      if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*1/8 && mouseY <= height*3/8) {
-        levelColors[3] = 0;
-        levelNR[3] = true;
-      } else {
-        levelColors[3] = 255;
-        levelNR[3] = false;
+      if (game.nr >= 5) { 
+        if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
+          levelColors[5] = 0;
+          levelNR[5] = true;
+        } else {
+          levelColors[5] = 255;
+          levelNR[5] = false;
+        }
+      } 
+      if (game.nr >= 6) { 
+        if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
+          levelColors[6] = 0;
+          levelNR[6] = true;
+        } else {
+          levelColors[6] = 255;
+          levelNR[6] = false;
+        }
+      }  
+      if (game.nr >= 7) { 
+        if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >=height*3/8 && mouseY <= height*5/8) {
+          levelColors[7] = 0;
+          levelNR[7] = true;
+        } else {
+          levelColors[7] = 255;
+          levelNR[7] = false;
+        }
+      }     
+      if (game.nr >= 8) { 
+        if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
+          levelColors[8] = 0;
+          levelNR[8] = true;
+        } else {
+          levelColors[8] = 255;
+          levelNR[8] = false;
+        }
       }
-    }     
-    if (game.nr >= 4) { 
-      if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
-        levelColors[4] = 0;
-        levelNR[4] = true;
-      } else {
-        levelColors[4] = 255;
-        levelNR[4] = false;
-      }
-    }
-    if (game.nr >= 5) { 
-      if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
-        levelColors[5] = 0;
-        levelNR[5] = true;
-      } else {
-        levelColors[5] = 255;
-        levelNR[5] = false;
-      }
-    } 
-    if (game.nr >= 6) { 
-      if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*3/8 && mouseY <= height*5/8) {
-        levelColors[6] = 0;
-        levelNR[6] = true;
-      } else {
-        levelColors[6] = 255;
-        levelNR[6] = false;
-      }
-    }  
-    if (game.nr >= 7) { 
-      if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >=height*3/8 && mouseY <= height*5/8) {
-        levelColors[7] = 0;
-        levelNR[7] = true;
-      } else {
-        levelColors[7] = 255;
-        levelNR[7] = false;
-      }
-    }     
-    if (game.nr >= 8) { 
-      if (mouseX >= width*2/16 && mouseX <= width*5/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
-        levelColors[8] = 0;
-        levelNR[8] = true;
-      } else {
-        levelColors[8] = 255;
-        levelNR[8] = false;
-      }
-    }
-    if (game.nr >= 9) { 
-      if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
-        levelColors[9] = 0;
-        levelNR[9] = true;
-      } else {
-        levelColors[9] = 255;
-        levelNR[9] = false;
-      }
-    }  
-    if (game.nr >= 10) { 
-      if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
-        levelColors[10] = 0;
-        levelNR[10] = true;
-      } else {
-        levelColors[10] = 255;
-        levelNR[10] = false;
-      }
-    }  
-    if (game.nr >= 11) { 
-      if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*5/8 && mouseY <= height*7/8 && timer >= 30) {
-        levelColors[11] = 0;
-        levelNR[11] = true;
-      } else {
-        levelColors[11] = 255;
-        levelNR[11] = false;
+      if (game.nr >= 9) { 
+        if (mouseX >= width*5/16 && mouseX <= width*8/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
+          levelColors[9] = 0;
+          levelNR[9] = true;
+        } else {
+          levelColors[9] = 255;
+          levelNR[9] = false;
+        }
+      }  
+      if (game.nr >= 10) { 
+        if (mouseX >= width*8/16 && mouseX <= width*11/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
+          levelColors[10] = 0;
+          levelNR[10] = true;
+        } else {
+          levelColors[10] = 255;
+          levelNR[10] = false;
+        }
+      }  
+      if (game.nr >= 11) { 
+        if (mouseX >= width*11/16 && mouseX <= width*14/16 && mouseY >= height*5/8 && mouseY <= height*7/8) {
+          levelColors[11] = 0;
+          levelNR[11] = true;
+        } else {
+          levelColors[11] = 255;
+          levelNR[11] = false;
+        }
       }
     }
   }
