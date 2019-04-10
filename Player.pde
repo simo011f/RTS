@@ -192,7 +192,7 @@ class Player //<>//
       restrainMouse();
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
-      rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
+      rect((location.x - 15) * scale, (location.y - 15) * scale, 31 * scale, 31 * scale);
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
@@ -209,7 +209,7 @@ class Player //<>//
       restrainMouse();
       stroke(rageDisply, 0, 0);
       fill(rageDisply, 0, 0, 100);
-      rect((location.x - 20) * scale, (location.y - 20) * scale, 41 * scale, 41 * scale);
+      rect((location.x - 15) * scale, (location.y - 15) * scale, 31 * scale, 31 * scale);
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);

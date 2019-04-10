@@ -7,7 +7,11 @@ class EscMenu  //<>// //<>// //<>//
   int[] chol = new int[4];
 
   EscMenu() {
-    font = createFont("arial", 16, true);
+    font = createFont("arial", 16, true); 
+    Opt[0] = false;
+    Opt[1] = false;
+    Opt[2] = false;
+    Opt[3] = false;
   }
 
   void choices() {  
@@ -31,10 +35,7 @@ class EscMenu  //<>// //<>// //<>//
     }
 
     if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) { 
-      if (mousePressed == true)
-      {
-        game.loc = 0;
-      }
+
       game.menu.timer = 1;
       //this is the main menu option
       chol[2] = 0;
@@ -128,7 +129,11 @@ class EscMenu  //<>// //<>// //<>//
     }
 
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
+<<<<<<< HEAD
     if (keys[9] && !escPressed) {
+=======
+    if (keys[9]&& !escPressed) {
+>>>>>>> Level-desine
       escPressed = true;
       Opt[0] = false;
       Opt[1] = false;
