@@ -1,4 +1,4 @@
-class Emitter //<>// //<>//
+class Emitter implements Visualize //<>// //<>//
 {
   PVector[][] pGrid;
   PVector location;
@@ -10,7 +10,8 @@ class Emitter //<>// //<>//
   boolean isDead = false;
 
   Emitter()
-  {}
+  {
+  }
 
   Emitter(PVector spawn, int sDelay, int sPower)
   {
@@ -26,17 +27,24 @@ class Emitter //<>// //<>//
     pGrid = game.squareFeld.grid;
     power = sPower;
     enemys.enemys[(int)spawn.x][(int)spawn.y].strength = 1;
+    visualizer.add(this);
   }
 
 
 
+  void visualize()
+  {
+    fill(200, 200, 25, 150);
+    stroke(200, 100, 0);
+    image(emitterImg, ((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
+  }
+  
   void Draw()
   {
     fill(200, 200, 25, 150);
     stroke(200, 100, 0);
-    image(emitterImg,((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
+    image(emitterImg, ((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
   }
-
   void Update(EnemyGrid enemys) 
   {
 
@@ -48,10 +56,5 @@ class Emitter //<>// //<>//
       enemys.enemys[(int)location.x][(int)location.y].addLayer(power);
       timer = 0;
     }
-  }
-
-  void Run() 
-  {
-    Draw();
   }
 }

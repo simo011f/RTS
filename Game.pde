@@ -26,8 +26,13 @@ class Game {
 
   Game() {
     squareFeld = new SquareField();
-    gameBord = new GameBord(); 
+    gameBord = new GameBord();
     baseLevel = new BaseLevel();
+  }
+
+  void addToVisualizer()
+  {
+    visualizer.add(baseLevel);
   }
 
   void changeState() {
@@ -49,8 +54,10 @@ class Game {
       loc = 0;
     }
     if (mousePressed && escMenu.Opt[1]) { 
-      //if the restart button is pressed in the ESC menu. 
+      //if the restart button is pressed in the ESC menu.
+      background(255);
       baseLevel.reloadLevel();
+      pause = false;
       escMenu.escPressed = false;
       escMenu.Opt[1]=false;
       loc = 3;
@@ -247,7 +254,7 @@ class Game {
         pause = false;
         pauseDelay = 10;
       } 
-      baseLevel.Draw();
+      //baseLevel.Draw();
       player.energyNetwork.Update();
       player.PickTowerOnBar();   
       player.highLight();
@@ -276,7 +283,7 @@ class Game {
     pauseDelay--;
     timer.run();
     baseLevel.Update();
-    baseLevel.Draw();
+    //baseLevel.Draw();
     player.levelTerrain = game.baseLevel.currentTerrain;
     player.drawHotbar(baseLevel.enemyArray.enemys);
     player.towerDead(baseLevel.enemyArray.enemys);
@@ -300,7 +307,7 @@ class Game {
       background(255);
       baseLevel.fieldDraw(baseLevel.currentTerrain);
       baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain);
-      baseLevel.Draw();
+      //baseLevel.Draw();
       player = new Player();
     }
     if (baseLevel.emitters.size() == 0)
@@ -320,7 +327,7 @@ class Game {
       textAlign(CORNER);
       return;
     }
-    
+
     fill(255);
     stroke(0);
     strokeWeight(1);
@@ -331,13 +338,15 @@ class Game {
       fill(0, 255, 0, 200);
       if (mousePressed)
       {
+        
+        visualizer.remove(baseLevel.enemyArray);
         baseLevel.currentLevel++;
         baseLevel.loadLevel(baseLevel.currentLevel);
         player.energyNetwork.updateTerrain(baseLevel.currentTerrain);
         background(255);
         baseLevel.fieldDraw(baseLevel.currentTerrain);
         baseLevel.enemyArray.terrainUpdate(baseLevel.currentTerrain);
-        baseLevel.Draw();
+        visualizer.add(baseLevel.enemyArray);
         player = new Player();
         win = false;
       }

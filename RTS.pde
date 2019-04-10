@@ -1,5 +1,4 @@
-//<>// //<>//
-int scale = 10;
+int scale = 10; //<>//
 int cols;
 int rows;
 
@@ -13,6 +12,7 @@ PImage layerTowImg;
 PImage layerThreeImg;
 PImage layerFureImg;
 PImage layerFiveImg;
+ArrayList<Visualize> visualizer;
 
 Game game;
 
@@ -27,17 +27,25 @@ void setup() {
   rows = height / scale - 6;
   game = new Game();
 
+  visualizer = new ArrayList<Visualize>();
+
   background(255); 
   frameRate(45);
 }
 
 void draw() { 
-
+  if (frameCount == 1)
+  {
+    game.addToVisualizer();
+  }
   if (game.loc == 3) {
     thread("enemyUpdate");
   }
-
+  for (int i = 0; i < visualizer.size(); i++) {
+    visualizer.get(i).visualize();
+  }
   game.run();
+
   //println(frameRate);
 }
 
@@ -182,4 +190,9 @@ void restrainMouse()
   if (mouseY>height-100) {
     mouseY = height-100;
   }
+}
+
+interface Visualize
+{
+  void visualize();
 }

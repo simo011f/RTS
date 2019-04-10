@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid implements Visualize { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   PVector[] directions = new PVector[4];
 
@@ -347,7 +347,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     //{
-    //  x = (int)strongest(x, y).x; //<>// //<>//
+    //  x = (int)strongest(x, y).x; //<>//
     //  y = (int)strongest(x, y).y;
     //}
 
@@ -409,7 +409,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
         enemys[i][j].terrainHeight = (int)grid[i][j].z;
-        if(enemys[i][j].terrainHeight == -1){
+        if (enemys[i][j].terrainHeight == -1) {
           enemys[i][j].strength = 0;
         }
       }
@@ -446,19 +446,23 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   }
 
 
-  void Draw(int i, int j)
+  void visualize()
   {
-
-    if (enemys[i][j].strength >= 1)
-    {
-      strokeWeight(0.5);
-      fill(0, enemys[i][j].strength*2, 255, 100);
-      rect(i*10, j*10, 10, 10);
-      //for at se styrke går FPS fra ca. 13 til ca. 5
-      //fill(0);
-      //textAlign(CENTER);  
-      //textSize(10);
-      //text(enemys[i][j].strength, i*10+5, j*10+10);
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        if (enemys[i][j].strength >= 1)
+        {
+          noStroke();
+          strokeWeight(0.5);
+          fill(0, enemys[i][j].strength*2, 255, 100);
+          rect(i*10, j*10, 10, 10);
+          //for at se styrke går FPS fra ca. 13 til ca. 5
+          //fill(0);
+          //textAlign(CENTER);  
+          //textSize(10);
+          //text(enemys[i][j].strength, i*10+5, j*10+10);
+        }
+      }
     }
   }
 }

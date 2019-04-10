@@ -1,4 +1,4 @@
-class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class BaseLevel implements Visualize  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 {
 
@@ -21,19 +21,8 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   BaseLevel() {
     thisMap = createGraphics(width, height);
-
     enemyArray = new EnemyGrid();
     thread("feildDraw");
-    for (int i = 0; i < cols; ++i) {
-      for (int j = 0; j < rows; ++j) {
-        currentTerrain[i][j]= new PVector(i, j);
-      }
-    }
-  }
-
-  BaseLevel(PVector[][] grid)
-  {
-    enemyArray = new EnemyGrid(grid);
     for (int i = 0; i < cols; ++i) {
       for (int j = 0; j < rows; ++j) {
         currentTerrain[i][j]= new PVector(i, j);
@@ -55,6 +44,7 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
   void fieldDraw(PVector[][] grid) 
   {   
+    background(255);
     thisMap.beginDraw();
     voidLayer();
     for (int i = 0; i < cols; i++) {
@@ -184,39 +174,33 @@ class BaseLevel  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// 
 
 
   //denher æder fames
-  void Draw()
+  void visualize()
   {
     image(thisMap, 0, 0);
-    for (int i = 0; i < cols; i++) {
-      for (int j = 0; j < rows; j++) {
-        enemyArray.Draw(i, j);
-      }
-    }
-
-    for (int i = 0; i < emitters.size(); ++i) {
-      emitters.get(i).Draw();
-    }
   }
 
   void reloadLevel()
   {
+    visualizer.remove(enemyArray);
     loadLevel(currentLevel);
     game.player.energyNetwork.updateTerrain(currentTerrain);
     background(255);
     fieldDraw(currentTerrain);
     enemyArray.terrainUpdate(currentTerrain);
-    Draw();
+    visualizer.add(enemyArray);
+    visualize();
     game.player = new Player();
   }
 
   void Update()
   {
-   
+
     if (frameCount % 2 == 0) {
       //enemyArray.Update();
       for (int i = emitters.size() - 1; i >= 0; i--) {
         emitters.get(i).Update(enemyArray);
         if (emitters.get(i).isDead) {
+          visualizer.remove(emitters.get(i));
           emitters.remove(i);
         }
       }
