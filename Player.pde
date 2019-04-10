@@ -1,5 +1,5 @@
-class Player //<>//
-{ //<>//
+class Player //<>// //<>//
+{ //<>// //<>//
   Energy energyNetwork;
   int timer;
   int towerNR = 0; 
@@ -450,7 +450,7 @@ class Player //<>//
     }
     if (base != null)
     {
-      base.enemyColition(enemyArray);
+      base.contactWithEnemy(enemyArray);
     }
   }
 
