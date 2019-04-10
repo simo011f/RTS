@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+ //<>// //<>// //<>// //<>// //<>// //<>//
 class TowerBomb extends Tower  //<>// //<>// //<>//
-=======
-class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
->>>>>>> Level-desine
+
 {  
   int energybuild = 40;
   int strongest = 0;    
