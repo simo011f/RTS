@@ -2,29 +2,20 @@ class Player //<>//
 { //<>//
   Energy energyNetwork;
   int timer;
-  int towernr = 0; 
+  int towerNR = 0; 
 
   //skal kigges på igen
   int eTowerNR;
   int NRInHand = -1;
-
-  int [] towernrremeber = new int[5];
   PVector[][] levelTerrain;
-
-
-
   TowerBase base;
   ArrayList<Tower> towers = new ArrayList<Tower>();
   ArrayList<TowerAttackEmitters> towersAttackEmitters = new ArrayList<TowerAttackEmitters>();
   ArrayList<TowerEnergy> energyTowers = new ArrayList<TowerEnergy>();
 
-  boolean[] towerpickedOnBar = new boolean[5];    
-  boolean towerPicked = false; 
-  boolean basePicked = false;
+  boolean[] towerPickedOnBar = new boolean[5];    
   boolean towerInHand = false;
-
   int picked;
-
   boolean placeble;
   boolean placebleEnergy;
   boolean placebleBase;
@@ -33,8 +24,6 @@ class Player //<>//
   boolean isMouseNotPressedPlace = true;
   boolean isMouseNotPressedHotBar = true;
 
-
-  int chosenTower;
   int rageDisply = 195;
 
   Player() {
@@ -43,66 +32,66 @@ class Player //<>//
   }
 
 
-  void PickTowerOnBar() {
+  void pickTowerOnBar() {
     timer++;
 
     //blå
     if (mouseX>= width/2-(6*10) && mouseX<=width/2-(3*10) && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
-      towerpickedOnBar[0] = true;
+      towerPickedOnBar[0] = true;
     } else {
-      towerpickedOnBar[0] = false;
+      towerPickedOnBar[0] = false;
     }
-    if (towerpickedOnBar[0] && mousePressed) {   
-      towernr += 1;
+    if (towerPickedOnBar[0] && mousePressed) {   
+      towerNR += 1;
 
       towers.add(new TowerShot());
       timer = 0; 
       picked = 1;
       placeble = true;
       towerInHand = false;
-      towerpickedOnBar[0] = false;
+      towerPickedOnBar[0] = false;
     }
 
     //rød
     if (mouseX>= width/2 && mouseX<=width/2+30 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
-      towerpickedOnBar[1] = true;
+      towerPickedOnBar[1] = true;
     } else {
-      towerpickedOnBar[1] = false;
+      towerPickedOnBar[1] = false;
     }
-    if (towerpickedOnBar[1] && mousePressed) {   
-      towernr += 1;
+    if (towerPickedOnBar[1] && mousePressed) {   
+      towerNR += 1;
 
       towers.add(new TowerBomb());
       timer = 0; 
       picked = 2;
       placeble = true;
       towerInHand = false;
-      towerpickedOnBar[1] = false;
+      towerPickedOnBar[1] = false;
     }
 
     //gul
     if (mouseX>= width/2+60 && mouseX<=width/2+90 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
-      towerpickedOnBar[2]=true;
+      towerPickedOnBar[2]=true;
     } else {
-      towerpickedOnBar[2]=false;
+      towerPickedOnBar[2]=false;
     }
-    if (towerpickedOnBar[2] && mousePressed) {   
+    if (towerPickedOnBar[2] && mousePressed) {   
 
       towersAttackEmitters.add(new TowerAttackEmitters());
       timer = 0; 
       picked = 3;
       placebleETowers = true;
       towerInHand = false;
-      towerpickedOnBar[2] = false;
+      towerPickedOnBar[2] = false;
     }
 
     //tukis
     if (mouseX>= width/2+120 && mouseX<=width/2+170 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
-      towerpickedOnBar[3]=true;
+      towerPickedOnBar[3]=true;
     } else {
-      towerpickedOnBar[3]=false;
+      towerPickedOnBar[3]=false;
     }
-    if (towerpickedOnBar[3] && mousePressed) {   
+    if (towerPickedOnBar[3] && mousePressed) {   
       if (base != null)
       {
         return;
@@ -112,16 +101,16 @@ class Player //<>//
       picked=4;
       placebleBase = true;
       towerInHand = false;
-      towerpickedOnBar[3]=false;
+      towerPickedOnBar[3]=false;
     }
 
     //grøn
     if (mouseX >= width/2+10*20 && mouseX<=width/2+10*25 && mouseY>=height-60 && mouseY<=height && isMouseNotPressedHotBar) { 
-      towerpickedOnBar[4]=true;
+      towerPickedOnBar[4]=true;
     } else {
-      towerpickedOnBar[4]=false;
+      towerPickedOnBar[4]=false;
     }
-    if (towerpickedOnBar[4] && mousePressed) {   
+    if (towerPickedOnBar[4] && mousePressed) {   
       eTowerNR = eTowerNR + 1;
 
       energyTowers.add(new TowerEnergy());
@@ -130,7 +119,7 @@ class Player //<>//
       placebleEnergy=true;
       towerInHand = false;
       energyTowers.get(energyTowers.size() - 1).vis = 0;
-      towerpickedOnBar[4]=false;
+      towerPickedOnBar[4]=false;
     }
 
     if (mousePressed && mouseY >= height - 40)
@@ -442,7 +431,7 @@ class Player //<>//
       tower.enemyColition(enemyArray);
       if (tower.isDead) {
         towers.remove(tower);
-        towernr--;
+        towerNR--;
         continue;
       }
     }
@@ -463,12 +452,6 @@ class Player //<>//
     {
       base.enemyColition(enemyArray);
     }
-  }
-
-
-
-  void updateTerain()
-  {
   }
 
   void towerAttack(Enemy[][] enemyArray, ArrayList<Emitter> emitters)
@@ -579,10 +562,8 @@ class Player //<>//
     }
     energyNetwork.useEnergy(towers);
   }
+
   void terrain(PVector[][] currentTarine) {
-
-
-
     for (TowerEnergy energyTower : energyTowers) {
     }
     for (Tower tower : towers) {  
@@ -677,7 +658,7 @@ class Player //<>//
   void Run() {
     destroyTower();
     energyNetwork.Update();
-    PickTowerOnBar();   
+    pickTowerOnBar();   
     highLight();   
     if (keys[0]) {
     }

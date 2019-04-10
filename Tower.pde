@@ -1,40 +1,26 @@
 class Tower {           //<>//
-  //når jeg skal finde z(højden) så brug baselevel.currentTerrain
-
   PVector location;
   PVector newLocation = new PVector();
   PVector velocity = new PVector();
-
-
-
   int leif = 2;
   int maxLeif = 2;
   int leifRegen = 0;
   int cooldown;
   int finishCooling;
-
-
   //build timer
-  int t=-2;
+  int timer=-2;
   int underCunstruction;
   int cunstructionTime;
   int cunstructionEnergyConsomstion;
   int energyConsomstion;
-
   boolean conected = false;
   boolean isDead = false;
   boolean coliding = false;
-
   int range = 20;
-
   Tower()
   {
     location = new PVector(-10, -10);
-    ////midlertideigt
-    //terrainHieght=game.baseLevel.currentTerrain;
   }
-
-
 
   void weapon(Enemy[][] enemyArray) {
   }
@@ -48,16 +34,15 @@ class Tower {           //<>//
     if (!isBuild()) { 
       return ;
     }
+    
     leif += leifRegen;
     if (leif >= maxLeif) {
       leif = maxLeif; 
       underCunstruction=12;
     }  
-
+    
     if (conected) {
-
       weapon(enemyArray);
-
     }
   }
 
@@ -70,10 +55,12 @@ class Tower {           //<>//
         {
           continue;
         }
+        
         if ((int)location.y + j < 0 || (int)location.y + j > cols)
         {
           continue;
         }
+        
         if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
         {
           leif--;
@@ -112,17 +99,14 @@ class Tower {           //<>//
   //<>//
 
   void terrainHight(PVector[][] terrain) {
-
-
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
         return;
       }
+      
       if (location.y > rows || location.y < 0) {
         return;
       }
-      //location.z = terrain[(int)location.x][(int)location.y].z;
-      //newLocation.z = terrain[(int)newLocation.x][(int)newLocation.y].z;
     }
   }
 
@@ -130,16 +114,9 @@ class Tower {           //<>//
   }
 
 
-  boolean sameTerrainHeight(PVector[][] terrain) {    
-
-
-
+  boolean sameTerrainHeight(PVector[][] terrain) { 
     for (int i = -1; i <= 1; ++i) {
       for (int j = -1; j <= 1; ++j) {
-
-        //if (terrain[int(location.x)][int(location.y)].z != terrain[int(location.x) + i][int(location.y) + j].z) {
-        //  return false;
-        //} 
         if (location.x + i < cols || location.x + i > 0) {
           continue;
         }
@@ -168,30 +145,30 @@ class Tower {           //<>//
       return;
     }
 
-    if (t==-3) {
+    if (timer==-3) {
       //game.energy.energyUsed = game.energy.energyUsed-energybuild;
-      t=11;
+      timer=11;
     }
 
-    if (t<=cunstructionTime&&t>=0) { 
-      t--;
+    if (timer<=cunstructionTime&&timer>=0) { 
+      timer--;
     }
 
-    if (t<=0) {
+    if (timer<=0) {
       underCunstruction++;
-      t=cunstructionTime;
+      timer=cunstructionTime;
     }
 
     if (underCunstruction==11) {
       underCunstruction=12;
-      t=cunstructionTime+1;
+      timer=cunstructionTime+1;
     }
   }
 
 
 
   boolean isBuild () { 
-    if (t==cunstructionTime+1) {
+    if (timer==cunstructionTime+1) {
       return true;
     } else {
       return false;

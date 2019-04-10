@@ -1,24 +1,17 @@
 class TerrainEditor {                    //<>//
 
-  Thread thread;
   Table table;
-
   int mapSaveNR = 0;
   boolean isMouseNotPressedSave = true;
   boolean isMouseNotPressedBrush = true;
-
   PVector rectangelStart = null;
   PVector rectangelEnd = null;
   boolean rectangelEngage = false;
   int delay = 0;
-
-
   int terrainHeight = 0;
   int brushSize = 1;
-
   PVector[][] newMap = new PVector[cols][rows];
-
-
+  
   TerrainEditor () 
   {
     createTabel();

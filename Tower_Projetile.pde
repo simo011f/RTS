@@ -1,13 +1,7 @@
 class TowerShot extends Tower {  
-  int energybuild = 40;
-
-
-
   int tZ;
-  int t=0;
   boolean shoot = false;
   boolean terrainInPath = false;
-  //boolean conected=false;
 
   TowerShot()
   {

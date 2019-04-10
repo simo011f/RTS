@@ -9,7 +9,6 @@ class Game {
 
   //these are all the classes: 
 
-  SquareField squareFeld = new SquareField();
   Menu menu = new Menu();
   LoadGame loadGame =  new LoadGame();
   KeyMenu keyMenu = new KeyMenu();
@@ -24,7 +23,6 @@ class Game {
   EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
   Game() {
-    squareFeld = new SquareField();
     baseLevel = new BaseLevel();
   }
 
@@ -265,7 +263,7 @@ class Game {
       } 
       //baseLevel.Draw();
       player.energyNetwork.Update();
-      player.PickTowerOnBar();   
+      player.pickTowerOnBar();   
       player.highLight();
       player.place();  
       player.drawHotbar(baseLevel.enemyArray.enemys);

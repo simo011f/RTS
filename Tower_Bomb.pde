@@ -1,8 +1,5 @@
-      //<>//
-class TowerBomb extends Tower    //<>//
-
+class TowerBomb extends Tower //<>// //<>//
 {  
-  int energybuild = 40;
   int strongest = 0;    
   PVector underBombartment;
   boolean shoot = false;

@@ -1,9 +1,4 @@
 class TowerAttackEmitters  extends Tower {
-  int energybuild = 40;
-  int cooldown;
-
-  boolean shoot = false;
-
   TowerAttackEmitters()
   {
     super();
@@ -16,8 +11,6 @@ class TowerAttackEmitters  extends Tower {
     maxLeif = 25; 
     leifRegen = 2; 
   }
-
-
   void weapon(ArrayList<Emitter> emitters) {
     for (Emitter emitter : emitters) {
       if (emitterInRange(emitter) == null)
@@ -28,8 +21,6 @@ class TowerAttackEmitters  extends Tower {
       isDead = true;
     }
   }
-
-
   PVector emitterInRange(Emitter emitter) {
 
     for (int i = -range; i <= range; ++i) {
@@ -60,10 +51,5 @@ class TowerAttackEmitters  extends Tower {
   {
     fill(15+(20*underCunstruction), 15+(20*underCunstruction), 0);
     super.Draw();
-  }
-  void Run() {
-
-
-    Build();
   }
 }
