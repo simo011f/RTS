@@ -49,9 +49,14 @@ class Game {
     if (mousePressed && keyMenu.leave) { 
       //if the exit button is pressed in the keys menu
       loc = 0;
+      keyMenu.leave=false;
+    }  
+    if (menu. overRide2) {  
+      loc = 0;
     }
 
     if (mousePressed && loadGame.leave) { 
+      loadGame.leave=false;
       //if the exit button is pressed in the load game menu
       loc = 0;
     }
@@ -75,7 +80,9 @@ class Game {
       loc = 3;
     }
 
-    if (mousePressed && menu.screen[1]) {  
+    if (mousePressed && menu.screen[1]) {    
+      menu.overRide=false;
+      menu.overRide2=false;
       //load game is pressed
       menu.screen[1] = false; 
       loadGame.timer=0;

@@ -17,7 +17,8 @@ class Menu
   PVector mouseLocation = new PVector(mouseX, mouseY);
 
   boolean[] screen = new boolean[7];
-  boolean overRide=false;
+  boolean overRide=false; 
+  boolean overRide2=false;
 
   Menu() {
     font = createFont("areal", 16, true);
@@ -89,6 +90,9 @@ class Menu
     if (mouseX>=0 && mouseX<=80 && mouseY>=height-80 && mouseY<=height && timer >= 10) {
       overRide=true;
     }
+    if (mouseX>=0 && mouseX<=width-80 && mouseY>=height-80 && mouseY<=height && timer >= 10) {
+      overRide2=true;
+    }
   }
   void lvlChoiceLogic() {
 
@@ -110,7 +114,7 @@ class Menu
     }
 
     if (mouseX>= width*1/3 && mouseX<=width*2/3 && mouseY>=height*55/72-15 && mouseY<= height*55/72-15+height/4-20 && timer >= 10) {
-     
+
       colorLoadGame = 0;
       screen[1] = true;
     } else {

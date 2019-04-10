@@ -1,4 +1,4 @@
- class KeyMenu 
+class KeyMenu 
 {
 
   boolean leave;
@@ -21,7 +21,10 @@
     fill(0);
     textFont(f, 35);
     text("Hover over tower and click to select a tower", width*1/5, height*1/5);
-    text("Clik again to move the tower", width*1/5, height*2/5);
+    text("Clik again to move the tower", width*1/5, height*2/5); 
+    text("Clik X to destoy towers", width*4/5, height*1/5);
+    text("Clik Esc to go to the escape menu", width*4/5, height*2/5);
+    text("Clik Space to Pause the game", width*5/10, height*2/5);
     textAlign(LEFT);
   }
 
@@ -52,7 +55,7 @@
     if (towerMoveLocation.x > width*3/10 || towerMoveLocation.x < width*1/10 || towerMoveLocation.y < height*2/5 || towerMoveLocation.y > height*4/5)
     {
       towerMoveLocation = new PVector(width * 1 / 5, height * 3 / 5 );
-      towerMoveVelocity = new PVector(random(-1,1),random(-1,1));
+      towerMoveVelocity = new PVector(random(-1, 1), random(-1, 1));
       towerMoveVelocity.setMag(1);
       t = 0;
     }
