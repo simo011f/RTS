@@ -1,5 +1,5 @@
 class TowerShot extends Tower {  
-  int tZ;
+  int terrainZ;
   boolean shoot = false;
   boolean terrainInPath = false;
 
@@ -56,10 +56,6 @@ class TowerShot extends Tower {
 
 
   void terrainInWay(PVector[][] terrain, Enemy[][] enemyArray) {  
-    //super.terrainInWay(terrain, enemyArray) ;
-
-
-
     if (isBuild ()) {
       //hvis David vil have Expermental verion så sig til
       float chec = 0;
@@ -81,29 +77,17 @@ class TowerShot extends Tower {
   }
 
   PVector detection(Enemy[][] enemyArray) {
-
     PVector inRange = new PVector(-range, -range);
     PVector closest = new PVector(inRange.x, inRange.y);
-
     for (int i = -range; i <= range; i++) {
       for (int j = -range; j <= range; j++) {
-
         if (((int)location.x) + i >= 0 && ((int)location.y) + j >= 0 && ((int)location.x) + i < cols && ((int)location.y) + j < rows) {
           Enemy enemy = enemyArray[((int)location.x) + i][((int)location.y) + j];
-
-
-
-
           if (enemy.terrainHeight > location.z) {
-
             continue;
           }
           if (enemy.strength > 0) {   
-
             inRange = new PVector(i, j);
-
-
-
             if (inRange.mag() < closest.mag()) {
               closest = inRange;
             }
@@ -111,13 +95,11 @@ class TowerShot extends Tower {
         }
       }
     }  
-
     return closest;
   }
 
   void attack(Enemy[][] enemyArray) {
     if (conected) {
-
       super.attack(enemyArray);
       if (!isBuild()) { 
         return ;
@@ -126,13 +108,14 @@ class TowerShot extends Tower {
       detection(enemyArray);
     }
   }
+  
   void Build() {  
     Draw();
     super.Build();
   }
+  
   void Draw()
   {
-
     fill(0, 0, 15+(20*underCunstruction));    
     super.Draw();
   }
