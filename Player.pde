@@ -1,5 +1,5 @@
- //<>//
-class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//<>// //<>//
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
 
 {
@@ -332,7 +332,10 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       placebleBase = false;
     }
 
-    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) {
+    if (placebleEnergy  && mousePressed && mouseX >= 0 && mouseX<=width && mouseY>=0 && mouseY<=height-61 && timer>=10) { 
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        return;
+      }
       restrainMouse();
       int x = mouseX/10;
       int y = mouseY/10;
@@ -395,7 +398,7 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
         }
       }
     } 
-    if (placebleBase) {
+    if (placebleBase || placebleEnergy) {
       for (int i = -2; i <= 2; i++) {
         for (int j = -2; j <= 2; j++) { 
           if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z) {  
