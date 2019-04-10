@@ -1,4 +1,4 @@
-class EscMenu  //<>//
+class EscMenu  //<>// //<>//
 {
 
   PFont font;
@@ -114,7 +114,7 @@ class EscMenu  //<>//
 
   void run() {
 
-    if (momousePressed, Opt[2], usePressed && Opt[1]) {
+    if (mousePressed && Opt[1]) {
 
       //game.player.energyTower.clear();
       //game.player.shotTower.clear();
@@ -128,8 +128,8 @@ class EscMenu  //<>//
     }
 
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
-    if (keys[9]) {
-      escPressed = !escPressed;
+    if (keys[9] && !escPressed) {
+      escPressed = true;
       Opt[0] = false;
       Opt[1] = false;
       Opt[2] = false;
@@ -145,7 +145,6 @@ class EscMenu  //<>//
     if (escPressed) {
       display();    //hvis menu bliver valgt
     }
-    escPressed = false;
-  }      
-  choices();
+    choices();
+  }
 }
