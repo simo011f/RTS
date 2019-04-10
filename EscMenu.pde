@@ -1,4 +1,4 @@
-class EscMenu  //<>// //<>//
+class EscMenu  //<>//
 {
 
   PFont font;
@@ -31,6 +31,10 @@ class EscMenu  //<>// //<>//
     }
 
     if (mouseX >= width*3/8 && mouseX <= width*5/8 && mouseY >= height*2/4 && mouseY <= height*3/4) { 
+      if (mousePressed == true)
+      {
+        game.loc = 0;
+      }
       game.menu.timer = 1;
       //this is the main menu option
       chol[2] = 0;
@@ -124,8 +128,7 @@ class EscMenu  //<>// //<>//
     }
 
     //Hvis ESC bliver trykket åbner det menuen og lukker den efter om menuen er åben eller ej
-    if (keys[9] && game.timer.es==0) {
-      game.timer.es=1;
+    if (keys[9]) {
       escPressed = !escPressed;
       Opt[0] = false;
       Opt[1] = false;
