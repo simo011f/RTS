@@ -34,11 +34,15 @@ class Game {
     visualizer.add(baseLevel);
   }
   void backToMenu() { 
-    baseLevel.reloadLevel();
+
     for (int i = baseLevel.emitters.size() - 1; i >= 0; i--) {  
       visualizer.remove(baseLevel.emitters.get(i));
       baseLevel.emitters.remove(i);
     }
+    for (int i = baseLevel.emitters.size() - 1; i >= 0; i--) {
+      visualizer.remove(baseLevel.emitters.get(i));
+    }      
+    visualizer.remove(baseLevel.enemyArray);
   }
 
   void changeState() {
@@ -52,12 +56,13 @@ class Game {
       loc = 0;
     }
 
-    if (mousePressed && escMenu.Opt[2]) { 
+    if (mousePressed && escMenu.Opt[2] && escMenu.escPressed) { 
       //if the main menu button is pressed in the ESC menu. 
-      backToMenu();
+
       menu.continueLevelNR = baseLevel.currentLevel;
       escMenu.escPressed = false;
-      escMenu.Opt[2]=false;
+      escMenu.Opt[2]=false; 
+      backToMenu();
       loc = 0;
     }
     if (mousePressed && escMenu.Opt[1]) { 
@@ -80,9 +85,13 @@ class Game {
     if (mousePressed && menu.screen[2]) {   
       //if new game is pressed on the start menu
       menu.screen[2]=false;
-      loc = 3;
-      baseLevel.currentLevel = 0;
-      baseLevel.Update();
+      loc = 3; 
+
+
+      baseLevel.currentLevel = 1;
+      baseLevel.Update();        
+      visualizer.add(baseLevel.enemyArray);
+      baseLevel.reloadLevel();
     }
 
     if (mousePressed && menu.screen[3]) {
@@ -193,7 +202,7 @@ class Game {
   }
 
   void run() {   
-    println(game.baseLevel.emitters.size());
+
     changeState();
     switch (loc) {
     case -1: 
@@ -202,7 +211,7 @@ class Game {
       break;
 
     case 0: 
-     
+
       //this is the menu
       background(255);
       menu.run(); 
@@ -255,7 +264,8 @@ class Game {
       enemyPlasmentEditor.Run();
       escMenu.run();
       break;
-    }
+    }    
+    println(game.baseLevel.emitters.size());
   }
   void gameRun() {
     if (pause) {

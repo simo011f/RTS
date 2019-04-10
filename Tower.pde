@@ -25,7 +25,7 @@ class Tower {           //<>//
   boolean isDead = false;
   boolean coliding = false;
 
-  int range = 20;
+  int range = 15;
 
   Tower()
   {
