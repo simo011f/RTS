@@ -1,9 +1,6 @@
 class Menu 
 {
-  Game game;
-
   PFont font;
-
   int timer;
   int colorContinue;
   int colorNewGame;

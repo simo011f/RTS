@@ -1,11 +1,6 @@
-  //<>//
-class Player                 //<>//
-
-
-{
-
+class Player //<>//
+{ //<>//
   Energy energyNetwork;
-
   int timer;
   int towernr = 0; 
 

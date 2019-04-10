@@ -17,7 +17,7 @@ class Game {
   EscMenu escMenu = new EscMenu();
   Player player = new Player();
 
-  GameBord gameBord = new GameBord(); 
+
 
   BaseLevel baseLevel;
   TerrainEditor terrainEditor = new TerrainEditor();
@@ -25,7 +25,6 @@ class Game {
 
   Game() {
     squareFeld = new SquareField();
-    gameBord = new GameBord();
     baseLevel = new BaseLevel();
   }
 
@@ -33,6 +32,7 @@ class Game {
   {
     visualizer.add(baseLevel);
   }
+  
   void backToMenu() { 
     baseLevel.reloadLevel();
     for (int i = baseLevel.emitters.size() - 1; i >= 0; i--) {  
@@ -87,7 +87,7 @@ class Game {
 
     if (mousePressed && menu.screen[3]) {
       //if keys are pressed on the start menu
-      keyMenu.t = 0;
+      keyMenu.timer = 0;
       loc = 2;
     }
     if (mousePressed && menu.screen[0]) { 

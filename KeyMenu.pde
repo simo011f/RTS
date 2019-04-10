@@ -3,14 +3,14 @@
 
   boolean leave;
   int leaveColor;
-  int t;
-  PFont f;
+  int timer;
+  PFont font;
   PVector towerMoveLocation = new PVector(width*1/5, height*3/5);
   PVector towerMoveVelocity = new PVector(1, 0);
 
 
   KeyMenu() {
-    f = createFont("arial", 16, true);
+    font = createFont("arial", 16, true);
   }
   void tekst() { 
     textAlign(CENTER);
@@ -19,7 +19,7 @@
       println(mouseX, mouseY, 100*mouseX/width, 100*mouseY/height);
     }
     fill(0);
-    textFont(f, 35);
+    textFont(font, 35);
     text("Hover over tower and click to select a tower", width*1/5, height*1/5);
     text("Clik again to move the tower", width*1/5, height*2/5);
     textAlign(LEFT);
@@ -44,8 +44,8 @@
   }
 
   void highligt() {
-    t++;
-    if (t > 45) {
+    timer++;
+    if (timer > 45) {
       towerMoveLocation.x += towerMoveVelocity.x;
       towerMoveLocation.y += towerMoveVelocity.y;
     }
@@ -54,7 +54,7 @@
       towerMoveLocation = new PVector(width * 1 / 5, height * 3 / 5 );
       towerMoveVelocity = new PVector(random(-1,1),random(-1,1));
       towerMoveVelocity.setMag(1);
-      t = 0;
+      timer = 0;
     }
   }
 
@@ -64,7 +64,7 @@
     strokeWeight(2);
     rect(0, 0, 80, 80);
     fill(0);
-    textFont(f, 20);
+    textFont(font, 20);
     textAlign(CENTER);
     text("Back", 40, 45);
 

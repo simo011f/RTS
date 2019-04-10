@@ -1,5 +1,5 @@
 class LoadGame {
-  PFont f; 
+  PFont font; 
   boolean[] levelNR = new boolean[13];
   int[] levelColors = new int[13];
   int levelCode;
@@ -8,7 +8,7 @@ class LoadGame {
   int timer;
 
   LoadGame() { 
-    f = createFont("arial", 16, true);
+    font = createFont("arial", 16, true);
   }
 
   void levelBord() {
@@ -16,7 +16,7 @@ class LoadGame {
     //this draws all the necessary numbers at the right locations
 
     fill(0, 0, 0); 
-    textFont(f, 40);
+    textFont(font, 40);
     textAlign(CENTER);
     text("Load Game", width*4/8, 40);
     textAlign(LEFT);
@@ -27,7 +27,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*2/16, height*1/8, width*5/16 - width*2/16, height*3/8 - height*1/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL1", width*3/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
@@ -42,7 +42,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*5/16, height*1/8, width*8/16 - width*5/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL2", width*6/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
@@ -56,7 +56,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*8/16, height*1/8, width*11/16 - width*8/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL3", width*9/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
@@ -70,7 +70,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*11/16, height*1/8, width*14/16 - width*11/16, height*3/8 - height*1/8);     
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL4", width*12/16 + width*1/32, height*2/8 + 10);
     textAlign(LEFT);
@@ -83,7 +83,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*2/16, height*3/8, width*5/16 - width*2/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL5", width*3/16 + width*1/32, height*4/8 + 10);    
     textAlign(LEFT);
@@ -97,7 +97,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*5/16, height*3/8, width*8/16 - width*5/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL6", width*6/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT);
@@ -110,7 +110,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*8/16, height*3/8, width*11/16 - width*8/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL7", width*9/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT); 
@@ -123,7 +123,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*11/16, height*3/8, width*14/16 - width*11/16, height*5/8 - height*3/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL8", width*12/16 + width*1/32, height*4/8 + 10);
     textAlign(LEFT);
@@ -136,7 +136,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*2/16, height*5/8, width*5/16 - width*2/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL9", width*3/16 + width*1/32, height*6/8 + 10);    
     textAlign(LEFT);
@@ -150,7 +150,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*5/16, height*5/8, width*8/16 - width*5/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL10", width*6/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT);
@@ -163,7 +163,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*8/16, height*5/8, width*11/16 - width*8/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL11", width*9/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT); 
@@ -176,7 +176,7 @@ class LoadGame {
     strokeWeight(2);
     rect(width*11/16, height*5/8, width*14/16 - width*11/16, height*7/8 - height*5/8); 
     fill(0, 0, 0);
-    textFont(f, 26);
+    textFont(font, 26);
     textAlign(CENTER);
     text("LvL12", width*12/16 + width*1/32, height*6/8 + 10);
     textAlign(LEFT);
@@ -305,7 +305,7 @@ class LoadGame {
     strokeWeight(2);
     rect(0, 0, 80, 80);
     fill(0);
-    textFont(f, 20);
+    textFont(font, 20);
     textAlign(CENTER);
     text("Back", 40, 45); 
 
