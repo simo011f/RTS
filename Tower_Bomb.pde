@@ -1,5 +1,5 @@
- //<>// //<>// //<>// //<>// //<>// //<>//
-class TowerBomb extends Tower  //<>// //<>// //<>//
+      //<>//
+class TowerBomb extends Tower    //<>//
 
 {  
   int energybuild = 40;

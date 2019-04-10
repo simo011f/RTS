@@ -1,23 +1,14 @@
- //<>// //<>//
-class EnemyGrid implements Visualize { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-
-
+class EnemyGrid implements Visualize { //<>// //<>// //<>//
   PVector[] directions = new PVector[4];
-
   boolean spreadNorth = false;
   boolean spreadSouth = false;
   boolean spreadEast = false;
   boolean spreadWest = false;
-
   Enemy[][] enemys = new Enemy[cols][rows];
   int[][] updated = new int[cols][rows];
   ArrayList<PVector> thisCluster = new ArrayList<PVector>();
   ArrayList<PVector> thisClusterCheking = new ArrayList<PVector>();
-
   int damping = -1; 
-
-
-
   EnemyGrid()
   {
     directions[0] = new PVector(1, 0);
@@ -347,40 +338,6 @@ class EnemyGrid implements Visualize { //<>// //<>// //<>// //<>// //<>// //<>//
       y = (int)thisStrongest.y;
       updateEnemysStrength(x, y);
     }
-    //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
-    //{
-    //  x = (int)strongest(x, y).x; //<>//
-    //  y = (int)strongest(x, y).y;
-    //}
-
-    //thisCluster.add(new PVector(x, y));
-    //updated[x][y] = 1;
-
-    //while (thisCluster.size() > 0) {
-    //  for (int a = -1; a <= -1; a++) {
-    //    for (int b = -1; b <= -1; b++) {
-    //      checkingX = x + a;
-    //      checkingY = y + b;
-    //      if (checkingX < 0 || checkingX >= cols) {
-    //        continue;
-    //      }
-
-    //      if (checkingY < 0 || checkingY >= rows) {
-    //        continue;
-    //      }
-
-    //      if (updated[checkingX][checkingY] == 0)
-    //      {
-    //        updated[checkingX][checkingY] = 1;
-    //        thisCluster.add(new PVector(checkingX, checkingY));
-    //      }
-    //    }
-    //  }
-    //  updateCluster(thisCluster);
-    //  x = checkingX;
-    //  y = checkingY;
-    //}
-    //return;
   }
 
   PVector strongest(ArrayList<PVector> cluster)

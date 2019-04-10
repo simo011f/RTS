@@ -1,4 +1,4 @@
-class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class Tower {           //<>//
   //når jeg skal finde z(højden) så brug baselevel.currentTerrain
 
   PVector location;

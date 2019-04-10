@@ -1,4 +1,4 @@
-class Enemy    //<>// //<>//
+class Enemy //<>//
 {
   int strength;
   int terrainHeight;
@@ -19,7 +19,6 @@ class Enemy    //<>// //<>//
 
   void addLayer()
   {
-
     strength++;
   }
 
@@ -27,6 +26,7 @@ class Enemy    //<>// //<>//
   {
     strength += addStrength;
   }
+  
   void updateNumber(int u) {
 
     updateNR=u;
