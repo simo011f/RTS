@@ -1,6 +1,4 @@
-//<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-class Energy {
-
+class Energy { //<>//
   int totalEnergy;
   int energyUsed;
   int energyGained;
@@ -8,8 +6,6 @@ class Energy {
   int[][] energyArera;
   int[][] terrain;
   boolean transmit = true;
-
-
 
   Energy()
   {

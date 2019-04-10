@@ -1,4 +1,4 @@
-class Emitter implements Visualize //<>// //<>//
+class Emitter implements Visualize //<>//
 {
   PVector location;
 

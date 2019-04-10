@@ -1,28 +1,19 @@
-class EnemyPlasmentEditor {     //<>// //<>// //<>// //<>//
+class EnemyPlasmentEditor { //<>//
   Table table;
-
   int mapSaveNR = 0;
-
   boolean isMouseNotPressedSave = true;
   boolean isMouseNotPressedBasicStrength = true;
   boolean isMouseNotPressedUpdateMap = true;
   boolean isMouseNotPressedEmitterStrength = true;
   boolean isMouseNotPressedEmitterDelay = true;
-
-
   TerrainEditor terrainEditor = new TerrainEditor();
-
   PVector[][] newMap = new PVector[cols][rows];
-
   int[][] newBasicEnemys = new int[cols][rows];
   int newBasicEnemysStrength = 1; 
-
   ArrayList<Emitter> newLevelEmitters = new ArrayList<Emitter>();
   int newLevelEmitterStrength = 1;
   int newLevelEmitterDelay = 1;
-
-
-
+  
   EnemyPlasmentEditor () 
   {
     thread("hotbar");
@@ -567,8 +558,8 @@ class EnemyPlasmentEditor {     //<>// //<>// //<>// //<>//
       return newLevelEnemyGrid;
     }
     return null;
-  }  //<>// //<>//
-  //<>// //<>//
+  }   //<>//
+   //<>//
   ArrayList<Emitter> loadEmitters(int levelNR, EnemyGrid enemys)
   {
     table = loadTable("EnemyPlasment.csv", "header");
