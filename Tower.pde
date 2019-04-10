@@ -57,7 +57,7 @@ class Tower {   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     if (conected) {
 
       weapon(enemyArray);
-      detection(enemyArray);
+
     }
   }
 

@@ -1,4 +1,4 @@
-class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 
   PVector[] directions = new PVector[4];
 
@@ -347,7 +347,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     }
     //while (strongest(x, y) != null && x != strongest(x, y).x && y != strongest(x, y).y) 
     //{
-    //  x = (int)strongest(x, y).x; //<>// //<>//
+    //  x = (int)strongest(x, y).x; //<>//
     //  y = (int)strongest(x, y).y;
     //}
 
@@ -409,7 +409,7 @@ class EnemyGrid { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     for (int i = 0; i < cols; i++) {
       for (int j = 0; j < rows; j++) {
         enemys[i][j].terrainHeight = (int)grid[i][j].z;
-        if(enemys[i][j].terrainHeight == -1){
+        if (enemys[i][j].terrainHeight == -1) {
           enemys[i][j].strength = 0;
         }
       }

@@ -1,10 +1,10 @@
-class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
+class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 {  
   int energybuild = 40;
   int cooldown;
   int range = 20;
   int strongest = 0;    
-
+  PVector underBombartment;
   boolean shoot = false;
   //boolean conected=false;
 
@@ -16,14 +16,23 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
     energyConsomstion = 0;
     leifRegen = 1;
     maxLeif = 25;
-    cunstructionTime=120;
-    finishCooling = 90;
+    cunstructionTime=0;
+    finishCooling = 60;
+    underBombartment=new PVector(-range, -range);
   }
 
 
-  void weapon(Enemy[][] enemyArray) {
+  void weapon(Enemy[][] enemyArray) {   
+
+    if (cooldown==0) {
+      underBombartment=detection(enemyArray);
+    }
+
+    cooldown++;  
+
+
     energyConsomstion = 0;
-    if (enemyArray[(int)location.x + (int)detection(enemyArray).x][((int)location.y) + (int)detection(enemyArray).y].updateNR==3) {
+    if (enemyArray[(int)location.x + (int) detection(enemyArray).x][((int)location.y) + (int) detection(enemyArray).y].updateNR==3) {
       shoot=false;
     } else {
       shoot=true;
@@ -32,26 +41,38 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
       finishCooling=1;
     }
 
-    if (cooldown >= finishCooling && shoot) {
-      if (detection(enemyArray).x >=-20 && detection(enemyArray).x <=20 && detection(enemyArray).y >=-20 && detection(enemyArray).y <=20) {
+    //println( enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength);
+
+    if (cooldown >= finishCooling && shoot ) {
+      if ( underBombartment.x >=-20 &&  underBombartment.x <=20 &&  underBombartment.y >=-20 &&  underBombartment.y <=20) {
 
 
-        cooldown = 0;
+
         energyConsomstion = 45;
         stroke(255);
         strokeWeight(2);
-        line(((detection(enemyArray).x + location.x)) * scale + 5, ((detection(enemyArray).y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);
+        line((( underBombartment.x + location.x)) * scale + 5, (( underBombartment.y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);
         strokeWeight(0.5);
+
+
+
+
+        enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength-=20;
+
 
         noStroke();
         for (int i = -1; i <= 1; i++) {
-          for (int j = -1; j <= 1; j++) {   
-            enemyArray[int(detection(enemyArray).x+(int)location.x )+i][int(detection(enemyArray).y+(int)location.y)+j ].strength-=20;
+          for (int j = -1; j <= 1; j++) {    
+     
+            enemyArray[int(underBombartment.x+location.x)+i][int(underBombartment.y+location.y)+j].strength-=20;
           }
-        }
+        }  
+
+        cooldown = 0;
       }
     }
   }
+
 
   PVector detection(Enemy[][] enemyArray) {
 
@@ -76,14 +97,13 @@ class TowerAttackTerrtoriumBomb extends Tower  //<>// //<>// //<>//
   }
 
   void attack(Enemy[][] enemyArray) {    
-    println(isBuild (), underCunstruction);
+
     if (conected) {
       super.attack(enemyArray);
       if (!isBuild()) { 
         return ;
       }
       weapon(enemyArray);
-      detection(enemyArray);
     }
   }
 
