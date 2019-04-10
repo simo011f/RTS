@@ -113,7 +113,8 @@ class EscMenu  //<>//
   }
 
   void run() {
-    if (mousePressed && Opt[1]) {
+
+    if (momousePressed, Opt[2], usePressed && Opt[1]) {
 
       //game.player.energyTower.clear();
       //game.player.shotTower.clear();
@@ -138,15 +139,13 @@ class EscMenu  //<>//
     if (mousePressed && Opt[0]) {
       escPressed = false;
     }
-    //hvis menu bliver valgt
-    if (mousePressed && Opt[2]) {
-      game.loc = 0;
-      escPressed = false;
-    }
+
+
 
     if (escPressed) {
-      display();  
-      choices();
+      display();    //hvis menu bliver valgt
     }
-  }
+    escPressed = false;
+  }      
+  choices();
 }

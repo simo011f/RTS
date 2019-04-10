@@ -1,4 +1,4 @@
-int scale = 10; //<>//
+int scale = 10;
 int cols;
 int rows;
 
