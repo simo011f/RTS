@@ -1,5 +1,9 @@
 //<>// //<>// //<>//
+<<<<<<< HEAD
 class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+=======
+class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+>>>>>>> Level-desine
 
 {
 
@@ -257,8 +261,14 @@ class Player   //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //
       stroke(rageDisply, rageDisply, 0);
       fill(rageDisply, rageDisply, 0, 100);
       rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);    
-      fill(0, 255, 255);
-      rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale);
+      fill(0, 255, 255);  
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        strokeWeight(3);
+        stroke(255, 100, 100);
+      } 
+
+      rect((location.x - 2) * scale, (location.y - 2) * scale, 5 * scale, 5 * scale); 
+      strokeWeight(1.5);
     }    
 
     if (picked==5) {

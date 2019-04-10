@@ -28,6 +28,7 @@ class Enemy    //<>// //<>//
     strength += addStrength;
   }
   void updateNumber(int u) {
+
     updateNR=u;
   }
 }

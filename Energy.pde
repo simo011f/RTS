@@ -39,6 +39,11 @@ class Energy {
   {
     int x = 0;
     int y = 0;
+    for (int i = 0; i < cols; ++i) {
+      for (int j = 0; j < rows; ++j) {
+        energyArera[i][j] = 0;
+      }
+    }
     for (TowerEnergy energyTower : energyTowers) {
 
       if (!energyTower.conected)
