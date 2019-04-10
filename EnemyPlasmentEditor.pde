@@ -502,7 +502,7 @@ class EnemyPlasmentEditor {     //<>// //<>// //<>// //<>//
   void drawEmitter()
   {
     for (int i = 0; i < newLevelEmitters.size(); ++i) {
-      newLevelEmitters.get(i).Draw();
+      newLevelEmitters.get(i).visualize();
     }
   }
 

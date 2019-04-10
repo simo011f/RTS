@@ -1,6 +1,5 @@
 class Emitter implements Visualize //<>// //<>//
 {
-  PVector[][] pGrid;
   PVector location;
 
   int power;
@@ -24,7 +23,6 @@ class Emitter implements Visualize //<>// //<>//
   {
     location = spawn;
     delay = sDelay;
-    pGrid = game.squareFeld.grid;
     power = sPower;
     enemys.enemys[(int)spawn.x][(int)spawn.y].strength = 1;
     visualizer.add(this);
@@ -38,13 +36,7 @@ class Emitter implements Visualize //<>// //<>//
     stroke(200, 100, 0);
     image(emitterImg, ((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
   }
-  
-  void Draw()
-  {
-    fill(200, 200, 25, 150);
-    stroke(200, 100, 0);
-    image(emitterImg, ((int)location.x - 1) * 10, ((int)location.y - 1) * 10, 30, 30);
-  }
+
   void Update(EnemyGrid enemys) 
   {
 
