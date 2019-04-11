@@ -3,15 +3,17 @@ int cols;
 int rows;
 
 PImage voidImg;
-PImage emitterImg;
-PImage baseImg;
-PImage bombTowerImg;
 PImage layerZeroImg;
 PImage layerOneImg;
 PImage layerTowImg;
 PImage layerThreeImg;
 PImage layerFureImg;
 PImage layerFiveImg;
+PImage emitterImg;
+PImage baseImg;
+PImage bombTowerImg;
+PImage shotTowerImg;
+PImage emitterAttackerTowerImg;
 ArrayList<Visualize> visualizer;
 
 Game game;
@@ -59,15 +61,17 @@ void enemyUpdate()
 void spriteLoad()
 {
   voidImg = loadImage("voidImg.png");
-  emitterImg = loadImage("EmitterSprite.png");
-  baseImg = loadImage("BaseSprite.png");
-  bombTowerImg = loadImage("BombTower.png");
   layerZeroImg = loadImage("LayerZero.png");
   layerOneImg = loadImage("LayerOne.png");
   layerTowImg = loadImage("LayerTow.png");
   layerThreeImg = loadImage("LayerThree.png");
   layerFureImg = loadImage("LayerFure.png");
   layerFiveImg = loadImage("LayerFive.png");
+  emitterImg = loadImage("EmitterSprite.png");
+  baseImg = loadImage("BaseSprite.png");
+  bombTowerImg = loadImage("BombTower.png");
+  shotTowerImg = loadImage("ShotTower.png");
+  emitterAttackerTowerImg = loadImage("EmitterAttacker");
 }
 
 void mouseClicked()

@@ -88,14 +88,9 @@ class TowerBase
   }
 
   void Draw() {   
-    fill(0, 255, 255);
-    stroke(0);
-    strokeWeight(1.5);
-    for (int i = -2; i <= 2; i++) {
-      for (int j = -2; j <= 2; j++) {
-        rect((location.x+i)*scale, (location.y+j)*scale, 10, 10);
-      }
-    }
+    noFill();
+    noStroke();
+    image(baseImg,(location.x-2) * scale,(location.y-2) * scale);
   }
   
   void run() { 

@@ -117,6 +117,13 @@ class TowerBomb extends Tower //<>// //<>//
   }  
   void Draw()
   {
+    if(isBuild())
+    {
+      noFill();
+      noStroke();
+      image(bombTowerImg,(location.x-1)*scale,(location.y-1)*scale);
+      return;
+    }
     fill(15+(20*underCunstruction), 0, 0);
     super.Draw();
   }

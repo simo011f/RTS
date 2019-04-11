@@ -116,6 +116,13 @@ class TowerShot extends Tower {
   
   void Draw()
   {
+    if(isBuild())
+    {
+      noFill();
+      noStroke();
+      image(shotTowerImg,(location.x-1)*scale,(location.y-1)*scale);
+      return;
+    }
     fill(0, 0, 15+(20*underCunstruction));    
     super.Draw();
   }
