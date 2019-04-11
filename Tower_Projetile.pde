@@ -11,7 +11,7 @@ class TowerShot extends Tower {
     energyConsomstion = 0;
     leifRegen = 1;
     maxLeif = 25;
-    cunstructionTime=45;
+    cunstructionTime=20;
     finishCooling = 11;
   }
 

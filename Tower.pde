@@ -164,7 +164,7 @@ class Tower {           //<>//
     }
 
     if (underCunstruction==11) {
-      underCunstruction=12;
+    
       timer=cunstructionTime+1;
     }
   }
