@@ -109,6 +109,7 @@ class Game {
       menu.screen[0]=false;
       loc = 3;
       baseLevel.currentLevel = menu.continueLevelNR;
+      //baseLevel.currentLevel = 0;
       baseLevel.reloadLevel();
     }
     if (mousePressed && menu.screen[5]) { 
