@@ -6,7 +6,7 @@ class TowerAttackEmitters  extends Tower {
     cunstructionEnergyConsomstion = 30;
     energyConsomstion = 100;
     range = 10;
-    cunstructionTime=20;
+    cunstructionTime=157;
     leif = 1;
     maxLeif = 25; 
     leifRegen = 2; 

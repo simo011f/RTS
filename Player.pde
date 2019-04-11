@@ -1,5 +1,5 @@
-class Player //<>// //<>//
-{ //<>// //<>//
+class Player //<>// //<>// //<>//
+{ //<>//
   Energy energyNetwork;
   int timer;
   int towerNR = 0; 
@@ -369,6 +369,15 @@ class Player //<>// //<>//
         }
       }
     }
+    if (placebleEnergy) {
+      for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) { 
+          if (levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z==-1) {  
+            return true;
+          }
+        }
+      }
+    }
     for (TowerEnergy energyTower : energyTowers)
     {
       for (int i = -1; i <= 1; i++) 
@@ -382,7 +391,7 @@ class Player //<>// //<>//
         }
       }
     } 
-    if (placebleBase || placebleEnergy) {
+    if (placebleBase) {
       for (int i = -2; i <= 2; i++) {
         for (int j = -2; j <= 2; j++) { 
           if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z) {  
