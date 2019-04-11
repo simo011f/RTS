@@ -450,7 +450,7 @@ class Player //<>//
     }
     if (base != null)
     {
-      base.enemyColition(enemyArray);
+      base.contactWithEnemy(enemyArray);
     }
   }
 
