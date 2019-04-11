@@ -13,8 +13,8 @@ class TowerBomb extends Tower //<>// //<>//
     energyConsomstion = 0;
     leifRegen = 1;
     maxLeif = 25;
-    cunstructionTime=0;
-    finishCooling = 60;
+    cunstructionTime=120;
+    finishCooling = 112;
     underBombartment=new PVector(-range, -range);
   }
 
@@ -39,29 +39,36 @@ class TowerBomb extends Tower //<>// //<>//
     }
 
     //println( enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength);
+    if (shoot && cooldown >= finishCooling*(3/4)) {
+      stroke(255, 255, 255, 100);
+      strokeWeight(2);
+      line((( underBombartment.x + location.x)) * scale + 5, (( underBombartment.y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);  
+      noStroke();
+    }
 
-    if (cooldown >= finishCooling && shoot ) {
+    if (cooldown >= finishCooling && shoot ) { 
+      fill(200, 0, 0, 200);
+      strokeWeight(2);
+      rect((( underBombartment.x + location.x)) * scale-15, (( underBombartment.y + location.y)) * scale-15, 30, 30);
       if ( underBombartment.x >=-20 &&  underBombartment.x <=20 &&  underBombartment.y >=-20 &&  underBombartment.y <=20) {
 
 
 
         energyConsomstion = 45;
-        stroke(255);
-        strokeWeight(2);
-        line((( underBombartment.x + location.x)) * scale + 5, (( underBombartment.y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);
-        strokeWeight(0.5);
 
 
 
 
-        enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength-=20;
 
 
-        noStroke();
+        enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength-=50;
+
+
+
         for (int i = -1; i <= 1; i++) {
           for (int j = -1; j <= 1; j++) {    
-     
-            enemyArray[int(underBombartment.x+location.x)+i][int(underBombartment.y+location.y)+j].strength-=20;
+
+            enemyArray[int(underBombartment.x+location.x)+i][int(underBombartment.y+location.y)+j].strength-=50;
           }
         }  
 

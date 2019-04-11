@@ -416,10 +416,10 @@ class EnemyGrid implements Visualize { //<>// //<>// //<>//
           fill(0, enemys[i][j].strength*2, 255, 100);
           rect(i*10, j*10, 10, 10);
           //for at se styrke går FPS fra ca. 13 til ca. 5
-          fill(0);
-          textAlign(CENTER);  
-          textSize(10);
-          text(enemys[i][j].strength, i*10+5, j*10+10);
+          //fill(0);
+          //textAlign(CENTER);  
+          //textSize(10);
+          //text(enemys[i][j].strength, i*10+5, j*10+10);
         }
       }
     }
