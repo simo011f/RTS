@@ -71,7 +71,7 @@ void spriteLoad()
   baseImg = loadImage("BaseSprite.png");
   bombTowerImg = loadImage("BombTower.png");
   shotTowerImg = loadImage("ShotTower.png");
-  emitterAttackerTowerImg = loadImage("EmitterAttacker");
+  emitterAttackerTowerImg = loadImage("EmitterAttacker.png");
 }
 
 void mouseClicked()

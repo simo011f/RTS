@@ -1,4 +1,4 @@
-class TowerBomb extends Tower //<>// //<>//
+class TowerBomb extends Tower //<>// //<>// //<>//
 {  
   int strongest = 0;    
   PVector underBombartment;
@@ -14,7 +14,7 @@ class TowerBomb extends Tower //<>// //<>//
     leifRegen = 1;
     maxLeif = 25;
     cunstructionTime=120;
-    finishCooling = 112;
+    finishCooling = 180;
     underBombartment=new PVector(-range, -range);
   }
 
@@ -27,9 +27,8 @@ class TowerBomb extends Tower //<>// //<>//
 
     cooldown++;  
 
-
     energyConsomstion = 0;
-    if (enemyArray[(int)location.x + (int) detection(enemyArray).x][((int)location.y) + (int) detection(enemyArray).y].updateNR==3) {
+    if (enemyArray[(int)location.x + (int) underBombartment.x][((int)location.y) + (int) underBombartment.y].updateNR==3) {
       shoot=false;
     } else {
       shoot=true;
@@ -38,8 +37,7 @@ class TowerBomb extends Tower //<>// //<>//
       finishCooling=1;
     }
 
-    //println( enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength);
-    if (shoot && cooldown >= finishCooling*(3/4)) {
+    if (shoot && cooldown >= 100) {
       stroke(255, 255, 255, 100);
       strokeWeight(2);
       line((( underBombartment.x + location.x)) * scale + 5, (( underBombartment.y + location.y)) * scale + 5, location.x * scale + 5, location.y * scale + 5);  
@@ -49,31 +47,21 @@ class TowerBomb extends Tower //<>// //<>//
     if (cooldown >= finishCooling && shoot ) { 
       fill(200, 0, 0, 200);
       strokeWeight(2);
-      rect((( underBombartment.x + location.x)) * scale-15, (( underBombartment.y + location.y)) * scale-15, 30, 30);
+      rect((( underBombartment.x + location.x)) * scale-15, (( underBombartment.y + location.y)) * scale-15, 30, 30);   
+
       if ( underBombartment.x >=-20 &&  underBombartment.x <=20 &&  underBombartment.y >=-20 &&  underBombartment.y <=20) {
-
-
-
         energyConsomstion = 45;
-
-
-
-
-
-
         enemyArray[int(underBombartment.x+location.x)][int(underBombartment.y+location.y)].strength-=50;
-
-
-
         for (int i = -1; i <= 1; i++) {
           for (int j = -1; j <= 1; j++) {    
-
             enemyArray[int(underBombartment.x+location.x)+i][int(underBombartment.y+location.y)+j].strength-=50;
           }
-        }  
-
-        cooldown = 0;
-      }
+        }
+      } 
+      cooldown = 0;
+    }
+    if (cooldown >= finishCooling*2) { 
+      cooldown = 0;
     }
   }
 
@@ -117,11 +105,11 @@ class TowerBomb extends Tower //<>// //<>//
   }  
   void Draw()
   {
-    if(isBuild())
+    if (isBuild())
     {
       noFill();
       noStroke();
-      image(bombTowerImg,(location.x-1)*scale,(location.y-1)*scale);
+      image(bombTowerImg, (location.x-1)*scale, (location.y-1)*scale);
       return;
     }
     fill(15+(20*underCunstruction), 0, 0);

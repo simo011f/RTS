@@ -1,4 +1,4 @@
-class Tower {           //<>//
+class Tower {           //<>// //<>//
   PVector location;
   PVector newLocation = new PVector();
   PVector velocity = new PVector();
@@ -38,13 +38,16 @@ class Tower {           //<>//
     if (!isBuild()) { 
       return ;
     }
-    
-    leif += leifRegen;
+
+    leif += leifRegen;  
+    if (leif < maxLeif) {
+      energyConsomstion=5;
+    }
     if (leif >= maxLeif) {
       leif = maxLeif; 
       underCunstruction=12;
     }  
-    
+
     if (conected) {
       weapon(enemyArray);
     }
@@ -59,12 +62,12 @@ class Tower {           //<>//
         {
           continue;
         }
-        
+
         if ((int)location.y + j < 0 || (int)location.y + j > cols)
         {
           continue;
         }
-        
+
         if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
         {
           leif--;
@@ -97,7 +100,7 @@ class Tower {           //<>//
           }
         }
       }
-    }
+    } //<>//
   }
 
   //<>//
@@ -107,7 +110,7 @@ class Tower {           //<>//
       if (location.x > cols || location.x < 0) {
         return;
       }
-      
+
       if (location.y > rows || location.y < 0) {
         return;
       }
@@ -131,7 +134,6 @@ class Tower {           //<>//
 
           return false;
         }
-    
       }
     }
     return true;
@@ -164,7 +166,7 @@ class Tower {           //<>//
     }
 
     if (underCunstruction==11) {
-    
+
       timer=cunstructionTime+1;
     }
   }
@@ -186,6 +188,7 @@ class Tower {           //<>//
 
   void move()
   {
+   
     velocity.set(newLocation);
     velocity.sub(location);
     float dist = velocity.mag();

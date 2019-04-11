@@ -1,5 +1,5 @@
-class Player //<>// //<>// //<>//
-{ //<>//
+class Player //<>// //<>// //<>// //<>//
+{
   Energy energyNetwork;
   int timer;
   int towerNR = 0; 
@@ -263,12 +263,32 @@ class Player //<>// //<>// //<>//
       fill(0, 255, 0);
       rect(location.x * scale, location.y * scale, scale, scale);
     }
+    if (picked==6) {
+      restrainMouse();
+      stroke(rageDisply, 0, 0);
+      fill(rageDisply, 0, 0, 100);
+      rect((location.x - 15) * scale, (location.y - 15) * scale, 31 * scale, 31 * scale);
+      stroke(rageDisply, rageDisply, 0);
+      fill(rageDisply, rageDisply, 0, 100);
+      rect((location.x - 7) * scale, (location.y - 7) * scale, 15 * scale, 15 * scale);
+      fill(155);
+      stroke(0);
+      strokeWeight(1.5);
+      if (towerColitionPlase(towers, energyTowers, base, towersAttackEmitters, mouseX/scale, mouseY/scale)) {
+        stroke(255, 100, 100);
+      } 
+      rect((location.x - 1) * scale, (location.y - 1) * scale, 3 * scale, 3 * scale);
+    }
   }
 
 
   void place() {
 
-    if (towerInHand) {
+    if (towerInHand) { 
+      println("hej"); 
+      picked=6;
+
+      highLight(); 
       return;
     }
 
@@ -335,13 +355,14 @@ class Player //<>// //<>// //<>//
 
   boolean towerColitionPlase(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers, int x, int y)
   {
+    if (placeble) {
+      for (int i = -1; i <= 1; ++i) {
+        for (int j = -1; j <= 1; ++j) {  
 
-    for (int i = -1; i <= 1; ++i) {
-      for (int j = -1; j <= 1; ++j) {  
 
-
-        if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z ||levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {  
-          return true;
+          if (levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z != levelTerrain[int(mouseX/scale) + i][int(mouseY/scale)+ j].z ||levelTerrain[int(mouseX/scale)][int(mouseY/scale)].z==-1) {  
+            return true;
+          }
         }
       }
     } 
@@ -481,6 +502,7 @@ class Player //<>// //<>// //<>//
 
   void towerMove()
   {
+
     if (mouseY > rows * scale || placeble || towers.size() == 0)
     {
       return;
@@ -495,6 +517,7 @@ class Player //<>// //<>// //<>//
       Tower tower = towers.get(i);
       if (mouseOverTower(tower.location, newLocation) && !towerInHand && tower.isBuild() && !placeble) {
         NRInHand = i;
+        tower.timer=15;
         newLocation = null;
         towerInHand = true;
         placeble = false;
@@ -504,6 +527,8 @@ class Player //<>// //<>// //<>//
 
     if (towerInHand && NRInHand >= 0 && !placeble) {
       towers.get(NRInHand).updateNewLocation(newLocation);
+      picked=0;  
+      towers.get(NRInHand).timer = towers.get(NRInHand).cunstructionTime+1;
       NRInHand = -1;
       newLocation = null;
       towerInHand = false;
@@ -668,9 +693,8 @@ class Player //<>// //<>// //<>//
     destroyTower();
     energyNetwork.Update();
     pickTowerOnBar();   
-    highLight();   
-    if (keys[0]) {
-    }
+    highLight(); 
+
     place();  
     towerRun();
     //towerMove();

@@ -271,7 +271,6 @@ class Game {
       escMenu.run();
       break;
     }    
-    println(game.baseLevel.emitters.size());
   }
   void gameRun() {
     if (pause) {

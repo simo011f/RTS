@@ -14,10 +14,6 @@ class KeyMenu
   }
   void tekst() { 
     textAlign(CENTER);
-    if (mousePressed)
-    {
-      println(mouseX, mouseY, 100*mouseX/width, 100*mouseY/height);
-    }
     fill(0);
     textFont(font, 35);
     text("Hover over tower and click to select a tower", width*1/5, height*1/5);
