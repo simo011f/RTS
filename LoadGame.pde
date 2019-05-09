@@ -2,7 +2,6 @@ class LoadGame {
   PFont font; 
   boolean[] levelNR = new boolean[13];
   int[] levelColors = new int[13];
-  int levelCode;
   int colorLeave;
   boolean leave;
   int timer;

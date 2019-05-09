@@ -21,7 +21,6 @@ class Player //<>// //<>// //<>// //<>//
   boolean placebleBase;
   boolean placebleETowers;
 
-  boolean isMouseNotPressedPlace = true;
   boolean isMouseNotPressedHotBar = true;
 
   int rageDisply = 195;
