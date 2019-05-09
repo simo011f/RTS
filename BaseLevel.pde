@@ -1,9 +1,7 @@
 class BaseLevel implements Visualize //<>//
 {
 
-
   EnemyGrid enemyArray;
-  TerrainEditor terrainEditor = new TerrainEditor();
   EnemyPlasmentEditor enemyPlasmentEditor = new EnemyPlasmentEditor();
 
   int currentLevel = 0;
@@ -29,9 +27,35 @@ class BaseLevel implements Visualize //<>//
     }
   }
 
+  PVector[][] loadMap(int levelNR)
+  {
+    PVector[][] thisMap = new PVector[cols][rows];
+    for (int i = 0; i < cols; i++) {
+      for (int j = 0; j < rows; j++) {
+        thisMap[i][j] = new PVector(i, j, -1);
+      }
+    }
+    Table table = loadTable("Tarrains.csv", "header");
+
+    if (table != null)
+    {
+      for (TableRow row : table.rows())
+      {
+        if (row.getInt("LevelNR") == levelNR)
+        {
+          int x = row.getInt("x");
+          int y = row.getInt("y");
+          int z = row.getInt("z");
+          thisMap[x][y].z = z;
+        }
+      }
+    }
+    return thisMap;
+  }
+
   void loadLevel(int newLevel)
   {
-    currentTerrain = terrainEditor.loadMap(newLevel);  
+    currentTerrain = loadMap(newLevel);  
 
     enemyArray = enemyPlasmentEditor.loadBasicEnemy(newLevel, currentTerrain);
     enemyArray.reLoad(enemyArray);

@@ -7,7 +7,6 @@ class EnemyPlasmentEditor { //<>//
   boolean isMouseNotPressedEmitterStrength = true;
   boolean isMouseNotPressedEmitterDelay = true;
   TerrainEditor terrainEditor = new TerrainEditor();
-  PVector[][] newMap = new PVector[cols][rows];
   int[][] newBasicEnemys = new int[cols][rows];
   int newBasicEnemysStrength = 1; 
   ArrayList<Emitter> newLevelEmitters = new ArrayList<Emitter>();
@@ -22,7 +21,6 @@ class EnemyPlasmentEditor { //<>//
     {
       for (int j = 0; j < rows; j++)
       {
-        newMap[i][j] = new PVector(i, j, 0);
         newBasicEnemys[i][j] = -100;
       }
     }
@@ -454,11 +452,6 @@ class EnemyPlasmentEditor { //<>//
         }
       }
       newLevelEmitters.add(new Emitter(new PVector(mouseX/scale, mouseY/scale), newLevelEmitterDelay, newLevelEmitterStrength));
-    }
-
-    if (enemyTypeThree && mousePressed && isMouseNotPressedUpdateMap)
-    {
-      newMap[mouseX/scale][mouseY/scale].z = 3;
     }
 
     if (mousePressed && mouseY < height - 40)
