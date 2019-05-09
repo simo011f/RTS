@@ -15,9 +15,6 @@ class Tower {           //<>// //<>//
   int energyConsomstion;
   boolean conected = false;
   boolean isDead = false;
-  boolean coliding = false;
-
-
   int range = 15;
 
 
@@ -80,31 +77,7 @@ class Tower {           //<>// //<>//
       isDead = true;
     }
   }
-
-
-  void towerColition(ArrayList<Tower> towers, ArrayList<TowerEnergy> energyTowers, TowerBase base, ArrayList<TowerAttackEmitters> towerAttackETowers)
-  {
-    for (Tower tower : towers)
-    {
-      if (tower == this)
-      {
-        continue;
-      }
-      for (int i = -7; i <= 7; i++) 
-      {
-        for (int j = -7; j <= 7; j++) 
-        {
-          if (newLocation.x + i == tower.location.x && newLocation.y + j == tower.location.y)
-          {
-            newLocation.set(location);
-          }
-        }
-      }
-    } //<>//
-  }
-
-  //<>//
-
+ //<>// //<>//
   void terrainHight(PVector[][] terrain) {
     if (sameTerrainHeight(terrain)) {
       if (location.x > cols || location.x < 0) {
@@ -211,11 +184,6 @@ class Tower {           //<>// //<>//
 
   void Draw() {
     strokeWeight(1.5);
-    if (coliding)
-    {
-      stroke(255, 50, 50);
-      strokeWeight(2);
-    }
     rect((location.x*10 - 10), (location.y*10 - 10), 30, 30);
   }
 
