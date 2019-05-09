@@ -17,10 +17,10 @@ class KeyMenu
     fill(0);
     textFont(font, 35);
     text("Hover over tower and click to select a tower", width*1/5, height*1/5);
-    text("Clik again to move the tower", width*1/5, height*2/5); 
+    text("Clik again to move the tower or place a new tower", width*1/5 + 5, height*2/5); 
     text("Clik X to destoy towers", width*4/5, height*1/5);
     text("Clik Esc to go to the escape menu", width*4/5, height*2/5);
-    text("Clik Space to Pause the game", width*5/10, height*2/5);
+    text("Clik Space to Pause the game", width*5/10, height*3/6);
     textAlign(LEFT);
   }
 
