@@ -7,9 +7,9 @@ class TowerAttackEmitters  extends Tower {
     energyConsomstion = 100;
     range = 10;
     cunstructionTime=157;
-    leif = 1;
-    maxLeif = 25; 
-    leifRegen = 2; 
+    life = 1;
+    maxLife = 25; 
+    lifeRegen = 2; 
   }
   void weapon(ArrayList<Emitter> emitters) {
     for (Emitter emitter : emitters) {

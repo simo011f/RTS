@@ -11,8 +11,8 @@ class TowerBomb extends Tower //<>// //<>// //<>//
     underCunstruction = 0;
     cunstructionEnergyConsomstion = 50;
     energyConsomstion = 0;
-    leifRegen = 1;
-    maxLeif = 25;
+    lifeRegen = 1;
+    maxLife = 25;
     cunstructionTime=120;
     finishCooling = 180;
     underBombartment=new PVector(-range, -range);

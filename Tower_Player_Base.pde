@@ -1,22 +1,22 @@
 class TowerBase 
 {
   PVector location=new PVector(-100, -100);
-  int leif = 2;
-  int maxLeif = 2;
-  int leifRegen = 0;
+  int life = 2;
+  int maxLife = 2;
+  int lifeRegen = 0;
   boolean isDead = false;
   ArrayList<PVector> energyTowersConectedIndex = new ArrayList<PVector>();
 
   TowerBase() {
-    leif = 50;
-    maxLeif = 250;
-    leifRegen = 5;
+    life = 50;
+    maxLife = 250;
+    lifeRegen = 5;
   }
 
   void regen() { 
-    leif += leifRegen;
-    if (leif >= maxLeif) {
-      leif = maxLeif;
+    life += lifeRegen;
+    if (life >= maxLife) {
+      life = maxLife;
     }
   }
 
@@ -77,11 +77,11 @@ class TowerBase
         }
         if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
         {
-          leif--;
+          life--;
         }
       }
     }
-    if (leif <= 0)
+    if (life <= 0)
     {
       isDead = true;
     }

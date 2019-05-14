@@ -2,9 +2,9 @@ class Tower {           //<>// //<>//
   PVector location;
   PVector newLocation = new PVector();
   PVector velocity = new PVector();
-  int leif = 2;
-  int maxLeif = 2;
-  int leifRegen = 0;
+  int life = 2;
+  int maxLife = 2;
+  int lifeRegen = 0;
   int cooldown;
   int finishCooling;
   //build timer
@@ -39,12 +39,12 @@ class Tower {           //<>// //<>//
       return ;
     }
 
-    leif += leifRegen;  
-    if (leif < maxLeif) {
+    life += lifeRegen;  
+    if (life < maxLife) {
       energyConsomstion=5;
     }
-    if (leif >= maxLeif) {
-      leif = maxLeif; 
+    if (life >= maxLife) {
+      life = maxLife; 
       underCunstruction=12;
     }  
 
@@ -70,11 +70,11 @@ class Tower {           //<>// //<>//
 
         if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3)
         {
-          leif--;
+          life--;
         }
       }
     }
-    if (leif <= 0)
+    if (life <= 0)
     {
       conected = false;
       isDead = true;
