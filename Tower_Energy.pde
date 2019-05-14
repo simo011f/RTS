@@ -2,7 +2,7 @@ class TowerEnergy   //<>//
 {
   PVector location=new PVector(-100, -100);
   PVector naborsLocation = new PVector();
-  int leif = 2;
+  int life = 2;
   int anchoredToBase;
   int vis;
   PVector range = new PVector();
@@ -143,11 +143,11 @@ class TowerEnergy   //<>//
           continue;
         }
         if (enemyArray[(int)location.x + i][(int)location.y + j].updateNR != 3) {
-          leif--;
+          life--;
         }
       }
     }
-    if (leif <= 0) {
+    if (life <= 0) {
       isDead = true;
     }
   }
